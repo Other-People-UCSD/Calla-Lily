@@ -3,9 +3,9 @@
   "version": "4.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "tinacms dev -c \"next dev\"",
+    "build": "tinacms build && next build",
+    "start": "tinacms build && next start",
     "lint": "next lint"
   },
   "dependencies": {
@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.2",
+    "@tinacms/cli": "^1.5.8",
     "autoprefixer": "10.4.14",
     "date-fns": "^2.29.3",
     "eslint": "8.39.0",
@@ -29,7 +30,8 @@
     "remark-html": "^15.0.2",
     "remark-rehype": "^10.1.0",
     "swr": "^2.1.5",
-    "tailwindcss": "3.3.1"
+    "tailwindcss": "3.3.1",
+    "tinacms": "^1.5.1"
   },
   "devDependencies": {
     "sass": "^1.62.0"
