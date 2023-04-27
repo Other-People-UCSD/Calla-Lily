@@ -6,6 +6,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import Search from './search';
 
 export default function HeaderMain() {
   const [showNav, setShowNav] = useState(false);
@@ -57,6 +58,7 @@ export function MobileNav({ setShowNav }) {
       {/* <MobileNav /> */}
       <nav className={navStyles["mobile-nav"]}>
         <div className={navStyles["mobile-nav2"]}>
+          <Search />
         </div>
         <div className={navStyles.genres}>
           <h3>Genres</h3>
