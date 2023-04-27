@@ -1,0 +1,166 @@
+@import '@/styles/variables.scss';
+
+@font-face {
+    font-family: "basier_circlemonoregular";
+    // Reminder to fix these urls
+    src: url("/fonts/basiercirclemono/basiercirclemono-regular-webfont.eot");
+    src: url("/fonts/basiercirclemono/basiercirclemono-regular-webfont.eot") format("embedded-opentype"),
+        url("/fonts/basiercirclemono/basiercirclemono-regular-webfont.woff2") format("woff2"),
+        url("/fonts/basiercirclemono/basiercirclemono-regular-webfont.woff") format("woff"),
+        url("/fonts/basiercirclemono/basiercirclemono-regular-webfont.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    width: 100%;
+    margin: auto;
+
+    background: $backgroundColor;
+    color: $bodyColor;
+    font-family: $bodyFont;
+
+    padding: 0;
+    padding-top: 142px;
+
+    transition: background-color 0.8s ease-in-out;
+
+    ::selection {
+        background: #ffb7b7;
+    }
+
+    ::-moz-selection {
+        background: #ffb7b7;
+    }
+}
+
+main {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1080px;
+}
+
+h1 {
+    font-family: Arial;
+    font-size: 4rem;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+
+h2,
+button {
+    font-family: Arial;
+    font-size: 1.2rem;
+    font-weight: normal;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+}
+
+h3 {
+    font-family: Arial;
+    font-size: 1rem;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+
+h4 {
+    font-family: "basier_circlemonoregular";
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    line-height: 1.8rem;
+    font-size: 1rem;
+}
+
+ul {
+    line-height: 1.8rem;
+    list-style-type: ">   ";
+}
+
+a {
+    color: $bodyColor;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+button {
+    background-color: inherit;
+    border: none;
+}
+
+sup {
+    font-family: "basier_circlemonoregular";
+    text-transform: uppercase;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    color: rgb(255, 153, 0);
+}
+
+iframe {
+    max-width: 980px;
+}
+
+html,
+html[data-theme="light"] {
+    --background-color: #ffffff;
+    --light-text-color: #151515;
+    --link-color: rgb(0, 112, 201);
+    --main-background-color: rgb(255, 255, 255);
+    --main-text-color: rgb(51, 51, 51);
+    --button-background: #ffb94f;
+    --button-outline: #151515;
+
+}
+
+html[data-theme="dark"] {
+    --background-color: #151515;
+    --light-text-color: #ffffff;
+    --link-color: rgb(100, 210, 255);
+    --main-background-color: rgb(28, 28, 30);
+    --main-text-color: rgb(229, 229, 234);
+    --button-background: #ff9900;
+    --button-outline: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+    html[data-theme="light"] {
+        --background-color: #ffffff;
+        --light-text-color: #151515;
+        --link-color: rgb(0, 112, 201);
+        --main-background-color: rgb(255, 255, 255);
+        --main-text-color: rgb(51, 51, 51);
+        --button-background: #ffb94f;
+        --button-outline: #151515;
+
+    }
+
+    html,
+    html[data-theme="dark"] {
+        --background-color: #151515;
+        --light-text-color: #ffffff;
+        --link-color: rgb(100, 210, 255);
+        --main-background-color: rgb(28, 28, 30);
+        --main-text-color: rgb(229, 229, 234);
+        --button-background: #ff9900;
+        --button-outline: #ffffff;
+
+    }
+}
+
+@media only screen and (max-width: 728px) {
+    h1 {
+        font-size: 3rem;
+    }
+}

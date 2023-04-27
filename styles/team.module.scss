@@ -1,0 +1,51 @@
+@import '@/styles/variables.scss';
+
+.team_module {
+  padding: $blockThree;
+  margin-left: $blockSix;
+  margin-right: $blockSix;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1px;
+  h3 {
+      font-family: Arial;
+      font-weight: normal;
+  }
+
+  ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+  }
+  li {
+       margin: 10px 0 10px 0;
+  }
+}
+
+.team_module_child {
+  background-color: $backgroundColor;
+  color: $bodyColor;
+  margin-top: $blockThree;
+
+  h2 {
+      font-family: Arial;
+      margin-bottom: $blockThree;
+  }
+}
+
+@media only screen and (max-width: 728px) {
+  .team_module {
+      padding: $blockTwo;
+      margin-left: 0;
+      margin-right: 0;
+      grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 729px) {
+  .team_module {
+      padding: $blockThree;
+      margin-left: $blockFour;
+      margin-right: $blockFour;
+  }
+}

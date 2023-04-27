@@ -1,0 +1,106 @@
+@import '@/styles/variables.scss';
+
+@keyframes slideInFromTop {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(0); }
+}
+
+.header-glob {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    padding-top: $blockThree;
+    background-color: $backgroundColor;
+    animation: 1s ease-out 0s 1 slideInFromTop;
+    transition: top 0.3s ease-in-out;
+
+    a, button {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    a:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+}
+
+.header-main {
+    display: grid;
+    padding-left: $blockThree;
+    padding-right: $blockThree;
+    padding-bottom: $blockThree;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.header-glob .announcement {
+    margin: 0;
+    font-family: Arial;
+    font-weight: bold;
+    text-align: center;
+    background-color: #ffb94f;
+    display: flex;
+    
+    :first-child {
+        flex-grow: 19;
+        padding: 8px;
+    }
+
+    #close-notice {
+        flex-grow: 1;
+        margin-left: 8px;
+        margin-right: 8px;
+        width: fit-content;
+        font-family: Arial;
+        font-weight: bold;
+        background-color: #ffb94f;
+    }
+
+    #close-notice:hover {
+        cursor: pointer;
+    }
+}
+
+
+@media only screen and (max-width: 728px) {
+    .header-glob {
+        padding-top: $blockTwo;
+    }
+
+    .header-main {
+        grid-template-columns: 1fr 1fr;
+        padding-left: $blockTwo;
+        padding-right: $blockTwo;
+        padding-bottom: $blockTwo;
+
+        animation: 0.5s ease-out 0s 0.9 slideInFromTop;
+
+        .nav-genres {
+            display: none;
+        }
+    }
+
+    .nav-up { top: -128px; }
+}
+
+
+
+
+@media only screen and (max-width: 1024px) and (min-width: 729px) {
+    .header-glob {
+        padding-top: $blockThree;
+    }
+    .header-main {
+        grid-template-columns: 1fr 1fr;
+        padding-left: $blockThree;
+        padding-right: $blockThree;
+        padding-bottom: $blockThree;
+        
+        .nav-genres {
+            display: none;
+        }
+    }
+}

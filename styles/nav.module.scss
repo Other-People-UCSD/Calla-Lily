@@ -1,0 +1,274 @@
+@import '@/styles/variables.scss';
+
+// MOBILENAV
+.menu {
+    margin-left: auto;
+    margin-right: 0px;
+}
+
+.h2 {
+    font-family: Arial;
+    font-size: 1.2rem;
+    font-weight: normal;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+}
+
+.overlay {
+    height: 0%;
+    width: 100%;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    background-color: #151515;
+
+    overflow-x: hidden;
+    transition: 0.3s;
+}
+
+.overlay-header {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    padding: $blockThree;
+    left: 0;
+    right: 0;
+    color: #fff;
+
+    ul {
+        display: flex;
+        justify-content: space-between;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        cursor: pointer;
+    }
+}
+
+.overlay-content {
+    a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+
+.closebtn {
+    margin-left: auto;
+    margin-right: 0;
+    color: #fff;
+}
+
+.closebtn:hover, .menu:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.mobile-nav {
+    padding: $blockThree;
+    left: 0;
+    right: 0;
+    color: #fff;
+
+    h1 {
+        line-height: 5rem;
+    }
+
+    h3 {
+        margin-top: $blockThree;
+        opacity: 0.5;
+        padding-bottom: $blockThree;
+    }
+    
+    .social-footer {
+        display: grid;
+        padding-left: 0px;
+        max-width: 500px;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 60px;
+        list-style: none;
+
+        svg {
+            width: 3rem;
+            transform: scale(1.25);
+            font-size: 48px;
+        }
+    }
+
+}
+
+.mobile-nav2 {
+    a {
+        color: inherit;
+        text-decoration: none;
+        span {
+            background-color: none;
+        }
+    }
+  
+    a:hover {
+        text-decoration: none;
+        h2 {
+            text-decoration: underline;
+        }
+  
+        h3 {
+            color: $backgroundColor;
+            transition-duration: 0.3s;
+         
+            span {
+                background-color: $bodyColor;
+         
+            }
+        }
+  
+        h4 {
+            text-decoration: none;
+        }
+  
+  
+    }
+  
+    ul {
+        margin-top: $blockThree;
+  
+        padding: 0;
+        line-height: auto;
+    }
+  
+    h3 {
+        margin-top: 0;
+        padding-bottom: 0;
+        opacity: 1;
+        text-decoration: none;
+    }
+  
+    h4 {
+        opacity: 0.5;
+    }
+  
+    li {
+        margin-top: $blockThree;
+        list-style-type: none;
+    }
+  }
+
+  
+#search-container {
+    input {
+        background-color: #151515;
+        color: #fff;
+        border-bottom: 5px solid #fff;
+    }
+}
+.search {
+    opacity: 0.5;
+}
+
+.search:hover {
+    opacity: 1;
+}
+
+.genres {
+    display: none;
+}
+
+.nav-menu {
+    margin: 0 0;
+    padding-left: 0px;
+    font-family: Arial;
+    font-size: 4rem;
+    list-style: none;
+
+    li {
+        line-height: 80px;
+        
+    }
+
+    .external {
+        display: flex;
+        align-items: flex-end;
+    }
+
+    a:hover #arrowRight {
+        margin-left: $blockTwo;
+    }
+}
+
+.mobile-nav {
+    .nav-menu a:hover svg {
+        margin-left: $blockTwo;
+    }
+}
+
+.mobile-nav .nav-footer {
+    text-align: left;
+    padding: 0;
+    margin-top: $blockThree;
+    margin-bottom: $blockThree;
+
+    h4 { 
+        line-height: 1.2rem;
+        opacity: 0.3;
+    }
+}
+
+
+@media only screen and (max-width: 728px) {
+    .overlay-header, .mobile-nav {
+        grid-template-columns: 1fr 1fr;
+        padding: $blockTwo;
+    }
+
+    .overlay-header {
+        :nth-child(2) {
+            display: none;
+        }
+    }
+
+    .mobile-nav {
+        li {
+            font-size: 4rem;
+        }
+    }
+
+    .search {
+        margin-top: $blockOne;
+    }
+
+    .genres {
+        display: initial;
+    }
+    
+    .menu {
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 729px) {
+    .overlay-header, .mobile-nav {
+        grid-template-columns: 1fr 1fr;
+        padding: $blockThree;
+    }
+
+    .overlay-header {
+        :nth-child(2) {
+            display: none;
+        }
+    }
+
+    .genres {
+        display: initial;
+    }
+}
