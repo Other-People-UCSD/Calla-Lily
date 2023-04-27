@@ -1,0 +1,55 @@
+.cssanimation, .cssanimation span {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+.cssanimation span { 
+  display: inline-block; 
+}
+
+@media only screen and (max-width: 728px) {
+  .cssanimation, .cssanimation span {
+      animation-duration: .5s;
+      animation-fill-mode: both;
+  }
+}
+
+.fadeIn { 
+  animation-name: fadeIn;
+  animation-duration: 3000ms;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.fadeInBottom { 
+  animation-name: fadeInBottom;
+}
+
+@keyframes fadeInBottom {
+  from {
+      opacity: 0;
+      transform: translateY(100%);
+  }
+  to { opacity: 1; }
+}
+
+.fadeInHighlight { 
+  animation-name: fadeInHighlight;
+  animation-duration: 6000ms;
+}
+
+@keyframes fadeInHighlight {
+  0% {
+      opacity: 0;
+      background-color: #ffb7b7;
+  }
+  50% {
+      background-color: initial;
+  }
+  100% { 
+      opacity: 1;
+  }
+}

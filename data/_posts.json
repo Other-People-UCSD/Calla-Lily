@@ -1,0 +1,281 @@
+{
+  "2023/a-sculpture-from-scratch": {
+    "slug": "a-sculpture-from-scratch",
+    "collection": "2023",
+    "layout": "Post",
+    "title": "A Sculpture from Scratch",
+    "contributor": "Nandika Mishra",
+    "date": "2023-04-12 07:00:00 +0000",
+    "tags": [
+      "Fiction"
+    ],
+    "prevPost": "/2023/the-post-mortem"
+  },
+  "2023/the-post-mortem": {
+    "slug": "the-post-mortem",
+    "collection": "2023",
+    "layout": "Post",
+    "title": "the post-mortem",
+    "contributor": "Jennifer Chen",
+    "date": "2023-04-06 07:00:00 +0000",
+    "tags": [
+      "Poetry"
+    ],
+    "prevPost": "/2023/dear-guma",
+    "nextPost": "/2023/a-sculpture-from-scratch"
+  },
+  "2023/dear-guma": {
+    "slug": "dear-guma",
+    "collection": "2023",
+    "layout": "Post",
+    "title": "Dear Gūmā",
+    "contributor": "Ivy Du",
+    "date": "2023-02-13 07:00:00 +0000",
+    "tags": [
+      "Fiction"
+    ],
+    "prevPost": "/2023/missed-connections",
+    "nextPost": "/2023/the-post-mortem"
+  },
+  "2023/missed-connections": {
+    "slug": "missed-connections",
+    "collection": "2023",
+    "layout": "Post",
+    "title": "missed connections (1 new post)",
+    "contributor": "Angel Sta. Maria (Writer), Kevin Jang (Developer)",
+    "date": "2023-02-09 07:00:00 +0000",
+    "tags": [
+      "Poetry",
+      "Prose Poetry",
+      "Experimental"
+    ],
+    "theme": "dark",
+    "prevPost": "/2023/soliloquy",
+    "nextPost": "/2023/dear-guma"
+  },
+  "2023/soliloquy": {
+    "slug": "soliloquy",
+    "collection": "2023",
+    "layout": "Post",
+    "title": "Soliloquy",
+    "contributor": "Ploy Techawatanasuk",
+    "date": "2023-01-31 07:00:00 +0000",
+    "tags": [
+      "Poetry",
+      "Prose Poetry"
+    ],
+    "prevPost": "/2023/passenger",
+    "nextPost": "/2023/missed-connections"
+  },
+  "2023/passenger": {
+    "slug": "passenger",
+    "collection": "2023",
+    "layout": "Post",
+    "title": "Passenger",
+    "contributor": "Tracy Truong",
+    "date": "2023-01-30 07:00:00 +0000",
+    "tags": [
+      "Fiction"
+    ],
+    "prevPost": "/2023/always-the-victim",
+    "nextPost": "/2023/soliloquy"
+  },
+  "2023/always-the-victim": {
+    "slug": "always-the-victim",
+    "collection": "2023",
+    "layout": "Post",
+    "title": "Always the Victim",
+    "contributor": "Violet Ford",
+    "date": "2023-01-20 07:00:00 +0000",
+    "tags": [
+      "Fiction"
+    ],
+    "prevPost": "/2023/metamorphoses",
+    "nextPost": "/2023/passenger"
+  },
+  "2023/metamorphoses": {
+    "slug": "metamorphoses",
+    "collection": "2023",
+    "layout": "Post",
+    "title": "Metamorphoses",
+    "contributor": "Jennifer Chen",
+    "date": "2023-01-07 07:00:00 +0000",
+    "tags": [
+      "Poetry"
+    ],
+    "prevPost": "/1/a-love-letter-to-the-ucsd-protected-wifi",
+    "nextPost": "/2023/always-the-victim"
+  },
+  "1/a-love-letter-to-the-ucsd-protected-wifi": {
+    "slug": "a-love-letter-to-the-ucsd-protected-wifi",
+    "collection": "1",
+    "layout": "Post",
+    "tags": [
+      "Poetry"
+    ],
+    "title": "A Love Letter to the UCSD-PROTECTED Wifi",
+    "contributor": "Janelle Kim",
+    "date": "2020-07-31T07:00:00.000+00:00",
+    "category": 1,
+    "featured": true,
+    "prevPost": "/1/2230",
+    "nextPost": "/2023/metamorphoses"
+  },
+  "1/2230": {
+    "slug": "2230",
+    "collection": "1",
+    "tags": [
+      "Poetry"
+    ],
+    "layout": "Post",
+    "title": "2230",
+    "contributor": "Nicole Lopez",
+    "date": "2020-07-31T07:00:00.000+00:00",
+    "category": 1,
+    "featured": true,
+    "prevPost": "/1/brain-fish",
+    "nextPost": "/1/a-love-letter-to-the-ucsd-protected-wifi"
+  },
+  "1/brain-fish": {
+    "slug": "brain-fish",
+    "collection": "1",
+    "category": 1,
+    "layout": "Post",
+    "title": "BRAIN FISH",
+    "date": "2020-05-04T07:00:00.000+00:00",
+    "contributor": "Finn Laubscher (Writer), Zhilin Li (Illustrator)",
+    "thumb": "brain-fish-zhilin-li.webp",
+    "tags": [
+      "Poetry"
+    ],
+    "featured": true,
+    "prevPost": "/1/fronteras",
+    "nextPost": "/1/2230"
+  },
+  "1/fronteras": {
+    "slug": "fronteras",
+    "collection": "1",
+    "category": 1,
+    "layout": "Post",
+    "title": "Fronteras",
+    "contributor": "Nicole Lopez",
+    "date": "2020-05-02T07:00:00.000+00:00",
+    "thumb": "fronteras-1-nicole-lopez.webp",
+    "tags": [
+      "Visual Arts"
+    ],
+    "featured": true,
+    "prevPost": "/2020/count-sheep-in-shakey-graves-can-t-wake-up",
+    "nextPost": "/1/brain-fish"
+  },
+  "2020/count-sheep-in-shakey-graves-can-t-wake-up": {
+    "slug": "count-sheep-in-shakey-graves-can-t-wake-up",
+    "collection": "2020",
+    "category": "",
+    "layout": "Post",
+    "title": "Count Sheep in Shakey Graves’ “Can’t Wake Up”",
+    "contributor": "Jasmine Torres",
+    "date": "2020-04-24T07:00:00.000+00:00",
+    "tags": [
+      "Nonfiction"
+    ],
+    "prevPost": "/1/golden-boy",
+    "nextPost": "/1/fronteras"
+  },
+  "1/golden-boy": {
+    "slug": "golden-boy",
+    "collection": "1",
+    "category": 1,
+    "layout": "Post",
+    "title": "Golden Boy",
+    "contributor": "Isaac Kopstein (Writer), Kelly Tran (Illustrator)",
+    "date": "2020-04-24T07:00:00.000+00:00",
+    "thumb": "golden-boy-kelly-tran.webp",
+    "tags": [
+      "Fiction"
+    ],
+    "featured": true,
+    "prevPost": "/2020/easy-tea-for-sore-throat",
+    "nextPost": "/2020/count-sheep-in-shakey-graves-can-t-wake-up"
+  },
+  "2020/easy-tea-for-sore-throat": {
+    "slug": "easy-tea-for-sore-throat",
+    "collection": "2020",
+    "category": "",
+    "tags": [
+      "Nonfiction"
+    ],
+    "layout": "Post",
+    "title": "Easy Tea for Sore Throat",
+    "date": "2020-04-20T07:00:00.000+00:00",
+    "contributor": "Jasmine Torres",
+    "thumb": "easy-tea-for-sore-throat.webp",
+    "featured": false,
+    "thumb_alt": "A recipe sheet on a lined piece of paper. A bee is flying around a teacup.",
+    "prevPost": "/1/close-your-eyes",
+    "nextPost": "/1/golden-boy"
+  },
+  "1/close-your-eyes": {
+    "slug": "close-your-eyes",
+    "collection": "1",
+    "category": 1,
+    "layout": "Post",
+    "title": "Close Your Eyes",
+    "contributor": "Montanna Harling (Writer), Zhilin Li (Illustrator)",
+    "date": "2020-04-07T07:00:00.000+00:00",
+    "thumb": "close-your-eyes-zhilin-li.webp",
+    "tags": [
+      "Fiction"
+    ],
+    "featured": true,
+    "prevPost": "/1/dissonance",
+    "nextPost": "/2020/easy-tea-for-sore-throat"
+  },
+  "1/dissonance": {
+    "slug": "dissonance",
+    "collection": "1",
+    "category": 1,
+    "layout": "Post",
+    "title": "Dissonance",
+    "contributor": "Laura Esbensen",
+    "date": "2020-04-06T07:00:00.000+00:00",
+    "thumb": "dissonance-laura-esbensen.webp",
+    "tags": [
+      "Visual Arts"
+    ],
+    "featured": true,
+    "prevPost": "/1/boys-night",
+    "nextPost": "/1/close-your-eyes"
+  },
+  "1/boys-night": {
+    "slug": "boys-night",
+    "collection": "1",
+    "category": 1,
+    "layout": "Post",
+    "title": "Boys’ Night",
+    "contributor": "Chloe Esser",
+    "date": "2020-04-06T07:00:00.000+00:00",
+    "thumb": "boys-night-1-jack-yang.webp",
+    "tags": [
+      "Fiction"
+    ],
+    "featured": true,
+    "prevPost": "/1/at-the-sink",
+    "nextPost": "/1/dissonance"
+  },
+  "1/at-the-sink": {
+    "slug": "at-the-sink",
+    "collection": "1",
+    "category": 1,
+    "layout": "Post",
+    "title": "At the Sink",
+    "contributor": "Gabriela Schnepp (Writer), Imanol Tovar (Illustrator)",
+    "date": "2020-04-06T07:00:00.000+00:00",
+    "thumb": "sink-imanol-tovar.webp",
+    "tags": [
+      "Poetry"
+    ],
+    "featured": true,
+    "nextPost": "/1/boys-night"
+  }
+}
