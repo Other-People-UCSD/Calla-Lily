@@ -1,5 +1,5 @@
-import Layout from '../components/layout';
-import { getSortedPostsData } from '../lib/posts';
+import Layout from '@/components/layout';
+import { getSortedPostsData } from '@/lib/posts';
 import Link from 'next/link';
 
 
@@ -8,9 +8,9 @@ export default function Home({ allPostsData }) {
     <Layout home title={"Home"}>
       <section>
         <ul >
-          {allPostsData.map(({ collection, slug, title, contributor, category, featured, tags }) => (
+          {allPostsData.map(({ slug, title, contributor, category, featured, tags }) => (
             <li key={slug}>
-              <Link href={`/${collection}/${slug}`}>{title}</Link>
+              <Link href={`/${slug}`}>{title}</Link>
               <br />
               {contributor}
               <br />

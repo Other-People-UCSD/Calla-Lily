@@ -5,8 +5,8 @@ import Image from "next/image";
 export default function Genre({ genre }) {
   return (
     <div className={postStyles["post-container"]}>
-      {genre.map(({ collection, slug, title, contributor, category, featured, tags, thumb }) => (
-        <Link href={`/${collection}/${slug}`} key={slug}>
+      {genre.map(({ slug, title, contributor, category, featured, tags, thumb }) => (
+        <Link href={`/${slug}`} key={slug}>
           <div className={postStyles.posts}>
             <div className={postStyles["post-info"]}>
               {(title.length > 30) ? (

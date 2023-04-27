@@ -2,8 +2,8 @@ import Layout from "@/components/layout";
 import { getAllPostIds, getPostDataAPI } from "@/lib/posts";
 import postStyles from '@/styles/posts.module.scss';
 import animationStyles from '@/styles/animations.module.scss';
-import Link from "next/link";
 import allPostsData from "@/data/_posts.json";
+import Link from "next/link";
 
 export default function Post({ postData }) {
   function MinsRead() {
@@ -25,7 +25,7 @@ export default function Post({ postData }) {
 
         <h3>/ {postData.contributor}</h3>
         <h4 className={postStyles.meta}>{postData.tags.join(", ")} &mdash; <MinsRead /></h4>
-        { postData.featured ? (<h4 className={postStyles.gold}>No. {postData.category}</h4>): null}
+        {postData.featured ? (<h4 className={postStyles.gold}>No. {postData.category}</h4>) : null}
 
 
         <article id="cr-article">
@@ -38,10 +38,10 @@ export default function Post({ postData }) {
 
         <div className={postStyles["post-nav"]}>
           <div className={postStyles["post-nav-prev"]}>
-            { postData.prevPost ? (<h4><Link href={postData.prevPost}>&lt;prev</Link></h4>) : null}
+            {postData.prevPost ? (<h4><Link href={postData.prevPost}>&lt;prev</Link></h4>) : null}
           </div>
           <div className={postStyles["post-nav-next"]}>
-            { postData.nextPost ? (<h4><Link href={postData.nextPost}>next&gt;</Link></h4>) : null}
+            {postData.nextPost ? (<h4><Link href={postData.nextPost}>next&gt;</Link></h4>) : null}
           </div>
         </div>
       </Layout>
@@ -60,7 +60,7 @@ export function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const postData = await getPostDataAPI(params.slug, params.collection, allPostsData);
+  const postData = await getPostDataAPI(params.slug, allPostsData);
   return {
     props: {
       postData,

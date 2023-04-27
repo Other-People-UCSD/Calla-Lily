@@ -42,10 +42,7 @@ export default function Search() {
             console.log(key);
             return (
               <li key={key}>
-                <Link href={{
-                  pathname: '/[collection]/[slug]',
-                  query: { collection: post.collection, slug: post.slug }
-                }}>
+                <Link href={`/${post.slug}`}>
                   <h2>{post.title}</h2>
                   <h3>{post.contributor}</h3>
                   <h4>{post.tags.join(", ")}</h4>
