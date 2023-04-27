@@ -10,7 +10,7 @@ export default function Home({ allPostsData }) {
         <ul >
           {allPostsData.map(({ collection, slug, title, contributor, category, featured, tags }) => (
             <li key={slug}>
-              <Link href={`/Calla-Lily/${collection}/${slug}`}>{title}</Link>
+              <Link href={`/${encodeURIComponent(collection)+$encodeURIComponent('/')+$encodeURIComponent(slug)}`}>{title}</Link>
               <br />
               {contributor}
               <br />
