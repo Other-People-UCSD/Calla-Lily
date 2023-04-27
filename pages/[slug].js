@@ -2,7 +2,6 @@ import Layout from "@/components/layout";
 import { getAllPostIds, getPostDataAPI } from "@/lib/posts";
 import postStyles from '@/styles/posts.module.scss';
 import animationStyles from '@/styles/animations.module.scss';
-import Link from "next/link";
 import allPostsData from "@/data/_posts.json";
 
 export default function Post({ postData }) {
@@ -55,7 +54,7 @@ export function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const postData = await getPostDataAPI(params.slug, params.collection, allPostsData);
+  const postData = await getPostDataAPI(params.slug, allPostsData);
   return {
     props: {
       postData,
