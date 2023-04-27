@@ -11,7 +11,7 @@ export default function Home({ allPostsData }) {
         <ul >
           {allPostsData.map(({ params, title, contributor, category, featured, tags }) => (
             <li key={title}>
-              <Link href={`/${params.join('/')}`} replace>{title}</Link>
+              <Link href={`${params.join('/')}`}>{title}</Link>
               <br />
               {contributor}
               <br />
