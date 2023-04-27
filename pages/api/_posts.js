@@ -6,7 +6,7 @@ export default function handler(req, res) {
     const keyedPosts = {};
 
     sortedPosts.map((post) => {
-      const key = `/${post.slug}`;
+      const key = `${post.collection}/${post.slug}`;
       keyedPosts[key] = post;
     });
 

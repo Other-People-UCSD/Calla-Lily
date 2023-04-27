@@ -1,5 +1,5 @@
 {
-  "a-love-letter-to-the-ucsd-protected-wifi": {
+  "1/a-love-letter-to-the-ucsd-protected-wifi": {
     "slug": "a-love-letter-to-the-ucsd-protected-wifi",
     "collection": "1",
     "layout": "Post",
@@ -11,10 +11,9 @@
     "date": "2020-07-31T07:00:00.000+00:00",
     "category": 1,
     "featured": true,
-    "prevPost": "2230",
-    "nextPost": "2023/metamorphoses"
+    "prevPost": "1/2230"
   },
-  "2230": {
+  "1/2230": {
     "slug": "2230",
     "collection": "1",
     "tags": [
@@ -26,10 +25,10 @@
     "date": "2020-07-31T07:00:00.000+00:00",
     "category": 1,
     "featured": true,
-    "prevPost": "brain-fish",
-    "nextPost": "a-love-letter-to-the-ucsd-protected-wifi"
+    "prevPost": "1/brain-fish",
+    "nextPost": "1/a-love-letter-to-the-ucsd-protected-wifi"
   },
-  "brain-fish": {
+  "1/brain-fish": {
     "slug": "brain-fish",
     "collection": "1",
     "category": 1,
@@ -42,10 +41,10 @@
       "Poetry"
     ],
     "featured": true,
-    "prevPost": "fronteras",
-    "nextPost": "2230"
+    "prevPost": "1/fronteras",
+    "nextPost": "1/2230"
   },
-  "fronteras": {
+  "1/fronteras": {
     "slug": "fronteras",
     "collection": "1",
     "category": 1,
@@ -58,24 +57,10 @@
       "Visual Arts"
     ],
     "featured": true,
-    "prevPost": "2020/count-sheep-in-shakey-graves-can-t-wake-up",
-    "nextPost": "brain-fish"
+    "prevPost": "1/golden-boy",
+    "nextPost": "1/brain-fish"
   },
-  "2020/count-sheep-in-shakey-graves-can-t-wake-up": {
-    "slug": "count-sheep-in-shakey-graves-can-t-wake-up",
-    "collection": "2020",
-    "category": "",
-    "layout": "Post",
-    "title": "Count Sheep in Shakey Graves’ “Can’t Wake Up”",
-    "contributor": "Jasmine Torres",
-    "date": "2020-04-24T07:00:00.000+00:00",
-    "tags": [
-      "Nonfiction"
-    ],
-    "prevPost": "golden-boy",
-    "nextPost": "fronteras"
-  },
-  "golden-boy": {
+  "1/golden-boy": {
     "slug": "golden-boy",
     "collection": "1",
     "category": 1,
@@ -88,27 +73,10 @@
       "Fiction"
     ],
     "featured": true,
-    "prevPost": "2020/easy-tea-for-sore-throat",
-    "nextPost": "2020/count-sheep-in-shakey-graves-can-t-wake-up"
+    "prevPost": "1/close-your-eyes",
+    "nextPost": "1/fronteras"
   },
-  "2020/easy-tea-for-sore-throat": {
-    "slug": "easy-tea-for-sore-throat",
-    "collection": "2020",
-    "category": "",
-    "tags": [
-      "Nonfiction"
-    ],
-    "layout": "Post",
-    "title": "Easy Tea for Sore Throat",
-    "date": "2020-04-20T07:00:00.000+00:00",
-    "contributor": "Jasmine Torres",
-    "thumb": "easy-tea-for-sore-throat.webp",
-    "featured": false,
-    "thumb_alt": "A recipe sheet on a lined piece of paper. A bee is flying around a teacup.",
-    "prevPost": "close-your-eyes",
-    "nextPost": "golden-boy"
-  },
-  "close-your-eyes": {
+  "1/close-your-eyes": {
     "slug": "close-your-eyes",
     "collection": "1",
     "category": 1,
@@ -121,10 +89,10 @@
       "Fiction"
     ],
     "featured": true,
-    "prevPost": "dissonance",
-    "nextPost": "2020/easy-tea-for-sore-throat"
+    "prevPost": "1/dissonance",
+    "nextPost": "1/golden-boy"
   },
-  "dissonance": {
+  "1/dissonance": {
     "slug": "dissonance",
     "collection": "1",
     "category": 1,
@@ -137,10 +105,10 @@
       "Visual Arts"
     ],
     "featured": true,
-    "prevPost": "boys-night",
-    "nextPost": "close-your-eyes"
+    "prevPost": "1/boys-night",
+    "nextPost": "1/close-your-eyes"
   },
-  "boys-night": {
+  "1/boys-night": {
     "slug": "boys-night",
     "collection": "1",
     "category": 1,
@@ -153,10 +121,10 @@
       "Fiction"
     ],
     "featured": true,
-    "prevPost": "at-the-sink",
-    "nextPost": "dissonance"
+    "prevPost": "1/at-the-sink",
+    "nextPost": "1/dissonance"
   },
-  "at-the-sink": {
+  "1/at-the-sink": {
     "slug": "at-the-sink",
     "collection": "1",
     "category": 1,
@@ -169,6 +137,6 @@
       "Poetry"
     ],
     "featured": true,
-    "nextPost": "boys-night"
+    "nextPost": "1/boys-night"
   }
 }

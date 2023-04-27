@@ -8,7 +8,7 @@ export default function Footer() {
       </div>
 
       <div>
-        <Image src="/favicons/footer.svg" width={80} height={50.75} alt={"The People"}/>
+        <Image src="/Calla-Lily/favicons/footer.svg" width={80} height={50.75} alt={"The People"}/>
         <h4>
           {`© ${getYear()} All Rights Reserved`}<br />
           Version 4.0.0<br />

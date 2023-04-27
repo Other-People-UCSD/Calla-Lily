@@ -8,9 +8,9 @@ export default function Home({ allPostsData }) {
     <Layout home title={"Home"}>
       <section>
         <ul >
-          {allPostsData.map(({ slug, title, contributor, category, featured, tags }) => (
+          {allPostsData.map(({ collection, slug, title, contributor, category, featured, tags }) => (
             <li key={slug}>
-              <Link href={`/${slug}`}>{title}</Link>
+              <Link href={`/${collection}/${slug}`}>{title}</Link>
               <br />
               {contributor}
               <br />
