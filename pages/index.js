@@ -4,13 +4,14 @@ import Link from 'next/link';
 
 
 export default function Home({ allPostsData }) {
+  // console.log(allPostsData)
   return (
     <Layout home title={"Home"}>
       <section>
         <ul >
-          {allPostsData.map(({ collection, slug, title, contributor, category, featured, tags }) => (
-            <li key={slug}>
-              <Link href={`/${encodeURIComponent(collection)}${encodeURIComponent('/')}${encodeURIComponent(slug)}`}>{title}</Link>
+          {allPostsData.map(({ params, title, contributor, category, featured, tags }) => (
+            <li key={title}>
+              <Link href={`/${params.join('/')}`}>{title}</Link>
               <br />
               {contributor}
               <br />
@@ -25,6 +26,7 @@ export default function Home({ allPostsData }) {
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
+  console.log('static props index', allPostsData);
 
   return {
     props: {

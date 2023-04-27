@@ -45,8 +45,9 @@ export default function Post({ postData }) {
 
 
 export function getStaticPaths() {
+  console.log('static paths')
   const paths = getAllPostIds();
-
+  console.log('static', paths);
   return {
     paths,
     fallback: false,
@@ -54,7 +55,9 @@ export function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const postData = await getPostDataAPI(params.slug, params.collection, allPostsData);
+  console.log('static props', params)
+
+  const postData = await getPostDataAPI(params, allPostsData);
   return {
     props: {
       postData,
