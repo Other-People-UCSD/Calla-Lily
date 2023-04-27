@@ -37,12 +37,7 @@ export default function Post({ postData }) {
         </div>
 
         <div className={postStyles["post-nav"]}>
-          <div className={postStyles["post-nav-prev"]}>
-            { postData.prevPost ? (<h4><Link href={postData.prevPost}>&lt;prev</Link></h4>) : null}
-          </div>
-          <div className={postStyles["post-nav-next"]}>
-            { postData.nextPost ? (<h4><Link href={postData.nextPost}>next&gt;</Link></h4>) : null}
-          </div>
+
         </div>
       </Layout>
     </>
