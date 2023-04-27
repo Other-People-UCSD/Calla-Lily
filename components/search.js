@@ -43,7 +43,7 @@ export default function Search() {
             return (
               <li key={key}>
                 <Link href={{
-                  pathname: '/[collection]/[slug]',
+                  pathname: '[collection]/[slug]',
                   query: { collection: post.collection, slug: post.slug }
                 }}>
                   <h2>{post.title}</h2>
