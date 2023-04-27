@@ -121,21 +121,6 @@
     "prevPost": "/1/2230",
     "nextPost": "/2023/metamorphoses"
   },
-  "1/2230": {
-    "slug": "2230",
-    "collection": "1",
-    "tags": [
-      "Poetry"
-    ],
-    "layout": "Post",
-    "title": "2230",
-    "contributor": "Nicole Lopez",
-    "date": "2020-07-31T07:00:00.000+00:00",
-    "category": 1,
-    "featured": true,
-    "prevPost": "/1/brain-fish",
-    "nextPost": "/1/a-love-letter-to-the-ucsd-protected-wifi"
-  },
   "1/brain-fish": {
     "slug": "brain-fish",
     "collection": "1",
