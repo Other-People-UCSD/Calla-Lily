@@ -13,7 +13,7 @@ const BlogPage = (props) => {
     data: props.data,
   })
 
-  console.log(data.post.body)
+  // console.log(data.post.body)
   return (
     <>
       <Head>
