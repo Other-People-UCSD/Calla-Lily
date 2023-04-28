@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "tinacms dev -c \"next dev\"",
-    "build": "tinacms build && next build",
+    "build": "tinacms audit && tinacms build && next build",
     "start": "tinacms build && next start",
-    "lint": "next lint"
+    "lint": "next lint && tinacms audit",
+    "audit": "next lint && tinacms audit"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
