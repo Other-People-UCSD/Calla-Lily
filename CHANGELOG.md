@@ -1,4 +1,13 @@
 # Changelog 
+### v4.0.2 (5/1/27)
+- Post pages now apply the Pink-Currents post styles
+- Added descriptors to UI schema for the editor
+- Custom parsing rich-text editor to support HTML in markdown using the raw values. This currently works one-level down the AST tree. May have issues with other posts once they get republished.
+
+### v4.0.1 36daaec (4/27/23)
+- TinaCMS configuration setup
+- Working basic UI for posts
+
 ## v4.0.0 (4/26/23)
 - Working build of React-based frontend of Pink-Currents
 - Implements all landing pages

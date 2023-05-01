@@ -30,27 +30,31 @@ export const schema = {
         {
           type: "string",
           name: "title",
-          label: "Title (required)",
+          label: "Title*",
           isTitle: true,
           required: true,
         },
         {
           type: "datetime",
           name: "date",
-          label: "Date (required)",
-          required: true,
+          label: "Date*",
+          ui: {
+            timeFormat: "HH:mm:ss",
+            description: "Set the time to publish date. Set HH:mm:ss for collection releases, where each post has a different second value to order them. View the docs to see how this would work."
+          }
         },
         {
           type: "string",
           name: "contributor",
-          label: "Contributor(s) (required)",
+          label: "Contributor(s)*",
           required: true,
         },
         {
           type: "number",
           name: "collection",
-          label: "Collection No. (leave blank if not part of collection)",
+          label: "Collection No.",
           ui: {
+            description: "Leave blank if not part of a collection",
             validate: (value) => {
               return value <= 0 ? "The number must be a positive integer." : null;
             }
@@ -59,16 +63,30 @@ export const schema = {
 
         {
           name: "tags",
-          label: "Tags (Case-sensitive! Please capitalize the first word <3 | required) ",
+          label: "Tags*",
           type: "string",
           list: true,
           required: true,
+          ui: {
+            description: "Poetry, Fiction, Nonfiction, and 'Visual Arts'. Case-insensitive, but most are Capitalized",
+          }
+        },
+        {
+          type: "image",
+          name: "thumbnail",
+          label: "Thumbnail",
+          ui: {
+            description: "This is the very small image you see rendered on the genre or homepage.",
+          },
         },
         {
           type: "rich-text",
           name: "body",
-          label: "Body (markdown only, NO HTML)",
+          label: "Body",
           isBody: true,
+          ui: {
+            description: "Currently supports markdown only, no HTML.",
+          }
         },
       ],
     },
