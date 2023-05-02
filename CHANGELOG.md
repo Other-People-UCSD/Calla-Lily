@@ -1,4 +1,7 @@
 # Changelog 
+### v4.0.4 (5/1/23)
+- TinaCMS connections on Homepage and About
+
 ### v4.0.3 (5/1/23)
 - Corrected URL links to posts by fixing regex logic for `.mdx` files.
 - Used API algorithm to get relevant post data between posts and word count.
