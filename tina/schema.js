@@ -90,5 +90,187 @@ export const schema = {
         },
       ],
     },
+    {
+      name: "team",
+      label: "Team Members",
+      path: "data",
+      format: "json",
+      match: {
+        include: "team",
+      },
+      ui: {
+        allowedActions: {
+          create: false,
+          delete: false,
+        },
+      },
+      fields: [
+        {
+          name: "editor_in_chief",
+          label: "Editor in Chief",
+          type: "string",
+          list: true,
+        },
+        {
+          name: "editorial",
+          label: "Editorial Team",
+          type: "string",
+          list: true,
+        },
+        {
+          name: "design_team",
+          label: "Design Team",
+          type: "string",
+          list: true,
+        },
+        {
+          name: "publicity_events",
+          label: "Social Media/PR",
+          type: "string",
+          list: true,
+        },
+      ],
+    },
+    {
+      name: "forms",
+      label: "Forms",
+      path: "data",
+      format: "json",
+      match: {
+        include: "forms",
+      },
+      ui: {
+        allowedActions: {
+          create: false,
+          delete: false,
+        },
+      },
+      fields: [
+        {
+          name: "written",
+          label: "Written Submission Form",
+          type: "string",
+        },
+        {
+          name: "visual",
+          label: "Visual Arts Submission Form",
+          type: "string",
+        },
+        {
+          name: "subsClosedText",
+          label: "Text to Show if Written and Visual Arts Submissions Are Closed",
+          type: "rich-text",
+        },
+        {
+          name: "otherSubs",
+          label: "Other Submission Forms",
+          type: "object",
+          list: true,
+          fields: [
+            { 
+              name: "description",
+              label: "Description",
+              type: "string",
+              required: true,
+            },
+            {
+              name: "link",
+              label: "Link",
+              type: "string",
+              required: true,
+            },
+          ],
+        },
+        {
+          name: "editorial",
+          label: "Editorial Application Form",
+          type: "string",
+        },
+        {
+          name: "content",
+          label: "Content Writing Application Form",
+          type: "string",
+        },
+        {
+          name: "design",
+          label: "Design Application Form",
+          type: "string",
+        },
+        {
+          name: "events",
+          label: "Event Planning Application Form",
+          type: "string",
+        },
+        {
+          name: "website",
+          label: "Website Application Form",
+          type: "string",
+        },
+      ],
+    },
+    {
+      name: "homepage",
+      label: "Homepage",
+      path: "data",
+      format: "json",
+      match: {
+        include: "homepage",
+      },
+      ui: {
+        allowedActions: {
+          create: false,
+          delete: false,
+        },
+      },
+      fields: [
+        {
+          name: "image",
+          label: "Featured Image",
+          type: "image",
+          required: true,
+        },
+        {
+          name: "featured_alt",
+          label: "Featured Image Alt Text",
+          type: "string",
+          required: true,
+        },
+        {
+          name: "featured_piece_name",
+          label: "Featured Image Name",
+          type: "string",
+          required: true,
+        },
+        {
+          name: "featured_contributor",
+          label: "Featured Image Contributor",
+          type: "string",
+          required: true,
+        },
+        {
+          name: "featured_link",
+          label: "Featured Image Link",
+          type: "string",
+        },
+        {
+          name: "term",
+          label: "Term",
+          type: "string",
+          required: true,
+        },
+        {
+          name: "collection",
+          label: "Collection No.",
+          type: "number",
+          required: true,
+        },
+        {
+          name: "theme",
+          label: "Theme",
+          type: "string",
+          required: true,
+        },
+      ],
+    },
   ],
 }

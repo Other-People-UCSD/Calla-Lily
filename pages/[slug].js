@@ -1,6 +1,3 @@
-// THIS FILE HAS BEEN GENERATED WITH THE TINA CLI.
-// This is a demo file once you have tina setup feel free to delete this file
-
 import Head from 'next/head'
 import { useTina } from 'tinacms/dist/react'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
@@ -8,16 +5,18 @@ import client from '../tina/__generated__/client'
 import animationStyles from "@/styles/animations.module.scss";
 import postStyles from "@/styles/posts.module.scss";
 import Layout from '@/components/layout';
+import Link from 'next/link';
+import { getPostDataAPI, getSortedPostsData } from '@/lib/posts';
 
 const Page = (props) => {
-  const { data } = useTina({
+  const { query, variables, data } = useTina({
     query: props.query,
     variables: props.variables,
     data: props.data,
   })
 
   function MinsRead() {
-    const wc = data.post.wordCount;
+    const wc = props.fullPostData.wordCount;
     if (wc <= 360) {
       return "1 min reading time";
     }
@@ -25,6 +24,9 @@ const Page = (props) => {
   }
 
   // console.log('page data:', data.post.body.children[0].value)
+  console.log('page query', query);
+  console.log('page vars', variables);
+  console.log('page fullPostData', props.fullPostData);
 
   return (
     <Layout post title={data.post.title}>
@@ -49,10 +51,10 @@ const Page = (props) => {
 
       <div className={postStyles["post-nav"]}>
         <div className={postStyles["post-nav-prev"]}>
-          {data.post.prevPost ? (<h4><Link href={data.post.prevPost}>&lt;prev</Link></h4>) : null}
+          {props.fullPostData.prevPost ? (<h4><Link href={props.fullPostData.prevPost}>&lt;prev</Link></h4>) : null}
         </div>
         <div className={postStyles["post-nav-next"]}>
-          {data.post.nextPost ? (<h4><Link href={data.post.nextPost}>next&gt;</Link></h4>) : null}
+          {props.fullPostData.nextPost ? (<h4><Link href={props.fullPostData.nextPost}>next&gt;</Link></h4>) : null}
         </div>
       </div>
 
@@ -75,12 +77,18 @@ export const getStaticProps = async ({ params }) => {
     // swallow errors related to document creation
   }
 
+  console.log('getStaticProps data:', data);
+  // console.log('getStaticProps vars:', variables);
+  const allPostData = getSortedPostsData();
+  const fullPostData = await getPostDataAPI(params.slug, allPostData);
+  // console.log('fullPostData', fullPostData);
+
   return {
     props: {
       variables: variables,
       data: data,
       query: query,
-      //myOtherProp: 'some-other-data',
+      fullPostData: fullPostData,
     },
   }
 }
@@ -104,7 +112,7 @@ export const getStaticPaths = async () => {
  */
 const OPMHTML = ({ content }) => {
   return content.map((astChild) => {
-    console.log(astChild, astChild.type)
+    // console.log(astChild, astChild.type)
     return (astChild.type === 'html') ? (
       <div dangerouslySetInnerHTML={{ __html: astChild.value }} />
     ) : (

@@ -2,9 +2,13 @@ import Layout from '@/components/layout';
 import contentStyles from '@/styles/content.module.scss';
 import animationStyles from "@/styles/animations.module.scss";
 import indexStyles from "@/styles/index.module.scss";
+import forms from "@/data/forms.json";
 
-const status = false;
+// const status = forms["written"] || forms["visual"] || forms["otherSubs"];
+
 export default function Submissions() {
+  const status = forms["written"] || forms["visual"];
+
   return (
     <Layout genre title={"Submissions"}>
       <div className={`${animationStyles.cssanimation} ${animationStyles.sequence} ${animationStyles.fadeInBottom}`}>
@@ -26,9 +30,21 @@ export default function Submissions() {
           </h4>
         </div>
 
-        <p>Our next submission period for Collection No. 7 should open around the end of the school year and it should close a few weeks into fall quarter.</p>
+        { status ? (
+          <>
+            { forms.written ? (<p><a href={forms.written}>Written Submissions</a></p>) : null}
+            { forms.visual ? (<p><a href={forms.visual}>Visual Submissions</a></p>) : null }
+          </>
+          ) : (
+          <p>{forms.subsClosedText}</p>
+          )
+        }
 
-        <p><a href="https://maximalistmagazine.wixsite.com/maximalist-magazine/about-1">Maximalist Magazine Online Submissions (closes end of school year)</a></p>
+        { forms.otherSubs.length > 0 ? (
+          forms.otherSubs.map((submission) => {
+            return <p key={submission}><a href={submission.link}>{submission.description}</a></p>
+          })
+        ): null}
 
         <p>(The list of submissions are often updated on our discord! <a href="https://discord.gg/Z9eFGkd9bU" rel="noreferer noopener">https://discord.gg/Z9eFGkd9bU</a>)</p>
 

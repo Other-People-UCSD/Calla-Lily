@@ -3,6 +3,7 @@ import contentStyles from '@/styles/content.module.scss';
 import animationStyles from "@/styles/animations.module.scss";
 import teamStyles from "@/styles/team.module.scss";
 import indexStyles from "@/styles/index.module.scss";
+import team from "@/data/team.json";
 
 export default function About() {
   return (
@@ -82,6 +83,57 @@ export default function About() {
           were just a dream, who offered us their advice and wisdom, who shared with us their creativity. Thank you;
           you are our inspiration. We hope Other People is a reality that lives up to your dreams.
         </p>
+      </div>
+
+      <div className={teamStyles.team_module}>
+        <div className={teamStyles.team_module_child}>
+          <ul>
+            <h2>Editor in Chief</h2>
+            {
+              team["editor_in_chief"].map(member => {
+                return <li key={member}><h3>/ {member}</h3></li>
+              })
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div className={teamStyles.team_module}>
+        <div className={teamStyles.team_module_child}>
+          <ul>
+            <h2>Editorial</h2>
+            {
+              team["editorial"].map(member => {
+                return <li key={member}><h3>/ {member}</h3></li>
+              })
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div className={teamStyles.team_module}>
+        <div className={teamStyles.team_module_child}>
+          <ul>
+            <h2>Design</h2>
+            {
+              team["design_team"].map(member => {
+                return <li key={member}><h3>/ {member}</h3></li>
+              })
+            }
+          </ul>
+        </div>
+      </div>
+      <div className={teamStyles.team_module}>
+        <div className={teamStyles.team_module_child}>
+          <ul>
+            <h2>PR + Events</h2>
+            {
+              team["publicity_events"].map(member => {
+                return <li key={member}><h3>/ {member}</h3></li>
+              })
+            }
+          </ul>
+        </div>
       </div>
     </Layout>
   );

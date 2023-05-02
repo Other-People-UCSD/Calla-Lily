@@ -4,8 +4,9 @@
 ***DO NOT COMMIT NODE_MODULES, .NEXT, _SITE TO THE REPO***
 
 - [ ] Make sure you are requesting to **pull a *development* branch. Don't pull the *published* branch!**.
-- [ ] Does `npm run build` pass all checks?
-- [ ] Does `npm run dev` pass all checks?
+- [ ] Does `yarn lint` pass all checks?
+- [ ] Does `yarn build` pass all checks? (Unless schema changed)
+- [ ] Does `yarn dev` pass all checks?
 
 ### Types of changes:
 - [ ] Publishing posts for the most recent Collection
