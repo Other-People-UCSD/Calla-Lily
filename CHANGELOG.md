@@ -1,5 +1,8 @@
 # Changelog 
-### v4.0.4 (5/1/23)
+### v4.0.4.2 (5/3/23)
+- Security: Changed TinaCMS access point because bots usually query for /admin/ on domains.
+
+### v4.0.4.0-1 (5/1/23)
 - TinaCMS connections on Homepage, About, Submissions
   - Added configurable post display limits on homepage
 - Fixed navigation menu staying open when search link is pressed The menu now closes because there are no static page refreshes using NextJS.
