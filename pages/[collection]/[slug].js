@@ -1,12 +1,10 @@
-import Head from 'next/head'
 import { useTina } from 'tinacms/dist/react'
-import { TinaMarkdown } from 'tinacms/dist/rich-text'
-import client from '../tina/__generated__/client'
+import client from '../../tina/__generated__/client'
 import animationStyles from "@/styles/animations.module.scss";
 import postStyles from "@/styles/posts.module.scss";
 import Layout from '@/components/layout';
 import Link from 'next/link';
-import { getPostDataAPI, getSortedPostsData } from '@/lib/posts';
+import { getPostDataAPI2, getSortedPostsData } from '@/lib/posts';
 
 const Page = (props) => {
   const { query, variables, data } = useTina({
@@ -66,9 +64,11 @@ const Page = (props) => {
 export default Page
 
 export const getStaticProps = async ({ params }) => {
+  console.log('getStaticProps:', params)
+
   let data = {}
   let query = {}
-  let variables = { relativePath: `${params.slug}.mdx` }
+  let variables = { relativePath: `${params.collection}/${params.slug}.mdx` }
   try {
     const res = await client.queries.post(variables)
     query = res.query
@@ -76,12 +76,14 @@ export const getStaticProps = async ({ params }) => {
     variables = res.variables
   } catch {
     // swallow errors related to document creation
+    // console.log("ERROR");
   }
 
-  console.log('getStaticProps data:', data);
+  // console.log('getStaticProps data:', data);
   // console.log('getStaticProps vars:', variables);
   const allPostData = getSortedPostsData();
-  const fullPostData = await getPostDataAPI(params.slug, allPostData);
+  const fullPostData = await getPostDataAPI2(variables.relativePath, allPostData);
+  // console.log('allPostData', allPostData);
   // console.log('fullPostData', fullPostData);
 
   return {
@@ -96,11 +98,14 @@ export const getStaticProps = async ({ params }) => {
 
 export const getStaticPaths = async () => {
   const postsListData = await client.queries.postConnection()
-
   return {
     paths: postsListData.data.postConnection.edges.map((post) => (
+      // console.log('/[slug]', post),
       {
-        params: { slug: post.node._sys.filename },
+        params: { 
+          collection: `${post.node.collection}`,
+          slug: post.node._sys.filename 
+        },
       })),
     fallback: false,
   }
