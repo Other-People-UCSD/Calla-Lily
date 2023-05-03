@@ -6,5 +6,9 @@
   "term": "Spring 2023",
   "collection": 6,
   "theme": "LIMINAL",
-  "featured_contributor": "Caroline Tjoe"
+  "featured_contributor": "Caroline Tjoe",
+  "poetryLimit": 6,
+  "fictionLimit": 6,
+  "nonfictionLimit": 6,
+  "visartsLimit": 6
 }

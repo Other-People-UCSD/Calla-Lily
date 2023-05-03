@@ -24,9 +24,10 @@ const Page = (props) => {
   }
 
   // console.log('page data:', data.post.body.children[0].value)
-  console.log('page query', query);
-  console.log('page vars', variables);
-  console.log('page fullPostData', props.fullPostData);
+  // console.log('page query', query);
+  // console.log('page vars', variables);
+  // console.log('page data', data);
+  // console.log('page fullPostData', props.fullPostData);
 
   return (
     <Layout post title={data.post.title}>

@@ -1,6 +1,9 @@
 # Changelog 
 ### v4.0.4 (5/1/23)
-- TinaCMS connections on Homepage and About
+- TinaCMS connections on Homepage, About, Submissions
+  - Added configurable post display limits on homepage
+- Fixed navigation menu staying open when search link is pressed The menu now closes because there are no static page refreshes using NextJS.
+- Refactored some frontmatter from posts
 
 ### v4.0.3 (5/1/23)
 - Corrected URL links to posts by fixing regex logic for `.mdx` files.

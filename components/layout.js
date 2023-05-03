@@ -4,6 +4,7 @@ import Footer from './footer';
 import contentStyles from '@/styles/content.module.scss';
 
 export default function Layout({children, post, genre, title}) {
+  // console.log('layour children:', children)
   function Content() {
     if (genre) {
       return <>{children}</>;

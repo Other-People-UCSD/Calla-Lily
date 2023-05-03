@@ -270,6 +270,42 @@ export const schema = {
           type: "string",
           required: true,
         },
+        {
+          name: "poetryLimit",
+          label: "Poetry in this Collection",
+          type: "number",
+          required: true,
+          ui: {
+            description: "This is the number of poems in this collection or including new poems to populate the homepage below the cover."
+          }
+        },
+        {
+          name: "fictionLimit",
+          label: "Fiction in this Collection",
+          type: "number",
+          required: true,
+          ui: {
+            description: "See above"
+          }
+        },
+        {
+          name: "nonfictionLimit",
+          label: "Nonfiction in this Collection",
+          type: "number",
+          required: true,
+          ui: {
+            description: "See above"
+          }
+        },
+        {
+          name: "visartsLimit",
+          label: "Visual Arts in this Collection",
+          type: "number",
+          required: true,
+          ui: {
+            description: "See above"
+          }
+        },
       ],
     },
   ],

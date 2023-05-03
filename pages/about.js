@@ -99,7 +99,7 @@ export default function About(props) {
           <ul>
             <h2>Editor in Chief</h2>
             {
-              team.editor_in_chief.map(member => {
+              data.team.editor_in_chief.map(member => {
                 return <li key={member}><h3>/ {member}</h3></li>
               })
             }
