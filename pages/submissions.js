@@ -2,9 +2,18 @@ import Layout from '@/components/layout';
 import contentStyles from '@/styles/content.module.scss';
 import animationStyles from "@/styles/animations.module.scss";
 import indexStyles from "@/styles/index.module.scss";
+import client from '../tina/__generated__/client'
+import { useTina } from 'tinacms/dist/react';
+import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
-const status = false;
-export default function Submissions() {
+export default function Submissions(props) {
+  const {query, variables, data } = useTina({
+    query: props.query,
+    variables: props.variables,
+    data: props.data,
+  })
+  const status = data.forms["written"] || data.forms["visual"];
+
   return (
     <Layout genre title={"Submissions"}>
       <div className={`${animationStyles.cssanimation} ${animationStyles.sequence} ${animationStyles.fadeInBottom}`}>
@@ -26,9 +35,21 @@ export default function Submissions() {
           </h4>
         </div>
 
-        <p>Our next submission period for Collection No. 7 should open around the end of the school year and it should close a few weeks into fall quarter.</p>
+        { status ? (
+          <>
+            { data.forms.written ? (<p><a href={data.forms.written}>Written Submissions</a></p>) : null}
+            { data.forms.visual ? (<p><a href={data.forms.visual}>Visual Submissions</a></p>) : null }
+          </>
+          ) : (
+            <TinaMarkdown content={data.forms.subsClosedText} />
+          )
+        }
 
-        <p><a href="https://maximalistmagazine.wixsite.com/maximalist-magazine/about-1">Maximalist Magazine Online Submissions (closes end of school year)</a></p>
+        {/* { data.forms.otherSubs.length > 0 ? (
+          data.forms.otherSubs.map((submission) => {
+            return <p key={submission}><a href={submission.link}>{submission.description}</a></p>
+          })
+        ): null} */}
 
         <p>(The list of submissions are often updated on our discord! <a href="https://discord.gg/Z9eFGkd9bU" rel="noreferer noopener">https://discord.gg/Z9eFGkd9bU</a>)</p>
 
@@ -44,7 +65,7 @@ export default function Submissions() {
           <li>Prose of any genre under 3k words</li>
           <li>Poetry</li>
           <li>Art (traditional or digital, short comics, photography, graphic text, etc). &zwj;</li>
-          <li>We encourage you to submit spoken word, performance, experimental, cross-genre, and other forms of work!</li>
+          <li>We encourage you to submit spoken word, performance, experimental, cross-genre, and other data.forms of work!</li>
           <li>If you have a question about what we accept, please email us at otherpeopleucsd@gmail.com.<sup>[1]</sup></li>
         </ul>
 
@@ -96,4 +117,26 @@ export default function Submissions() {
       </div>
     </Layout>
   );
+}
+
+export async function getStaticProps() {
+  let data = {}
+  let query = {}
+  let variables = { relativePath: `../data/forms.json` }
+  try {
+    const res = await client.queries.forms(variables)
+    query = res.query
+    data = res.data
+    variables = res.variables
+  } catch {
+    // swallow errors related to document creation
+  }
+  
+  return {
+    props: {
+      variables: variables,
+      data: data,
+      query: query,
+    },
+  };
 }

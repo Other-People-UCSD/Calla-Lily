@@ -3,8 +3,18 @@ import contentStyles from '@/styles/content.module.scss';
 import animationStyles from "@/styles/animations.module.scss";
 import teamStyles from "@/styles/team.module.scss";
 import indexStyles from "@/styles/index.module.scss";
+import team from "@/data/team.json";
+import { useTina } from 'tinacms/dist/react';
+import client from '@/tina/__generated__/client';
 
-export default function About() {
+export default function About(props) {
+  const {query, variables, data } = useTina({
+    query: props.query,
+    variables: props.variables,
+    data: props.data,
+  })
+
+  console.log(data)
   return (
     <Layout genre title={"About"}>
       <div className={`${animationStyles.cssanimation} ${animationStyles.sequence} ${animationStyles.fadeInBottom}`}>
@@ -83,6 +93,80 @@ export default function About() {
           you are our inspiration. We hope Other People is a reality that lives up to your dreams.
         </p>
       </div>
+
+      <div className={teamStyles.team_module}>
+        <div className={teamStyles.team_module_child}>
+          <ul>
+            <h2>Editor in Chief</h2>
+            {
+              data.team.editor_in_chief.map(member => {
+                return <li key={member}><h3>/ {member}</h3></li>
+              })
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div className={teamStyles.team_module}>
+        <div className={teamStyles.team_module_child}>
+          <ul>
+            <h2>Editorial</h2>
+            {
+              data.team.editorial.map(member => {
+                return <li key={member}><h3>/ {member}</h3></li>
+              })
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div className={teamStyles.team_module}>
+        <div className={teamStyles.team_module_child}>
+          <ul>
+            <h2>Design</h2>
+            {
+              data.team.design_team.map(member => {
+                return <li key={member}><h3>/ {member}</h3></li>
+              })
+            }
+          </ul>
+        </div>
+      </div>
+      <div className={teamStyles.team_module}>
+        <div className={teamStyles.team_module_child}>
+          <ul>
+            <h2>PR + Events</h2>
+            {
+              data.team.publicity_events.map(member => {
+                return <li key={member}><h3>/ {member}</h3></li>
+              })
+            }
+          </ul>
+        </div>
+      </div>
     </Layout>
   );
+}
+
+export async function getStaticProps() {
+
+  let data = {}
+  let query = {}
+  let variables = { relativePath: `../data/team.json` }
+  try {
+    const res = await client.queries.team(variables)
+    query = res.query
+    data = res.data
+    variables = res.variables
+  } catch {
+    // swallow errors related to document creation
+  }
+  
+  return {
+    props: {
+      variables: variables,
+      data: data,
+      query: query,
+    },
+  };
 }
