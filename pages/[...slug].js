@@ -1,12 +1,12 @@
 import { useTina } from 'tinacms/dist/react'
-import client from '../../tina/__generated__/client'
+import client from '../tina/__generated__/client'
 import animationStyles from "@/styles/animations.module.scss";
 import postStyles from "@/styles/posts.module.scss";
 import Layout from '@/components/layout';
 import Link from 'next/link';
-import { getPostDataAPI2, getSortedPostsData } from '@/lib/posts';
 
 const Page = (props) => {
+  console.log(props)
   const { query, variables, data } = useTina({
     query: props.query,
     variables: props.variables,
@@ -14,11 +14,11 @@ const Page = (props) => {
   })
 
   function MinsRead() {
-    const wc = props.fullPostData.wordCount;
-    if (wc <= 360) {
-      return "1 min reading time";
-    }
-    return `${Math.floor(wc / 180)} min reading time`;
+    // const wc = props.fullPostData.wordCount;
+    // if (wc <= 360) {
+    //   return "1 min reading time";
+    // }
+    // return `${Math.floor(wc / 180)} min reading time`;
   }
 
   // console.log('page data:', data.post.body.children[0].value)
@@ -49,12 +49,12 @@ const Page = (props) => {
       </div>
 
       <div className={postStyles["post-nav"]}>
-        <div className={postStyles["post-nav-prev"]}>
+        {/* <div className={postStyles["post-nav-prev"]}>
           {props.fullPostData.prevPost ? (<h4><Link href={props.fullPostData.prevPost}>&lt;prev</Link></h4>) : null}
         </div>
         <div className={postStyles["post-nav-next"]}>
           {props.fullPostData.nextPost ? (<h4><Link href={props.fullPostData.nextPost}>next&gt;</Link></h4>) : null}
-        </div>
+        </div> */}
       </div>
 
     </Layout>
@@ -63,12 +63,16 @@ const Page = (props) => {
 
 export default Page
 
-export const getStaticProps = async ({ params }) => {
+export const getStaticProps = async (params) => {
   console.log('getStaticProps:', params)
+  console.log('this', params.params.slug)
+  if (params.params.slug.length === 1) {
+    params.params.slug.unshift('2020');
+  }
 
   let data = {}
   let query = {}
-  let variables = { relativePath: `${params.collection}/${params.slug}.mdx` }
+  let variables = { relativePath: `${params.params.slug.join('/')}.mdx` }
   try {
     const res = await client.queries.post(variables)
     query = res.query
@@ -76,13 +80,13 @@ export const getStaticProps = async ({ params }) => {
     variables = res.variables
   } catch {
     // swallow errors related to document creation
-    // console.log("ERROR");
+    console.log("ERROR");
   }
 
   // console.log('getStaticProps data:', data);
   // console.log('getStaticProps vars:', variables);
-  const allPostData = getSortedPostsData();
-  const fullPostData = await getPostDataAPI2(variables.relativePath, allPostData);
+  // const allPostData = getSortedPostsData();
+  // const fullPostData = await getPostDataAPI3(variables.relativePath, allPostData);
   // console.log('allPostData', allPostData);
   // console.log('fullPostData', fullPostData);
 
@@ -91,22 +95,30 @@ export const getStaticProps = async ({ params }) => {
       variables: variables,
       data: data,
       query: query,
-      fullPostData: fullPostData,
+      // fullPostData: fullPostData,
     },
   }
 }
 
 export const getStaticPaths = async () => {
-  const postsListData = await client.queries.postConnection()
+  const postsListData = await client.queries.postConnection();
+  const edges = postsListData.data.postConnection.edges;
+  let paths = [];
+  for (let i = 0, len = edges.length; i < len; i++) {
+    const post = edges[i];
+    const route = post.node._sys.relativePath
+                    .replace(/\.mdx?/,'').split('/');
+    console.log(route)
+    paths.push({ params: { slug: route, dir: route[0]}});
+    if (route[0].length === 4) {
+      const dir = route.shift();
+      console.log(route)
+      paths.push({ params: { slug: route, dir: dir}});
+    }
+  }
+  // console.log(paths)
   return {
-    paths: postsListData.data.postConnection.edges.map((post) => (
-      // console.log('/[slug]', post),
-      {
-        params: { 
-          collection: `${post.node.collection}`,
-          slug: post.node._sys.filename 
-        },
-      })),
+    paths: paths,
     fallback: false,
   }
 }
