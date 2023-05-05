@@ -1,4 +1,9 @@
 # Changelog 
+## v4.4.0 (5/5/23)
+- Collection No. 4 and 2020.
+- Posts now display their collection number
+- TODO: Close issues with Kalbelia and Worm.
+
 ## v4.3.0 (5/5/23)
 - Collection No. 3 and 2020.
 ## v4.2.0 (5/5/23)
