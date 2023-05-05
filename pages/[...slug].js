@@ -95,21 +95,21 @@ const getPageData = async (slug) => {
   let data = {}
   let variables = {}
 
-  if (slug.length === 1) {
-    for (let i = 0, len = years.length; i < len; i++) {
-      variables = { relativePath: `${years[i]}/${slug}.mdx` }
-      try {
-        const res = await client.queries.post(variables)
-        query = res.query
-        data = res.data
-        variables = res.variables
-        break;
-      } catch {
-        // swallow errors related to document creation
-        console.log(variables, "does not exist");
-      }
-    }
-  } else {
+  // if (slug.length === 1) {
+  //   for (let i = 0, len = years.length; i < len; i++) {
+  //     variables = { relativePath: `${years[i]}/${slug}.mdx` }
+  //     try {
+  //       const res = await client.queries.post(variables)
+  //       query = res.query
+  //       data = res.data
+  //       variables = res.variables
+  //       break;
+  //     } catch {
+  //       // swallow errors related to document creation
+  //       console.log(variables, "does not exist");
+  //     }
+  //   }
+  // } else {
     variables = { relativePath: `${slug.join('/')}.mdx`}
     try {
       const res = await client.queries.post(variables)
@@ -120,7 +120,7 @@ const getPageData = async (slug) => {
       // swallow errors related to document creation
       console.log(variables, "does not exist");
     }
-  }
+  // }
 
   return {
     data: data,
@@ -139,11 +139,11 @@ export const getStaticPaths = async () => {
       .replace(/\.mdx?/, '').split('/');
     // console.log(route)
     paths.push({ params: { slug: route, dir: route[0] } });
-    if (route[0].length === 4) {
-      const dir = route.shift();
-      // console.log(route)
-      paths.push({ params: { slug: route, dir: dir } });
-    }
+    // if (route[0].length === 4) {
+    //   const dir = route.shift();
+    //   // console.log(route)
+    //   paths.push({ params: { slug: route, dir: dir } });
+    // }
   }
   // console.log(paths)
   return {
