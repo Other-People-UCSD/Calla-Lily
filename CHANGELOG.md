@@ -1,4 +1,30 @@
 # Changelog 
+## v4.5.1.1 (5/5/23)
+- Genre lists now sort by date.
+- Fixed limit setting on homepage genre cards.
+
+## v4.5.1.0 (5/5/23)
+- Full Collection No. 1 to No. 5 and 2020-2023 posts from Pink-Currents
+- These posts do not have the right image paths and may contain formatting errors.
+
+## v4.5.0 (5/5/23)
+- Collection No. 4 and 2020.
+
+## v4.4.0 (5/5/23)
+- Collection No. 4 and 2020.
+- Posts now display their collection number
+- TODO: Close issues with Kalbelia and Worm.
+
+## v4.3.0 (5/5/23)
+- Collection No. 3 and 2020.
+
+## v4.2.0 (5/5/23)
+- Collection No. 2 and 2020.
+
+## v4.1.0 (5/5/23)
+- Supports Pink-Currents collection and non-collection permalink format.
+- Collection No. 1 (partial) and 2020.
+
 ### v4.0.4.2 (5/3/23)
 - Security: Changed TinaCMS access point because bots usually query for /admin/ on domains.
 

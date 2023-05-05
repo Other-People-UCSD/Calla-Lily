@@ -14,7 +14,7 @@ export default function About(props) {
     data: props.data,
   })
 
-  console.log(data)
+  // console.log(data)
   return (
     <Layout genre title={"About"}>
       <div className={`${animationStyles.cssanimation} ${animationStyles.sequence} ${animationStyles.fadeInBottom}`}>

@@ -58,7 +58,7 @@ export function MobileNav({ setShowNav }) {
       {/* <MobileNav /> */}
       <nav className={navStyles["mobile-nav"]}>
         <div className={navStyles["mobile-nav2"]}>
-          <Search setShowNav={setShowNav} />
+          {/* <Search setShowNav={setShowNav} /> */}
         </div>
         <div className={navStyles.genres}>
           <h3>Genres</h3>

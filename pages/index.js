@@ -41,16 +41,16 @@ const Home = (props) => {
       <h2 className={`${indexStyles.w2b} ${postStyles["post-title"]}`}>Keep Reading</h2>
 
       <h3 className={postStyles["post-title"]}>Poetry</h3>
-      <Genre genre={props.poetry} offset={data.homepage.poetryLimit} limit={9} />
+      <Genre genre={props.poetry} offset={data.homepage.poetryLimit} limit={undefined} />
 
       <h3 className={postStyles["post-title"]}>Fiction</h3>
-      <Genre genre={props.fiction} offset={data.homepage.fictionLimit} limit={9} />
+      <Genre genre={props.fiction} offset={data.homepage.fictionLimit} limit={undefined} />
 
       <h3 className={postStyles["post-title"]}>Nonfiction</h3>
-      <Genre genre={props.nonfiction} offset={data.homepage.nonfictionLimit} limit={9} />
+      <Genre genre={props.nonfiction} offset={data.homepage.nonfictionLimit} limit={undefined} />
 
       <h3 className={postStyles["post-title"]}>Visual Arts</h3>
-      <Genre genre={props.visualarts} offset={data.homepage.visartsLimit} limit={9} />
+      <Genre genre={props.visualarts} offset={data.homepage.visartsLimit} limit={undefined} />
     </Layout>
   );
 }

@@ -1,5 +1,5 @@
 {
-  "image": "/images/FrontCover.png",
+  "image": "/images/6/FrontCover.png",
   "featured_piece_name": "Liminal (Cover)",
   "featured_link": "https://discord.gg/Z9eFGkd9bU",
   "featured_alt": "(Digital Art by Caroline Tjoe) The cover for Collection No. 6, Liminal!",
@@ -7,8 +7,8 @@
   "collection": 6,
   "theme": "LIMINAL",
   "featured_contributor": "Caroline Tjoe",
-  "poetryLimit": 6,
-  "fictionLimit": 6,
-  "nonfictionLimit": 6,
-  "visartsLimit": 6
+  "poetryLimit": 9,
+  "fictionLimit": 9,
+  "nonfictionLimit": 9,
+  "visartsLimit": 9
 }
