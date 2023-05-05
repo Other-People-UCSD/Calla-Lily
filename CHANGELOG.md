@@ -1,4 +1,13 @@
 # Changelog 
+## v4.3.0 (5/5/23)
+- Collection No. 3 and 2020.
+## v4.2.0 (5/5/23)
+- Collection No. 2 and 2020.
+
+## v4.1.0 (5/5/23)
+- Supports Pink-Currents collection and non-collection permalink format.
+- Collection No. 1 and 2020.
+
 ### v4.0.4.2 (5/3/23)
 - Security: Changed TinaCMS access point because bots usually query for /admin/ on domains.
 
