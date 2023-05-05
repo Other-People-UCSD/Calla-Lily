@@ -1,5 +1,9 @@
 # Changelog 
-## v4.5.1 (5/5/23)
+## v4.5.1.1 (5/5/23)
+- Genre lists now sort by date.
+- Fixed limit setting on homepage genre cards.
+
+## v4.5.1.0 (5/5/23)
 - Full Collection No. 1 to No. 5 and 2020-2023 posts from Pink-Currents
 - These posts do not have the right image paths and may contain formatting errors.
 

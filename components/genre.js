@@ -3,8 +3,9 @@ import postStyles from "@/styles/posts.module.scss";
 import Image from "next/image";
 
 export default function Genre({ genre, limit, offset }) {
-  limit = limit | genre.length;
-  offset = offset | 0;
+  limit = limit || genre.length;
+  offset = offset || 0;
+  console.log(limit);
   return (
     <div className={postStyles["post-container"]}>
       {genre.slice(offset, offset + limit)
