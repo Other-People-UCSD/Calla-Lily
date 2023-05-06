@@ -60,7 +60,6 @@ export const schema = {
             }
           }
         },
-
         {
           name: "tags",
           label: "Tags*",
