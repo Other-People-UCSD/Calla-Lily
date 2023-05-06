@@ -95,22 +95,22 @@ const getPageData = async (slug) => {
   let data = {}
   let variables = {}
 
-  // if (slug.length === 1) {
-  //   for (let i = 0, len = years.length; i < len; i++) {
-  //     variables = { relativePath: `${years[i]}/${slug}.mdx` }
-  //     try {
-  //       const res = await client.queries.post(variables)
-  //       query = res.query
-  //       data = res.data
-  //       variables = res.variables
-  //       break;
-  //     } catch {
-  //       // swallow errors related to document creation
-  //       console.log(variables, "does not exist");
-  //     }
-  //   }
-  // } else {
-    variables = { relativePath: `${slug.join('/')}.mdx`}
+  if (slug.length === 1) {
+    for (let i = 0, len = years.length; i < len; i++) {
+      variables = { relativePath: `${years[i]}/${slug}.mdx` }
+      try {
+        const res = await client.queries.post(variables)
+        query = res.query
+        data = res.data
+        variables = res.variables
+        break;
+      } catch {
+        // swallow errors related to document creation
+        console.log(variables, "does not exist");
+      }
+    }
+  } else {
+    variables = { relativePath: `${slug.join('/')}.mdx` }
     try {
       const res = await client.queries.post(variables)
       query = res.query
@@ -118,9 +118,8 @@ const getPageData = async (slug) => {
       variables = res.variables
     } catch {
       // swallow errors related to document creation
-      console.log(variables, "does not exist");
     }
-  // }
+  }
 
   return {
     data: data,
@@ -130,22 +129,33 @@ const getPageData = async (slug) => {
 }
 
 export const getStaticPaths = async () => {
-  const postsListData = await client.queries.postConnection();
-  const edges = postsListData.data.postConnection.edges;
   let paths = [];
-  for (let i = 0, len = edges.length; i < len; i++) {
-    const post = edges[i];
-    const route = post.node._sys.relativePath
-      .replace(/\.mdx?/, '').split('/');
-    // console.log(route)
-    paths.push({ params: { slug: route, dir: route[0] } });
-    // if (route[0].length === 4) {
-    //   const dir = route.shift();
-    //   // console.log(route)
-    //   paths.push({ params: { slug: route, dir: dir } });
-    // }
+  let postsListData = undefined;
+  let pageInfo = { hasNextPage: true };
+  let after = "";
+
+  while (pageInfo.hasNextPage) {
+    postsListData = await client.queries.postConnection({ after: after });
+    pageInfo = postsListData.data.postConnection.pageInfo;
+    after = pageInfo.endCursor;
+
+    const edges = postsListData.data.postConnection.edges;
+
+    for (let i = 0, len = edges.length; i < len; i++) {
+      const post = edges[i];
+      const route = post.node._sys.relativePath
+        .replace(/\.mdx?/, '').split('/');
+      // console.log(route)
+      paths.push({ params: { slug: route, dir: route[0] } });
+      if (route[0].length === 4) {
+        const dir = route.shift();
+        // console.log(route)
+        paths.push({ params: { slug: route, dir: dir } });
+      }
+    }
   }
-  // console.log(paths)
+  console.log('Number of dynamic pages:', paths.length);
+
   return {
     paths: paths,
     fallback: false,

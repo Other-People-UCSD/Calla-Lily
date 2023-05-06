@@ -1,5 +1,8 @@
 # Changelog 
-## v4.5.1.1 (5/5/23)
+### v4.5.2 (5/5/23)
+- GraphQL pagination to generate all posts and redirects for the yearly posts 
+ 
+### v4.5.1.1 (5/5/23)
 - Genre lists now sort by date.
 - Fixed limit setting on homepage genre cards.
 
