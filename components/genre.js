@@ -18,9 +18,9 @@ export default function Genre({ genre, limit, offset }) {
                 ) : (
                   <h2>{title}</h2>
                 )}
-                <div>
+                <div className={postStyles.thumb}>
                   {thumbnail ? (
-                    <Image src={thumbnail} width={80} height={80} alt={title} />
+                    <Image src={thumbnail} fill={true} alt={title} quality={25} />
                   ) : (null)}
                 </div>
                 <div className={postStyles["card-info"]}>

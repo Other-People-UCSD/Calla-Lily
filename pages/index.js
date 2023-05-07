@@ -6,6 +6,7 @@ import animationStyles from '@/styles/animations.module.scss';
 import postStyles from '@/styles/posts.module.scss';
 import Genre from '@/components/genre';
 import { useTina } from 'tinacms/dist/react';
+import Image from 'next/image';
 
 const Home = (props) => {
   const {query, variables, data } = useTina({
@@ -18,7 +19,14 @@ const Home = (props) => {
     <Layout genre title={"Home"}>
       <div className={indexStyles.IndexContainer}>
         <a href={data.homepage.featured_link} target="_blank" rel="noopener noreferer">
-          <img src={data.homepage.image} alt={data.homepage.featured_alt} />
+          <Image 
+            src={data.homepage.image} 
+            alt={data.homepage.featured_alt} 
+            width={1024}
+            height={525}
+            quality={50}
+            priority={true}
+          />
           <h4>{data.homepage.featured_piece_name} by {data.homepage.featured_contributor}</h4>
         </a>
       </div>
@@ -41,16 +49,16 @@ const Home = (props) => {
       <h2 className={`${indexStyles.w2b} ${postStyles["post-title"]}`}>Keep Reading</h2>
 
       <h3 className={postStyles["post-title"]}>Poetry</h3>
-      <Genre genre={props.poetry} offset={data.homepage.poetryLimit} limit={undefined} />
+      <Genre genre={props.poetry} offset={data.homepage.poetryLimit} limit={6} />
 
       <h3 className={postStyles["post-title"]}>Fiction</h3>
-      <Genre genre={props.fiction} offset={data.homepage.fictionLimit} limit={undefined} />
+      <Genre genre={props.fiction} offset={data.homepage.fictionLimit} limit={6} />
 
       <h3 className={postStyles["post-title"]}>Nonfiction</h3>
-      <Genre genre={props.nonfiction} offset={data.homepage.nonfictionLimit} limit={undefined} />
+      <Genre genre={props.nonfiction} offset={data.homepage.nonfictionLimit} limit={6} />
 
       <h3 className={postStyles["post-title"]}>Visual Arts</h3>
-      <Genre genre={props.visualarts} offset={data.homepage.visartsLimit} limit={undefined} />
+      <Genre genre={props.visualarts} offset={data.homepage.visartsLimit} limit={6} />
     </Layout>
   );
 }

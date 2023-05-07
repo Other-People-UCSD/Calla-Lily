@@ -4,7 +4,7 @@ layout: Post
 title: "Abiding Vestige"
 contributor: Hope Koyama
 date: 2021-06-01 07:00:00 +0000
-thumbnail: /Abiding-Vestige-Hope-Koyama.webp
+thumbnail: /images/3/Abiding-Vestige-Hope-Koyama.jpg
 tags: 
 - Visual Arts
 ---
