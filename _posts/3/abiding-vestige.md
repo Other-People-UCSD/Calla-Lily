@@ -8,7 +8,7 @@ thumbnail: /Abiding-Vestige-Hope-Koyama.webp
 tags: 
 - Visual Arts
 ---
-<img src="{{ site.baseurl }}/uploads/3/Abiding-Vestige-Hope-Koyama.jpg" 
+<img src="/images/3/Abiding-Vestige-Hope-Koyama.jpg" 
     alt="A blurred person's profile hides the body of the woman in the mirror. One can see that woman's hands and fishnet stockings in this monochromatic photograph."
     class="w650" />
 
