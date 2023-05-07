@@ -5,7 +5,7 @@ import postStyles from "@/styles/posts.module.scss";
 import Layout from '@/components/layout';
 import Link from 'next/link';
 import { getPostDataAPI2, getSortedPostsData } from '@/lib/posts';
-
+import { NextSeo } from 'next-seo';
 
 const Page = (props) => {
   // console.log(props)
@@ -29,8 +29,24 @@ const Page = (props) => {
   // console.log('page data', data);
   // console.log('page fullPostData', props.fullPostData);
 
+  const excerpt = props.fullPostData.excerpt.substring(0, Math.min(155, props.fullPostData.excerpt.length))
+  const slug = data.post.featured ? (data.post._sys.relativePath.replace(/.mdx?/, '')) : (data.post._sys.filename);
+  const canonical = `https://otherpeoplesd.com/${slug}`;
+
   return (
     <Layout post title={data.post.title}>
+      <NextSeo
+        canonical={canonical}
+        description={excerpt}
+        excerpt={excerpt}
+        openGraph={{
+          type: 'article',
+        }}
+        additionalMetaTags={[{
+          name: 'author',
+          content: `${data.post.contributor}`,
+        }]}
+      />
       <div className={animationStyles.cssanimation}>
         <div className={postStyles["content-title"]}>
           <h1 className={postStyles.post_title}>{data.post.title}</h1>
@@ -171,7 +187,7 @@ const OPMHTML = ({ content }) => {
   return content.map((astChild) => {
     // console.log(astChild, astChild.type)
     return (astChild.type === 'html') ? (
-      <div dangerouslySetInnerHTML={{ __html: astChild.value }} />
+      <div key={astChild.value} dangerouslySetInnerHTML={{ __html: astChild.value }} />
     ) : (
       recurseAsHTML(astChild)
     )
@@ -193,5 +209,5 @@ const recurseAsHTML = (ast) => {
     )
   });
 
-  return <p dangerouslySetInnerHTML={{ __html: text.join('') }} />;
+  return <p key={ast.text} dangerouslySetInnerHTML={{ __html: text.join('') }} />;
 }

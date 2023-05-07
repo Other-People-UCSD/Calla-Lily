@@ -8068,6 +8068,11 @@ negotiator@0.6.3:
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.3.tgz#58e323a72fedc0d6f9cd4d31fe49f51479590ccd"
   integrity sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==
 
+next-seo@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/next-seo/-/next-seo-6.0.0.tgz#4568dc61a44dbdf5fe5ff44156cd0ff8804889a2"
+  integrity sha512-jKKt1p1z4otMA28AyeoAONixVjdYmgFCWwpEFtu+DwRHQDllVX3RjtyXbuCQiUZEfQ9rFPBpAI90vDeLZlMBdg==
+
 next@13.3.1:
   version "13.3.1"
   resolved "https://registry.yarnpkg.com/next/-/next-13.3.1.tgz#17625f7423db2e059d71b41bd9031756cf2b33bc"
@@ -10091,6 +10096,15 @@ strip-json-comments@^3.1.0, strip-json-comments@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-3.1.1.tgz#31f1281b3832630434831c310c01cccda8cbe006"
   integrity sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==
+
+strip-markdown@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/strip-markdown/-/strip-markdown-5.0.0.tgz#222b864ecce6cf2ef87b2bb1e6466464e8127081"
+  integrity sha512-PXSts6Ta9A/TwGxVVSRlQs1ukJTAwwtbip2OheJEjPyfykaQ4sJSTnQWjLTI2vYWNts/R/91/csagp15W8n9gA==
+  dependencies:
+    "@types/mdast" "^3.0.0"
+    "@types/unist" "^2.0.6"
+    unified "^10.0.0"
 
 styled-jsx@5.1.1:
   version "5.1.1"
