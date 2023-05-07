@@ -73,8 +73,8 @@ export const getStaticProps = async (params) => {
 
   // console.log('getStaticProps data:', data);
   // console.log('getStaticProps vars:', variables);
-  const allPostData = getSortedPostsData();
-  const fullPostData = await getPostDataAPI2(variables.relativePath, allPostData);
+  const allPostsData = getSortedPostsData();
+  const fullPostData = await getPostDataAPI2(variables.relativePath, allPostsData);
   // console.log('allPostData', allPostData);
   // console.log('fullPostData', fullPostData);
 
@@ -84,6 +84,7 @@ export const getStaticProps = async (params) => {
       data: data,
       query: query,
       fullPostData: fullPostData,
+      allPostsData: allPostsData,
     },
   }
 }

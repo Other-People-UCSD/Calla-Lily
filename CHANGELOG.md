@@ -1,4 +1,7 @@
 # Changelog 
+### v5.5.3.0 (5/5/23)
+- Search component receives context about all posts so posts are fetched only once
+
 ### v4.5.2 (5/5/23)
 - GraphQL pagination to generate all posts and redirects for the yearly posts 
  
