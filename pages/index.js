@@ -24,7 +24,7 @@ const Home = (props) => {
             alt={data.homepage.featured_alt} 
             width={1024}
             height={525}
-            quality={50}
+            quality={75}
             priority={true}
           />
           <h4>{data.homepage.featured_piece_name} by {data.homepage.featured_contributor}</h4>
