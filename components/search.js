@@ -1,12 +1,12 @@
 import { useState } from "react";
 import searchStyles from "@/styles/search.module.scss";
 import Link from "next/link";
-import allPostsData from "@/data/_posts.json";
-
-const displayLimit = 10;
+import { useAppContext } from "@/components/appContext";
 
 export default function Search({ setShowNav }) {
   const [searchQuery, setSearchQuery] = useState('');
+  const apiContext = useAppContext();
+  const allPostsData = apiContext.api;
 
   const getSearchQuery = (e) => {
     setSearchQuery(e.target.value);
@@ -20,18 +20,21 @@ export default function Search({ setShowNav }) {
         placeholder="Search"
         aria-placeholder="Type here to search"
         onChange={getSearchQuery} />
-      <SearchResults 
-        setShowNav={setShowNav} 
-        searchQuery={searchQuery} />
+      <SearchResults
+        setShowNav={setShowNav}
+        searchQuery={searchQuery}
+        allPostsData={allPostsData}
+      />
     </div>
   );
 }
 
-const SearchResults = ({ setShowNav, searchQuery }) => {
+const SearchResults = ({ setShowNav, searchQuery, allPostsData }) => {
   if (searchQuery === '') {
     return;
   }
 
+  const displayLimit = 10;
   const searchKeys = [
     "slug", "collection", "category", "title",
     "date", "contributor", "tags"
@@ -53,7 +56,6 @@ const SearchResults = ({ setShowNav, searchQuery }) => {
 
   const results = postsQuery.slice(0, displayLimit);
 
-
   function closeNav() {
     document.getElementById("myNav").style.height = "0%";
     setShowNav(false);
@@ -64,7 +66,7 @@ const SearchResults = ({ setShowNav, searchQuery }) => {
       {
         results.map((key) => {
           const post = allPostsData[key];
-          console.log(key);
+          // console.log(key);
           return (
             <li key={key}>
               <Link href={`/${post.slug}`}

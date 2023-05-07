@@ -20,7 +20,12 @@ export default function Genre({ genre, limit, offset }) {
                 )}
                 <div className={postStyles.thumb}>
                   {thumbnail ? (
-                    <Image src={thumbnail} fill={true} alt={title} quality={25} />
+                    <Image
+                      src={thumbnail}
+                      alt={title}
+                      fill={true}
+                      sizes="width: 60px"
+                      quality={25} />
                   ) : (null)}
                 </div>
                 <div className={postStyles["card-info"]}>

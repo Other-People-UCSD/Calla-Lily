@@ -1,5 +1,4 @@
 import Layout from '@/components/layout';
-import { getGenrePostsData } from '@/lib/genres';
 import client from '../tina/__generated__/client'
 import indexStyles from '@/styles/index.module.scss';
 import animationStyles from '@/styles/animations.module.scss';
@@ -7,6 +6,7 @@ import postStyles from '@/styles/posts.module.scss';
 import Genre from '@/components/genre';
 import { useTina } from 'tinacms/dist/react';
 import Image from 'next/image';
+import { getSortedPostsData, getGenrePostsData } from '@/lib/posts';
 
 const Home = (props) => {
   const {query, variables, data } = useTina({
@@ -66,14 +66,16 @@ const Home = (props) => {
 export default Home;
 
 export async function getStaticProps() {
-  const poetry = getGenrePostsData('Poetry');
-  const fiction = getGenrePostsData('Fiction');
-  const nonfiction = getGenrePostsData('Nonfiction');
-  const visualarts = getGenrePostsData('Visual Arts');
+  const allPostsData = getSortedPostsData();
+  const poetry = getGenrePostsData('Poetry', allPostsData);
+  const fiction = getGenrePostsData('Fiction', allPostsData);
+  const nonfiction = getGenrePostsData('Nonfiction', allPostsData);
+  const visualarts = getGenrePostsData('Visual Arts', allPostsData);
 
   let data = {}
   let query = {}
   let variables = { relativePath: `../data/homepage.json` }
+  
   try {
     const res = await client.queries.homepage(variables)
     query = res.query
@@ -88,10 +90,11 @@ export async function getStaticProps() {
       variables: variables,
       data: data,
       query: query,
-      poetry: poetry,
-      fiction: fiction,
-      nonfiction: nonfiction,
-      visualarts: visualarts
+      allPostsData,
+      poetry,
+      fiction,
+      nonfiction,
+      visualarts,
     },
   };
 }
