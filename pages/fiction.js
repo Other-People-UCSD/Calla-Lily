@@ -1,8 +1,8 @@
 import Layout from "@/components/layout";
 import animationStyles from "@/styles/animations.module.scss";
 import indexStyles from "@/styles/index.module.scss";
-import { getGenrePostsData } from "@/lib/genres";
 import Genre from "../components/genre";
+import { getSortedPostsData, getGenrePostsData } from "@/lib/posts";
 
 export default function Fiction({ fictionPosts }) {
   return (
@@ -19,9 +19,11 @@ export default function Fiction({ fictionPosts }) {
 }
 
 export async function getStaticProps() {
-  const fictionPosts = getGenrePostsData('Fiction');
+  const allPostsData = getSortedPostsData()
+  const fictionPosts = getGenrePostsData('Fiction', allPostsData);
   return {
     props: {
+      allPostsData,
       fictionPosts,
     }
   }

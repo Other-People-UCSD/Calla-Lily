@@ -4,7 +4,7 @@ import animationStyles from "@/styles/animations.module.scss";
 import postStyles from "@/styles/posts.module.scss";
 import Layout from '@/components/layout';
 import Link from 'next/link';
-import { getPostDataAPI2, getSortedPostsData } from '@/lib/posts';
+import { getSortedPostsData, getPostDataAPI } from '@/lib/posts';
 
 
 const Page = (props) => {
@@ -66,15 +66,12 @@ const Page = (props) => {
 export default Page
 
 export const getStaticProps = async (params) => {
-  // console.log('getStaticProps:', params)
-  // console.log('this', params.params.slug)
-
   const { data, query, variables } = await getPageData(params.params.slug);
 
   // console.log('getStaticProps data:', data);
   // console.log('getStaticProps vars:', variables);
   const allPostsData = getSortedPostsData();
-  const fullPostData = await getPostDataAPI2(variables.relativePath, allPostsData);
+  const fullPostData = await getPostDataAPI(variables.relativePath, allPostsData);
   // console.log('allPostData', allPostData);
   // console.log('fullPostData', fullPostData);
 
@@ -90,7 +87,8 @@ export const getStaticProps = async (params) => {
 }
 
 const getPageData = async (slug) => {
-  const years = ['2020', '2021', '2022', '2023'];
+  // Sorted by frequency to reduce wrong path errors
+  const years = ['2020', '2022', '2023', '2021'];
 
   let query = {}
   let data = {}
@@ -155,7 +153,7 @@ export const getStaticPaths = async () => {
       }
     }
   }
-  console.log('Number of dynamic pages:', paths.length);
+  // console.log('Number of dynamic pages:', paths.length);
 
   return {
     paths: paths,

@@ -1,6 +1,13 @@
 # Changelog 
-### v5.5.3.0 (5/5/23)
+## v5.5.3.1 (5/5/23)
+- Thumbnails on genre lists
+  - Implements NextJS Images with fill property, very low quality because they are at max 60px wide, and forced relative positioning
 - Search component receives context about all posts so posts are fetched only once
+- Refactored genre such that it filters the entire posts data to get the tag
+  - Useful as each page will have the entire post database and thus saves a call to fetch all of the posts
+- getStaticProps implemented on each landing page for search to work
+- Removed Showcase link as page does not exist
+
 
 ### v4.5.2 (5/5/23)
 - GraphQL pagination to generate all posts and redirects for the yearly posts 

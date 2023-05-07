@@ -74,14 +74,13 @@ export function MobileNav({ setShowNav }) {
           <li><Link href="/about">(THE) PEOPLE</Link></li>
           <li><a href="https://issuu.com/otherpeoplesd" className={navStyles.external}>Issuu <ArrowForwardIcon fontSize='inherit' /></a></li>
           <li><Link href="/submissions">Submissions</Link></li>
-          <li><Link href="/showcase">Showcase</Link></li>
           <li><Link href="/uc-magazines">UC Magazines</Link></li>
         </ul>
         <ul className={navStyles["social-footer"]}>
           <li><a href="https://www.instagram.com/otherpeoplesd/">
             <InstagramIcon /></a></li>
           <li><a href="https://www.facebook.com/otherpeoplesd/"><FacebookIcon /></a></li>
-          <li><a href="mailto:otherpeopleucsd@gmail.com"></a><MailOutlineIcon /></li>
+          <li><a href="mailto:otherpeopleucsd@gmail.com"><MailOutlineIcon /></a></li>
         </ul>
         <div className={navStyles["nav-footer"]}>
           <h4>{`Other People © ${getYear()}`} <br />ALL RIGHTS RESERVED</h4>

@@ -6,7 +6,6 @@ import { useAppContext } from "@/components/appContext";
 export default function Search({ setShowNav }) {
   const [searchQuery, setSearchQuery] = useState('');
   const apiContext = useAppContext();
-  console.log(apiContext)
   const allPostsData = apiContext.api;
 
   const getSearchQuery = (e) => {

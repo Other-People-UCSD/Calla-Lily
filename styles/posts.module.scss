@@ -122,8 +122,9 @@ h3.post-title {
 
 
 .thumb {
+  position: relative;
   img {
-    position: initial !important;
+    position: relative !important;
     width: 100%;
     object-fit: contain;
   }
