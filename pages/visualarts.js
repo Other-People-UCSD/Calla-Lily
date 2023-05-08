@@ -1,8 +1,8 @@
 import Layout from "@/components/layout";
 import animationStyles from "@/styles/animations.module.scss";
 import indexStyles from "@/styles/index.module.scss";
-import { getGenrePostsData } from "@/lib/genres";
 import Genre from "../components/genre";
+import { getSortedPostsData, getGenrePostsData } from "@/lib/posts";
 
 export default function VisualArts({ artPosts }) {
   return (
@@ -19,9 +19,11 @@ export default function VisualArts({ artPosts }) {
 }
 
 export async function getStaticProps() {
-  const artPosts = getGenrePostsData('Visual Arts');
+  const allPostsData = getSortedPostsData();
+  const artPosts = getGenrePostsData('Visual Arts', allPostsData);
   return {
     props: {
+      allPostsData,
       artPosts,
     }
   }

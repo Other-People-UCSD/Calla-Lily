@@ -1,7 +1,7 @@
 import Layout from "@/components/layout";
 import animationStyles from "@/styles/animations.module.scss";
 import indexStyles from "@/styles/index.module.scss";
-import { getGenrePostsData } from "@/lib/genres";
+import { getSortedPostsData, getGenrePostsData } from "@/lib/posts";
 import Genre from "../components/genre";
 
 export default function Nonfiction({ nonfictionPosts }) {
@@ -19,10 +19,12 @@ export default function Nonfiction({ nonfictionPosts }) {
 }
 
 export async function getStaticProps() {
-  const nonfictionPosts = getGenrePostsData('Nonfiction');
+  const allPostsData = getSortedPostsData();
+  const nonfictionPosts = getGenrePostsData('Nonfiction', allPostsData);
   return {
     props: {
       nonfictionPosts,
+      allPostsData,
     }
   }
 }
