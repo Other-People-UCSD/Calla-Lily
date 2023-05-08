@@ -44,10 +44,6 @@ const Page = (props) => {
           type: 'article',
           images: [{url: previewImg}],
         }}
-        additionalMetaTags={[{
-          name: 'author',
-          content: `${data.post.contributor}`,
-        }]}
       />
       <div className={animationStyles.cssanimation}>
         <div className={postStyles["content-title"]}>
