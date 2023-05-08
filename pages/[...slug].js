@@ -32,7 +32,7 @@ const Page = (props) => {
   const excerpt = props.fullPostData.excerpt.substring(0, Math.min(155, props.fullPostData.excerpt.length))
   const slug = data.post.featured ? (data.post._sys.relativePath.replace(/.mdx?/, '')) : (data.post._sys.filename);
   const canonical = `https://otherpeoplesd.com/${slug}`;
-  const previewImg = data.post.thumbnail ? (`https://otherpeoplesd.com${data.post.thumbnail}`) : `https://otherpeoplesd.com/favicons/favicon-32x32.png`;
+  const previewImg = data.post.thumbnail ? data.post.thumbnail : `https://otherpeoplesd.com/favicons/favicon-32x32.png`;
 
   return (
     <Layout post title={data.post.title}>

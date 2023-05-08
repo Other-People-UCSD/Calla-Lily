@@ -19,6 +19,7 @@ export default function Layout({ children, post, genre, title }) {
   }
 
   function OPMSEO() {
+    const favicon = 'https://otherpeoplesd.com/favicons/favicon-32x32.png';
     return (
     <>
       <NextSeo
@@ -28,6 +29,10 @@ export default function Layout({ children, post, genre, title }) {
         inclusive platform to share creative works, and to encourage literary and artistic exploration 
         among all students. We seek to embrace our core principle of showcasing “O(the)r People,” or celebrating 
         at once our diversity, our individual uniqueness, our shared experiences, and our collective journey through this world.'
+        openGraph={{
+          images: [{ url: favicon }]
+        }
+        }
       />
     </>
     );
