@@ -11,7 +11,7 @@ export default function Footer() {
         <Image src="/favicons/footer.svg" width={80} height={50.75} alt={"The People"}/>
         <h4>
           {`© ${getYear()} All Rights Reserved`}<br />
-          Version 4.5.3.1<br />
+          Version 4.5.4<br />
           Calla-Lily</h4>
       </div>
     </footer>

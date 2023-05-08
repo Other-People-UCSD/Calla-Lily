@@ -1,6 +1,6 @@
 {
   "name": "calla-lily",
-  "version": "4.0.0",
+  "version": "4.5.4",
   "private": true,
   "scripts": {
     "dev": "tinacms dev -c \"next dev\"",
