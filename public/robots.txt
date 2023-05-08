@@ -1,0 +1,7 @@
+Sitemap: https://otherpeoplesd.com/sitemap.xml
+
+User-agent: *
+Disallow: /production/
+Disallow: /images/
+
+# How did you get here?

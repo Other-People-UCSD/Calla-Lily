@@ -1,4 +1,8 @@
 # Changelog 
+## v5.5.4.0 (5/8/23)
+- SEO implemented on pages and posts
+- Fixed issue with Search and SEO not building together due to the context wrapper originally checking for one children instead of multiple (DefaultSeo and Component)
+
 ## v5.5.3.1 (5/5/23)
 - Thumbnails on genre lists
   - Implements NextJS Images with fill property, very low quality because they are at max 60px wide, and forced relative positioning
@@ -7,7 +11,6 @@
   - Useful as each page will have the entire post database and thus saves a call to fetch all of the posts
 - getStaticProps implemented on each landing page for search to work
 - Removed Showcase link as page does not exist
-
 
 ### v4.5.2 (5/5/23)
 - GraphQL pagination to generate all posts and redirects for the yearly posts 
