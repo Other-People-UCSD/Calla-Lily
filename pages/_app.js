@@ -5,7 +5,7 @@ import { AppWrapper } from '@/components/appContext';
 
 export default function App({ Component, pageProps }) {
   return (
-    <AppWrapper>
+    <>
       <DefaultSeo
         openGraph={{
           siteName: 'Other People',
@@ -14,7 +14,9 @@ export default function App({ Component, pageProps }) {
           type: 'website'
         }}
       />
-      <Component {...pageProps} />
-    </AppWrapper>
+      <AppWrapper>
+        <Component {...pageProps} />
+      </AppWrapper>
+    </>
   );
 }
