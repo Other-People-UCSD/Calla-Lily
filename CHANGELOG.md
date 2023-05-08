@@ -1,9 +1,9 @@
 # Changelog 
-## v5.5.4.0 (5/8/23)
+## v4.5.4.0 (5/8/23)
 - SEO implemented on pages and posts
 - Fixed issue with Search and SEO not building together due to the context wrapper originally checking for one children instead of multiple (DefaultSeo and Component)
 
-## v5.5.3.1 (5/5/23)
+## v4.5.3.1 (5/5/23)
 - Thumbnails on genre lists
   - Implements NextJS Images with fill property, very low quality because they are at max 60px wide, and forced relative positioning
 - Search component receives context about all posts so posts are fetched only once
