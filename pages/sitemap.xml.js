@@ -10,7 +10,7 @@ function generateSiteMap(posts, pages) {
         return `
           <url>
             <loc>${`${SITE_URL}${path}`}</loc>
-          <url>
+          </url>
         `;
       })
       .join('')}
