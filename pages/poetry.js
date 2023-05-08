@@ -1,7 +1,7 @@
 import Layout from "@/components/layout";
 import animationStyles from "@/styles/animations.module.scss";
 import indexStyles from "@/styles/index.module.scss";
-import { getGenrePostsData } from "@/lib/genres";
+import { getGenrePostsData, getSortedPostsData } from "@/lib/posts";
 import Genre from "../components/genre";
 
 export default function Poetry({ poetryPosts }) {
@@ -19,9 +19,11 @@ export default function Poetry({ poetryPosts }) {
 }
 
 export async function getStaticProps() {
-  const poetryPosts = getGenrePostsData('Poetry');
+  const allPostsData = getSortedPostsData();
+  const poetryPosts = getGenrePostsData('Poetry', allPostsData);
   return {
     props: {
+      allPostsData,
       poetryPosts,
     }
   }

@@ -3,9 +3,9 @@ import contentStyles from '@/styles/content.module.scss';
 import animationStyles from "@/styles/animations.module.scss";
 import teamStyles from "@/styles/team.module.scss";
 import indexStyles from "@/styles/index.module.scss";
-import team from "@/data/team.json";
 import { useTina } from 'tinacms/dist/react';
 import client from '@/tina/__generated__/client';
+import { getSortedPostsData } from '@/lib/posts';
 
 export default function About(props) {
   const {query, variables, data } = useTina({
@@ -149,7 +149,6 @@ export default function About(props) {
 }
 
 export async function getStaticProps() {
-
   let data = {}
   let query = {}
   let variables = { relativePath: `../data/team.json` }
@@ -161,12 +160,15 @@ export async function getStaticProps() {
   } catch {
     // swallow errors related to document creation
   }
-  
+
+  const allPostsData = getSortedPostsData();
+
   return {
     props: {
       variables: variables,
       data: data,
       query: query,
+      allPostsData,
     },
   };
 }

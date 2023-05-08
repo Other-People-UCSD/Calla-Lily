@@ -5,6 +5,7 @@ import indexStyles from "@/styles/index.module.scss";
 import client from '../tina/__generated__/client'
 import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import { getSortedPostsData } from '@/lib/posts';
 
 export default function Submissions(props) {
   const {query, variables, data } = useTina({
@@ -132,11 +133,14 @@ export async function getStaticProps() {
     // swallow errors related to document creation
   }
   
+  const allPostsData = getSortedPostsData();
+
   return {
     props: {
       variables: variables,
       data: data,
       query: query,
+      allPostsData,
     },
   };
 }

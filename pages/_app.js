@@ -1,11 +1,11 @@
 import '@/styles/globals.scss'
 import '@/styles/customPosts.scss';
 import { DefaultSeo } from 'next-seo';
+import { AppWrapper } from '@/components/appContext';
+
 export default function App({ Component, pageProps }) {
-  // console.log('page props:', pageProps)
-  // console.log("components:", Component)
   return (
-    <>
+    <AppWrapper>
       <DefaultSeo
         openGraph={{
           siteName: 'Other People',
@@ -15,7 +15,6 @@ export default function App({ Component, pageProps }) {
         }}
       />
       <Component {...pageProps} />
-    </>
+    </AppWrapper>
   );
 }
-
