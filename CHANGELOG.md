@@ -1,4 +1,7 @@
 # Changelog 
+### v4.5.4.1 (5/8/23)
+- Changed permalinks to /year/title format again
+
 ## v4.5.4.0 (5/8/23)
 - SEO implemented on pages and posts
 - Fixed issue with Search and SEO not building together due to the context wrapper originally checking for one children instead of multiple (DefaultSeo and Component)
