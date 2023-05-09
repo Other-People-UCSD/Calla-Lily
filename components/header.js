@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import headerStyles from '@/styles/header.module.scss';
 import navStyles from '@/styles/nav.module.scss';
@@ -8,17 +8,61 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Search from './search';
 
-export default function HeaderMain() {
-  const [showNav, setShowNav] = useState(false);
+const delta = 5;
 
+/**
+ * This is the header with the MobileNav menu nested within it. 
+ * @returns 
+ */
+export default function HeaderMain() {
+  const headerRef = useRef(null);
+  const [showNav, setShowNav] = useState(false);
+  const [showHeader, setShowHeader] = useState(true);
+  const [lastScrollTop, setLastScrollTop] = useState(0);
+
+  /**
+   * Opens the mobile navigation after clicking Menu
+   */
   function openNav() {
     document.getElementById("myNav").style.height = "100%";
     setShowNav(true);
   }
 
+  const handleScroll = () => {
+    const scrollY = window.scrollY;
+
+    // Make sure they scroll more than delta px
+    if (Math.abs(lastScrollTop - scrollY) <= delta) {
+      return;
+    }
+
+    // If they scrolled down and are past the navbar, 
+    // add class .nav-up by rerendering state.
+    // This is necessary so you never see what is "behind" the navbar.
+    if (scrollY > lastScrollTop && scrollY > headerRef.current.offsetHeight) {
+      setShowHeader(false);
+    } else {
+      setShowHeader(true);
+    }
+
+    setLastScrollTop(scrollY);
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    }
+  });
+
+
   return (
     <>
-      <header className={headerStyles["header-glob"]}>
+      <header
+        ref={headerRef}
+        onScroll={handleScroll}
+        className={`${showHeader ? null : headerStyles["nav-up"]} ${headerStyles["header-glob"]} `}
+      >
         <div className={headerStyles["header-main"]}>
           <h2><Link href="/">Other<br /> People ©</Link></h2>
           <div className={`${headerStyles["nav-genres"]} ${navStyles["h2"]}`}>
@@ -36,7 +80,15 @@ export default function HeaderMain() {
 }
 
 
+/**
+ * This is the nav menu shown when Menu is clicked.
+ * @param {state} setShowNav 
+ * @returns 
+ */
 export function MobileNav({ setShowNav }) {
+  /**
+   * Closes the mobile navigation after clicking Close or a search result
+   */
   function closeNav() {
     document.getElementById("myNav").style.height = "0%";
     setShowNav(false);
@@ -89,6 +141,10 @@ export function MobileNav({ setShowNav }) {
     </div>
   );
 
+  /**
+   * Gets the current year in the format YYYY
+   * @returns The current year
+   */
   function getYear() {
     return new Date().getFullYear();
   }
