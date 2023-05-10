@@ -6,6 +6,9 @@ import Layout from '@/components/layout';
 import Link from 'next/link';
 import { NextSeo } from 'next-seo';
 import { getSortedPostsData, getPostDataAPI } from '@/lib/posts';
+import Script from 'next/script';
+import { useEffect } from 'react';
+import { setDarkTheme } from '@/public/js/bgTheme';
 
 const Page = (props) => {
   // console.log(props)
@@ -34,6 +37,8 @@ const Page = (props) => {
   const canonical = `https://otherpeoplesd.com/${slug}`;
   const previewImg = data.post.thumbnail ? data.post.thumbnail : `https://otherpeoplesd.com/favicons/favicon-32x32.png`;
 
+  const experimental = data.post.title === "missed connections (1 new post)";
+  console.log(experimental)
   return (
     <Layout post title={data.post.title}>
       <NextSeo
@@ -47,14 +52,13 @@ const Page = (props) => {
       />
       <div className={animationStyles.cssanimation}>
         <div>
-          <h1 className={postStyles.post_title}>{data.post.title}</h1>
+          <h1 id="post-title" className={postStyles.post_title}>{data.post.title}</h1>
         </div>
       </div>
 
       <h3>/ {data.post.contributor}</h3>
       <h4 className={postStyles.meta}>{data.post.tags.join(", ")} &mdash; <MinsRead /></h4>
       {data.post.collection ? (<h4 className={postStyles.gold}>No. {data.post.collection}</h4>) : null}
-
 
       <article id="cr-article" className={postStyles["#cr-article"]}>
         <OPMHTML content={data.post.body.children} />
@@ -73,11 +77,12 @@ const Page = (props) => {
         </div>
       </div>
 
+      <Experimental title={data.post.title} />
     </Layout>
   );
 }
 
-export default Page
+export default Page;
 
 export const getStaticProps = async (params) => {
   const { data, query, variables } = await getPageData(params.params.slug);
@@ -207,4 +212,27 @@ const recurseAsHTML = (ast) => {
   });
 
   return <p key={ast.text} dangerouslySetInnerHTML={{ __html: text.join('') }} />;
+}
+
+export const Experimental = ({title}) => {
+  if (title === "missed connections (1 new post)") {
+
+    useEffect(() => {
+      setDarkTheme();
+      try {
+        document.querySelector('#post-title').remove();
+        document.getElementById('cr-article').classList.add('monospace');
+        document.getElementById('mc_embed_signup').innerHTML = '';
+      } catch {
+
+      }
+
+    });
+
+    return (
+      <Script 
+        src={"/js/missed-connections.js"}
+      />
+    )
+  }
 }

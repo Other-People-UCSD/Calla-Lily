@@ -1,11 +1,3 @@
-const { pageChange } = require("./bgTheme");
-
-window.addEventListener('DOMContentLoaded', function() {
-    pageChange('dark');
-    this.document.getElementsByClassName('content-title')[0].remove();
-    this.document.getElementById('cr-article').classList.add('monospace');
-    this.document.getElementById('mc_embed_signup').innerHTML = '';
-});
 
 /**
  * Executes the story when the button is clicked.
