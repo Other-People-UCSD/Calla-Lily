@@ -46,7 +46,7 @@ const Page = (props) => {
         }}
       />
       <div className={animationStyles.cssanimation}>
-        <div className={postStyles["content-title"]}>
+        <div>
           <h1 className={postStyles.post_title}>{data.post.title}</h1>
         </div>
       </div>
