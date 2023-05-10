@@ -53,7 +53,7 @@ const Page = (props) => {
 
       <h3>/ {data.post.contributor}</h3>
       <h4 className={postStyles.meta}>{data.post.tags.join(", ")} &mdash; <MinsRead /></h4>
-      {data.post.featured ? (<h4 className={postStyles.gold}>No. {data.post.category}</h4>) : null}
+      {data.post.collection ? (<h4 className={postStyles.gold}>No. {data.post.collection}</h4>) : null}
 
 
       <article id="cr-article" className={postStyles["#cr-article"]}>
