@@ -89,16 +89,15 @@ export const schema = {
         },
         {
           name: "theme",
-          label: "Dark Theme",
+          label: "Theme",
           type: "string",
           ui: {
-            description: "Toggle if this post should use dark theme.",
-            component: "toggle",
-            toggleLabels: {
-              true: 'dark',
-              false: 'light',
-            }
-  
+            description: "Select the theme to use.",
+            component: "radio-group",
+            options: [
+              { label: "Light", value: 'light' },
+              { label: "Dark", value: 'dark' },
+            ],
           }
         }
       ],
@@ -180,7 +179,7 @@ export const schema = {
           type: "object",
           list: true,
           fields: [
-            { 
+            {
               name: "description",
               label: "Description",
               type: "string",
