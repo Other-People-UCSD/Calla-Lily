@@ -89,9 +89,10 @@ export const schema = {
         },
         {
           name: "theme",
-          label: "Dark Theme?",
+          label: "Dark Theme",
           type: "string",
           ui: {
+            description: "Toggle if this post should use dark theme.",
             component: "toggle",
             toggleLabels: {
               true: 'dark',
