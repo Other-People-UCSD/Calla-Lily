@@ -87,6 +87,19 @@ export const schema = {
             description: "Currently supports markdown only, no HTML.",
           }
         },
+        {
+          name: "theme",
+          label: "Dark Theme?",
+          type: "string",
+          ui: {
+            component: "toggle",
+            toggleLabels: {
+              true: 'dark',
+              false: 'light',
+            }
+  
+          }
+        }
       ],
     },
     {

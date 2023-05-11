@@ -9,20 +9,17 @@ import { getSortedPostsData, getPostDataAPI } from '@/lib/posts';
 import Script from 'next/script';
 import { useEffect } from 'react';
 import { setDarkTheme } from '@/public/js/bgTheme';
+import copyright from '@/public/js/copyright';
 
 const Page = (props) => {
-  // console.log(props)
   const { query, variables, data } = useTina({
     query: props.query,
     variables: props.variables,
     data: props.data,
   })
 
-  // console.log('page data:', data.post.body.children[0].value)
-  // console.log('page query', query);
-  // console.log('page vars', variables);
-  // console.log('page data', data);
-  // console.log('page fullPostData', props.fullPostData);
+  // Add JS files that affect all posts
+  copyright();
 
   // SEO-dependent variables for use in the next-seo plugin
   const excerpt = `${data.post.contributor} / ${props.fullPostData.excerpt.substring(0, Math.min(155, props.fullPostData.excerpt.length))}...`
