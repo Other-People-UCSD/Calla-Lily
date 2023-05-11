@@ -18,27 +18,18 @@ const Page = (props) => {
     data: props.data,
   })
 
-  function MinsRead() {
-    const wc = props.fullPostData.wordCount;
-    if (wc <= 360) {
-      return "1 min reading time";
-    }
-    return `${Math.floor(wc / 180)} min reading time`;
-  }
-
   // console.log('page data:', data.post.body.children[0].value)
   // console.log('page query', query);
   // console.log('page vars', variables);
   // console.log('page data', data);
   // console.log('page fullPostData', props.fullPostData);
 
+  // SEO-dependent variables for use in the next-seo plugin
   const excerpt = `${data.post.contributor} / ${props.fullPostData.excerpt.substring(0, Math.min(155, props.fullPostData.excerpt.length))}...`
   const slug = data.post.featured ? (data.post._sys.relativePath.replace(/.mdx?/, '')) : (data.post._sys.filename);
   const canonical = `https://otherpeoplesd.com/${slug}`;
   const previewImg = data.post.thumbnail ? data.post.thumbnail : `https://otherpeoplesd.com/favicons/favicon-32x32.png`;
 
-  const experimental = data.post.title === "missed connections (1 new post)";
-  console.log(experimental)
   return (
     <Layout post title={data.post.title}>
       <NextSeo
@@ -47,7 +38,7 @@ const Page = (props) => {
         excerpt={excerpt}
         openGraph={{
           type: 'article',
-          images: [{url: previewImg}],
+          images: [{ url: previewImg }],
         }}
       />
       <div className={animationStyles.cssanimation}>
@@ -57,7 +48,7 @@ const Page = (props) => {
       </div>
 
       <h3>/ {data.post.contributor}</h3>
-      <h4 className={postStyles.meta}>{data.post.tags.join(", ")} &mdash; <MinsRead /></h4>
+      <h4 className={postStyles.meta}>{data.post.tags.join(", ")} &mdash; <MinsRead wordCount={props.fullPostData.wordCount} /></h4>
       {data.post.collection ? (<h4 className={postStyles.gold}>No. {data.post.collection}</h4>) : null}
 
       <article id="cr-article" className={postStyles["#cr-article"]}>
@@ -128,15 +119,15 @@ const getPageData = async (slug) => {
   //     }
   //   }
   // } else {
-    variables = { relativePath: `${slug.join('/')}.mdx` }
-    try {
-      const res = await client.queries.post(variables)
-      query = res.query
-      data = res.data
-      variables = res.variables
-    } catch {
-      // swallow errors related to document creation
-    }
+  variables = { relativePath: `${slug.join('/')}.mdx` }
+  try {
+    const res = await client.queries.post(variables)
+    query = res.query
+    data = res.data
+    variables = res.variables
+  } catch {
+    // swallow errors related to document creation
+  }
   // }
 
   return {
@@ -214,10 +205,14 @@ const recurseAsHTML = (ast) => {
   return <p key={ast.text} dangerouslySetInnerHTML={{ __html: text.join('') }} />;
 }
 
-export const Experimental = ({title}) => {
-  if (title === "missed connections (1 new post)") {
-
-    useEffect(() => {
+/**
+ * 
+ * @param {*} props 
+ * @returns 
+ */
+export const Experimental = ({ title }) => {
+  useEffect(() => {
+    if (title === "missed connections (1 new post)") {
       setDarkTheme();
       try {
         document.querySelector('#post-title').remove();
@@ -226,13 +221,24 @@ export const Experimental = ({title}) => {
       } catch {
 
       }
+    }
+  });
 
-    });
-
+  if (title === "missed connections (1 new post)") {
     return (
-      <Script 
-        src={"/js/missed-connections.js"}
-      />
-    )
+      <Script src={"/js/missed-connections.js"} />
+    );
   }
+}
+
+/**
+ * The estimated reading time calculation
+ * @param {Number} param0 
+ * @returns 
+ */
+export const MinsRead = ({wordCount}) => {
+  if (wordCount <= 360) {
+    return "1 min reading time";
+  }
+  return `${Math.floor(wordCount / 180)} min reading time`;
 }

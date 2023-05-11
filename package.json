@@ -16,7 +16,6 @@
     "@mui/material": "^5.12.2",
     "@tinacms/cli": "^1.5.8",
     "autoprefixer": "10.4.14",
-    "date-fns": "^2.29.3",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.1",
     "gray-matter": "^4.0.3",
@@ -29,10 +28,7 @@
     "rehype-raw": "^6.1.1",
     "rehype-sanitize": "^5.0.1",
     "remark": "^14.0.2",
-    "remark-html": "^15.0.2",
     "remark-rehype": "^10.1.0",
-    "strip-markdown": "^5.0.0",
-    "swr": "^2.1.5",
     "tailwindcss": "3.3.1",
     "tinacms": "^1.5.1"
   },

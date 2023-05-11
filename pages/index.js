@@ -27,14 +27,18 @@ const Home = (props) => {
      * will cause that section to become light mode instead.
      */
     function homepageChange() {
-      const windowHeight = window.innerHeight / 3.5;
-      const scrollY = this.scrollY;
-      const bgChange = keepReadingRef.current.offsetTop;
+      try {
+        const windowHeight = window.innerHeight / 3.5;
+        const scrollY = this.scrollY;
+        const bgChange = keepReadingRef.current.offsetTop;
 
-      if (scrollY >= bgChange - windowHeight) {
-        setDarkTheme();
-      } else {
-        setLightTheme();
+        if (scrollY >= bgChange - windowHeight) {
+          setDarkTheme();
+        } else {
+          setLightTheme();
+        }
+      } catch {
+        // May catch ref undefined when quickly bouncing homepage to a different page
       }
     }
 
