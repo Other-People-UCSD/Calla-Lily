@@ -8,7 +8,7 @@ import { NextSeo } from 'next-seo';
 import { getSortedPostsData, getPostDataAPI } from '@/lib/posts';
 import Script from 'next/script';
 import { useEffect } from 'react';
-import { setDarkTheme } from '@/public/js/bgTheme';
+import { pageChange } from '@/public/js/bgTheme';
 import copyright from '@/public/js/copyright';
 
 const Page = (props) => {
@@ -19,7 +19,10 @@ const Page = (props) => {
   })
 
   // Add JS files that affect all posts
-  copyright();
+  useEffect(() => {
+    copyright();
+    pageChange(data.post.theme);
+  });
 
   // SEO-dependent variables for use in the next-seo plugin
   const excerpt = `${data.post.contributor} / ${props.fullPostData.excerpt.substring(0, Math.min(155, props.fullPostData.excerpt.length))}...`
@@ -210,7 +213,6 @@ const recurseAsHTML = (ast) => {
 export const Experimental = ({ title }) => {
   useEffect(() => {
     if (title === "missed connections (1 new post)") {
-      setDarkTheme();
       try {
         document.querySelector('#post-title').remove();
         document.getElementById('cr-article').classList.add('monospace');

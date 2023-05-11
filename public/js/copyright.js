@@ -5,7 +5,6 @@ import { useEffect } from "react";
  * If you are a user outside our organization, do not circumvent our security without permission.
  */
 const copyright = () => {
-  useEffect(() => {
   /**
    * Prevents the events that allow a user to copy an element from firing. 
    */
@@ -47,7 +46,6 @@ const copyright = () => {
           bypass[i].removeEventListener('contextmenu', protect, false);
       }
   }
-  });
 }
 
 export default copyright;
