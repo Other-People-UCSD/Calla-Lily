@@ -79,15 +79,6 @@ export const schema = {
           },
         },
         {
-          type: "rich-text",
-          name: "body",
-          label: "Body",
-          isBody: true,
-          ui: {
-            description: "Currently supports markdown only, no HTML.",
-          }
-        },
-        {
           name: "theme",
           label: "Theme",
           type: "string",
@@ -95,11 +86,28 @@ export const schema = {
             description: "Select the theme to use.",
             component: "radio-group",
             options: [
-              { label: "Light", value: 'light' },
+              { label: "Light (default/leave unchecked)", value: 'light' },
               { label: "Dark", value: 'dark' },
             ],
           }
-        }
+        },
+        {
+          name: "contentWarning",
+          label: "Content Warning",
+          type: "string",
+          ui: {
+            description: "Enter the warning description to enable content warning.",
+          }
+        },
+        {
+          type: "rich-text",
+          name: "body",
+          label: "Body",
+          isBody: true,
+          ui: {
+            description: "Currently supports markdown only, no HTML.",
+          },
+        },
       ],
     },
     {
@@ -322,3 +330,4 @@ export const schema = {
     },
   ],
 }
+

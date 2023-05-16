@@ -10,13 +10,20 @@ import Script from 'next/script';
 import { useEffect } from 'react';
 import { pageChange } from '@/public/js/bgTheme';
 import copyright from '@/public/js/copyright';
+import ContentWarning from '@/components/ContentWarning';
 
 const Page = (props) => {
+  // console.log(props.variables)
+  // console.log(props.data)
   const { query, variables, data } = useTina({
     query: props.query,
     variables: props.variables,
     data: props.data,
-  })
+  });
+
+  // console.log('POST VAR', variables);
+  // console.log('POST DATA', data);
+
 
   // Add JS files that affect all posts
   useEffect(() => {
@@ -52,7 +59,8 @@ const Page = (props) => {
       {data.post.collection ? (<h4 className={postStyles.gold}>No. {data.post.collection}</h4>) : null}
 
       <article id="cr-article" className={postStyles["#cr-article"]}>
-        <OPMHTML content={data.post.body.children} />
+        { data.post.contentWarning ? <ContentWarning description={data.post.contentWarning} /> : null }
+        <OPMHTML content={data.post.body.children}/>
       </article>
 
       <div className={postStyles["copyright-footer"]}>
