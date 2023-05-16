@@ -14,7 +14,7 @@ export const schema = {
       format: "mdx",
       ui: {
         router: ({ document }) => {
-          return `/${document._sys.filename}`
+          return `/${document._sys.breadcrumbs.join('/')}`
         },
         filename: {
           slugify: slugify,
@@ -119,6 +119,9 @@ export const schema = {
         include: "team",
       },
       ui: {
+        router: () => {
+          return `/about`
+        },
         allowedActions: {
           create: false,
           delete: false,
@@ -237,6 +240,9 @@ export const schema = {
         include: "homepage",
       },
       ui: {
+        router: () => {
+          return `/`
+        },
         allowedActions: {
           create: false,
           delete: false,

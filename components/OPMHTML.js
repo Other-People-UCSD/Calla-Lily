@@ -16,6 +16,7 @@ const OPMHTML = ({ content, depth }) => {
     // console.log('creating', index, depth);
     return createElement(Node, {
       child,
+      key: index,
       index,
       depth
     });

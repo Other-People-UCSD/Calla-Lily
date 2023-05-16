@@ -87,7 +87,6 @@ export default Page;
 
 export const getStaticProps = async (params) => {
   const { data, query, variables } = await getPageData(params.params.slug);
-
   // console.log('getStaticProps data:', data);
   // console.log('getStaticProps vars:', variables);
   const allPostsData = getSortedPostsData();
