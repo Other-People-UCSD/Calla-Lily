@@ -1,7 +1,9 @@
+import Link from "next/link";
+
 const ContentWarning = ({ description }) => {
   const access = () => {
     document.getElementById('cw').className = 'hidden';
-    document.getElementById('cw-story').className = '';
+    document.getElementById('cr-article').className = '';
   }
   return (
     <div id="cw" class="content-warning">
@@ -10,7 +12,7 @@ const ContentWarning = ({ description }) => {
         <p>{description}</p>
         <p>Viewer discretion is advised. Proceed to view content?</p>
         <div class="options center">
-          <a href="/">Cancel</a>
+          <Link href="/">Cancel</Link>
           <button onClick={access}>Enter</button>
         </div>
       </div>

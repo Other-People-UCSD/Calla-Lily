@@ -58,8 +58,9 @@ const Page = (props) => {
       <h4 className={postStyles.meta}>{data.post.tags.join(", ")} &mdash; <MinsRead wordCount={props.fullPostData.wordCount} /></h4>
       {data.post.collection ? (<h4 className={postStyles.gold}>No. {data.post.collection}</h4>) : null}
 
+      { data.post.contentWarning ? <ContentWarning description={data.post.contentWarning} /> : null }
+      
       <article id="cr-article" className={postStyles["#cr-article"]}>
-        { data.post.contentWarning ? <ContentWarning description={data.post.contentWarning} /> : null }
         <OPMHTML content={data.post.body.children}/>
       </article>
 
