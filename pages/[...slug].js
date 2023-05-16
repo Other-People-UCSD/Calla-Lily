@@ -8,9 +8,10 @@ import { NextSeo } from 'next-seo';
 import { getSortedPostsData, getPostDataAPI } from '@/lib/posts';
 import Script from 'next/script';
 import { useEffect } from 'react';
-import { pageChange } from '@/public/js/bgTheme';
-import copyright from '@/public/js/copyright';
+import { pageChange } from '@/components/bgTheme';
+import copyright from '@/components/copyright';
 import ContentWarning from '@/components/ContentWarning';
+import OPMHTML from '@/components/OPMHTML';
 
 const Page = (props) => {
   // console.log(props.variables)
@@ -61,7 +62,7 @@ const Page = (props) => {
       { data.post.contentWarning ? <ContentWarning description={data.post.contentWarning} /> : null }
       
       <article id="cr-article" className={postStyles["#cr-article"]}>
-        <OPMHTML content={data.post.body.children}/>
+        <OPMHTML content={data.post.body.children} depth={0} />
       </article>
 
       <div className={postStyles["copyright-footer"]}>
@@ -182,40 +183,6 @@ export const getStaticPaths = async () => {
 
 /**
  * 
- * @param {[AST]} content An array of AST nodes from the rich text editor
- * @returns Parsed raw output from the rich text editor
- */
-const OPMHTML = ({ content }) => {
-  return content.map((astChild) => {
-    // console.log(astChild, astChild.type)
-    return (astChild.type === 'html') ? (
-      <div key={astChild.value} dangerouslySetInnerHTML={{ __html: astChild.value }} />
-    ) : (
-      recurseAsHTML(astChild)
-    )
-  });
-}
-
-/**
- * 
- * @param {AST} ast Abstract Syntax Tree nodes from the rich text editor
- * @returns A <p> element of the HTML-md styled text one-level down.  
- */
-const recurseAsHTML = (ast) => {
-  let text = [];
-  ast.children.map((child) => {
-    child.type === 'html_inline' || child.type === 'html' ? (
-      text.push(child.value)
-    ) : (
-      text.push(child.text)
-    )
-  });
-
-  return <p key={ast.text} dangerouslySetInnerHTML={{ __html: text.join('') }} />;
-}
-
-/**
- * 
  * @param {*} props 
  * @returns 
  */
@@ -250,3 +217,4 @@ export const MinsRead = ({wordCount}) => {
   }
   return `${Math.floor(wordCount / 180)} min reading time`;
 }
+

@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 /**
  * Provides high-level protection from copying media and text of our published authors!
  * If you are a user outside our organization, do not circumvent our security without permission.

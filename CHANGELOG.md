@@ -1,4 +1,8 @@
 # Changelog 
+## v4.5.5.1 (5/16/23) 
+- Modified custom MDX parser to better support HTML and HTML inline
+- Moved copyright and theme file into components instead of exposing to public folder
+
 ### v4.5.4.1 (5/8/23)
 - Changed permalinks to /year/title format again
 
