@@ -1,4 +1,10 @@
 # Changelog 
+## v4.5.5 (5/15/23)
+- Added support for missed connections external JS component
+- Added support for content warning inside CMS as a frontmatter field which conditionally renders the content warning component
+- Copyright is now applied to all posts
+- Header now changes theme color gradually alongside the body theme
+
 ### v4.5.4.1 (5/8/23)
 - Changed permalinks to /year/title format again
 
