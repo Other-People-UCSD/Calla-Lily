@@ -42,7 +42,7 @@ const Node = ({ child, index, depth }) => {
         depth: depth + 1
       }));
     case "lic":
-      console.log('lic', child, child.children)
+      // console.log('lic', child, child.children)
       return createElement("div", null, createElement(OPMHTML, {
         content: child.children,
         depth: depth + 1
@@ -78,7 +78,7 @@ const Node = ({ child, index, depth }) => {
       // and isn't already spaced as a <p>, wrap with a <p> 
       // to put a space from the header
       if (index === 0 && depth === 0 && !child.value.match(/^<p.*>|<\/p>$/g)) {
-        console.log('matched', child.value)
+        // console.log('matched', child.value)
         return createElement("p", null, parse(child.value));
       }
       return parse(child.value);
