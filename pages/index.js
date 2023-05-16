@@ -7,21 +7,54 @@ import Genre from '@/components/genre';
 import { useTina } from 'tinacms/dist/react';
 import Image from 'next/image';
 import { getSortedPostsData, getGenrePostsData } from '@/lib/posts';
+import { useEffect, useRef } from 'react';
+import { setDarkTheme, setLightTheme } from '@/public/js/bgTheme';
 
 const Home = (props) => {
-  const {query, variables, data } = useTina({
+  const keepReadingRef = useRef(null);
+  const { query, variables, data } = useTina({
     query: props.query,
     variables: props.variables,
     data: props.data,
   })
 
+  useEffect(() => {
+    /**
+     * Homepage only.
+     * When the user scrolls to the "keep reading" section marked by the "w2b" class, 
+     * the style of the page changes to dark mode. 
+     * If the user's client preference is dark mode, scrolling beyond the "keep reading" section
+     * will cause that section to become light mode instead.
+     */
+    function homepageChange() {
+      try {
+        const windowHeight = window.innerHeight / 3.5;
+        const scrollY = this.scrollY;
+        const bgChange = keepReadingRef.current.offsetTop;
+
+        if (scrollY >= bgChange - windowHeight) {
+          setDarkTheme();
+        } else {
+          setLightTheme();
+        }
+      } catch {
+        // May catch ref undefined when quickly bouncing homepage to a different page
+      }
+    }
+
+    window.addEventListener('scroll', homepageChange);
+    return () => {
+      window.removeEventListener('scroll', homepageChange);
+    }
+  });
+
   return (
     <Layout genre title={"Home"}>
       <div className={indexStyles.IndexContainer}>
         <a href={data.homepage.featured_link} target="_blank" rel="noopener noreferer">
-          <Image 
-            src={data.homepage.image} 
-            alt={data.homepage.featured_alt} 
+          <Image
+            src={data.homepage.image}
+            alt={data.homepage.featured_alt}
             width={1024}
             height={525}
             quality={75}
@@ -46,7 +79,10 @@ const Home = (props) => {
       <h3 className={postStyles["post-title"]}>Visual Arts</h3>
       <Genre genre={props.visualarts} limit={data.homepage.visartsLimit} />
 
-      <h2 className={`${indexStyles.w2b} ${postStyles["post-title"]}`}>Keep Reading</h2>
+      <h2
+        ref={keepReadingRef}
+        className={`${indexStyles.w2b} ${postStyles["post-title"]}`}
+      >Keep Reading</h2>
 
       <h3 className={postStyles["post-title"]}>Poetry</h3>
       <Genre genre={props.poetry} offset={data.homepage.poetryLimit} limit={6} />
@@ -75,7 +111,7 @@ export async function getStaticProps() {
   let data = {}
   let query = {}
   let variables = { relativePath: `../data/homepage.json` }
-  
+
   try {
     const res = await client.queries.homepage(variables)
     query = res.query
@@ -84,7 +120,7 @@ export async function getStaticProps() {
   } catch {
     // swallow errors related to document creation
   }
-  
+
   return {
     props: {
       variables: variables,
@@ -98,3 +134,4 @@ export async function getStaticProps() {
     },
   };
 }
+

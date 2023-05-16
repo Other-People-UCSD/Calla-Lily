@@ -5,7 +5,7 @@
 
 - [ ] Make sure you are requesting to **pull a *development* branch. Don't pull the *published* branch!**.
 - [ ] Does `yarn lint` pass all checks?
-- [ ] Does `yarn build` pass all checks? (Unless schema changed)
+- [ ] (Optional) Does `yarn build` pass all checks? (Make sure Tina config has the right branch name)
 - [ ] Does `yarn dev` pass all checks?
 
 ### Types of changes:

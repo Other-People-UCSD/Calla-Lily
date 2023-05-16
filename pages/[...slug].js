@@ -6,29 +6,32 @@ import Layout from '@/components/layout';
 import Link from 'next/link';
 import { NextSeo } from 'next-seo';
 import { getSortedPostsData, getPostDataAPI } from '@/lib/posts';
+import Script from 'next/script';
+import { useEffect } from 'react';
+import { pageChange } from '@/public/js/bgTheme';
+import copyright from '@/public/js/copyright';
+import ContentWarning from '@/components/ContentWarning';
 
 const Page = (props) => {
-  // console.log(props)
+  // console.log(props.variables)
+  // console.log(props.data)
   const { query, variables, data } = useTina({
     query: props.query,
     variables: props.variables,
     data: props.data,
-  })
+  });
 
-  function MinsRead() {
-    const wc = props.fullPostData.wordCount;
-    if (wc <= 360) {
-      return "1 min reading time";
-    }
-    return `${Math.floor(wc / 180)} min reading time`;
-  }
+  // console.log('POST VAR', variables);
+  // console.log('POST DATA', data);
 
-  // console.log('page data:', data.post.body.children[0].value)
-  // console.log('page query', query);
-  // console.log('page vars', variables);
-  // console.log('page data', data);
-  // console.log('page fullPostData', props.fullPostData);
 
+  // Add JS files that affect all posts
+  useEffect(() => {
+    copyright();
+    pageChange(data.post.theme);
+  });
+
+  // SEO-dependent variables for use in the next-seo plugin
   const excerpt = `${data.post.contributor} / ${props.fullPostData.excerpt.substring(0, Math.min(155, props.fullPostData.excerpt.length))}...`
   const slug = data.post.featured ? (data.post._sys.relativePath.replace(/.mdx?/, '')) : (data.post._sys.filename);
   const canonical = `https://otherpeoplesd.com/${slug}`;
@@ -42,22 +45,23 @@ const Page = (props) => {
         excerpt={excerpt}
         openGraph={{
           type: 'article',
-          images: [{url: previewImg}],
+          images: [{ url: previewImg }],
         }}
       />
       <div className={animationStyles.cssanimation}>
         <div>
-          <h1 className={postStyles.post_title}>{data.post.title}</h1>
+          <h1 id="post-title" className={postStyles.post_title}>{data.post.title}</h1>
         </div>
       </div>
 
       <h3>/ {data.post.contributor}</h3>
-      <h4 className={postStyles.meta}>{data.post.tags.join(", ")} &mdash; <MinsRead /></h4>
+      <h4 className={postStyles.meta}>{data.post.tags.join(", ")} &mdash; <MinsRead wordCount={props.fullPostData.wordCount} /></h4>
       {data.post.collection ? (<h4 className={postStyles.gold}>No. {data.post.collection}</h4>) : null}
 
-
+      { data.post.contentWarning ? <ContentWarning description={data.post.contentWarning} /> : null }
+      
       <article id="cr-article" className={postStyles["#cr-article"]}>
-        <OPMHTML content={data.post.body.children} />
+        <OPMHTML content={data.post.body.children}/>
       </article>
 
       <div className={postStyles["copyright-footer"]}>
@@ -73,11 +77,12 @@ const Page = (props) => {
         </div>
       </div>
 
+      <Experimental title={data.post.title} />
     </Layout>
   );
 }
 
-export default Page
+export default Page;
 
 export const getStaticProps = async (params) => {
   const { data, query, variables } = await getPageData(params.params.slug);
@@ -123,15 +128,15 @@ const getPageData = async (slug) => {
   //     }
   //   }
   // } else {
-    variables = { relativePath: `${slug.join('/')}.mdx` }
-    try {
-      const res = await client.queries.post(variables)
-      query = res.query
-      data = res.data
-      variables = res.variables
-    } catch {
-      // swallow errors related to document creation
-    }
+  variables = { relativePath: `${slug.join('/')}.mdx` }
+  try {
+    const res = await client.queries.post(variables)
+    query = res.query
+    data = res.data
+    variables = res.variables
+  } catch {
+    // swallow errors related to document creation
+  }
   // }
 
   return {
@@ -207,4 +212,41 @@ const recurseAsHTML = (ast) => {
   });
 
   return <p key={ast.text} dangerouslySetInnerHTML={{ __html: text.join('') }} />;
+}
+
+/**
+ * 
+ * @param {*} props 
+ * @returns 
+ */
+export const Experimental = ({ title }) => {
+  useEffect(() => {
+    if (title === "missed connections (1 new post)") {
+      try {
+        document.querySelector('#post-title').remove();
+        document.getElementById('cr-article').classList.add('monospace');
+        document.getElementById('mc_embed_signup').innerHTML = '';
+      } catch {
+
+      }
+    }
+  });
+
+  if (title === "missed connections (1 new post)") {
+    return (
+      <Script src={"/js/missed-connections.js"} />
+    );
+  }
+}
+
+/**
+ * The estimated reading time calculation
+ * @param {Number} param0 
+ * @returns 
+ */
+export const MinsRead = ({wordCount}) => {
+  if (wordCount <= 360) {
+    return "1 min reading time";
+  }
+  return `${Math.floor(wordCount / 180)} min reading time`;
 }
