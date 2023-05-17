@@ -80,8 +80,6 @@ jobs:
           TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
         run: yarn build
-      - name: Static HTML export with Next.js
-        run: yarn next export
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
