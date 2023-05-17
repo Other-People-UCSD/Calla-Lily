@@ -58,6 +58,7 @@ const Page = (props) => {
       <h3>/ {data.post.contributor}</h3>
       <h4 className={postStyles.meta}>{data.post.tags.join(", ")} &mdash; <MinsRead wordCount={props.fullPostData.wordCount} /></h4>
       {data.post.collection ? (<h4 className={postStyles.gold}>No. {data.post.collection}</h4>) : null}
+      <br />
 
       { data.post.contentWarning ? <ContentWarning description={data.post.contentWarning} /> : null }
       

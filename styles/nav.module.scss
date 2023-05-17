@@ -222,6 +222,15 @@
         line-height: 1.2rem;
         opacity: 0.3;
     }
+
+    svg {
+        fill: $bodyColor;
+        margin-left: $blockThree;
+        margin-bottom: $blockOne;
+        display: block;
+        width: 5rem;
+        opacity: 0.3;
+      }
 }
 
 

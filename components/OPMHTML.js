@@ -78,10 +78,10 @@ const Node = ({ child, index, depth }) => {
       // If the very first part of the content is an HTML element 
       // and isn't already spaced as a <p>, wrap with a <p> 
       // to put a space from the header
-      if (index === 0 && depth === 0 && !child.value.match(/^<p.*>|<\/p>$/g)) {
-        // console.log('matched', child.value)
-        return createElement("p", null, parse(child.value));
-      }
+      // if (index === 0 && depth === 0 && !child.value.match(/^<p.*>|<\/p>$/g)) {
+      //   // console.log('matched', child.value)
+      //   return createElement("p", null, parse(child.value));
+      // }
       return parse(child.value);
     default:
       // console.log('text node')

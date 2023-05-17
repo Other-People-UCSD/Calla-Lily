@@ -1,4 +1,9 @@
 # Changelog 
+### v4.5.5.2 (5/16/23)
+- Updated posts with visual fixes
+- Added line break after header like in Pink-Currents
+- Changed footer logo from Next/Image to a JSX SVG to support changing styles
+
 ## v4.5.5.1 (5/16/23) 
 - Modified custom MDX parser to better support HTML and HTML inline
 - Moved copyright and theme file into components instead of exposing to public folder

@@ -7,6 +7,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Search from './search';
+import { FooterLogo } from './footer';
 
 const delta = 5;
 
@@ -135,6 +136,7 @@ export function MobileNav({ setShowNav }) {
           <li><a href="mailto:otherpeopleucsd@gmail.com"><MailOutlineIcon /></a></li>
         </ul>
         <div className={navStyles["nav-footer"]}>
+          <FooterLogo />
           <h4>{`Other People © ${getYear()}`} <br />ALL RIGHTS RESERVED</h4>
         </div>
       </nav>
