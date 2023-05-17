@@ -1,4 +1,8 @@
 # Changelog 
+## v4.5.5.1 (5/16/23) 
+- Modified custom MDX parser to better support HTML and HTML inline
+- Moved copyright and theme file into components instead of exposing to public folder
+
 ## v4.5.5 (5/15/23)
 - Added support for missed connections external JS component
 - Added support for content warning inside CMS as a frontmatter field which conditionally renders the content warning component

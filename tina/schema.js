@@ -14,7 +14,7 @@ export const schema = {
       format: "mdx",
       ui: {
         router: ({ document }) => {
-          `/_posts/${document._sys.filename}`
+          return `/${document._sys.breadcrumbs.join('/')}`
         },
         filename: {
           slugify: slugify,
@@ -79,34 +79,34 @@ export const schema = {
           },
         },
         {
+          type: "rich-text",
+          name: "body",
+          label: "Body",
+          isBody: true,
+          ui: {
+            description: "Supports markdown and HTML live editing!",
+          },
+        },
+        {
           name: "theme",
-          label: "Theme",
+          label: "Theme (Custom Component)",
           type: "string",
           ui: {
-            description: "Select the theme to use.",
+            description: "Select the theme to use ONLY IF INTENTIONAL. Selecting light will force users who use dark theme to match light mode.",
             component: "radio-group",
             options: [
-              { label: "Light (default/leave unchecked)", value: 'light' },
+              { label: "Light (FORCED)", value: 'light' },
               { label: "Dark", value: 'dark' },
             ],
           }
         },
         {
           name: "contentWarning",
-          label: "Content Warning",
+          label: "Content Warning (Custom Component)",
           type: "string",
           ui: {
             description: "Enter the warning description to enable content warning.",
           }
-        },
-        {
-          type: "rich-text",
-          name: "body",
-          label: "Body",
-          isBody: true,
-          ui: {
-            description: "Currently supports markdown only, no HTML.",
-          },
         },
       ],
     },
@@ -119,6 +119,9 @@ export const schema = {
         include: "team",
       },
       ui: {
+        router: () => {
+          return `/about`
+        },
         allowedActions: {
           create: false,
           delete: false,
@@ -237,6 +240,9 @@ export const schema = {
         include: "homepage",
       },
       ui: {
+        router: () => {
+          return `/`
+        },
         allowedActions: {
           create: false,
           delete: false,
