@@ -59,8 +59,8 @@ const Page = (props) => {
       <h4 className={postStyles.meta}>{data.post.tags.join(", ")} &mdash; <MinsRead wordCount={props.fullPostData.wordCount} /></h4>
       {data.post.collection ? (<h4 className={postStyles.gold}>No. {data.post.collection}</h4>) : null}
 
-      { data.post.contentWarning ? <ContentWarning description={data.post.contentWarning} /> : null }
-      
+      {data.post.contentWarning ? <ContentWarning description={data.post.contentWarning} /> : null}
+
       <article id="cr-article" className={postStyles["cr-article"]}>
         <OPMHTML content={data.post.body.children} depth={0} />
       </article>
@@ -187,14 +187,26 @@ export const getStaticPaths = async () => {
  */
 export const Experimental = ({ title }) => {
   useEffect(() => {
-    if (title === "missed connections (1 new post)") {
-      try {
-        document.querySelector('#post-title').remove();
-        document.getElementById('cr-article').classList.add('monospace');
-        document.getElementById('mc_embed_signup').innerHTML = '';
-      } catch {
+    switch (title) {
+      case "Kalbelia":
+        try {
+          document.getElementById("folksong").volume = 0.05;
+          if(window.innerWidth <= 768) {
+            const note = document.getElementById('note');
+            note.innerHTML += '<br /><strong>For the best viewing experience, we suggest using a larger display.</strong>';
+          }
+        } catch {
 
-      }
+        }
+      case "missed connections (1 new post)":
+        try {
+          document.querySelector('#post-title').remove();
+          document.getElementById('cr-article').classList.add('monospace');
+          document.getElementById('mc_embed_signup').innerHTML = '';
+        } catch {
+
+        }
+      default:
     }
   });
 
@@ -210,7 +222,7 @@ export const Experimental = ({ title }) => {
  * @param {Number} param0 
  * @returns 
  */
-export const MinsRead = ({wordCount}) => {
+export const MinsRead = ({ wordCount }) => {
   if (wordCount <= 360) {
     return "1 min reading time";
   }
