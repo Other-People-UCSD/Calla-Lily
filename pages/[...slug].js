@@ -1,17 +1,17 @@
+import { useEffect } from 'react';
 import { useTina } from 'tinacms/dist/react'
 import client from '../tina/__generated__/client'
+import Link from 'next/link';
+import { NextSeo } from 'next-seo';
+import Script from 'next/script';
 import animationStyles from "@/styles/animations.module.scss";
 import postStyles from "@/styles/posts.module.scss";
 import Layout from '@/components/layout';
-import Link from 'next/link';
-import { NextSeo } from 'next-seo';
 import { getSortedPostsData, getPostDataAPI } from '@/lib/posts';
-import Script from 'next/script';
-import { useEffect } from 'react';
-import { pageChange } from '@/components/bgTheme';
-import copyright from '@/components/copyright';
 import ContentWarning from '@/components/ContentWarning';
-import OPMHTML from '@/components/OPMHTML';
+import { pageChange } from '@/lib/bgTheme';
+import copyright from '@/lib/copyright';
+import OPMparser from '@/lib/OPMparser';
 
 const Page = (props) => {
   // console.log(props.variables)
@@ -49,10 +49,8 @@ const Page = (props) => {
           images: [{ url: previewImg }],
         }}
       />
-      <div className={animationStyles.cssanimation}>
-        <div>
+      <div className={`${animationStyles.cssanimation} ${animationStyles.sequence} ${animationStyles.fadeInBottom}`}>
           <h1 id="post-title" className={postStyles.post_title}>{data.post.title}</h1>
-        </div>
       </div>
 
       <h3>/ {data.post.contributor}</h3>
@@ -62,7 +60,7 @@ const Page = (props) => {
       {data.post.contentWarning ? <ContentWarning description={data.post.contentWarning} /> : null}
 
       <article id="cr-article" className={postStyles["cr-article"]}>
-        <OPMHTML content={data.post.body.children} depth={0} />
+        <OPMparser content={data.post.body.children} depth={0} />
       </article>
 
       <div className={postStyles["copyright-footer"]}>

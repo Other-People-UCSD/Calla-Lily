@@ -1,4 +1,10 @@
 # Changelog 
+### v4.5.5.3 (5/17/23)
+- Uploaded illustrations for Metamorphoses, the post-mortem
+- More accurate word count
+- Parser supports Markdown links
+- Differentiated files by utility in components and lib folders
+
 ### v4.5.5.2 (5/16/23)
 - Updated posts with visual fixes
 - Added line break after header like in Pink-Currents
