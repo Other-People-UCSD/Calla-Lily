@@ -6,8 +6,11 @@ export default function Custom404() {
     <>
       <Layout post title={"404 Page Not Found"}>
         <h1>404 - Page Not Found</h1>
-        <p>If you are experiencing any issues with finding posts in the new website,
-          please email us about the problem so that we can fix it!</p>
+        <p><strong>Posts that are not part of a collection are now found by the year they 
+          were published e.g /missed-connections &#61;&gt; /2023/missed-connections</strong>.
+          This new permalink may be changed back in a future update.</p>
+        <p>If you are experiencing any issues in the new website,
+          please email us about the problem so that we can fix it! </p>
       </Layout>
     </>
   );
