@@ -27,7 +27,7 @@ export default function HeaderMain() {
   /**
    * Opens the mobile navigation after clicking Menu
    */
-  function openNav() {
+  const openNav = () => {
     document.getElementById("myNav").style.height = "100%";
     setShowNav(true);
   }
@@ -62,7 +62,7 @@ export default function HeaderMain() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     }
-  });
+  }, []);
 
 
   const hideAnnouncement = () => {
@@ -112,7 +112,7 @@ export function MobileNav({ setShowNav }) {
   /**
    * Closes the mobile navigation after clicking Close or a search result
    */
-  function closeNav() {
+  const closeNav = () => {
     document.getElementById("myNav").style.height = "0%";
     setShowNav(false);
   }
