@@ -30,7 +30,7 @@ const Page = (props) => {
   useEffect(() => {
     copyright();
     pageChange(data.post.theme);
-  });
+  }, []); // Trigger only once on page load
 
   // SEO-dependent variables for use in the next-seo plugin
   const excerpt = `${data.post.contributor} / ${props.fullPostData.excerpt.substring(0, Math.min(155, props.fullPostData.excerpt.length))}...`
@@ -202,6 +202,8 @@ export const Experimental = ({ title }) => {
           document.querySelector('#post-title').remove();
           document.getElementById('cr-article').classList.add('monospace');
           document.getElementById('mc_embed_signup').innerHTML = '';
+          document.getElementById('mc-begin').addEventListener('click', beginStory);
+          console.log('missed connections')
         } catch {
 
         }
@@ -209,7 +211,7 @@ export const Experimental = ({ title }) => {
       default:
         break;
     }
-  });
+  }, []); // Trigger only once on page load
 
   if (title === "missed connections (1 new post)") {
     return (

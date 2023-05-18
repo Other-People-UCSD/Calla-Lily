@@ -12,7 +12,9 @@ $blockSeven: 512px;
 $blockEight: 768px;
 
 .content {
-    padding: $blockThree;
+    margin-top: $blockThree;
+    padding-left: $blockThree;
+    padding-right: $blockThree;
     margin-left: auto;
     margin-right: auto;
     width: 80%;

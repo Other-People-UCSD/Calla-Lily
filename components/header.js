@@ -32,9 +32,12 @@ export default function HeaderMain() {
     setShowNav(true);
   }
 
+  /**
+   * Hide/show the header
+   * @returns 
+   */
   const handleScroll = () => {
     const scrollY = window.scrollY;
-
     // Make sure they scroll more than delta px
     if (Math.abs(lastScrollTop - scrollY) <= delta) {
       return;
@@ -52,23 +55,33 @@ export default function HeaderMain() {
     setLastScrollTop(scrollY);
   }
 
+  /**
+   * Add scroll listener to window
+   */
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
-    const announcement = localStorage.getItem(announcementDate);
-    if (!announcement) {
-      setShowAnnouncement(true);
-    }
-
     return () => {
       window.removeEventListener('scroll', handleScroll);
     }
-  }, []);
+  }, [handleScroll]);
 
-
+  /**
+   * Hides the announcement when the X is pressed
+   */
   const hideAnnouncement = () => {
     localStorage.setItem(announcementDate, 'hidden');
     setShowAnnouncement(false);
   }
+
+  /**
+   * Fire the announcement only once instead of rerendering every scroll
+   */
+  useEffect(() => {
+    const announcement = localStorage.getItem(announcementDate);
+    if (!announcement) {
+      setShowAnnouncement(true);
+    }
+  }, []); // Empty dependency array only triggers this effect once
 
   return (
     <>
