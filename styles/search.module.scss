@@ -1,32 +1,80 @@
 @import '@/styles/variables.scss';
 
+.search-wrapper {
+  a {
+      color: inherit;
+      text-decoration: none;
+
+      span {
+          background-color: none;
+      }
+  }
+
+  a:hover {
+      text-decoration: none;
+
+      h2 {
+          text-decoration: underline;
+      }
+
+      h3 {
+          color: $backgroundColor;
+          transition-duration: 0.3s;
+
+          span {
+              background-color: $bodyColor;
+          }
+      }
+
+      h4 {
+          text-decoration: none;
+      }
+  }
+
+  ul {
+      margin-top: $blockThree;
+      padding: 0;
+      line-height: auto;
+  }
+
+  h3 {
+      margin-top: 0;
+      padding-bottom: 0;
+      opacity: 1;
+      text-decoration: none;
+  }
+
+  h4 {
+      opacity: 0.5;
+  }
+
+  li {
+      margin-top: $blockThree;
+      list-style-type: none;
+  }
+}
+
+
+#search-container {
+  input {
+      background-color: #151515;
+      color: #fff;
+      border-bottom: 5px solid #fff;
+  }
+}
+
 .searchContainer input[type="text"] {
   font-family: Arial;
   font-size: 4rem;
   font-weight: normal;
   margin: 0;
   padding-bottom: $blockTwo;
-  color: $backgroundColor;
+  color: #fff;
   width: 100%;
   box-sizing: border-box;
   border: none;
-  border-bottom: 5px solid $backgroundColor;
-  background-color: $bodyColor;
-  -webkit-padding-start: 0;
-}
-
-.searchContainer input[type="text2"] {
-  font-family: Arial;
-  font-size: 4rem;
-  font-weight: normal;
-  margin: 0;
-  padding-bottom: $blockTwo;
-  color: $bodyColor;
-  width: 100%;
-  box-sizing: border-box;
-  border: none;
-  border-bottom: 5px solid $bodyColor;
-  background-color: $backgroundColor;
+  border-bottom: 5px solid #fff;
+  background-color: #151515;
   -webkit-padding-start: 0;
 }
 
@@ -48,61 +96,6 @@
 .searchContainer textarea:focus {
   outline: none;
   // -webkit-focus-ring-color: none;
-}
-
-.mobile-nav3 {
-  color: $bodyColor;
-
-  svg {
-      width: 4rem;
-  }
-
-  a {
-      color: $bodyColor;
-      text-decoration: none;
-      span {
-          background-color: none;
-      }
-  }
-  a:hover {
-      h2 {
-          text-decoration: underline;
-      }
-
-      h3 {
-          color: $bodyColor;
-          transition-duration: 0.3s;
-          span {
-              background-color: $backgroundColor;
-          }
-      }
-
-      h4 {
-          text-decoration: none;
-      }
-  }
-
-  ul {
-      margin-top: $blockThree;
-
-      padding: 0;
-      line-height: auto;
-  }
-  h3 {
-      margin-top: 0;
-      padding-bottom: 0;
-      opacity: 1;
-      text-decoration: none;
-  }
-
-  h4 {
-      opacity: 0.5;
-  }
-
-  li {
-      margin-top: $blockThree;
-      list-style-type: none;
-  }
 }
 
 

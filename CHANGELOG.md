@@ -1,4 +1,21 @@
 # Changelog 
+### v4.5.5.4 (5/17/23)
+- Added search bar no results text
+- Refactoring over CSS styles and HTML layouts
+- Minor post fixes
+- Added announcement bar
+
+### v4.5.5.3 (5/17/23)
+- Uploaded illustrations for Metamorphoses, the post-mortem
+- More accurate word count
+- Parser supports Markdown links
+- Differentiated files by utility in components and lib folders
+
+### v4.5.5.2 (5/16/23)
+- Updated posts with visual fixes
+- Added line break after header like in Pink-Currents
+- Changed footer logo from Next/Image to a JSX SVG to support changing styles
+
 ## v4.5.5.1 (5/16/23) 
 - Modified custom MDX parser to better support HTML and HTML inline
 - Moved copyright and theme file into components instead of exposing to public folder

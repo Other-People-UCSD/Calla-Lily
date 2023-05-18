@@ -41,8 +41,13 @@
   }
 }
 
-.posts {
-  // padding: $blockThree;
+.post-info {
+  min-height: 70px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  column-gap: 10px;
+  justify-content: space-between;
+
   padding-top: $blockThree;
   border-style: solid;
   border-width: 1px 0 0px 0;
@@ -51,27 +56,7 @@
     line-height: .8rem;
   }
 
-  svg {
-    width: 60px;
-
-    .st0 {
-      fill: none;
-      stroke: $bodyColor;
-      stroke-width: 10rem;
-      stroke-miterlimit: 100;
-    }
-  }
-}
-
-.post-info {
-  min-height: 70px;
-  display: grid;
-  grid-template-columns: auto auto auto;
-  column-gap: 10px;
-  justify-content: space-between;
-
-  :nth-child(3),
-  .card-info {
+  :nth-child(3), .card-info {
     text-align: right;
   }
 
@@ -91,19 +76,13 @@
 
 h2.post-title {
   padding: 0 $blockThree 0 $blockThree;
-  // margin-top: $blockThree;
   font-size: 4rem;
   text-transform: capitalize;
-  // span {
-  //     background-color: $backgroundColor;
-  //     color: $bodyColor;
-  // }
 }
 
 
 h3.post-title {
   padding: 0 $blockThree 0 $blockThree;
-  // padding-top: $blockFour;
   margin-top: $blockThree;
   font-size: 2rem;
   opacity: .5;
@@ -124,7 +103,7 @@ h3.post-title {
 .thumb {
   position: relative;
   img {
-    position: relative !important;
+    position: relative !important; // For Next/Image using fill
     width: 100%;
     object-fit: contain;
   }
@@ -174,6 +153,10 @@ h3.post-title {
   p {
     margin: 0;
   }
+}
+
+.cr-article {
+  margin-top: 16px;
 }
 
 @media only screen and (max-width: 728px) {

@@ -1,4 +1,4 @@
-const SITE_URL = 'https://calla-lily.vercel.app'
+const SITE_URL = 'https://otherpeoplesd.com'
 const EXTERNAL_DATA_URL = `${SITE_URL}/api/_posts`;
 const EXTERNAL_PAGE_URL = `${SITE_URL}/api/pages`;
 

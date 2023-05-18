@@ -8,7 +8,7 @@ import { useTina } from 'tinacms/dist/react';
 import Image from 'next/image';
 import { getSortedPostsData, getGenrePostsData } from '@/lib/posts';
 import { useEffect, useRef } from 'react';
-import { setDarkTheme, setLightTheme } from '@/components/bgTheme';
+import { setDarkTheme, setLightTheme } from '@/lib/bgTheme';
 
 const Home = (props) => {
   const keepReadingRef = useRef(null);
