@@ -29,7 +29,7 @@
     }
 }
 
-.nav-up { top: -142px; }
+.nav-up { top: -150px; }
 
 
 .header-main {
@@ -45,22 +45,18 @@
     font-family: Arial;
     font-weight: bold;
     text-align: center;
-    background-color: #ffb94f;
+    background-color: #ffb7b7; // #ffb94f;
+    color: #000;
     display: flex;
+    align-items: center;
     
     :first-child {
         flex-grow: 19;
-        padding: 8px;
+        padding: 4px;
     }
 
     #close-notice {
         flex-grow: 1;
-        margin-left: 8px;
-        margin-right: 8px;
-        width: fit-content;
-        font-family: Arial;
-        font-weight: bold;
-        background-color: #ffb94f;
     }
 
     #close-notice:hover {

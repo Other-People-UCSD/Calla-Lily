@@ -2,6 +2,8 @@
 ### v4.5.5.4 (5/17/23)
 - Added search bar no results text
 - Refactoring over CSS styles and HTML layouts
+- Minor post fixes
+- Added announcement bar
 
 ### v4.5.5.3 (5/17/23)
 - Uploaded illustrations for Metamorphoses, the post-mortem

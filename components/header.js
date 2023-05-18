@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import headerStyles from '@/styles/header.module.scss';
 import navStyles from '@/styles/nav.module.scss';
+import CloseIcon from '@mui/icons-material/Close';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
@@ -10,6 +11,7 @@ import Search from './search';
 import { FooterLogo } from './footer';
 
 const delta = 5;
+const announcementDate = '5-17';
 
 /**
  * This is the header with the MobileNav menu nested within it. 
@@ -20,6 +22,7 @@ export default function HeaderMain() {
   const [showNav, setShowNav] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollTop, setLastScrollTop] = useState(0);
+  const [showAnnouncement, setShowAnnouncement] = useState(false);
 
   /**
    * Opens the mobile navigation after clicking Menu
@@ -51,11 +54,21 @@ export default function HeaderMain() {
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
+    const announcement = localStorage.getItem(announcementDate);
+    if (!announcement) {
+      setShowAnnouncement(true);
+    }
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     }
   });
 
+
+  const hideAnnouncement = () => {
+    localStorage.setItem(announcementDate, 'hidden');
+    setShowAnnouncement(false);
+  }
 
   return (
     <>
@@ -72,6 +85,15 @@ export default function HeaderMain() {
           </div>
           <button className={navStyles.menu} onClick={openNav} aria-label="Open Menu">Menu</button>
         </div>
+        {
+          showAnnouncement ? (
+            <div className={headerStyles.announcement} id="announcement">
+              <div>We are pleased to introduce Calla-Lily, the new website for Other People Magazine!</div>
+              <button id="close-notice" onClick={hideAnnouncement} aria-label="Hide the Announcement"><CloseIcon /></button>
+            </div>
+          ) : null
+        }
+
       </header>
       <div id='myNav' className={navStyles.overlay}>
         {showNav ? <MobileNav setShowNav={setShowNav} /> : null}
