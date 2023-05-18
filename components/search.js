@@ -13,19 +13,22 @@ export default function Search({ setShowNav }) {
   }
 
   return (
-    <div id="search-contianer" className={searchStyles.searchContainer}>
-      <input
-        type="text"
-        id="search-input"
-        placeholder="Search"
-        aria-placeholder="Type here to search"
-        onChange={getSearchQuery} />
-      <SearchResults
-        setShowNav={setShowNav}
-        searchQuery={searchQuery}
-        allPostsData={allPostsData}
-      />
+    <div className={searchStyles["search-wrapper"]}>
+      <div id="search-container" className={searchStyles.searchContainer}>
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search"
+          aria-placeholder="Type here to search"
+          onChange={getSearchQuery} />
+        <SearchResults
+          setShowNav={setShowNav}
+          searchQuery={searchQuery}
+          allPostsData={allPostsData}
+        />
+      </div>
     </div>
+
   );
 }
 
@@ -64,22 +67,26 @@ const SearchResults = ({ setShowNav, searchQuery, allPostsData }) => {
   return (
     <ul id="results-container">
       {
-        results.map((key) => {
-          const post = allPostsData[key];
-          // console.log(key);
-          return (
-            <li key={key}>
-              <Link href={`/${post.slug}`}
-                onClick={closeNav}>
-                <h2>{post.title}</h2>
-                <h3>{post.contributor}</h3>
-                <h4>{post.tags.join(", ")}</h4>
-              </Link>
-              <br />
-              <hr />
-            </li>
-          );
-        })
+        results.length > 0 ? (
+          results.map((key) => {
+            const post = allPostsData[key];
+            // console.log(key);
+            return (
+              <li key={key}>
+                <Link href={`/${post.slug}`}
+                  onClick={closeNav}>
+                  <h2>{post.title}</h2>
+                  <h3>{post.contributor}</h3>
+                  <h4>{post.tags.join(", ")}</h4>
+                </Link>
+                <br />
+                <hr />
+              </li>
+            );
+          })
+        ) : (
+          "No results found. Try searching by title, author, tags, or collection number/year!"
+        )
       }
     </ul>
   );

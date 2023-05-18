@@ -24,10 +24,10 @@ export default function UCMagazines() {
         </p>
 
         <p>All initial descriptions have been pulled directly from their about pages.</p>
-        <p>To include your own description, logo, expected submissions timeline & who can submit, email us at
+        <p>To include your own description, logo, expected submissions timeline, and who can submit, email us at
           otherpeopleucsd@gmail.com!</p>
 
-        <p><strong>Last Updated: March 6, 2023</strong></p>
+        <p><strong>Last Updated: May 17, 2023</strong></p>
 
         <h2>UCSD Magazines & Journals</h2>
         <ul>
@@ -464,9 +464,9 @@ export default function UCMagazines() {
             </p>
             <p>Revellations is a Revelle-based student-run publication committed to fostering and improving individual’s
               writing capabilities in the genre of their choice. We provide a creative outlet for the Revelle
-              community and encourage self-expression through all written mediums! Check us out at our
-              <a href="https://www.facebook.com/RevellationsUCSD" target="_blank" rel="noopener">Facebook page</a>
-              and send us a message if you&apos;re interested in joining!
+              community and encourage self-expression through all written mediums! Check us out at 
+              our <a href="https://www.facebook.com/RevellationsUCSD" target="_blank" rel="noopener"> Facebook page</a> and 
+              send us a message if you&apos;re interested in joining!
             </p>
           </li>
           <li>
@@ -538,7 +538,7 @@ export default function UCMagazines() {
             <p>BARE Magazine is UC Berkeley&apos;s premier arts, fashion, and lifestyle publication. Since its debut in 2007,
               BARE has gained prominence on campus, and has also garnered national recognition in publications such as
               the New York Times and Teen Vogue. An entirely student-run publication, BARE publishes a print
-              publication once a semester</p>
+              publication every semester.</p>
             <p>BARE allows students the opportunity to collaboratively explore their interests in a range of fields
               including journalism, photography, styling, design, modeling, and marketing. BARE celebrates and engages
               with the diversity of Berkeley and the Bay Area, aiming to foster a community of creatively driven
@@ -652,8 +652,9 @@ export default function UCMagazines() {
                 Aleph</a> <span className={`${postStyles.est} ${postStyles.gold}`}>Est. 2005</span>
             </p>
             <p><em>Aleph</em> (pronounced “ah-lef”) is UCLA&apos;s only official journal that publishes undergraduate
-              research in the humanities, social sciences, and behavioral sciences. Run by undergraduates,
-              <em>Aleph</em> publishes select submissions online and in print with the support of our sponsor, the
+              research in the humanities, social sciences, and behavioral sciences. 
+              Run by undergraduates, <em>Aleph</em> publishes
+              select submissions online and in print with the support of our sponsor, the
               UCLA Undergraduate Research Center – Humanities, Arts, and Social Sciences.
             </p>
           </li>
@@ -1018,7 +1019,7 @@ export default function UCMagazines() {
               <a href="https://redwheelbarrowanthology.org/" target="_blank" rel="noopener">
                 Red Wheelbarrow Anthology</a>
             </p>
-            <p>Red Wheelbarrow is an annually-published anthology. We showcase the creative and critical wordks of
+            <p>Red Wheelbarrow is an annually-published anthology. We showcase the creative and critical works of
               current students, promoting the talent and diversity of our community.</p>
           </li>
           <li>

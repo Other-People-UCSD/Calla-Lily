@@ -1,17 +1,17 @@
+import { useEffect } from 'react';
 import { useTina } from 'tinacms/dist/react'
 import client from '../tina/__generated__/client'
+import Link from 'next/link';
+import { NextSeo } from 'next-seo';
+import Script from 'next/script';
 import animationStyles from "@/styles/animations.module.scss";
 import postStyles from "@/styles/posts.module.scss";
 import Layout from '@/components/layout';
-import Link from 'next/link';
-import { NextSeo } from 'next-seo';
 import { getSortedPostsData, getPostDataAPI } from '@/lib/posts';
-import Script from 'next/script';
-import { useEffect } from 'react';
-import { pageChange } from '@/components/bgTheme';
-import copyright from '@/components/copyright';
 import ContentWarning from '@/components/ContentWarning';
-import OPMHTML from '@/components/OPMHTML';
+import { pageChange } from '@/lib/bgTheme';
+import copyright from '@/lib/copyright';
+import OPMparser from '@/lib/OPMparser';
 
 const Page = (props) => {
   // console.log(props.variables)
@@ -49,20 +49,18 @@ const Page = (props) => {
           images: [{ url: previewImg }],
         }}
       />
-      <div className={animationStyles.cssanimation}>
-        <div>
+      <div className={`${animationStyles.cssanimation} ${animationStyles.sequence} ${animationStyles.fadeInBottom}`}>
           <h1 id="post-title" className={postStyles.post_title}>{data.post.title}</h1>
-        </div>
       </div>
 
       <h3>/ {data.post.contributor}</h3>
       <h4 className={postStyles.meta}>{data.post.tags.join(", ")} &mdash; <MinsRead wordCount={props.fullPostData.wordCount} /></h4>
       {data.post.collection ? (<h4 className={postStyles.gold}>No. {data.post.collection}</h4>) : null}
 
-      { data.post.contentWarning ? <ContentWarning description={data.post.contentWarning} /> : null }
-      
-      <article id="cr-article" className={postStyles["#cr-article"]}>
-        <OPMHTML content={data.post.body.children} depth={0} />
+      {data.post.contentWarning ? <ContentWarning description={data.post.contentWarning} /> : null}
+
+      <article id="cr-article" className={postStyles["cr-article"]}>
+        <OPMparser content={data.post.body.children} depth={0} />
       </article>
 
       <div className={postStyles["copyright-footer"]}>
@@ -187,14 +185,29 @@ export const getStaticPaths = async () => {
  */
 export const Experimental = ({ title }) => {
   useEffect(() => {
-    if (title === "missed connections (1 new post)") {
-      try {
-        document.querySelector('#post-title').remove();
-        document.getElementById('cr-article').classList.add('monospace');
-        document.getElementById('mc_embed_signup').innerHTML = '';
-      } catch {
+    switch (title) {
+      case "Kalbelia":
+        try {
+          document.getElementById("folksong").volume = 0.05;
+          if(window.innerWidth <= 768) {
+            const note = document.getElementById('note');
+            note.innerHTML += '<br /><strong>For the best viewing experience, we suggest using a larger display.</strong>';
+          }
+        } catch {
 
-      }
+        }
+        break;
+      case "missed connections (1 new post)":
+        try {
+          document.querySelector('#post-title').remove();
+          document.getElementById('cr-article').classList.add('monospace');
+          document.getElementById('mc_embed_signup').innerHTML = '';
+        } catch {
+
+        }
+        break;
+      default:
+        break;
     }
   });
 
@@ -210,7 +223,7 @@ export const Experimental = ({ title }) => {
  * @param {Number} param0 
  * @returns 
  */
-export const MinsRead = ({wordCount}) => {
+export const MinsRead = ({ wordCount }) => {
   if (wordCount <= 360) {
     return "1 min reading time";
   }
