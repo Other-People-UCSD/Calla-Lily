@@ -196,6 +196,7 @@ export const Experimental = ({ title }) => {
         } catch {
 
         }
+        break;
       case "missed connections (1 new post)":
         try {
           document.querySelector('#post-title').remove();
@@ -204,7 +205,9 @@ export const Experimental = ({ title }) => {
         } catch {
 
         }
+        break;
       default:
+        break;
     }
   });
 
