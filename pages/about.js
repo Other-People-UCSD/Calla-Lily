@@ -2,29 +2,28 @@ import Layout from '@/components/layout';
 import contentStyles from '@/styles/content.module.scss';
 import animationStyles from "@/styles/animations.module.scss";
 import teamStyles from "@/styles/team.module.scss";
-import indexStyles from "@/styles/index.module.scss";
 import { useTina } from 'tinacms/dist/react';
 import client from '@/tina/__generated__/client';
 import { getSortedPostsData } from '@/lib/posts';
 
 export default function About(props) {
-  const {query, variables, data } = useTina({
+  const { query, variables, data } = useTina({
     query: props.query,
     variables: props.variables,
     data: props.data,
   })
 
+
+  const teamKeys = ['editor_in_chief', 'editorial', 'design_team', 'publicity_events'];
+  const teamTitles = ['Editor in Chief', 'Editorial', 'Design', 'PR + Events'];
+
   // console.log(data)
   return (
     <Layout genre title={"About"}>
-      <div className={`${animationStyles.cssanimation} ${animationStyles.sequence} ${animationStyles.fadeInBottom}`}>
-        <div className={indexStyles.IndexContainer}>
-          <div className={contentStyles["landing-title"]}>
-            <h1>(THE PEOPLE)</h1>
-          </div>
-        </div>
-      </div>
       <div className={teamStyles["team_module"]}>
+        <div className={`${animationStyles.cssanimation} ${animationStyles.sequence} ${animationStyles.fadeInBottom}`}>
+          <h1>O(THE)R PEOPLE</h1>
+        </div>
         <h2><strong>ABOUT US</strong></h2>
         <div>
           <p>Other People Literary Magazine at UC San Diego is the first student-run literary magazine and club.</p>
@@ -61,10 +60,8 @@ export default function About(props) {
             A place to explore the timeless human experience;<br />
             A place to revere the joys and struggles of our journeys through life;<br />
             A place to celebrate the uniqueness of the human spirit;<br />
-            Through a fusion of Language, Art, Image, and Technology.<br /></em>
+            Through a fusion of Language, Art, Image, and Technology.</em>
         </div>
-
-        <br />
 
         <h2><strong>OUR STORY</strong></h2>
 
@@ -94,55 +91,58 @@ export default function About(props) {
         </p>
       </div>
 
-      <div className={teamStyles.team_module}>
-        <div className={teamStyles.team_module_child}>
-          <ul>
-            <h2>Editor in Chief</h2>
-            {
-              data.team.editor_in_chief.map(member => {
-                return <li key={member}><h3>/ {member}</h3></li>
-              })
-            }
-          </ul>
-        </div>
+      <div className={contentStyles["application-grid-wrapper"]}>
+        <h2>TEAM ROLES</h2>
+        <ul className={contentStyles["application-grid"]}>
+          <li>
+            <h3>Editorial & Content</h3>
+            <p>Editors review and edit submissions, then produce the pages of the magazine. Content writers create
+              exclusive prose, interview submittors about their
+              stories, and may write articles of their choice.</p>
+            <p className={"center"}><a href="https://docs.google.com/forms/d/e/1FAIpQLScjBb0DeaZcUebvil4lfNuSbTFL_UwEGiAeydntWlI-kA9s5w/viewform?usp=sf_link">(Apply to Content!)</a></p>
+          </li>
+          <li>
+            <h3>Design & Social Media</h3>
+            <p>Design illustrators create artwork to complement accepted prose. We publish digital and print copies of
+              issues, as well as designing inclusive access to artistic expression through our website.</p>
+            <p className={"center"}>(Applications Closed)</p>
+          </li>
+          <li>
+            <h3>Event Planning</h3>
+            <p>Promote the magazine through social media, plan open mic nights, fundraisers, socials, etc. Marketing and
+              event planners help fund the magazine and increase our outreach beyond the campus.</p>
+            <p className={"center"}><a href="https://docs.google.com/forms/d/e/1FAIpQLSfpVqluRR4TrPDJouo_Evj_J5D1fGFbvNntEgSAe6u7_tMW-A/viewform?usp=sf_link">(Apply Here!)</a></p>
+          </li>
+          <li>
+            <h3>Web Development/UI/UX</h3>
+            <p>The website developer/producer is responsible for publishing content to the website and implementing
+              accessible designs to display to the public through frontend programming!</p>
+            <p className={"center"}><a href="https://docs.google.com/forms/d/e/1FAIpQLSfMolDd9ypQFG6jCyU37oTUY4DAd_2Im1Iky9i-YC2p0n8hIQ/viewform?usp=sf_link">(Apply Here!)</a></p>
+          </li>
+        </ul>
       </div>
 
       <div className={teamStyles.team_module}>
-        <div className={teamStyles.team_module_child}>
-          <ul>
-            <h2>Editorial</h2>
-            {
-              data.team.editorial.map(member => {
-                return <li key={member}><h3>/ {member}</h3></li>
-              })
-            }
-          </ul>
+        <div className={`${animationStyles.cssanimation} ${animationStyles.sequence} ${animationStyles.fadeInBottom}`}>
+          <h2>OUR TEAM</h2>
         </div>
-      </div>
 
-      <div className={teamStyles.team_module}>
-        <div className={teamStyles.team_module_child}>
-          <ul>
-            <h2>Design</h2>
-            {
-              data.team.design_team.map(member => {
-                return <li key={member}><h3>/ {member}</h3></li>
-              })
-            }
-          </ul>
-        </div>
-      </div>
-      <div className={teamStyles.team_module}>
-        <div className={teamStyles.team_module_child}>
-          <ul>
-            <h2>PR + Events</h2>
-            {
-              data.team.publicity_events.map(member => {
-                return <li key={member}><h3>/ {member}</h3></li>
-              })
-            }
-          </ul>
-        </div>
+        {
+          teamKeys.map((key, index) => {
+            return (
+              <div key={index} className={teamStyles.team_module_child}>
+                <ul>
+                  <h2>{teamTitles[index]}</h2>
+                  {
+                    data.team[key].map(member => {
+                      return <li key={member}><h3>/ {member}</h3></li>
+                    })
+                  }
+                </ul>
+              </div>
+            );
+          })
+        }
       </div>
     </Layout>
   );

@@ -108,11 +108,9 @@ export function MobileNav({ setShowNav }) {
           onClick={closeNav}
           aria-label="Close Menu">Close</button>
       </div>
-      {/* <MobileNav /> */}
+
       <nav className={navStyles["mobile-nav"]}>
-        <div className={navStyles["mobile-nav2"]}>
-          <Search setShowNav={setShowNav} />
-        </div>
+        <Search setShowNav={setShowNav} />
         <div className={navStyles.genres}>
           <h3>Genres</h3>
           <ul className={navStyles["nav-menu"]}>
