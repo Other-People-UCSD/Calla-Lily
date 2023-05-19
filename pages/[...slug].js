@@ -30,7 +30,7 @@ const Page = (props) => {
   useEffect(() => {
     copyright();
     pageChange(data.post.theme);
-  }, []); // Trigger only once on page load
+  }); // Does not trigger once to ensure copyright effect works
 
   // SEO-dependent variables for use in the next-seo plugin
   const excerpt = `${data.post.contributor} / ${props.fullPostData.excerpt.substring(0, Math.min(155, props.fullPostData.excerpt.length))}...`
