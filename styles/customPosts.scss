@@ -90,7 +90,14 @@
 .w450 { max-width: 450px; }
 .w650 { max-width: 650px; }
 .white { color: #fff; }
+// For dark theme blackout pieces
 .blackout { color: $backgroundColor; }
+// For light theme blackout pieces (poets sleep in graves)
+.blackoutText { background-color: var(--light-text-color);}
+.blackoutText::selection { color: #ffb7b7 }
+.goldComment { background-color: #ffd966; } // Google Docs comment yellow
+.goldHighlight { background-color: #ff9900;} // Collection No. yellow
+
 .mobile, .laptop, .desktop {
   display: none;
 }

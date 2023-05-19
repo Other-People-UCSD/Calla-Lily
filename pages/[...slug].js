@@ -211,7 +211,7 @@ export const Experimental = ({ title }) => {
       default:
         break;
     }
-  }, []); // Trigger only once on page load
+  }, [title]); // Trigger only once on page load
 
   if (title === "missed connections (1 new post)") {
     return (
