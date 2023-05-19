@@ -54,16 +54,15 @@
         flex-grow: 19;
         padding: 4px;
     }
-
-    #close-notice {
-        flex-grow: 1;
-    }
-
-    #close-notice:hover {
-        cursor: pointer;
-    }
 }
 
+.close-announcement {
+    flex-grow: 1;
+}
+
+.close-announcement:hover {
+    cursor: pointer;
+}
 
 @media only screen and (max-width: 728px) {
     .header-glob {

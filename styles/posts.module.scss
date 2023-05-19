@@ -159,6 +159,14 @@ h3.post-title {
   margin-top: 16px;
 }
 
+.docs {
+  h2, h3, h4, h5, h6 {
+    font-size: 1.5rem;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
 @media only screen and (max-width: 728px) {
   .post-container {
     padding: $blockTwo;
