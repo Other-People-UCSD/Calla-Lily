@@ -90,7 +90,7 @@
 .w450 { max-width: 450px; }
 .w650 { max-width: 650px; }
 .white { color: #fff; }
-.blackout { background-color: #000; color: #fff}
+.blackout { color: $backgroundColor; }
 .mobile, .laptop, .desktop {
   display: none;
 }
@@ -221,6 +221,8 @@
       color: #000;
   }
 }
+
+
 .poem-img-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
