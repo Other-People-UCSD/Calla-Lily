@@ -6,6 +6,8 @@ contributor: Kevin Jang
 
 **Date: Apr 21, 2023 - May 18, 2023**
 
+*A note from the developer*: These release notes are public so anyone who is curious to know how we make experimental stories and artistic designs happen behind the scenes knows just how much work is put into making Other People Magazine the most innovative and customizable website! I love what this organization publishes and I hope that this website can be maintained by future undergraduate programmers at UCSD to learn all about web development in media publishing!
+
 ## Abstract
 
 The Pink-Currents version of the Other People website is built using HTML/CSS/vanilla JS. The static site generating framework is Jekyll in Ruby and deployed on GitHub Pages. Non-developers can publish posts using Forestry.io, a headless CMS.
@@ -28,41 +30,28 @@ As it was the first time I was coding in NextJS, I followed their learning guide
 
 ## Rebuild Process (v4.0.0)
 
-The templated components such as header, footer, and genre pages were converted from their corresponding HTML/Liquid components into JSX elements with SASS modules.
-
-Favicons were generated from a third party site that checked favicons across more device cases, so there is a wider support.
-
-The Font Awesome icons used for the social media icons were replaced with Material UI icons so the external dependency was moved into an internal one.
-
-Posts utilized the dynamic routing feature of NextJS. Dynamic routing allowed for posts to be made and the router templated the content of the post and generated URLs for them on static page generation.
-
-Only the first posts from collection 1 and the corresponding media were uploaded to the site for development purposes.
-
-There was an unresolved issue with putting posts into folders under the post folder where the NextJS would not pass the build stage on GitHub or Vercel’s CLI but worked locally. This could be a path or URI issue.
-
-It was an issue that many tries to fix could not resolve, so I went ahead and moved onto the CMS to make sure that part of the website worked for our editors.
-
-The dynamic routing posts have slightly different frontmatter:
-
-* Title\*
-* Date\*
-* Contributors\*
-* Collection No.
-* Tags\*
-* Thumbnail\*
-
-Featured bool is removed because it can be an existence check on the collection
-
-The search program had to be implemented from scratch because the previous search was a Jekyll plugin. After reading through the docs, I understood that the search plugin pulled information from the frontmatter of each post.
-
-I set up an API which collected all the frontmatter from the posts and returned it as a JSON object with the slug as the key. Using ReactJS’s stateful properties, the search bar performed live case-insensitive queries for the following information:
-
-* Title
-* Contributors
-* Tags
-* Date
-
-Now the search program did not rely on an outside dependency and future developers can read our source code to see how the algorithm works!
+* The templated components such as header, footer, and genre pages were converted from their corresponding HTML/Liquid components into JSX elements with SASS modules.
+* Favicons were generated from a third party site that checked favicons across more device cases, so there is a wider support.
+* The Font Awesome icons used for the social media icons were replaced with Material UI icons so the external dependency was moved into an internal one.
+* Posts utilized the dynamic routing feature of NextJS. Dynamic routing allowed for posts to be made and the router templated the content of the post and generated URLs for them on static page generation.
+  * Only the first posts from collection 1 and the corresponding media were uploaded to the site for development purposes.
+  * There was an unresolved issue with putting posts into folders under the post folder where the NextJS would not pass the build stage on GitHub or Vercel’s CLI but worked locally. This could be a path or URI issue.
+  * It was an issue that many tries to fix could not resolve, so I went ahead and moved onto the CMS to make sure that part of the website worked for our editors.
+* The dynamic routing posts have slightly different frontmatter:
+  * Title\*
+  * Date\*
+  * Contributors\*
+  * Collection No.
+  * Tags\*
+  * Thumbnail\*
+  * Featured bool is removed because it can be an existence check on the collection
+* The search program had to be implemented from scratch because the previous search was a Jekyll plugin. After reading through the docs, I understood that the search plugin pulled information from the frontmatter of each post.
+  * I set up an API which collected all the frontmatter from the posts and returned it as a JSON object with the slug as the key. Using ReactJS’s stateful properties, the search bar performed live case-insensitive queries for the following information:
+    * Title
+    * Contributors
+    * Tags
+    * Date
+  * Now the search program did not rely on an outside dependency and future developers can read our source code to see how the algorithm works!
 
 ### Choosing the CMS
 
@@ -76,23 +65,14 @@ TinaCMS was revisited because Forestry.io worked for Pink-Currents, and that mea
 
 ### Configurations for TinaCMS (v4.0.1 - v.4.0.4.2)
 
-Used a working copy of the TinaCMS-ReactJS starter code to figure out how to connect the CMS data to the content of a page in getStaticProps and getStaticPages through the use of the useTina hook
-
-Even when the codebase is written in React, TinaCMS still parses the markdown content in markdown only and outputting the HTML in MD as plain text. This is the same problem as when TinaCMS was attempted with Pink-Currents.
-
-Files were changed from Markdown files to Markdown with JSX (MDX) to support the options passed into TinaMarkdown for HTML. However, this causes linting errors because in JSX every tag such as `<img> <br> <hr>`, etc. must have an enclosing slash such as `<img />`. This strict syntax rule is still supported by regular HTML, so moving these files to another implementation of HTML/CSS/JS would not cause problems in the future.
-
-Instead of using the recommended TinaMarkdown component for parsing markdown, I use React’s dangerouslySetInnerHtml prop to inject the raw text into the page. However, there are key-value differences inside the Abstract Syntax Tree (AST) where html and html\_inline nodes have the key ‘value’ to denote the content string and regular markdown nodes have the key ‘text’ for the content string.
-
-Currently, the custom parsing function only checks the content one level down the rich text AST and appropriately parses the HTML in markdown correctly.
-
-There are some landing pages that should have editing capabilities for the web producer such as the homepage, team page, submissions page, and UC magazine page. Just to make sure that the important parts of the website are complete, the UC magazine page will be fixed at a future stage of the website.
-
-The landing page frontmatter was removed because the landing pages are written in javascript only and thus they cannot be accessed by the CMS
-
-Instead the frontmatter was moved into JSON files because the CMS can access JSON files as well as YAML files. Trying to directly import YAML data into to the JS page failed due to the webpack configuration and I did not want to add another plugin or dependency. Directly importing JSON files worked and allowed me to successfully test that the frontmatter could be moved into another file.
-
-To make the JSON data connected to TinaCMS, it required two things. The first was to build the schema using the keys from the JSON keys so that GraphQL would be able to query the data. Then to add TinaCMS’s live preview visual editor capability I used the CMS’s API query to pull data from the file and then the useTina hook to synchronize changes. This effectively removed the use of a direct import to the data file because the data would instead be pulled through the API.
+* Used a working copy of the TinaCMS-ReactJS starter code to figure out how to connect the CMS data to the content of a page in getStaticProps and getStaticPages through the use of the useTina hook
+* Even when the codebase is written in React, TinaCMS still parses the markdown content in markdown only and outputting the HTML in MD as plain text. This is the same problem as when TinaCMS was attempted with Pink-Currents.
+  * Files were changed from Markdown files to Markdown with JSX (MDX) to support the options passed into TinaMarkdown for HTML. However, this causes linting errors because in JSX every tag such as `<img> <br> <hr>`, etc. must have an enclosing slash such as `<img />`. This strict syntax rule is still supported by regular HTML, so moving these files to another implementation of HTML/CSS/JS would not cause problems in the future.
+  * Read v4.5.5.1 changes for parsing methodology.
+* There are some landing pages that should have editing capabilities for the web producer such as the homepage, team page, submissions page, and UC magazine page. Just to make sure that the important parts of the website are complete, the UC magazine page will be fixed at a future stage of the website.
+  * The landing page frontmatter was removed because the landing pages are written in javascript only and thus they cannot be accessed by the CMS
+  * Instead the frontmatter was moved into JSON files because the CMS can access JSON files as well as YAML files. Trying to directly import YAML data into to the JS page failed due to the webpack configuration and I did not want to add another plugin or dependency. Directly importing JSON files worked and allowed me to successfully test that the frontmatter could be moved into another file.
+* To make the JSON data connected to TinaCMS, it required two things. The first was to build the schema using the keys from the JSON keys so that GraphQL would be able to query the data. Then to add TinaCMS’s live preview visual editor capability I used the CMS’s API query to pull data from the file and then the useTina hook to synchronize changes. This effectively removed the use of a direct import to the data file because the data would instead be pulled through the API.
 
 ### Permalinks (v4.1.0)
 
