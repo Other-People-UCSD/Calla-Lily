@@ -12,6 +12,7 @@ import ContentWarning from '@/components/ContentWarning';
 import { pageChange } from '@/lib/bgTheme';
 import copyright from '@/lib/copyright';
 import OPMparser from '@/lib/OPMparser';
+import { beginMissedConnections } from '@/public/js/missed-connections';
 
 const Page = (props) => {
   // console.log(props.variables)
@@ -24,7 +25,9 @@ const Page = (props) => {
 
   // console.log('POST VAR', variables);
   // console.log('POST DATA', data);
-
+  // if (localStorage.getItem('hardRefresh') !== 'true') {
+  //   hasLoaded(true);
+  // }
 
   // Add JS files that affect all posts
   useEffect(() => {
@@ -50,7 +53,7 @@ const Page = (props) => {
         }}
       />
       <div className={`${animationStyles.cssanimation} ${animationStyles.sequence} ${animationStyles.fadeInBottom}`}>
-          <h1 id="post-title" className={postStyles.post_title}>{data.post.title}</h1>
+        <h1 id="post-title" className={postStyles.post_title}>{data.post.title}</h1>
       </div>
 
       <h3>/ {data.post.contributor}</h3>
@@ -184,39 +187,35 @@ export const getStaticPaths = async () => {
  * @returns 
  */
 export const Experimental = ({ title }) => {
+  // console.log(loaded, localStorage.getItem('loaded'))
   useEffect(() => {
     switch (title) {
       case "Kalbelia":
         try {
           document.getElementById("folksong").volume = 0.05;
-          if(window.innerWidth <= 768) {
+          if (window.innerWidth <= 768) {
             const note = document.getElementById('note');
             note.innerHTML += '<br /><strong>For the best viewing experience, we suggest using a larger display.</strong>';
           }
         } catch {
-
-        }
-        break;
-      case "missed connections (1 new post)":
-        try {
-          document.querySelector('#post-title').remove();
-          document.getElementById('cr-article').classList.add('monospace');
-          document.getElementById('mc_embed_signup').innerHTML = '';
-          document.getElementById('mc-begin').addEventListener('click', beginStory);
-          console.log('missed connections')
-        } catch {
-
         }
         break;
       default:
         break;
     }
-  }, [title]); // Trigger only once on page load
+  });
 
   if (title === "missed connections (1 new post)") {
-    return (
-      <Script src={"/js/missed-connections.js"} />
-    );
+    return <Script type='module'
+      src={"/js/missed-connections.js"}
+      onReady={() => {
+        document.querySelector('#post-title').remove()
+        document.getElementById('cr-article').classList.add('monospace');
+        document.getElementById('mc_embed_signup').innerHTML = '';
+        document.getElementById('mc-begin').addEventListener('click', beginMissedConnections);
+        console.log('missed connections')
+      }}
+    />
   }
 }
 

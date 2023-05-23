@@ -2,7 +2,7 @@
 /**
  * Executes the story when the button is clicked.
  */
-function beginStory() {
+export function beginMissedConnections() {
   document.getElementById('missed-connections').classList.toggle('hidden');
   document.getElementById('mc-username').classList.toggle('hidden');
   document.getElementById('mc-begin').remove();
@@ -22,6 +22,7 @@ async function missedConnections() {
   const slowType = normalType * 3;
   const slowerType = normalType * 4.5;
 
+  try {
   const w1 = await writeTextChar(1, normalType, shortPause);
   const w2 = await writeTextChar(2, normalType, longPause);
   const w3 = await writeTextChar(3, normalType, shortPause);
@@ -110,7 +111,9 @@ async function missedConnections() {
   document.getElementById('missed-connections').classList.toggle('hidden');
   document.getElementById('mc-final-username').classList.toggle('hidden');
   const final = document.getElementById('mc-final').classList.remove('hidden');
-  return 0;
+  } catch (error) {
+    // Stop script from executing when user leaves the missed connections page
+  }
 }
 
 /**
