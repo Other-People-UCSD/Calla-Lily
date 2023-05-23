@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import headerStyles from '@/styles/header.module.scss';
 import navStyles from '@/styles/nav.module.scss';
@@ -36,7 +36,7 @@ export default function HeaderMain() {
    * Hide/show the header
    * @returns 
    */
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     const scrollY = window.scrollY;
     // Make sure they scroll more than delta px
     if (Math.abs(lastScrollTop - scrollY) <= delta) {
@@ -53,7 +53,7 @@ export default function HeaderMain() {
     }
 
     setLastScrollTop(scrollY);
-  }
+  }, [lastScrollTop]);
 
   /**
    * Add scroll listener to window
@@ -88,7 +88,7 @@ export default function HeaderMain() {
       <header
         ref={headerRef}
         onScroll={handleScroll}
-        className={`${showHeader ? null : headerStyles["nav-up"]} ${headerStyles["header-glob"]} `}
+        className={`${showHeader ? '' : headerStyles["nav-up"]} ${headerStyles["header-glob"]} `}
       >
         <div className={headerStyles["header-main"]}>
           <h2><Link href="/">Other<br /> People ©</Link></h2>
@@ -137,10 +137,10 @@ export function MobileNav({ setShowNav }) {
   return (
     <div id="navContent" className={navStyles["overlay-content"]}>
       <div className={navStyles["overlay-header"]}>
-        <h2><Link href="/">Other<br /> People ©</Link></h2>
+        <h2><Link href="/" onClick={closeNav}>Other<br /> People ©</Link></h2>
         <div className={`${headerStyles["nav-genres"]} ${navStyles["h2"]}`}>
-          <Link href="/poetry">Poetry</Link> / <Link href="/fiction">Fiction</Link> / <br />
-          <Link href="/nonfiction">Nonfiction</Link> / <Link href="/visualarts">Visual Arts</Link>
+          <Link href="/poetry" onClick={closeNav}>Poetry</Link> / <Link href="/fiction" onClick={closeNav}>Fiction</Link> / <br />
+          <Link href="/nonfiction" onClick={closeNav}>Nonfiction</Link> / <Link href="/visualarts" onClick={closeNav}>Visual Arts</Link>
         </div>
         <button id="close-notice"
           className={navStyles.closebtn}
@@ -153,10 +153,10 @@ export function MobileNav({ setShowNav }) {
         <div className={navStyles.genres}>
           <h3>Genres</h3>
           <ul className={navStyles["nav-menu"]}>
-            <li><Link href="/poetry">Poetry</Link></li>
-            <li><Link href="/fiction">Fiction</Link></li>
-            <li><Link href="/nonfiction">Nonfiction</Link></li>
-            <li><Link href="/visualarts">Visual Arts</Link></li>
+            <li><Link href="/poetry" onClick={closeNav}>Poetry</Link></li>
+            <li><Link href="/fiction" onClick={closeNav}>Fiction</Link></li>
+            <li><Link href="/nonfiction" onClick={closeNav}>Nonfiction</Link></li>
+            <li><Link href="/visualarts" onClick={closeNav}>Visual Arts</Link></li>
           </ul>
         </div>
         <h3>Menu</h3>
