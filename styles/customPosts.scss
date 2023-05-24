@@ -309,6 +309,58 @@
   max-width: 768px;
 }
 
+// CYOA
+#progress-container {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  margin-left: auto;
+  margin-right: 0px;
+  width: 60%;
+  background-color: #eee;
+}
+#progress-text {
+  padding-right: 8px;
+  line-height: 32px;
+  background-color: var(--background-color);
+}
+#progress-bar {
+  width: 1%;
+  height: 32px;
+  background-color: #8be5a9;
+}
+
+button {
+  cursor: pointer;
+  text-align: left;
+  text-transform: none;
+}
+
+
+#output-text p>button { color: inherit; }
+#output-text>button { color: inherit; }
+
+
+ol {
+  list-style-type: upper-alpha;
+}
+
+.route-not-visited {
+  color: #ff7b6f;
+}
+
+.route-partial {
+  color: #c68100;
+}
+
+.route-fully-visited {
+  color: #009833;
+}
+
+#userTitle {
+  background-color: inherit;
+  color: inherit;
+}
+
 
 @media only screen and (max-width: 768px) {
   .kalbelia {

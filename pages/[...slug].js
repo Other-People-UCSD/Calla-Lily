@@ -13,6 +13,7 @@ import { pageChange } from '@/lib/bgTheme';
 import copyright from '@/lib/copyright';
 import OPMparser from '@/lib/OPMparser';
 import { beginMissedConnections } from '@/public/js/missed-connections';
+import { beginCYOAStory, goto, parseString } from '@/public/js/cyoa';
 
 const Page = (props) => {
   // console.log(props.variables)
@@ -40,7 +41,6 @@ const Page = (props) => {
   const slug = data.post.featured ? (data.post._sys.relativePath.replace(/.mdx?/, '')) : (data.post._sys.filename);
   const canonical = `https://otherpeoplesd.com/${slug}`;
   const previewImg = data.post.thumbnail ? data.post.thumbnail : `https://otherpeoplesd.com/favicons/favicon-32x32.png`;
-
   return (
     <Layout post title={data.post.title}>
       <NextSeo
@@ -57,7 +57,7 @@ const Page = (props) => {
       </div>
 
       <h3>/ {data.post.contributor}</h3>
-      <h4 className={postStyles.meta}>{data.post.tags.join(", ")} &mdash; <MinsRead wordCount={props.fullPostData.wordCount} /></h4>
+      <h4 className={postStyles.meta}>{data.post.tags.join(", ")} &mdash; <MinsRead wordCount={props.fullPostData.manualWC ? props.fullPostData.manualWC : props.fullPostData.wordCount} /></h4>
       {data.post.collection ? (<h4 className={postStyles.gold}>No. {data.post.collection}</h4>) : null}
 
       {data.post.contentWarning ? <ContentWarning description={data.post.contentWarning} /> : null}
@@ -205,20 +205,51 @@ export const Experimental = ({ title }) => {
     }
   });
 
-  if (title === "missed connections (1 new post)") {
-    return <Script type='module'
-      src={"/js/missed-connections.js"}
-      onReady={() => {
-        document.querySelector('#post-title').remove()
-        document.getElementById('cr-article').classList.add('monospace');
-        document.getElementById('mc_embed_signup').innerHTML = '';
-        document.getElementById('mc-begin').addEventListener('click', beginMissedConnections);
-        console.log('missed connections')
-      }}
-    />
+  switch (title) {
+    case "missed connections (1 new post)":
+      return <Script type='module'
+        src={"/js/missed-connections.js"}
+        onReady={() => {
+          document.querySelector('#post-title').remove()
+          document.getElementById('cr-article').classList.add('monospace');
+          document.getElementById('mc_embed_signup').innerHTML = '';
+          document.getElementById('mc-begin').addEventListener('click', beginMissedConnections);
+          console.log('missed connections')
+        }}
+      />
+    case "You Have Created an Imaginary Friend":
+      /**
+       * When the page's DOM is loaded, this function will get the name of the JSON file by first looking 
+       * up the textual value of 'post-src' and making a relative URL reference to it with .json appended 
+       * to the end.
+       */
+      return <Script type="module"
+        src={'/js/cyoa.js'}
+        onReady={() => {
+            const storyRef = document.getElementById('story-ref');
+            if (!storyRef) {
+              alert('Error! The story-ref block is not defined!');
+            }
+
+            const title = parseString(storyRef.innerText);
+            const storyReference = "/js/" + title + ".json";
+            beginCYOAStory(storyReference);
+
+            const shortcut = () => {
+              goto(1, parseInt(document.getElementById('shortcut').value))
+            }
+            document.getElementById('shortcut').addEventListener("keydown", (e) => {
+                if (e.code === "Enter") {
+                    shortcut()
+                }
+            });
+        }}
+      />
+      
+      default:
+        break;
   }
 }
-
 /**
  * The estimated reading time calculation
  * @param {Number} param0 
