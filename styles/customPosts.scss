@@ -168,6 +168,9 @@
   background-image: url("/images/3/grandfather-elysia-mac.png");
   background-repeat: no-repeat;
   background-size: contain;
+  p {
+    line-height: initial;
+  }
 }
 
 // DAYLILY
@@ -356,12 +359,34 @@ ol {
   color: #009833;
 }
 
-#userTitle {
-  background-color: inherit;
-  color: inherit;
+// IMAGINARY FRIEND
+.imaginary-friend {
+  p>button {
+    padding-left: 32px;
+  }
+
+  #userTitle {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-size: 2rem;
+    max-width: 100%;
+    background-color: inherit;
+    color: inherit;
+  }
+
+  textarea {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    width: 100%;
+    font-size: 1rem;
+    resize: none;
+  }
+
+  #userPrint {
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
 }
-
-
 @media only screen and (max-width: 768px) {
   .kalbelia {
       display: block;
