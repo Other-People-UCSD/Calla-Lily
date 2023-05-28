@@ -1,26 +1,29 @@
 /*
-localStorage
-eOpen
-progress
-routesVisited
-userTitle
-userStory
+localStorage variables
+progress        Number of routes visited for progress bar
+routesVisited   Array of all passages and visited states
+userTitle       String of user's story title
+userStory       String of user's story content
 */
 
-var dataJSON;
-var literature;
-var hist;
-var routesVisited; // 0 = Never visited, 1 = Partially visited, 2 = All routes after have been visited
-const initId = 9;
-const restartId = 1;
+var literature;     // The parsed JSON of the story
+var hist;           // An array of 
+var routesVisited;  // 0 = Never visited, 1 = Partially visited, 2 = All routes after have been visited
+const initId = 9;   // The first passage the user should start at the first time they read the story
+const restartId = 1;// The true start of the story the user routes to when reaching the end of routes
 var passageEvents = {
     'passage': [
-        { 'id': 1, 'vars': [{ 'action': 'appendRoute', 'id': '1a', 'val': 'eOpen'}] },
+        { 'id': 1, 'vars': [{ 'action': 'appendRoute', 'id': '1a', 'val': 'eOpen' }] },
         { 'id': 8, 'vars': [{ 'action': 'set', 'target': 'eOpen', 'val': 'true' }] },
-        {'id': 59, 'vars': [{ 'action': 'loadLS', 'target': 'userTitle', 'val': 'userTitle'},
-                            { 'action': 'eventListener', 'target': 'userTitle'}]},
-        {'id': 60, 'vars': [{ 'action': 'loadLS', 'target': 'userStory', 'val': 'userStory'},
-                            { 'action': 'loadLS', 'target': 'userTitle', 'val': 'userTitle'}]},
+        {
+            'id': 59, 'vars': [{ 'action': 'loadLS', 'target': 'userTitle', 'val': 'userTitle' },
+            { 'action': 'eventListener', 'target': 'userTitle' }]
+        },
+        {
+            'id': 60, 'vars': [{ 'action': 'loadLS', 'target': 'userStory', 'val': 'userStory' },
+            { 'action': 'loadLS', 'target': 'userTitle', 'val': 'userTitle' },
+            { 'action': 'resizeInput', 'target': 'userStory' }]
+        },
     ]
 };
 
@@ -32,7 +35,7 @@ var passageEvents = {
 function checkEvents(toId) {
     const passage = passageEvents['passage'];
     for (let i = 0, len = passage.length; i < len; i++) {
-        if (passage[i]['id'] === toId) {            
+        if (passage[i]['id'] === toId) {
             const pVars = Object.values(passage[i]['vars']);
             checkActions(pVars);
             return;
@@ -56,13 +59,17 @@ function checkActions(pVars) {
                 if (checkVar(query['id'], query['val'], query['cond'])) { showParagraph(query['id']); }
                 break;
             case 'appendRoute':
-                if (checkVar(query['id'], query['val'], query['cond'])) { appendRoute(query['id']);}
+                if (checkVar(query['id'], query['val'], query['cond'])) { appendRoute(query['id']); }
                 break;
             case 'loadLS':
                 loadVar(query['target'], query['val']);
                 break;
             case 'eventListener':
                 eventListenerOpts(query['target']);
+                break;
+            case 'resizeInput':
+                resizeTextarea(query['target']);
+                break;
             default:
                 break;
         }
@@ -78,10 +85,17 @@ function setVar(varName, value) {
     window.localStorage.setItem(varName, value);
 }
 
+/**
+ * Gets a variable from localStorage and 
+ * Sets the value of an input DOM element 
+ * @param {String} varName 
+ * @param {String} value 
+ */
 function loadVar(varName, value) {
     const target = document.getElementById(varName);
     target.value = window.localStorage.getItem(value);
 }
+
 /**
  * Checks if the event action variable's condition is satisfied to show a paragraph in a passage.
  * By default, the condition is true.
@@ -89,22 +103,42 @@ function loadVar(varName, value) {
  * @param {String} varName 
  * @param {Boolean} cond 
  */
-function checkVar(targetId, varName, cond=true) {
+function checkVar(targetId, varName, cond = true) {
     const mainReached = window.localStorage.getItem(varName);
     return JSON.parse(mainReached) === JSON.parse(cond);
 }
 
+/**
+ * Adds specific event listeners to DOM elements in React
+ * @param {String} target 
+ */
 const eventListenerOpts = (target) => {
     switch (target) {
         case 'userTitle':
-            document.getElementById('userTitle').addEventListener('change', (e) => {
+            document.getElementById('userTitle').addEventListener('input', () => {
                 saveUserTitle();
             });
             console.log('added event listener')
         default:
             break;
     }
-} 
+};
+
+/**
+ * Automatically resizes the height of the textarea input as the user types in it.
+ * @param {String} target textarea element, 'userStory'
+ */
+const resizeTextarea = (target) => {
+    const userStory = document.getElementById(target);
+    console.log(userStory.scrollHeight)
+    userStory.setAttribute('style', 'height: ' + userStory.scrollHeight + 'px; overflow-y: hidden');
+    userStory.addEventListener('input', () => {
+        console.log(userStory.scrollHeight)
+        userStory.style.height = 0;
+        userStory.style.height = userStory.scrollHeight + 'px';
+    });
+};
+
 /**
  * Fallback function to get the passage's data specified by its id. 
  * Runtime O(n) where n is the number of passages in the story JSON.
@@ -113,8 +147,8 @@ const eventListenerOpts = (target) => {
  * @returns {Array, Array} The text and options array from the JSON file. 
  */
 function getPassageById(id) {
-    for (let i = Math.max(0, id-10), len = id+5; i < len; i++) {
-        if (literature[i]['id'] == id) {
+    for (let i = Math.max(0, id - 10), len = id + 5; i < len; i++) {
+        if (literature[i]['id'] === id.toString()) {
             return {
                 passageText: literature[i]['text'],
                 options: literature[i]['options']
@@ -129,8 +163,8 @@ function getPassageById(id) {
 function writePassage(fromId, toId) {
     // let passageText;
     // let options;
-    
-    const {passageText,options} = getPassageById(toId);
+    console.log(toId)
+    const { passageText, options } = getPassageById(toId);
     // console.log("passage text:", passageText.length, passageText);
 
     const content = document.getElementById('output-text');
@@ -161,7 +195,7 @@ function writePassage(fromId, toId) {
                     const btn = parHTML.firstChild;
                     const clickEvent = btn.getAttribute('onclick');
                     const info = clickEvent.replace(/\'|\"/g, '').split(/\(|\)|, /g,);
-                    btn.setAttribute('onclick', '')
+                    btn.removeAttribute('onclick')
                     console.log(info)
                     switch (info[0]) {
                         case 'nextPara':
@@ -175,7 +209,9 @@ function writePassage(fromId, toId) {
                             break;
                         default:
                             break;
-                    } 
+                    }
+
+                    btn.parentElement.classList.add('revealText');
 
                 }
             } catch {
@@ -191,15 +227,15 @@ function writePassage(fromId, toId) {
     }
 
     checkEvents(toId);
-    
+
     if (hist.length > 0) {
         const backBtn = document.createElement('button');
         backBtn.addEventListener('click', () => {
             goBack();
         });
-        backBtn.innerText = 'Back'; 
+        backBtn.innerText = 'Back';
         backBtn.classList.add('backBtn');
-        content.appendChild(backBtn)    
+        content.appendChild(backBtn)
     }
 
     return passageText;
@@ -230,15 +266,15 @@ function createOptions(options, fromId) {
 
         const text = parseString(options[i]['text']);
         optionBtn.innerText = parseString(text);
-        
+
         // If the "back to start" route is an option, it is a route
         if (toOpId === restartId) {
             count--;
         }
-        if (routesVisited[toOpId-1] == 2) {
+        if (routesVisited[toOpId - 1] === 2) {
             optionBtn.classList.add('route-fully-visited');
             count--;
-        } else if (routesVisited[toOpId-1] == 1) {
+        } else if (routesVisited[toOpId - 1] === 1) {
             optionBtn.classList.add('route-partial');
         } else {
             optionBtn.classList.add('route-not-visited');
@@ -250,7 +286,7 @@ function createOptions(options, fromId) {
 
     // End of route or all the routes have been completely visited
     if (count === 0) {
-        routesVisited[fromId-1] = 2;
+        routesVisited[fromId - 1] = 2;
         bubbleVisited();
         window.localStorage.setItem('routesVisited', JSON.stringify(routesVisited));
     }
@@ -263,9 +299,9 @@ function createOptions(options, fromId) {
  * @param {Number} id 
  */
 function updateVisitedState(id) {
-    let state = routesVisited[id-1];
-    if (state == 0) {
-        routesVisited[id-1] = 1;
+    let state = routesVisited[id - 1];
+    if (state === 0) {
+        routesVisited[id - 1] = 1;
         window.localStorage.setItem('routesVisited', JSON.stringify(routesVisited));
 
         let progressNum = parseInt(window.localStorage.getItem('progress'));
@@ -273,7 +309,7 @@ function updateVisitedState(id) {
         progressNum++;
 
         document.getElementById('progress-bar').style.width = (progressNum / literature.length * 100) + '%';
-        
+
         document.getElementById('progress-text').innerText = progressNum + '/' + literature.length;
         window.localStorage.setItem('progress', JSON.stringify(progressNum));
     }
@@ -281,36 +317,37 @@ function updateVisitedState(id) {
 }
 
 /**
- * 
- * @param {Array} options 
+ * Updates the visited state of previously visited routes to completed 
+ * such that the route branch parents are also completed 
+ * unless a child is not fully visited.
  */
 function bubbleVisited() {
     let idx = hist.length - 1;
     let count = 0;
-    while(idx > 0 && count == 0) {
+    while (idx > 0 && count === 0) {
         let id = hist[idx--];
         // Stop if the rest of the parental routes have been cleared already
-        // if (routesVisited[id-1] == 2) {
+        // if (routesVisited[id-1] === 2) {
         //     break;
         // }
         console.log('bubbling', id);
 
-        const {_, options} = getPassageById(id);
+        const { _, options } = getPassageById(id);
 
         count = options.length;
         for (let i = 0, len = options.length; i < len; i++) {
             let toOpId = parseInt(options[i]['to']);
-        
+
             // If the "back to start" route is an option, it is a route
             if (toOpId === restartId) {
                 count--;
             }
-            if (routesVisited[toOpId-1] == 2) {
+            if (routesVisited[toOpId - 1] === 2) {
                 count--;
             }
         }
-        if (count == 0) {
-            routesVisited[id-1] = 2;
+        if (count === 0) {
+            routesVisited[id - 1] = 2;
         }
     }
 }
@@ -320,7 +357,7 @@ function bubbleVisited() {
  * @event onclick from buttons the user can interact with
  * @param {Number} passage The id of the passage to show
  */
-export function goto(fromId, toId, wentBack=false) {
+export function goto(fromId, toId, wentBack = false) {
     if (!wentBack) {
         hist.push(toId);
     }
@@ -338,11 +375,11 @@ export function goto(fromId, toId, wentBack=false) {
 function goBack() {
     let fromHere = hist.pop();
     let peekNext;
-    if (hist.length == 0) {
+    if (hist.length === 0) {
         peekNext = initId;
     } else {
         peekNext = hist.at(-1);
-    }    
+    }
 
     // console.log('goBack', hist, fromHere, peekNext);
     goto(fromHere, peekNext, true);
@@ -357,6 +394,9 @@ function goBack() {
 function showParagraph(id) {
     const target = document.getElementById(id);
     target.classList.remove('hidden');
+    if (target.classList.length === 0) {
+        target.removeAttribute('class')
+    }
 }
 
 /**
@@ -365,13 +405,13 @@ function showParagraph(id) {
  * @param {String} targetId 
  * @param {Boolean} remove 
  */
-export function nextPara(btnId, targetId, remove=true) {
+export function nextPara(btnId, targetId, remove = true) {
     const btn = document.getElementById(btnId);
     console.log(btnId, targetId);
     showParagraph(targetId);
 
     if (remove) {
-        btn.remove();
+        btn.parentElement.remove();
     }
 }
 
@@ -391,9 +431,9 @@ function appendRoute(id) {
         goto(numericId, parseInt(routeBtn.value));
     });
 
-    if (routesVisited[routeBtn.value-1] == 2) {
+    if (routesVisited[routeBtn.value - 1] === 2) {
         routeBtn.classList.add('route-fully-visited');
-    } else if (routesVisited[routeBtn.value-1] == 1) {
+    } else if (routesVisited[routeBtn.value - 1] === 1) {
         routeBtn.classList.add('route-partial');
     } else {
         routeBtn.classList.add('route-not-visited');
@@ -422,7 +462,11 @@ function removePrevChoices() {
 
     const btns = content.querySelectorAll('button');
     for (let i = 0, len = btns.length; i < len; i++) {
-        btns[i].remove();
+        if (btns[i].parentElement.childElementCount === 1) {
+            btns[i].parentElement.remove();
+        } else {
+            btns[i].remove();
+        }
     }
 }
 
@@ -434,6 +478,30 @@ function removeEverything() {
 }
 
 /**
+ * Reset the user's progress over the story, including local storage
+ */
+export const resetCYOAProgress = () => {
+    removeEverything();
+
+    const progress = document.getElementById('progress-text');
+    window.localStorage.setItem('progress', JSON.stringify(1));
+    let progressNum = parseInt(window.localStorage.getItem('progress'));
+    document.getElementById('progress-bar').style.width = (progressNum / literature.length * 100) + '%';
+    progress.innerText = 1 + '/' + literature.length;
+
+    hist = []
+    routesVisited = []
+    for (let i = 0, len = literature.length; i < len; i++) {
+        routesVisited.push(0);
+    }
+
+    window.localStorage.setItem('userTitle', '');
+    window.localStorage.setItem('userStory', '');
+
+    writePassage(null, initId);
+}
+
+/**
  * Saves the user's story title 
  * For use in the next passage when they write their own story.
  */
@@ -442,6 +510,9 @@ function saveUserTitle() {
     window.localStorage.setItem('userTitle', title);
 }
 
+/**
+ * Display's the user's story in the browser below the button.
+ */
 function printUserStory() {
     const userStory = document.getElementById('userStory').value;
     if (userStory === 'null' || userStory === null) {
@@ -457,8 +528,8 @@ function printUserStory() {
     }
 
     const printArea = document.getElementById('userPrint').parentElement;
-    
-    for (let i = printArea.childElementCount-1; i > 0; i--) {
+
+    for (let i = printArea.childElementCount - 1; i > 0; i--) {
         printArea.removeChild(printArea.childNodes[i]);
     }
 
@@ -476,7 +547,7 @@ function printUserStory() {
  * Exports the reader's own story as a plaintext file.
  * The name of the file is the name of the story they entered in the previous passage.
  * Otherwise, a default name is given for the title.
- * @returns 
+ * @returns {File} A downloaded txt file.
  */
 function saveUserStory() {
     const userStory = document.getElementById('userStory').value;
@@ -492,8 +563,8 @@ function saveUserStory() {
     }
 
     const temp = document.createElement('a');
-    
-    temp.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(userStory)); 
+
+    temp.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(userStory));
     temp.setAttribute('download', userTitle);
     temp.style.display = 'none';
 
@@ -502,9 +573,6 @@ function saveUserStory() {
     temp.click();
     output.removeChild(temp);
 }
-
-
-
 
 /**
  * When the webpage is loaded, show the first passage of the story.
@@ -517,36 +585,37 @@ export function beginCYOAStory(url) {
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            dataJSON = data;
-            literature = dataJSON['story'];
-            hist = [];
-            // console.log(dataJSON);
+            try {
+                literature = data['story'];
+                hist = [];
+                // Modify progress bar
+                const progress = document.getElementById('progress-text');
+                let progressCleared = window.localStorage.getItem('progress');
+                if (progressCleared === 'null' || progressCleared === null) {
+                    progressCleared = 1;
+                    window.localStorage.setItem('progress', JSON.stringify(progressCleared));
 
-            const progress = document.getElementById('progress-text');
-            let progressCleared = window.localStorage.getItem('progress');
-            if (progressCleared === 'null' || progressCleared === null) {
-                progressCleared = 1;
-                window.localStorage.setItem('progress', JSON.stringify(progressCleared));
-                
-            }
-            let progressNum = parseInt(window.localStorage.getItem('progress'));
-            document.getElementById('progress-bar').style.width = (progressNum / literature.length * 100) + '%';
-            progress.innerText = progressCleared + '/' + literature.length;
-
-            // Convert to local storage array using localstorage = JSON.stringify(routesVisited) and JSON.parse(localStorage)
-            
-            routesVisited = JSON.parse(window.localStorage.getItem('routesVisited'));
-            if (routesVisited === 'null' || routesVisited === null) {
-                routesVisited = [];
-                for (let i = 0, len = literature.length; i < len; i++) {
-                    routesVisited.push(0);
                 }
+                let progressNum = parseInt(window.localStorage.getItem('progress'));
+                document.getElementById('progress-bar').style.width = (progressNum / literature.length * 100) + '%';
+                progress.innerText = progressCleared + '/' + literature.length;
+
+                // Convert to local storage array using localstorage = JSON.stringify(routesVisited) and JSON.parse(localStorage)
+                routesVisited = JSON.parse(window.localStorage.getItem('routesVisited'));
+                if (routesVisited === 'null' || routesVisited === null) {
+                    routesVisited = [];
+                    for (let i = 0, len = literature.length; i < len; i++) {
+                        routesVisited.push(0);
+                    }
+                }
+
+                writePassage(null, initId);
+            } catch (error) {
+                // Prevent code execution if page is changed
+                console.log(error)
             }
-
-            // allChildRoutesVisited = [];
-
-            writePassage(null, initId);
         });
+
 }
 
 /**
@@ -555,7 +624,7 @@ export function beginCYOAStory(url) {
  */
 function showChoiceClicked(optionBtn) {
     const textChoice = document.createElement('strong');
-    textChoice.innerHTML= '<br/>' + optionBtn.innerText;
+    textChoice.innerHTML = '<br/>' + optionBtn.innerText;
     document.getElementById('output-text').append(textChoice);
 }
 
@@ -566,19 +635,4 @@ function showChoiceClicked(optionBtn) {
  */
 export function parseString(obj) {
     return Function('"use strict";return ("' + obj + '")')();
-}
-
-/**
- * Not used
- * @param {String} id 
- */
-function addBtnFunction(id) {
-    eventBtn = document.getElementById(id);
-    const offset = 'onclick=("';
-    const funcIdx = eventBtn.outerHTML.indexOf(offset);
-    let func = eventBtn.outerHTML.substring(funcIdx+offset.length).split(')\">')[0];
-    console.log(func);
-    eventBtn.addEventListener('click', () => {
-        nextPara(id, id+'to');
-    });
 }

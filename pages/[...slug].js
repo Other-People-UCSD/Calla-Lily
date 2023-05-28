@@ -13,7 +13,7 @@ import { pageChange } from '@/lib/bgTheme';
 import copyright from '@/lib/copyright';
 import OPMparser from '@/lib/OPMparser';
 import { beginMissedConnections } from '@/public/js/missed-connections';
-import { beginCYOAStory, goto, parseString } from '@/public/js/cyoa';
+import { beginCYOAStory, goto, parseString, resetCYOAProgress } from '@/public/js/cyoa';
 
 const Page = (props) => {
   // console.log(props.variables)
@@ -210,11 +210,11 @@ export const Experimental = ({ title }) => {
       return <Script type='module'
         src={"/js/missed-connections.js"}
         onReady={() => {
-          document.querySelector('#post-title').remove()
+          document.querySelector('#post-title').remove();
           document.getElementById('cr-article').classList.add('monospace');
           document.getElementById('mc_embed_signup').innerHTML = '';
           document.getElementById('mc-begin').addEventListener('click', beginMissedConnections);
-          console.log('missed connections')
+          console.log('missed connections');
         }}
       />
     case "You Have Created an Imaginary Friend":
@@ -233,11 +233,19 @@ export const Experimental = ({ title }) => {
 
             const title = parseString(storyRef.innerText);
             const storyReference = "/js/" + title + ".json";
-            beginCYOAStory(storyReference);
+            // console.log('init children', document.getElementById('output-text').children.length)
+            // if (document.getElementById('output-text').children.length === 0) {
+              beginCYOAStory(storyReference);
+            // }
+
+            document.getElementById('resetCYOA').addEventListener('click', () => {
+              resetCYOAProgress();
+            });
 
             const shortcut = () => {
-              goto(1, parseInt(document.getElementById('shortcut').value))
+              goto(1, parseInt(document.getElementById('shortcut').value));
             }
+
             document.getElementById('shortcut').addEventListener("keydown", (e) => {
                 if (e.code === "Enter") {
                     shortcut()
