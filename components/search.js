@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import searchStyles from "@/styles/search.module.scss";
 import Link from "next/link";
 import { useAppContext } from "@/components/appContext";
@@ -12,6 +12,12 @@ export default function Search({ setShowNav }) {
     setSearchQuery(e.target.value);
   }
 
+  // Auto focus the search bar when the menu is opened, 
+  // But prevent the window from scrolling so top of header is still visible 
+  useEffect(() => {
+    document.getElementById('search-input').focus({ preventScroll: true });
+  }, []);
+
   return (
     <div className={searchStyles["search-wrapper"]}>
       <div id="search-container" className={searchStyles.searchContainer}>
@@ -20,6 +26,7 @@ export default function Search({ setShowNav }) {
           id="search-input"
           placeholder="Search"
           aria-placeholder="Type here to search"
+          // autoFocus={true}
           onChange={getSearchQuery} />
         <SearchResults
           setShowNav={setShowNav}
