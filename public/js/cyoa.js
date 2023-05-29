@@ -213,11 +213,16 @@ function addButtonEvents() {
     for (let i = 0, len = btns.length; i < len; i++) {
         try {
             const clickEvent = btns[i].getAttribute('onclick');
-            const info = clickEvent.replace(/\'|\"/g, '').split(/\(|\)|, /g,);
+            let info = clickEvent.replace(/\'|\"/g, '').split(/\(|\)|, /g,);
+            console.log(info)
             btns[i].removeAttribute('onclick')
             switch (info[0]) {
                 case 'nextPara':
-                    btns[i].addEventListener('click', () => { nextPara(info[1], info[2]) });
+                    info[3] = info[3] === '' ? 'true' : 'false';
+                    btns[i].addEventListener('click', () => { nextPara(info[1], info[2], info[3]) });
+                    break;
+                case 'appendRoute':
+                    btns[i].addEventListener('click', () => {appendRoute(info[1], info[2])});
                     break;
                 case 'printUserStory':
                     btns[i].addEventListener('click', () => { printUserStory() });
@@ -398,13 +403,17 @@ function showParagraph(id) {
  * @param {String} targetId 
  * @param {Boolean} remove 
  */
-export function nextPara(btnId, targetId, remove = true) {
+export function nextPara(btnId, targetId, remove = 'true') {
     const btn = document.getElementById(btnId);
     console.log(btnId, targetId);
     showParagraph(targetId);
 
-    if (remove) {
+    if (remove === 'true') {
         btn.parentElement.remove();
+    } else {
+        const btnText = btn.innerHTML;
+        btn.parentElement.classList.remove('revealText')
+        btn.parentElement.innerHTML = btnText;
     }
 }
 
@@ -413,7 +422,7 @@ export function nextPara(btnId, targetId, remove = true) {
  * This is used when a route is dependent on a condition the reader must satisfy.
  * @param {Number} id 
  */
-function appendRoute(id) {
+function appendRoute(id, callbackId) {
     const routes = document.getElementById('option-list');
     const routeBtn = document.getElementById(id);
     const optionItem = document.createElement('li');
@@ -435,6 +444,13 @@ function appendRoute(id) {
     routeBtn.classList.remove('hidden');
     optionItem.appendChild(routeBtn);
     routes.appendChild(optionItem);
+
+    if (callbackId) {
+        const btn = document.getElementById(callbackId);
+        const btnText = btn.innerHTML;
+        btn.parentElement.classList.remove('revealText')
+        btn.parentElement.innerHTML = btnText;
+    }
 }
 
 
