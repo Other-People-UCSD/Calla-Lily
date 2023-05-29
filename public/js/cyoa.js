@@ -161,23 +161,14 @@ function getPassageById(id) {
  * Writes the passage that was selected by the option.
  */
 function writePassage(fromId, toId) {
-    // let passageText;
-    // let options;
-    console.log(toId)
     const { passageText, options } = getPassageById(toId);
-    // console.log("passage text:", passageText.length, passageText);
-
     const content = document.getElementById('output-text');
-
-    // content.innerHTML = ''; // Uncomment this line to clear the webpage's past info
-    // content.innerHTML += toId;
 
     // For each paragraph in the passage
     for (let parIdx = 0, len = passageText.length; parIdx < len; parIdx++) {
         // You gave an unformatted passage, will automatically parse all the data
 
         if (passageText[parIdx][0] != '<' && passageText[parIdx][-1] != '>') {
-            // console.log('Non-HTML format!');
             const p = document.createElement('p');
             const node = document.createTextNode(passageText[parIdx]);
             p.appendChild(node);
@@ -185,40 +176,12 @@ function writePassage(fromId, toId) {
         } else {
             // The passage is in HTML format! Form this paragraph!
             // Intended for paragraphs that have buttons for the user to press
-            // console.log('HTML format!');
             const template = document.createElement('template');
             template.innerHTML = passageText[parIdx].trim();
-
             const parHTML = template.content.firstChild;
-            try {
-                if (parHTML.firstChild.nodeType === 1) {
-                    const btn = parHTML.firstChild;
-                    const clickEvent = btn.getAttribute('onclick');
-                    const info = clickEvent.replace(/\'|\"/g, '').split(/\(|\)|, /g,);
-                    btn.removeAttribute('onclick')
-                    console.log(info)
-                    switch (info[0]) {
-                        case 'nextPara':
-                            btn.addEventListener('click', () => { nextPara(info[1], info[2]) });
-                            break;
-                        case 'printUserStory':
-                            btn.addEventListener('click', () => { printUserStory() });
-                            break;
-                        case 'saveUserStory':
-                            btn.addEventListener('click', () => { saveUserStory() });
-                            break;
-                        default:
-                            break;
-                    }
-
-                    btn.parentElement.classList.add('revealText');
-
-                }
-            } catch {
-
-            }
-
+            
             content.appendChild(parHTML);
+            addButtonEvents();
         }
     }
 
@@ -241,6 +204,36 @@ function writePassage(fromId, toId) {
     return passageText;
 }
 
+/**
+ * Called when writing an HTML paragraph to the story.
+ * Will attempt to add event listeners to buttons only if the button's event has not been set already. 
+ */
+function addButtonEvents() {
+    const btns = document.querySelectorAll("#output-text button");
+    for (let i = 0, len = btns.length; i < len; i++) {
+        try {
+            const clickEvent = btns[i].getAttribute('onclick');
+            const info = clickEvent.replace(/\'|\"/g, '').split(/\(|\)|, /g,);
+            btns[i].removeAttribute('onclick')
+            switch (info[0]) {
+                case 'nextPara':
+                    btns[i].addEventListener('click', () => { nextPara(info[1], info[2]) });
+                    break;
+                case 'printUserStory':
+                    btns[i].addEventListener('click', () => { printUserStory() });
+                    break;
+                case 'saveUserStory':
+                    btns[i].addEventListener('click', () => { saveUserStory() });
+                    break;
+                default:
+                    break;
+            }
+            btns[i].parentElement.classList.add('revealText');
+        } catch (error) { 
+            // Do not add event if button events have been added to button already
+        }
+    }
+}
 /**
  * Attaches the next route choices to the bottom of the passage.
  * @param {Array} options 

@@ -243,6 +243,7 @@ export const Experimental = ({ title }) => {
             });
 
             const shortcut = () => {
+              document.getElementById('output-text').innerHTML = '';
               goto(1, parseInt(document.getElementById('shortcut').value));
             }
 
