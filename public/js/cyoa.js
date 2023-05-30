@@ -24,6 +24,10 @@ var passageEvents = {
             { 'action': 'loadLS', 'target': 'userTitle', 'val': 'userTitle' },
             { 'action': 'resizeInput', 'target': 'userStory' }]
         },
+        {
+            'id': 76, 'vars': [{ 'action': 'hide', 'id': '76a', 'val': 'userStory', 'cond': 'made' },
+            { 'action': 'show', 'id': '76b', 'val': 'userStory', 'cond': 'made' }]
+        }
     ]
 };
 
@@ -50,13 +54,18 @@ function checkEvents(toId) {
 function checkActions(pVars) {
     for (let i = 0, len = pVars.length; i < len; i++) {
         const query = pVars[i];
-        console.log(query);
         switch (query['action']) {
             case 'set':
                 setVar(query['target'], query['val']);
                 break;
             case 'show':
-                if (checkVar(query['id'], query['val'], query['cond'])) { showParagraph(query['id']); }
+                if (checkVar(query['id'], query['val'], query['cond'])) {
+                    showParagraph(query['id']);
+                    if (query['id'] === '76b') { printUserStory('true'); }
+                }
+                break;
+            case 'hide':
+                if (checkVar(query['id'], query['val'], query['cond'])) { hideParagraph(query['id']); }
                 break;
             case 'appendRoute':
                 if (checkVar(query['id'], query['val'], query['cond'])) { appendRoute(query['id']); }
@@ -103,9 +112,13 @@ function loadVar(varName, value) {
  * @param {String} varName 
  * @param {Boolean} cond 
  */
-function checkVar(targetId, varName, cond = true) {
-    const mainReached = window.localStorage.getItem(varName);
-    return JSON.parse(mainReached) === JSON.parse(cond);
+function checkVar(targetId, varName, cond = 'true') {
+    let val = window.localStorage.getItem(varName);
+    if (varName === 'userStory' && (val !== null || val !== '')) {
+        val = 'made';
+    }
+    
+    return val === cond;
 }
 
 /**
@@ -179,7 +192,7 @@ function writePassage(fromId, toId) {
             const template = document.createElement('template');
             template.innerHTML = passageText[parIdx].trim();
             const parHTML = template.content.firstChild;
-            
+
             content.appendChild(parHTML);
             addButtonEvents();
         }
@@ -222,7 +235,7 @@ function addButtonEvents() {
                     btns[i].addEventListener('click', () => { nextPara(info[1], info[2], info[3]) });
                     break;
                 case 'appendRoute':
-                    btns[i].addEventListener('click', () => {appendRoute(info[1], info[2])});
+                    btns[i].addEventListener('click', () => { appendRoute(info[1], info[2]) });
                     break;
                 case 'printUserStory':
                     btns[i].addEventListener('click', () => { printUserStory() });
@@ -234,7 +247,7 @@ function addButtonEvents() {
                     break;
             }
             btns[i].parentElement.classList.add('revealText');
-        } catch (error) { 
+        } catch (error) {
             // Do not add event if button events have been added to button already
         }
     }
@@ -387,7 +400,6 @@ function goBack() {
 /**
  * Removes the hidden class on the target paragraph.
  * @param {String} id The id of the target paragraph to show within the same passage. 
- *                    May or may not be a number.
  */
 function showParagraph(id) {
     const target = document.getElementById(id);
@@ -395,6 +407,15 @@ function showParagraph(id) {
     if (target.classList.length === 0) {
         target.removeAttribute('class')
     }
+}
+
+/**
+ * Adds the hidden class on the target paragraph.
+ * @param {String} id The id of the paragraph to hide within the same passage.
+ */
+function hideParagraph(id) {
+    const target = document.getElementById(id);
+    target.classList.add('hidden');
 }
 
 /**
@@ -420,7 +441,8 @@ export function nextPara(btnId, targetId, remove = 'true') {
 /**
  * Adds another route to the list of options the user can take.
  * This is used when a route is dependent on a condition the reader must satisfy.
- * @param {Number} id 
+ * @param {String} id The id of the route to append
+ * @param {String} callbackId If a button appends route
  */
 function appendRoute(id, callbackId) {
     const routes = document.getElementById('option-list');
@@ -522,24 +544,35 @@ function saveUserTitle() {
 /**
  * Display's the user's story in the browser below the button.
  */
-function printUserStory() {
-    const userStory = document.getElementById('userStory').value;
-    if (userStory === 'null' || userStory === null) {
-        alert('Please write your story in the text box.');
-        return;
+function printUserStory(readonly = 'false') {
+    let userStory;
+    if (readonly === 'false') {
+        userStory = document.getElementById('userStory').value;
+        if (userStory === 'null' || userStory === null) {
+            alert('Please write your story in the text box.');
+            return;
+        }
+        window.localStorage.setItem('userStory', userStory);
+    } else {
+        // Only run this on the passage where the user can edit their story
+        // Do not run if the story is displayed
+        userStory = window.localStorage.getItem('userStory');
     }
-    window.localStorage.setItem('userStory', userStory);
 
     let userTitle = window.localStorage.getItem('userTitle');
-    console.log(userTitle)
     if (userTitle === 'null' || userTitle === null || userTitle.length === 0) {
         userTitle = 'You have created an imaginary story';
     }
 
-    const printArea = document.getElementById('userPrint').parentElement;
+    let printArea;
+    if (readonly === 'false') {
+        printArea = document.getElementById('userPrint').parentElement;
 
-    for (let i = printArea.childElementCount - 1; i > 0; i--) {
-        printArea.removeChild(printArea.childNodes[i]);
+        for (let i = printArea.childElementCount - 1; i > 0; i--) {
+            printArea.removeChild(printArea.childNodes[i]);
+        }
+    } else {
+        printArea = document.getElementById('userPrint');
     }
 
     const title = document.createElement('h3');
