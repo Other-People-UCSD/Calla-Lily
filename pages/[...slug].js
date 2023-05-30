@@ -226,6 +226,7 @@ export const Experimental = ({ title }) => {
       return <Script type="module"
         src={'/js/cyoa.js'}
         onReady={() => {
+          try {
             const storyRef = document.getElementById('story-ref');
             if (!storyRef) {
               alert('Error! The story-ref block is not defined!');
@@ -252,9 +253,11 @@ export const Experimental = ({ title }) => {
                     shortcut()
                 }
             });
+          } catch {
+            // Prevent code execution on other pages
+          }
         }}
       />
-      
       default:
         break;
   }
