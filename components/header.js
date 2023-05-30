@@ -101,7 +101,7 @@ export default function HeaderMain() {
         {
           showAnnouncement ? (
             <div className={headerStyles.announcement} id="announcement">
-              <Link href="/6/you-have-created-an-imaginary-friend">Read Theo Erickson's experimental story 'You Have Created an Imaginary Friend' here!</Link>
+              <Link href="/6/you-have-created-an-imaginary-friend">Read Theo Erickson&apos;s experimental story &apos;You Have Created an Imaginary Friend&apos; here!</Link>
               <button 
                 id="close-notice" 
                 className={headerStyles["close-announcement"]}
