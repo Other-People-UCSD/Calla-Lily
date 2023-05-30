@@ -345,9 +345,20 @@
   font-size: 0.9rem;
 }
 
-.route-not-visited { color: #ff7b6f; }
-.route-partial { color: #c68100; }
-.route-fully-visited { color: #009833; }
+html {
+  .route-not-visited { color: #ff7b6f; }
+  .route-partial { color: #c68100; }
+  .route-fully-visited { color: #009833; }
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-theme] {
+    .route-not-visited { color: #ff7b6f; }
+    .route-partial { color: #ff9900; }
+    .route-fully-visited { color: #006723; }
+  }
+}
+
 
 // IMAGINARY FRIEND
 .imaginary-friend {
@@ -368,6 +379,10 @@
       padding-left: 8px;
       font-style: italic;
     }
+  }
+
+  .prevRouteText {
+    padding-top: 16px;
   }
 
   .hidden { display: none }

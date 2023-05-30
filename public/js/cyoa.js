@@ -15,6 +15,7 @@ var passageEvents = {
     'passage': [
         { 'id': 1, 'vars': [{ 'action': 'appendRoute', 'id': '1a', 'val': 'eOpen' }] },
         { 'id': 8, 'vars': [{ 'action': 'set', 'target': 'eOpen', 'val': 'true' }] },
+        { 'id': 51, 'vars': [{ 'action': 'hideOp', 'id': '51.0' }] },
         {
             'id': 59, 'vars': [{ 'action': 'loadLS', 'target': 'userTitle', 'val': 'userTitle' },
             { 'action': 'eventListener', 'target': 'userTitle' }]
@@ -67,6 +68,9 @@ function checkActions(pVars) {
             case 'hide':
                 if (checkVar(query['id'], query['val'], query['cond'])) { hideParagraph(query['id']); }
                 break;
+            case 'hideOp':
+                hideParagraph(query['id']);
+                break;
             case 'appendRoute':
                 if (checkVar(query['id'], query['val'], query['cond'])) { appendRoute(query['id']); }
                 break;
@@ -114,10 +118,10 @@ function loadVar(varName, value) {
  */
 function checkVar(targetId, varName, cond = 'true') {
     let val = window.localStorage.getItem(varName);
-    if (varName === 'userStory' && (val !== null || val !== '')) {
+    if (varName === 'userStory' && (val !== null && val !== '')) {
         val = 'made';
     }
-    
+
     return val === cond;
 }
 
@@ -131,7 +135,7 @@ const eventListenerOpts = (target) => {
             document.getElementById('userTitle').addEventListener('input', () => {
                 saveUserTitle();
             });
-            console.log('added event listener')
+            // console.log('added event listener')
         default:
             break;
     }
@@ -143,10 +147,8 @@ const eventListenerOpts = (target) => {
  */
 const resizeTextarea = (target) => {
     const userStory = document.getElementById(target);
-    console.log(userStory.scrollHeight)
     userStory.setAttribute('style', 'height: ' + userStory.scrollHeight + 'px; overflow-y: hidden');
     userStory.addEventListener('input', () => {
-        console.log(userStory.scrollHeight)
         userStory.style.height = 0;
         userStory.style.height = userStory.scrollHeight + 'px';
     });
@@ -160,18 +162,26 @@ const resizeTextarea = (target) => {
  * @returns {Array, Array} The text and options array from the JSON file. 
  */
 function getPassageById(id) {
-    for (let i = Math.max(0, id - 10), len = id + 5; i < len; i++) {
-        if (literature[i]['id'] === id.toString()) {
-            return {
-                passageText: literature[i]['text'],
-                options: literature[i]['options']
-            };
-        }
-    }
+    // Use the for loop if the ids are not officially aligned in the story configuration
+    // for (let i = Math.max(0, id - 10), len = id + 5; i < len; i++) {
+    //     console.log(i, literature[i]['id'], id)
+    //     if (literature[i]['id'] === id.toString()) {
+    //         return {
+    //             passageText: literature[i]['text'],
+    //             options: literature[i]['options']
+    //         };
+    //     }
+    // }
+    return {
+        passageText: literature[id-1]['text'],
+        options: literature[id-1]['options']
+    };
 }
 
 /**
  * Writes the passage that was selected by the option.
+ * @param {String} fromId   Not implemented, informational for debugging or attaching info
+ * @param {String} toId     The id of the passage to write
  */
 function writePassage(fromId, toId) {
     const { passageText, options } = getPassageById(toId);
@@ -227,15 +237,12 @@ function addButtonEvents() {
         try {
             const clickEvent = btns[i].getAttribute('onclick');
             let info = clickEvent.replace(/\'|\"/g, '').split(/\(|\)|, /g,);
-            console.log(info)
+            // console.log(info)
             btns[i].removeAttribute('onclick')
             switch (info[0]) {
                 case 'nextPara':
                     info[3] = info[3] === '' ? 'true' : 'false';
                     btns[i].addEventListener('click', () => { nextPara(info[1], info[2], info[3]) });
-                    break;
-                case 'appendRoute':
-                    btns[i].addEventListener('click', () => { appendRoute(info[1], info[2]) });
                     break;
                 case 'printUserStory':
                     btns[i].addEventListener('click', () => { printUserStory() });
@@ -246,6 +253,7 @@ function addButtonEvents() {
                 default:
                     break;
             }
+            // Styling these buttons so they are distinct from routes and regular text
             btns[i].parentElement.classList.add('revealText');
         } catch (error) {
             // Do not add event if button events have been added to button already
@@ -265,6 +273,7 @@ function createOptions(options, fromId) {
 
     for (let i = 0, len = options.length; i < len; i++) {
         const optionItem = document.createElement('li');
+        optionItem.id = fromId + '.' + i
         const optionBtn = document.createElement('button');
 
         let toOpId = parseInt(options[i]['to']);
@@ -316,7 +325,6 @@ function updateVisitedState(id) {
         window.localStorage.setItem('routesVisited', JSON.stringify(routesVisited));
 
         let progressNum = parseInt(window.localStorage.getItem('progress'));
-        console.log(progressNum)
         progressNum++;
 
         document.getElementById('progress-bar').style.width = (progressNum / literature.length * 100) + '%';
@@ -341,7 +349,7 @@ function bubbleVisited() {
         // if (routesVisited[id-1] === 2) {
         //     break;
         // }
-        console.log('bubbling', id);
+        // console.log('bubbling', id);
 
         const { _, options } = getPassageById(id);
 
@@ -372,11 +380,12 @@ export function goto(fromId, toId, wentBack = false) {
     if (!wentBack) {
         hist.push(toId);
     }
-    console.log('history: ', hist, wentBack);
     removePrevChoices();
     if (toId === restartId) {
         removeEverything();
+        hist = []
     }
+    // console.log('history: ', hist, wentBack);
     return writePassage(fromId, parseInt(toId));
 };
 
@@ -387,11 +396,11 @@ function goBack() {
     let fromHere = hist.pop();
     let peekNext;
     if (hist.length === 0) {
-        peekNext = initId;
+        peekNext = restartId;
     } else {
         peekNext = hist.at(-1);
     }
-
+    document.getElementById('output-text').appendChild(document.createElement('hr'))
     // console.log('goBack', hist, fromHere, peekNext);
     goto(fromHere, peekNext, true);
 }
@@ -426,7 +435,6 @@ function hideParagraph(id) {
  */
 export function nextPara(btnId, targetId, remove = 'true') {
     const btn = document.getElementById(btnId);
-    console.log(btnId, targetId);
     showParagraph(targetId);
 
     if (remove === 'true') {
@@ -442,9 +450,8 @@ export function nextPara(btnId, targetId, remove = 'true') {
  * Adds another route to the list of options the user can take.
  * This is used when a route is dependent on a condition the reader must satisfy.
  * @param {String} id The id of the route to append
- * @param {String} callbackId If a button appends route
  */
-function appendRoute(id, callbackId) {
+function appendRoute(id) {
     const routes = document.getElementById('option-list');
     const routeBtn = document.getElementById(id);
     const optionItem = document.createElement('li');
@@ -466,13 +473,6 @@ function appendRoute(id, callbackId) {
     routeBtn.classList.remove('hidden');
     optionItem.appendChild(routeBtn);
     routes.appendChild(optionItem);
-
-    if (callbackId) {
-        const btn = document.getElementById(callbackId);
-        const btnText = btn.innerHTML;
-        btn.parentElement.classList.remove('revealText')
-        btn.parentElement.innerHTML = btnText;
-    }
 }
 
 
@@ -654,7 +654,7 @@ export function beginCYOAStory(url) {
                 writePassage(null, initId);
             } catch (error) {
                 // Prevent code execution if page is changed
-                console.log(error)
+                // console.log(error)
             }
         });
 
@@ -665,9 +665,13 @@ export function beginCYOAStory(url) {
  * @param {Element} optionBtn 
  */
 function showChoiceClicked(optionBtn) {
+    const routeClicked = document.createElement('p');
+    routeClicked.classList.add('prevRouteText');
     const textChoice = document.createElement('strong');
-    textChoice.innerHTML = '<br/>' + optionBtn.innerText;
-    document.getElementById('output-text').append(textChoice);
+    textChoice.innerHTML = optionBtn.innerText;
+    routeClicked.appendChild(textChoice);
+    document.getElementById('output-text').appendChild(routeClicked);
+    routeClicked.scrollIntoView();
 }
 
 /**
