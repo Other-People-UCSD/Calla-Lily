@@ -333,6 +333,16 @@ function updateVisitedState(id) {
         window.localStorage.setItem('progress', JSON.stringify(progressNum));
     }
 
+    let progressNum = parseInt(window.localStorage.getItem('progress'));
+    // Sometimes the number goes one over routesVisited? Set the progress text to the max.
+    if (progressNum >= routesVisited.length) {
+        progressNum = routesVisited.length;
+        window.localStorage.setItem('progress', JSON.stringify(progressNum));
+        // Color everything as complete
+        for (let i = 0, len = routesVisited.length; i < len; i++) {
+            routesVisited[i] = 2;
+        }
+    }
 }
 
 /**
@@ -367,6 +377,7 @@ function bubbleVisited() {
         }
         if (count === 0) {
             routesVisited[id - 1] = 2;
+            window.localStorage.setItem('routesVisited', JSON.stringify(routesVisited));
         }
     }
 }
@@ -515,7 +526,6 @@ export const resetCYOAProgress = () => {
     removeEverything();
 
     const progress = document.getElementById('progress-text');
-    window.localStorage.setItem('progress', JSON.stringify(1));
     let progressNum = parseInt(window.localStorage.getItem('progress'));
     document.getElementById('progress-bar').style.width = (progressNum / literature.length * 100) + '%';
     progress.innerText = 1 + '/' + literature.length;
@@ -525,9 +535,13 @@ export const resetCYOAProgress = () => {
     for (let i = 0, len = literature.length; i < len; i++) {
         routesVisited.push(0);
     }
+    routesVisited[initId-1] = 1
 
+    window.localStorage.setItem('progress', JSON.stringify(1));
+    window.localStorage.setItem('routesVisited', JSON.stringify(routesVisited))
     window.localStorage.setItem('userTitle', '');
     window.localStorage.setItem('userStory', '');
+    window.localStorage.setItem('eOpen', 'false');
 
     writePassage(null, initId);
 }
@@ -636,18 +650,21 @@ export function beginCYOAStory(url) {
                 if (progressCleared === 'null' || progressCleared === null) {
                     progressCleared = 1;
                     window.localStorage.setItem('progress', JSON.stringify(progressCleared));
-
                 }
                 let progressNum = parseInt(window.localStorage.getItem('progress'));
                 document.getElementById('progress-bar').style.width = (progressNum / literature.length * 100) + '%';
                 progress.innerText = progressCleared + '/' + literature.length;
 
                 // Convert to local storage array using localstorage = JSON.stringify(routesVisited) and JSON.parse(localStorage)
+                // If this is the user's first time, create the routesVisited array and initialize init passage as visited
                 routesVisited = JSON.parse(window.localStorage.getItem('routesVisited'));
                 if (routesVisited === 'null' || routesVisited === null) {
                     routesVisited = [];
                     for (let i = 0, len = literature.length; i < len; i++) {
                         routesVisited.push(0);
+                    }
+                    if (progressCleared === 1) {
+                        routesVisited[initId-1] = 1;
                     }
                 }
 
