@@ -13,21 +13,21 @@ const initId = 9;   // The first passage the user should start at the first time
 const restartId = 1;// The true start of the story the user routes to when reaching the end of routes
 var passageEvents = {
     'passage': [
-        { 'id': 1, 'vars': [{ 'action': 'appendRoute', 'id': '1a', 'val': 'eOpen' }] },
+        { 'id': 1, 'vars': [{ 'action': 'hideRoute', 'id': '1.4', 'val': 'eOpen'}] },
         { 'id': 8, 'vars': [{ 'action': 'set', 'target': 'eOpen', 'val': 'true' }] },
-        { 'id': 51, 'vars': [{ 'action': 'hideOp', 'id': '51.0' }] },
+        { 'id': 51, 'vars': [{ 'action': 'hideRoute', 'id': '51.0', 'val': 'always'}] },
         {
             'id': 59, 'vars': [{ 'action': 'loadLS', 'target': 'userTitle', 'val': 'userTitle' },
-            { 'action': 'eventListener', 'target': 'userTitle' }]
+                               { 'action': 'eventListener', 'target': 'userTitle' }]
         },
         {
             'id': 60, 'vars': [{ 'action': 'loadLS', 'target': 'userStory', 'val': 'userStory' },
-            { 'action': 'loadLS', 'target': 'userTitle', 'val': 'userTitle' },
-            { 'action': 'resizeInput', 'target': 'userStory' }]
+                               { 'action': 'loadLS', 'target': 'userTitle', 'val': 'userTitle' },
+                               { 'action': 'eventListener', 'target': 'userStory' }]
         },
         {
             'id': 76, 'vars': [{ 'action': 'hide', 'id': '76a', 'val': 'userStory', 'cond': 'made' },
-            { 'action': 'show', 'id': '76b', 'val': 'userStory', 'cond': 'made' }]
+                               { 'action': 'show', 'id': '76b', 'val': 'userStory', 'cond': 'made' }]
         }
     ]
 };
@@ -35,7 +35,6 @@ var passageEvents = {
 /**
  * Check if the passage has events to handle.
  * @param {Number} toId 
- * @returns 
  */
 function checkEvents(toId) {
     const passage = passageEvents['passage'];
@@ -68,20 +67,18 @@ function checkActions(pVars) {
             case 'hide':
                 if (checkVar(query['id'], query['val'], query['cond'])) { hideParagraph(query['id']); }
                 break;
-            case 'hideOp':
-                hideParagraph(query['id']);
-                break;
-            case 'appendRoute':
-                if (checkVar(query['id'], query['val'], query['cond'])) { appendRoute(query['id']); }
+            case 'hideRoute':
+                if (query['val'] === 'always') {
+                    hideParagraph(query['id']);
+                } else if (!checkVar(query['id'], query['val'], query['cond'])) {
+                    hideParagraph(query['id']);
+                }
                 break;
             case 'loadLS':
                 loadVar(query['target'], query['val']);
                 break;
             case 'eventListener':
                 eventListenerOpts(query['target']);
-                break;
-            case 'resizeInput':
-                resizeTextarea(query['target']);
                 break;
             default:
                 break;
@@ -135,23 +132,13 @@ const eventListenerOpts = (target) => {
             document.getElementById('userTitle').addEventListener('input', () => {
                 saveUserTitle();
             });
-            // console.log('added event listener')
+            break;
+        case 'userStory':
+            resizeTextarea(target);
+            break;
         default:
             break;
     }
-};
-
-/**
- * Automatically resizes the height of the textarea input as the user types in it.
- * @param {String} target textarea element, 'userStory'
- */
-const resizeTextarea = (target) => {
-    const userStory = document.getElementById(target);
-    userStory.setAttribute('style', 'height: ' + userStory.scrollHeight + 'px; overflow-y: hidden');
-    userStory.addEventListener('input', () => {
-        userStory.style.height = 0;
-        userStory.style.height = userStory.scrollHeight + 'px';
-    });
 };
 
 /**
@@ -159,7 +146,7 @@ const resizeTextarea = (target) => {
  * Runtime O(n) where n is the number of passages in the story JSON.
  * This is optimized to O(1) lookup if the id's are aligned in the story configuration.
  * @param {Number} id The id of the passage to find.
- * @returns {Array, Array} The text and options array from the JSON file. 
+ * @returns {Object} The text and options array from the JSON file. 
  */
 function getPassageById(id) {
     // Use the for loop if the ids are not officially aligned in the story configuration
@@ -182,6 +169,7 @@ function getPassageById(id) {
  * Writes the passage that was selected by the option.
  * @param {String} fromId   Not implemented, informational for debugging or attaching info
  * @param {String} toId     The id of the passage to write
+ * @returns {String} The text of the passage
  */
 function writePassage(fromId, toId) {
     const { passageText, options } = getPassageById(toId);
@@ -221,7 +209,7 @@ function writePassage(fromId, toId) {
         });
         backBtn.innerText = 'Back';
         backBtn.classList.add('backBtn');
-        content.appendChild(backBtn)
+        content.appendChild(backBtn);
     }
 
     return passageText;
@@ -458,36 +446,6 @@ export function nextPara(btnId, targetId, remove = 'true') {
 }
 
 /**
- * Adds another route to the list of options the user can take.
- * This is used when a route is dependent on a condition the reader must satisfy.
- * @param {String} id The id of the route to append
- */
-function appendRoute(id) {
-    const routes = document.getElementById('option-list');
-    const routeBtn = document.getElementById(id);
-    const optionItem = document.createElement('li');
-    const numericId = id.match(/\d+/);
-    routeBtn.addEventListener('click', () => {
-        showChoiceClicked(routeBtn);
-        updateVisitedState(routeBtn.value);
-        goto(numericId, parseInt(routeBtn.value));
-    });
-
-    if (routesVisited[routeBtn.value - 1] === 2) {
-        routeBtn.classList.add('route-fully-visited');
-    } else if (routesVisited[routeBtn.value - 1] === 1) {
-        routeBtn.classList.add('route-partial');
-    } else {
-        routeBtn.classList.add('route-not-visited');
-    }
-
-    routeBtn.classList.remove('hidden');
-    optionItem.appendChild(routeBtn);
-    routes.appendChild(optionItem);
-}
-
-
-/**
  * Buttons could be meaningful in some passages.
  * If keeping the text after selecting a route, removes the buttons in the story.
  * This is necessary to ensure that there is only one copy of an id on the webpage 
@@ -631,6 +589,20 @@ function saveUserStory() {
 }
 
 /**
+ * Automatically resizes the height of the textarea input as the user types in it.
+ * @param {String} target textarea element, 'userStory'
+ */
+const resizeTextarea = (target) => {
+    const userStory = document.getElementById(target);
+    userStory.setAttribute('style', 'height: ' + userStory.scrollHeight + 'px; overflow-y: hidden');
+    userStory.addEventListener('input', () => {
+        userStory.style.height = 0;
+        userStory.style.height = userStory.scrollHeight + 'px';
+    });
+};
+
+
+/**
  * When the webpage is loaded, show the first passage of the story.
  * Initialize global variables and store the JSON data.
  * 
@@ -678,7 +650,8 @@ export function beginCYOAStory(url) {
 }
 
 /**
- * Debugging function to display the text of the route clicked on.
+ * Debugging function to display the text of the route clicked on. 
+ * Can be altered in development to show information such as passage id.
  * @param {Element} optionBtn 
  */
 function showChoiceClicked(optionBtn) {

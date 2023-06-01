@@ -343,6 +343,11 @@
 #resetCYOA {
   float: right;
   font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.backBtn {
+  width: fit-content;
 }
 
 html {
@@ -366,9 +371,21 @@ html {
     cursor: pointer;
     text-align: left;
     text-transform: none;
+    width: 100%;
   }
 
+  button:hover {
+    outline: black auto 1px;
+  }
+
+  .backBtn { width: fit-content; }
+  .backBtn:hover { outline: none; }
+  
   ol { list-style-type: upper-alpha; }
+  li { 
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
 
   .revealText {
     display: list-item;
