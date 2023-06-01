@@ -235,9 +235,9 @@ export const Experimental = ({ title }) => {
             const title = parseString(storyRef.innerText);
             const storyReference = "/js/" + title + ".json";
             // console.log('init children', document.getElementById('output-text').children.length)
-            // if (document.getElementById('output-text').children.length === 0) {
+            if (document.getElementById('output-text').children.length === 0) {
               beginCYOAStory(storyReference);
-            // }
+            }
 
             document.getElementById('resetCYOA').addEventListener('click', () => {
               resetCYOAProgress();

@@ -209,6 +209,7 @@ function writePassage(fromId, toId) {
         });
         backBtn.innerText = 'Back';
         backBtn.classList.add('backBtn');
+        backBtn.setAttribute('aria-description', 'Press enter or space to go to the previous route.');
         content.appendChild(backBtn);
     }
 
@@ -231,12 +232,15 @@ function addButtonEvents() {
                 case 'nextPara':
                     info[3] = info[3] === '' ? 'true' : 'false';
                     btns[i].addEventListener('click', () => { nextPara(info[1], info[2], info[3]) });
+                    btns[i].setAttribute('aria-description', 'Press enter or space to reveal text from this paragraph.');
                     break;
                 case 'printUserStory':
                     btns[i].addEventListener('click', () => { printUserStory() });
+                    btns[i].setAttribute('aria-description', 'Press enter or space to display your story below this button.');
                     break;
                 case 'saveUserStory':
                     btns[i].addEventListener('click', () => { saveUserStory() });
+                    btns[i].setAttribute('aria-description', 'Press enter or space to save your story as a text file to your device.');
                     break;
                 default:
                     break;
@@ -257,6 +261,7 @@ function createOptions(options, fromId) {
     const content = document.getElementById('output-text');
     const optionList = document.createElement('ol');
     optionList.id = 'option-list';
+    optionList.setAttribute('aria-description', 'The list of story routes you can choose from.');
     let count = options.length;
 
     for (let i = 0, len = options.length; i < len; i++) {
@@ -572,12 +577,12 @@ function saveUserStory() {
     window.localStorage.setItem('userStory', userStory);
 
     let userTitle = window.localStorage.getItem('userTitle');
-    if (userTitle === 'null' || userTitle === null) {
+    if (userTitle === 'null' || userTitle === null || userTitle === '') {
         userTitle = 'You have created an imaginary story';
     }
 
     const temp = document.createElement('a');
-
+    console.log(userTitle)
     temp.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(userStory));
     temp.setAttribute('download', userTitle);
     temp.style.display = 'none';

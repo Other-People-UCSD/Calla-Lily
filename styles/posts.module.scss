@@ -161,9 +161,18 @@ h3.post-title {
 
 .docs {
   h2, h3, h4, h5, h6 {
-    font-size: 1.5rem;
+    // font-size: 1.5rem;
+    font-weight: 600;
     text-align: center;
     text-transform: uppercase;
+  }
+
+  img {
+    width: initial;
+  }
+  
+  pre {
+    margin-left: 32px;
   }
 }
 
