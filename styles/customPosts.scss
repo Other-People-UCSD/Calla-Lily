@@ -341,9 +341,10 @@
 }
 
 #resetCYOA {
+  margin-top: 8px;
+  margin-bottom: 8px;
   float: right;
-  font-size: 0.9rem;
-  cursor: pointer;
+  font-size: 0.8rem;
 }
 
 .backBtn {
@@ -356,11 +357,18 @@ html {
   .route-fully-visited { color: #009833; }
 }
 
+html[data-theme="dark"] {
+  #progress-container { 
+    background-color: #333;
+  }
+  .route-partial { color: #ff9900; } 
+  .route-fully-visited { color: #6dbc65; }
+}
+
 @media (prefers-color-scheme: dark) {
   html[data-theme] {
-    .route-not-visited { color: #ff7b6f; }
     .route-partial { color: #ff9900; }
-    .route-fully-visited { color: #006723; }
+    .route-fully-visited { color: #6dbc65; }
   }
 }
 
