@@ -325,10 +325,9 @@ function updateVisitedState(id) {
         document.getElementById('progress-text').innerText = progressNum + '/' + literature.length;
         window.localStorage.setItem('progress', JSON.stringify(progressNum));
     }
-
     let progressNum = parseInt(window.localStorage.getItem('progress'));
-    // Sometimes the number goes one over routesVisited? Set the progress text to the max.
-    if (progressNum >= routesVisited.length) {
+    // Sometimes the progress goes +-1 routesVisited? Set the progress text to the max.
+    if (progressNum >= routesVisited.length || routesVisited.length === routesVisited.reduce((acc, val) => acc + (val > 0 ? 1 : 0), 0)) {
         progressNum = routesVisited.length;
         window.localStorage.setItem('progress', JSON.stringify(progressNum));
         // Color everything as complete
@@ -582,7 +581,6 @@ function saveUserStory() {
     }
 
     const temp = document.createElement('a');
-    console.log(userTitle)
     temp.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(userStory));
     temp.setAttribute('download', userTitle);
     temp.style.display = 'none';

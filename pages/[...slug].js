@@ -214,7 +214,7 @@ export const Experimental = ({ title }) => {
           document.getElementById('cr-article').classList.add('monospace');
           document.getElementById('mc_embed_signup').innerHTML = '';
           document.getElementById('mc-begin').addEventListener('click', beginMissedConnections);
-          console.log('missed connections');
+          // console.log('missed connections');
         }}
       />
     case "You Have Created an Imaginary Friend":
@@ -234,8 +234,8 @@ export const Experimental = ({ title }) => {
 
             const title = parseString(storyRef.innerText);
             const storyReference = "/js/" + title + ".json";
-            // console.log('init children', document.getElementById('output-text').children.length)
-            if (document.getElementById('output-text').children.length === 0) {
+            
+            if (document.getElementById('output-text').children.length === 0 || document.getElementById('9.0') === null) {
               beginCYOAStory(storyReference);
             }
 

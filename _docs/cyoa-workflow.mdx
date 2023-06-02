@@ -8,49 +8,48 @@ contributor: Kevin Jang
 
 [cyoa.js (source code)](https://github.com/Other-People-UCSD/Calla-Lily/blob/main/public/js/cyoa.js)
 
-["You Have Created An Imaginary Friend" JSON data](https://github.com/Other-People-UCSD/Calla-Lily/blob/main/public/js/imaginary-friend-theo-erickson.json)
+["You Have Created An Imaginary Friend" JSON data](/js/imaginary-friend-theo-erickson.json)
 
 ## Abstract
 
-The choose-your-own-adventure (CYOA) program is meant to give the end user a more understandable experience of the
-story by allowing them to know their progress through the story. This documentation goes through how the CYOA workflow
-using Theo Erickson’s “You Have Created An Imaginary Friend” story as a reference.
+The choose-your-own-adventure (CYOA) program is meant to give the end user a more understandable experience of the story
+by allowing them to see their progress through the story. This documentation goes through the CYOA workflow using Theo
+Erickson’s “You Have Created An Imaginary Friend” story as a reference.
 
 ## Context
 
-Usually a CYOA story may be drafted as a Twine or other dialogue story file. Twine has an undo and redo feature for
-passages, but lacks any progress indicator for the user to see just how long the story is. This lack of indicator can
-also confuse users who think there isn’t more to the story if they get lost and keep repeating routes. In addition,
-publishing a Twine file can take the form as a third-party website that we cannot manage or a standalone HTML file. That
-HTML file that does not work well with the Jekyll-based and React-based website’s ability to template an HTML page. For
-an enhanced UX and UI experience that can natively run on the Other People Website via DOM injection, our own CYOA
-program is used.
+Many CYOA stories may be drafted as a Twine or other dialogue story file. Twine has an undo and redo feature for
+passages, but lacks any progress indicator for the user to see how long the story is. This lack of indicator can confuse
+users who think there isn’t more to the story if they get lost and keep repeating routes. In addition, publishing a
+Twine file can take the form of a third-party website that we cannot manage, or a standalone HTML file. That HTML file
+does not work well with the Jekyll-based and React-based website’s ability to template an HTML page. For an enhanced UX
+and UI experience that can natively run on the Other People Website via DOM injection, our own CYOA program is used.
 
 ## Timeline
 
-- February 24, 2023 - April 11, 2023: Minimum Viable Product of cyoa.js
-- February 24, 2023 - April 21, 2023: Creative Edits on story
-- April 22, 2023 - May 24, 2023: Copy Edits on story
-- May 23, 2023 - May 31, 2023: Final cyoa.js Website Edits for "You Have Created An Imaginary Friend"
-- June 2, 2023: Public release of "You Have Created An Imaginary Friend"
+* February 24, 2023 - April 11, 2023: Minimum Viable Product of cyoa.js
+* February 24, 2023 - April 21, 2023: Creative Edits on story
+* April 22, 2023 - May 24, 2023: Copy Edits on story
+* May 23, 2023 - May 31, 2023: Final cyoa.js Website Edits for "You Have Created An Imaginary Friend"
+* June 2, 2023: Public release of "You Have Created An Imaginary Friend"
 
 ## Data Pipeline
 
 ### Raw Text Data Editing and Storage
 
-It can be difficult for staff editors to edit the story off of Twine when the Twine file does not sync state and can
-only be imported by a .twine file. Instead, CYOA stories should be written in a collaborative text editor such as Google
-Docs where all viewers will see the same version. To organize the story, each passage should be on their own page.
-Adding a header such as the route or id number allows for internal hyperlinks to work where routes from other passages
-can link to and makes stepping through the story arc feel very similar to Twine or the CYOA program.
+It can be difficult for staff editors to edit the story off Twine when the Twine file does not syncronize editing state
+when it can only be imported by a .twine file. Instead, CYOA stories should be written in a collaborative text editor
+such as Google Docs where all viewers will see the same version. To organize the story, each passage should be on its
+own page. Adding a header such as the route or id number allows for internal hyperlinks to work where routes from other
+passages can link to and it makes stepping through the story arc feel very similar to Twine or the CYOA program.
 
 ### Data Extraction
 
 After completing the story in a collaborative text editor, the raw text is put into a spreadsheet. This is necessary to
 organize the data in a way that a popular programming language can read rather than using something like Google Apps
-Script to extract the data, especially if a passage extends more than one page. The downside of using a spreadsheet is
-that it is harder to review the raw text as compared to a text editor, so this is something that the website developer
-is expected to set up.
+Script to extract the spreadsheet data, especially if a passage extends more than one page. The downside of using a
+spreadsheet is that it is harder to review the raw text as compared to a text editor, so this is something that the
+website developer is expected to set up.
 
 The main columns for the spreadsheet are **id **(unique) and **passage text**. Passage text includes the main text to display on
 the story, but not the routes the user can click on. Instead, routes are saved in a two-column repeating form where the
@@ -64,28 +63,30 @@ After transferring the raw text to the spreadsheet, passages that require furthe
 modified to include HTML/CSS elements such as buttons or different styles. JavaScript can be added to the text here, but
 it will not activate on the React-based website. Instead, the CYOA program automatically adds the interactive event
 listeners on-demand during program execution.
+
 Exporting spreadsheet data commonly takes upon a delimiter-separated format. Google Sheets and Excel support both
 comma-separated values and tab-separated values, but only tab-separated values work effectively here. This is because
 storywriting often uses commas when writing dialogue, so those commas in **passage text** will affect how the column-based
 data is separated and read. Instead, tab-separated values will usually work because intentional tabs are rarer in
 storywriting and thus tab occurrences in the text can be replaced with unicode encodings. It would not be friendly to
-read data that has hundreds of unicode encodings for commas scattered in every passage.
+read data that has hundreds of unicode-encoded commas scattered in every passage.
 
 ### Data Transformation
 
 The exported .tsv file must be slightly modified such that each passage of the story is on its own page. Sometimes, the
 passage text might create line breaks between paragraphs that mess with the way the .tsv file got saved. Removing the
-line breaks and then using double spaces between the paragraphs will ensure that the tsv file has the same number of
+line breaks and then using **double spaces **between the paragraphs will ensure that the tsv file has the same number of
 lines as the number of passages in the story.
 
 The reason why paragraphs have their own double-spaced delimiter inside the tsv is because the hybridized text may be
-raw text or HTML. If a passage’s text is raw and there are multiple paragraphs, the data has to understand there are
-multiple paragraphs that cannot be identified by a space since a story will have spaces throughout it. Double spaces are
-rarer and can be unicode encoded as well. Another option is to just change the delimiter used to something else.
+raw text or HTML. If a passage is raw andtext there are multiple paragraphs, the data has to understand that there are
+multiple paragraphs that cannot be demarcated by a single space since a story will have spaces throughout it. Double
+spaces are rarer and can be unicode-encoded as well. Another option is to just change the delimiter used to something
+else.
 
 The .tsv file should now be formatted at this stage. To extract the data from the .tsv file, a Python script is used.
 The main reason why this data extraction and transformation is done in Python instead of JavaScript is because it was
-easier to work with data locally through a notebook instead of waiting for an asynchronous HTTP request to get the data
+easier to work with data locally through a notebook instead of waiting for an synchronous HTTP request to get the data
 from the .tsv file and then transforming it into JSON that could be used more easily in the program. The python
 algorithm reads the tsv file line by line and creates a JSON object in the following format:
 
@@ -108,7 +109,9 @@ There are 126 paths with 33 of them going back to start.
 
 This JSON object is written to a .json file which will then be stored inside the /public/js folder on the website. The
 object is already minified from the python script so there is no need to expand it unless edits to the story data need
-to be made. **The “You Have Created An Imaginary Friend” JSON file is 85.1 KB in size.**
+to be made. **The “You Have Created An Imaginary Friend” JSON file is 85.1 KB in size.** It is also a more hidden resource
+that cannot be found on the sources tab in the /js folder, but can still be identified by looking through the network
+log.
 
 As for the webpage where the data is deployed, the markdown file content must contain an element with the id “story-ref”
 for the program to find the filename of the JSON file. There must also be a div with the id “output-text” where the
@@ -121,7 +124,7 @@ how the program operates.
 
 When the webpage is loaded, the program will fetch the data stored in the JSON file. It will store the data in a global
 variable that allows the program to refer to the data as the user goes through the story. In addition, loading the
-webpage from either navigating away or hard refreshing the page will reset any route history the reader has had before.
+webpage by either navigating away or hard refreshing the page will reset any route history the reader has had before.
 
 Passages are written according to their **0-indexed** position in the stored array. If the passage text is identified as
 text when there are no HTML tags present in it, then the text will be appended to the page in a paragraph tag. Otherwise
@@ -142,9 +145,20 @@ are bubbled up** through the directed graph of the story by using the history ar
 understanding of where they have gone as the entire leaf of a route tree will turn green, allowing the user to pick the
 other branches at the intersection to continue reading unexplored paths in the story.
 
-<p class="center"><img src="/images/docs/cyoa-bubbling-state.png" alt="Diagram showing bubbling coloration of passages up a route leaf." class="w450" /></p>
+<p class="center">
+  <img src="/images/docs/cyoa-bubbling-state.png" alt="Diagram showing bubbling coloration of passages up a route leaf." class="w450" />
+</p>
 
-The progress bar updates when an unvisited route is clicked on. There has been reported cases where it can go one over
+The limitation of this bubbling up of state is that other parent routes that will satisfy the fully visited condition
+will not be affected because this is dependent on the history stack. This can have potential side effects up the tree,
+as nodes 66 and 67 in the following diagram should both be green after the user routes to node 71. Solving this case may
+improve coverage for the user at the cost of algorithmic efficiency to color routes.
+
+<p class="center">
+  <img src="/images/docs/cyoa-bubbling-state-history.png" alt="Diagram showing bubbling state only through the history and not other valid parents." class="w650" />
+</p>
+
+The progress bar updates when an unvisited route is clicked on. There have been reported cases where it can go one over
 the number of passages in the story. To resolve this, once all routes have been visited the progress bar is set to the
 number of passages in the story and sets all route states to completely visited.
 
@@ -157,7 +171,7 @@ if the condition is met. Other events include adding special event listeners to 
 buttons with events that are already handled when the passage is created.
 
 The reset button is implemented as a way to reset the visited states over the routes and any local storage variables
-associated with the story. This currently works over “You Have Created an Imaginary Friend”’s local storage variables
+associated with the story. This currently works over “You Have Created An Imaginary Friend”’s local storage variables
 but there are multiple ways to conditionally reset the variables associated with the story being displayed. That is
 something that can be exported in the future when this case arises.
 
@@ -168,9 +182,12 @@ storywriting component also has an option to save the user’s story. This is do
 attaching events to download a text file with the story encoded into it, then automatically clicking it using
 JavaScript.
 
-<p class="center"><img src="/images/docs/imaginary-friend-create-story.png" alt="Screenshot showing the passages a user can create a story." class="w650" /></p>
+<p class="center">
+  <img src="/images/docs/imaginary-friend-create-story.png" alt="Screenshot showing the passages a user can create a story." class="w650" />
+</p>
 
 ## UX/UI Design
+
 With the assistance of Katie Lew, the UI designer, changes were made to make the progress bar narrower and other spacing
 between text. End users have a better context about how routes and inline buttons that had actions were clickable by
 adding hovering styles that outlined the elements. The width of the buttons was also increased to cover the entire row
@@ -193,7 +210,7 @@ website, instructional information, and more interactive elements on individual 
 
 The main goal is to keep the CYOA program modulated and reusable over multiple stories without having to modify existing
 core algorithms of the program. Internally, it can be a good idea to make the CYOA program take options such as if the
-back and reset button and progress bar should be displayed for each story that uses the program.
+back and reset button and the progress bar should be displayed for each story that uses the program.
 
 Another diagram of “You Have Created An Imaginary Friend” without the edges back to start (node 1).
 
