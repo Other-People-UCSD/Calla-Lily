@@ -11,7 +11,7 @@ import Search from './search';
 import { FooterLogo } from './footer';
 
 const delta = 5;
-const announcementDate = '5-18';
+const announcementDate = '6-2';
 
 /**
  * This is the header with the MobileNav menu nested within it. 
@@ -101,7 +101,7 @@ export default function HeaderMain() {
         {
           showAnnouncement ? (
             <div className={headerStyles.announcement} id="announcement">
-              <Link href="/docs/calla-lily-release">We are pleased to introduce Calla-Lily, the new website for Other People Magazine! Read release notes here!</Link>
+              <Link href="/6/you-have-created-an-imaginary-friend">Read Theo Erickson&apos;s experimental story &apos;You Have Created an Imaginary Friend&apos; here!</Link>
               <button 
                 id="close-notice" 
                 className={headerStyles["close-announcement"]}
