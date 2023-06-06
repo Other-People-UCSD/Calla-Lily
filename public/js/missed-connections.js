@@ -241,7 +241,7 @@ function delTextChar(id, rate, delay) {
  * 
  * @param {int} id 
  * @param {int} delay 
- * @returns 
+ * @returns {Promise}
  */
 function delPassage(id, delay) {
   return new Promise((resolve) => {
