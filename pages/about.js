@@ -99,7 +99,7 @@ export default function About(props) {
             <p>Editors review and edit submissions, then produce the pages of the magazine. Content writers create
               exclusive prose, interview submittors about their
               stories, and may write articles of their choice.</p>
-            <p className={"center"}><a href="https://docs.google.com/forms/d/e/1FAIpQLScjBb0DeaZcUebvil4lfNuSbTFL_UwEGiAeydntWlI-kA9s5w/viewform?usp=sf_link">(Apply to Content!)</a></p>
+            <p className={"center"}>(Applications Closed)</p>
           </li>
           <li>
             <h3>Design & Social Media</h3>
