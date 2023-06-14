@@ -335,60 +335,6 @@ export const schema = {
         },
       ],
     },
-    {
-      name: "docs",
-      label: "Documentation",
-      path: "_docs",
-      format: "mdx",
-      ui: {
-        router: ({ document }) => {
-          return `/docs/${document._sys.filename}`
-        },
-        filename: {
-          slugify: slugify,
-          readonly: true
-        },
-      },
-      defaultItem: () => {
-        return {
-          layout: "Post",
-        }
-      },
-      fields: [
-        {
-          type: "string",
-          name: "title",
-          label: "Title*",
-          isTitle: true,
-          required: true,
-        },
-        {
-          type: "datetime",
-          name: "date",
-          label: "Date*",
-          required: true,
-          ui: {
-            timeFormat: "HH:mm:ss",
-            description: "Set the time to publish date."
-          }
-        },
-        {
-          type: "string",
-          name: "contributor",
-          label: "Contributor(s)*",
-          required: true,
-        },
-        {
-          type: "rich-text",
-          name: "body",
-          label: "Body",
-          isBody: true,
-          ui: {
-            description: "Supports markdown and HTML live editing!",
-          },
-        },
-      ],
-    },
   ],
 }
 
