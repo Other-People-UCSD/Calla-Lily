@@ -41,13 +41,7 @@ export default function Submissions(props) {
             <TinaMarkdown content={data.forms.subsClosedText} />
           )
         }
-
-        {/* { data.forms.otherSubs.length > 0 ? (
-          data.forms.otherSubs.map((submission) => {
-            return <p key={submission}><a href={submission.link}>{submission.description}</a></p>
-          })
-        ): null} */}
-
+        
         <p>(The list of submissions are often updated on our discord! <a href="https://discord.gg/Z9eFGkd9bU" rel="noreferer noopener">https://discord.gg/Z9eFGkd9bU</a>)</p>
 
         <p>*Magazine submissions will be selected based on quality, originality, creativity, and the creator’s intent!</p>
