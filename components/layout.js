@@ -51,7 +51,12 @@ export default function Layout({ children, post, genre, title }) {
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="msapplication-config" content="/favicons/browserconfig.xml" />
         <meta name="theme-color" content="#ffffff" />
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-CR21DPVQJ3" />
+      </Head>
+      <OPMSEO />
+      <HeaderMain />
+      <Content>{children}</Content>
+      <Footer />
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-CR21DPVQJ3" />
         <Script id="google-analytics">
           {`
             window.dataLayer = window.dataLayer || [];
@@ -59,13 +64,7 @@ export default function Layout({ children, post, genre, title }) {
             gtag('js', new Date());
             gtag('config', 'G-CR21DPVQJ3');
           `}
-
         </Script>
-      </Head>
-      <OPMSEO />
-      <HeaderMain />
-      <Content>{children}</Content>
-      <Footer />
     </>
   );
 }
