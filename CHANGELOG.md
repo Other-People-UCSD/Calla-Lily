@@ -1,4 +1,7 @@
 # Changelog 
+## v4.5.6 (7/9/23)
+- Google Analytics
+
 ### v4.5.5.4 (5/17/23)
 - Added search bar no results text
 - Refactoring over CSS styles and HTML layouts

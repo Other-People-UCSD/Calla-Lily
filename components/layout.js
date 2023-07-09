@@ -3,6 +3,7 @@ import HeaderMain from './header';
 import Footer from './footer';
 import contentStyles from '@/styles/content.module.scss';
 import { NextSeo } from 'next-seo';
+import Script from 'next/script';
 
 export default function Layout({ children, post, genre, title }) {
   const siteTitle = title ? (`${title} - Other People`) : (`Other People`);
@@ -21,20 +22,20 @@ export default function Layout({ children, post, genre, title }) {
   function OPMSEO() {
     const favicon = 'https://otherpeoplesd.com/favicons/favicon-32x32.png';
     return (
-    <>
-      <NextSeo
-        title={siteTitle}
-        description='Other People Literary Magazine is UC San Diego’s first student-run literary magazine and club. 
+      <>
+        <NextSeo
+          title={siteTitle}
+          description='Other People Literary Magazine is UC San Diego’s first student-run literary magazine and club. 
         We wish to present the dynamic range of artistic capability inherent in UCSD students, to create an 
         inclusive platform to share creative works, and to encourage literary and artistic exploration 
         among all students. We seek to embrace our core principle of showcasing “O(the)r People,” or celebrating 
         at once our diversity, our individual uniqueness, our shared experiences, and our collective journey through this world.'
-        openGraph={{
-          images: [{ url: favicon }]
-        }
-        }
-      />
-    </>
+          openGraph={{
+            images: [{ url: favicon }]
+          }
+          }
+        />
+      </>
     );
   }
 
@@ -50,6 +51,16 @@ export default function Layout({ children, post, genre, title }) {
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="msapplication-config" content="/favicons/browserconfig.xml" />
         <meta name="theme-color" content="#ffffff" />
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-CR21DPVQJ3" />
+        <Script id="google-analytics">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-CR21DPVQJ3');
+          `}
+
+        </Script>
       </Head>
       <OPMSEO />
       <HeaderMain />
