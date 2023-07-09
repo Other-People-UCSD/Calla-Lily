@@ -3,7 +3,6 @@ import HeaderMain from './header';
 import Footer from './footer';
 import contentStyles from '@/styles/content.module.scss';
 import { NextSeo } from 'next-seo';
-import Script from 'next/script';
 
 export default function Layout({ children, post, genre, title }) {
   const siteTitle = title ? (`${title} - Other People`) : (`Other People`);
@@ -56,15 +55,6 @@ export default function Layout({ children, post, genre, title }) {
       <HeaderMain />
       <Content>{children}</Content>
       <Footer />
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-CR21DPVQJ3" />
-        <Script id="google-analytics">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-CR21DPVQJ3');
-          `}
-        </Script>
     </>
   );
 }
