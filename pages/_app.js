@@ -2,7 +2,6 @@ import '@/styles/globals.scss'
 import '@/styles/customPosts.scss';
 import { DefaultSeo } from 'next-seo';
 import { AppWrapper } from '@/components/appContext';
-import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
 import Script from 'next/script';
 
 export default function App({ Component, pageProps }) {
@@ -29,7 +28,6 @@ export default function App({ Component, pageProps }) {
       <AppWrapper>
         <Component {...pageProps} />
       </AppWrapper>
-      <VercelAnalytics />
     </>
   );
 }
