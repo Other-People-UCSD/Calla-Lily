@@ -1,8 +1,8 @@
 import { getLandingPages } from "@/lib/posts";
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   try {
-    const landingPages = getLandingPages();
+    const landingPages = await getLandingPages();
     const keyedPages = {};
 
     landingPages.map((page) => {
