@@ -89,6 +89,7 @@ export default function HeaderMain() {
         ref={headerRef}
         onScroll={handleScroll}
         className={`${showHeader ? '' : headerStyles["nav-up"]} ${headerStyles["header-glob"]} `}
+        style={{ backgroundColor: '#ffc267'}}
       >
         <div className={headerStyles["header-main"]}>
           <h2><Link href="/">Other<br /> People ©</Link></h2>
@@ -101,7 +102,7 @@ export default function HeaderMain() {
         {
           showAnnouncement ? (
             <div className={headerStyles.announcement} id="announcement">
-              <Link href="/6/you-have-created-an-imaginary-friend">Read Theo Erickson&apos;s experimental story &apos;You Have Created an Imaginary Friend&apos; here!</Link>
+              <span>You are on the development branch where edits will not show up on the final website.</span>
               <button 
                 id="close-notice" 
                 className={headerStyles["close-announcement"]}
