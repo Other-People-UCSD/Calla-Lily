@@ -335,6 +335,76 @@ export const schema = {
         },
       ],
     },
+    {
+      name: "ucmagazines",
+      label: "UC Magazines",
+      path: "data",
+      format: "json",
+      match: {
+        include: "uc-magazines",
+      },
+      ui: {
+        router: () => {
+          return `/uc-magazines`
+        },
+        allowedActions: {
+          create: false,
+          delete: false,
+        },
+      },
+      fields: [
+        {
+          name: "lastmod",
+          label: "Last Modified",
+          type: "datetime",
+          dateFormat: "YYYY-MM-DD",
+          required: true,
+        },
+        {
+          name: "magazines",
+          label: "Magazines",
+          type: "object",
+          list: true,
+          ui: {
+            itemProps: (item) => {
+              return { label: `${item?.title} (${item?.college?.toUpperCase()})` }
+            },
+          },
+          fields: [
+            {
+              name: "url",
+              label: "URL",
+              type: "string",
+            },
+            {
+              name: "title",
+              label: "Title",
+              type: "string",
+            },
+            {
+              name: "college",
+              label: "College",
+              type: "string",
+            },
+            {
+              name: "est",
+              label: "Established year (est)",
+              type: "number",
+            },
+            {
+              name: "active",
+              label: "Active?",
+              type: "boolean",
+            },
+            {
+              name: "description",
+              label: "Description",
+              type: "string",
+            },
+          ]
+        },
+      ],
+    },
   ],
 }
 

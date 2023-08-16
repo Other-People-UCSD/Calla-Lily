@@ -1,4 +1,8 @@
 # Changelog 
+## v4.5.7 (8/16/23)
+- Enhanced usability of the UC Magazine page to a search-and-filter interface
+  - Connected to CMS to allow editing 
+
 ## v4.5.6 (7/9/23)
 - Google Analytics
 
