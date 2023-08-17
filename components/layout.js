@@ -4,12 +4,12 @@ import Footer from './footer';
 import contentStyles from '@/styles/content.module.scss';
 import { NextSeo } from 'next-seo';
 
-export default function Layout({ children, post, genre, title }) {
+export default function Layout({ children, post, landingPage, title, announcementData }) {
   const siteTitle = title ? (`${title} - Other People`) : (`Other People`);
 
   // console.log('layour children:', children)
   function Content() {
-    if (genre) {
+    if (landingPage) {
       return <>{children}</>;
     } else if (post) {
       return <main className={contentStyles.content}>{children}</main>;
@@ -52,7 +52,7 @@ export default function Layout({ children, post, genre, title }) {
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <OPMSEO />
-      <HeaderMain />
+      <HeaderMain landingPage={landingPage} title={title} announcementData={announcementData} />
       <Content>{children}</Content>
       <Footer />
     </>

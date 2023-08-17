@@ -251,6 +251,31 @@ export const schema = {
       },
       fields: [
         {
+          name: "announcement",
+          label: "Announcement",
+          type: "object",
+          required: true,
+          fields: [
+            {
+              name: "link",
+              label: "Link",
+              type: "string",
+              description: "Leave blank to disable link.",
+            },
+            {
+              name: "description",
+              label: "Description",
+              type: "string",
+              description: "<80 chars or resize editor to check how it looks on mobile devices.",
+            },{
+              name: "date",
+              label: "Date (MUST CHANGE FOR EVERY ANNOUNCEMENT)",
+              type: "datetime",
+              description: "If user clicks on X, the announcement will always be hidden until this date is changed. Therefore, they won't see the new announcement."
+            }
+          ],
+        },
+        {
           name: "image",
           label: "Featured Image",
           type: "image",

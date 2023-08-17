@@ -1,6 +1,12 @@
 # Changelog 
+### v4.5.7.1
+- Announcement bar only shows up on homepage
+  - Should not show up on UC Magazines page
+  - Modified the localStorage to save memory by using the same key and checking against the previous value instead of generating new keys
+  - If this is changed to show up on other landing pages, must add the tina homepage connection to each used page 
+
 ## v4.5.7 (8/16/23)
-- Enhanced usability of the UC Magazine page to a search-and-filter interface
+- Enhanced usability of the UC Magazines page to a search-and-filter interface
   - Connected to CMS to allow editing 
 
 ## v4.5.6 (7/9/23)

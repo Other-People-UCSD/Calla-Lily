@@ -16,7 +16,7 @@ export default function Submissions(props) {
   const status = data.forms["written"] || data.forms["visual"];
 
   return (
-    <Layout genre title={"Submissions"}>
+    <Layout landingPage title={"Submissions"}>
       <div className={contentStyles["submissions-content"]}>
       <div className={`${animationStyles.cssanimation} ${animationStyles.sequence} ${animationStyles.fadeInBottom}`}>
           <h1>Submissions</h1>

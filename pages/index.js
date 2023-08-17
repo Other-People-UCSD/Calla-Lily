@@ -16,7 +16,7 @@ const Home = (props) => {
     query: props.query,
     variables: props.variables,
     data: props.data,
-  })
+  });
 
   useEffect(() => {
     /**
@@ -49,7 +49,7 @@ const Home = (props) => {
   });
 
   return (
-    <Layout genre title={"Home"}>
+    <Layout landingPage title={"Home"} announcementData={data.homepage.announcement}>
       <div className={indexStyles.IndexContainer}>
         <a href={data.homepage.featured_link} target="_blank" rel="noopener noreferer">
           <Image

@@ -6,7 +6,7 @@ import Genre from "../components/genre";
 
 export default function Poetry({ poetryPosts }) {
   return (
-    <Layout genre title={"Poetry"}>
+    <Layout landingPage title={"Poetry"}>
       <div className={`${animationStyles.cssanimation} ${animationStyles.sequence} ${animationStyles.fadeInBottom}`}>
         <div className={indexStyles.IndexContainer}>
           <h1 className={indexStyles["page-title"]}>Poetry</h1>

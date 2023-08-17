@@ -14,7 +14,6 @@ export default function App({ Component, pageProps }) {
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-CR21DPVQJ3');
-            console.log('analytics!');
           `}
       </Script>
       <DefaultSeo
