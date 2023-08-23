@@ -5,7 +5,6 @@ export default async function handler(req, res) {
     const sortedPosts = await getSortedPostsAPIData();
     const keyedPosts = {};
 
-    // console.log(sortedPosts)
     sortedPosts.map((post) => {
       const key = `/${post.slug}`;
       keyedPosts[key] = post;

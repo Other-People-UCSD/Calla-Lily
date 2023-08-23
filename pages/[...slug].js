@@ -90,7 +90,7 @@ export const getStaticProps = async (params) => {
   
   // Recommendation Data
   const relativePath = '/' + variables.relativePath.replace(/\.mdx?/, '');
-  const recommendedPosts = recommenderData[relativePath];
+  const recommendedPosts = recommenderData[relativePath] || null;
 
   return {
     props: {

@@ -1,6 +1,6 @@
 const SITE_URL = 'https://otherpeoplesd.com'
-const EXTERNAL_DATA_URL = `${SITE_URL}/api/post-metadata`;
-const EXTERNAL_PAGE_URL = `${SITE_URL}/api/pages`;
+const EXTERNAL_DATA_URL = `${SITE_URL}/api/post-metadata.json`;
+const EXTERNAL_PAGE_URL = `${SITE_URL}/api/pages.json`;
 
 function generateSiteMap(posts, pages) {
   return `<?xml version="1.0" encoding="UTF-8"?>
