@@ -4,6 +4,7 @@ export default async function handler(req, res) {
   try {
     const { slug } = req.query;
     const postData = await getPostDataAPI(`${slug.join('/')}.mdx`);
+    res.setHeader('Content-Type', 'application/json');
     return res.status(200).json(postData);
   } catch (e) {
     console.log(e);
