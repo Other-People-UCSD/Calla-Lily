@@ -83,6 +83,12 @@ const Page = (props) => {
 
 export default Page;
 
+/**
+ * Gets necessary information to render the page properly. 
+ * Include additional static features here such as anything that affects the search functionality.
+ * @param {Object} params Page parameters
+ * @returns {Object} Props for the Next.js SSG
+ */
 export const getStaticProps = async (params) => {
   const { data, query, variables } = await getPageData(params.params.slug);
   const allPostsData = getSortedPostsData();
@@ -104,6 +110,11 @@ export const getStaticProps = async (params) => {
   }
 }
 
+/**
+ * 
+ * @param {Array} slug The URL separated by its route slashes 
+ * @returns {Object} Page data
+ */
 const getPageData = async (slug) => {
   // Sorted by frequency to reduce wrong path errors
   // const years = ['2020', '2022', '2023', '2021'];
@@ -145,6 +156,10 @@ const getPageData = async (slug) => {
   }
 }
 
+/**
+ * Get all post paths in a paginated form through the GraphQL API
+ * @returns {Object} Paths for Next.js SSG
+ */
 export const getStaticPaths = async () => {
   let paths = [];
   let postsListData = undefined;
@@ -181,8 +196,8 @@ export const getStaticPaths = async () => {
 
 /**
  * 
- * @param {*} props 
- * @returns 
+ * @param {String} title The title of the experiemental work
+ * @returns Javascript to run the experimental work property
  */
 export const Experimental = ({ title }) => {
   // console.log(loaded, localStorage.getItem('loaded'))
@@ -262,8 +277,8 @@ export const Experimental = ({ title }) => {
 }
 /**
  * The estimated reading time calculation
- * @param {Number} param0 
- * @returns 
+ * @param {Number} wordCount The number of words in the page 
+ * @returns {String} The estimated reading time 
  */
 export const MinsRead = ({ wordCount }) => {
   if (wordCount <= 360) {
