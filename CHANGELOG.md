@@ -1,4 +1,8 @@
 # Changelog 
+## v4.5.8 
+- Created metadata recommender model based on contributors, tags, and word count
+  - On post page: The recommender for the post is implemented in the search as the default result once the search bar gains focus
+
 ### v4.5.7.1
 - Announcement bar only shows up on homepage
   - Should not show up on UC Magazines page

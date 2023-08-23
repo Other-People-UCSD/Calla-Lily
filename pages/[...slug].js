@@ -15,20 +15,17 @@ import OPMparser from '@/lib/OPMparser';
 import { beginMissedConnections } from '@/public/js/missed-connections';
 import { beginCYOAStory, goto, parseString, resetCYOAProgress } from '@/public/js/cyoa';
 
+import recommenderData from '@/data/recommender.json';
+
 const Page = (props) => {
-  // console.log(props.variables)
-  // console.log(props.data)
   const { query, variables, data } = useTina({
     query: props.query,
     variables: props.variables,
     data: props.data,
   });
 
-  // console.log('POST VAR', variables);
-  // console.log('POST DATA', data);
-  // if (localStorage.getItem('hardRefresh') !== 'true') {
-  //   hasLoaded(true);
-  // }
+  // console.log('POST VAR', props.variables);
+  // console.log('POST DATA', variables);
 
   // Add JS files that affect all posts
   useEffect(() => {
@@ -88,12 +85,12 @@ export default Page;
 
 export const getStaticProps = async (params) => {
   const { data, query, variables } = await getPageData(params.params.slug);
-  // console.log('getStaticProps data:', data);
-  // console.log('getStaticProps vars:', variables);
   const allPostsData = getSortedPostsData();
   const fullPostData = await getPostDataAPI(variables.relativePath, allPostsData);
-  // console.log('allPostData', allPostData);
-  // console.log('fullPostData', fullPostData);
+  
+  // Recommendation Data
+  const relativePath = '/' + variables.relativePath.replace(/\.mdx?/, '');
+  const recommendedPosts = recommenderData[relativePath];
 
   return {
     props: {
@@ -102,6 +99,7 @@ export const getStaticProps = async (params) => {
       query: query,
       fullPostData: fullPostData,
       allPostsData: allPostsData,
+      recommender: recommendedPosts
     },
   }
 }
@@ -234,7 +232,7 @@ export const Experimental = ({ title }) => {
 
             const title = parseString(storyRef.innerText);
             const storyReference = "/js/" + title + ".json";
-            
+
             if (document.getElementById('output-text').children.length === 0 || document.getElementById('9.0') === null) {
               beginCYOAStory(storyReference);
             }
@@ -249,17 +247,17 @@ export const Experimental = ({ title }) => {
             }
 
             document.getElementById('shortcut').addEventListener("keydown", (e) => {
-                if (e.code === "Enter") {
-                    shortcut()
-                }
+              if (e.code === "Enter") {
+                shortcut()
+              }
             });
           } catch {
             // Prevent code execution on other pages
           }
         }}
       />
-      default:
-        break;
+    default:
+      break;
   }
 }
 /**

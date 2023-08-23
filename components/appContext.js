@@ -9,7 +9,8 @@ const AppContext = createContext();
 
 export const AppWrapper = ({ children }) => {
   let sharedState = {
-    api: children.props.allPostsData
+    api: children.props.allPostsData,
+    recommender: children.props.recommender
   }
   return (
     <AppContext.Provider value={sharedState}>

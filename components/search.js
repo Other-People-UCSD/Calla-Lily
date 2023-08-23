@@ -5,8 +5,9 @@ import { useAppContext } from "@/components/appContext";
 
 export default function Search({ setShowNav }) {
   const [searchQuery, setSearchQuery] = useState('');
-  const apiContext = useAppContext();
-  const allPostsData = apiContext.api;
+  const context = useAppContext();
+  const allPostsData = context.api;
+  const recommender = context.recommender;
 
   const getSearchQuery = (e) => {
     setSearchQuery(e.target.value);
@@ -28,10 +29,14 @@ export default function Search({ setShowNav }) {
           aria-placeholder="Type here to search"
           // autoFocus={true}
           onChange={getSearchQuery} />
+        {searchQuery === '' && recommender &&
+          <p>Enjoyed this work? Here are our recommendations!</p>
+        }
         <SearchResults
           setShowNav={setShowNav}
           searchQuery={searchQuery}
           allPostsData={allPostsData}
+          recommender={recommender}
         />
       </div>
     </div>
@@ -39,8 +44,8 @@ export default function Search({ setShowNav }) {
   );
 }
 
-const SearchResults = ({ setShowNav, searchQuery, allPostsData }) => {
-  if (searchQuery === '') {
+const SearchResults = ({ setShowNav, searchQuery, allPostsData, recommender }) => {
+  if (searchQuery === '' && !recommender) {
     return;
   }
 
@@ -50,21 +55,37 @@ const SearchResults = ({ setShowNav, searchQuery, allPostsData }) => {
     "date", "contributor", "tags"
   ]
 
-  const postsQuery = Object.keys(allPostsData).filter(id => {
-    const postData = allPostsData[id];
-    const conditions = searchKeys.map(key => {
-      return postData[key] ? (
-        postData[key].toString().toLowerCase()
-          .includes(searchQuery.toLowerCase())
-      ) : (
-        false
-      );
+  let postsQuery = [];
+  let results = [];
+
+  if (searchQuery === '' && recommender) {
+    const keyedPosts = [];
+    allPostsData.map((post, idx) => {
+      const key = `/${post.slug}`;
+      keyedPosts[key] = `${idx}`;
     });
 
-    return conditions.includes(true);
-  });
+    postsQuery = recommender.map((slug) => {
+      return keyedPosts[slug];
+    });
+  } else {
+    postsQuery = Object.keys(allPostsData).filter(id => {
+      const postData = allPostsData[id];
+      const conditions = searchKeys.map(key => {
+        return postData[key] ? (
+          postData[key].toString().toLowerCase()
+            .includes(searchQuery.toLowerCase())
+        ) : (
+          false
+        );
+      });
 
-  const results = postsQuery.slice(0, displayLimit);
+      return conditions.includes(true);
+    });
+  }
+
+  results = postsQuery.slice(0, displayLimit);
+
 
   function closeNav() {
     document.getElementById("myNav").style.height = "0%";
