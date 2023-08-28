@@ -19,7 +19,7 @@ export default function About(props) {
 
   // console.log(data)
   return (
-    <Layout genre title={"About"}>
+    <Layout landingPage title={"About"}>
       <div className={teamStyles["team_module"]}>
         <div className={`${animationStyles.cssanimation} ${animationStyles.sequence} ${animationStyles.fadeInBottom}`}>
           <h1>O(THE)R PEOPLE</h1>

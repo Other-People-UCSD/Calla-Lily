@@ -251,6 +251,31 @@ export const schema = {
       },
       fields: [
         {
+          name: "announcement",
+          label: "Announcement",
+          type: "object",
+          required: true,
+          fields: [
+            {
+              name: "link",
+              label: "Link",
+              type: "string",
+              description: "Leave blank to disable link.",
+            },
+            {
+              name: "description",
+              label: "Description",
+              type: "string",
+              description: "<80 chars or resize editor to check how it looks on mobile devices.",
+            },{
+              name: "date",
+              label: "Date (MUST CHANGE FOR EVERY ANNOUNCEMENT)",
+              type: "datetime",
+              description: "If user clicks on X, the announcement will always be hidden until this date is changed. Therefore, they won't see the new announcement."
+            }
+          ],
+        },
+        {
           name: "image",
           label: "Featured Image",
           type: "image",
@@ -332,6 +357,76 @@ export const schema = {
           ui: {
             description: "See above"
           }
+        },
+      ],
+    },
+    {
+      name: "ucmagazines",
+      label: "UC Magazines",
+      path: "data",
+      format: "json",
+      match: {
+        include: "uc-magazines",
+      },
+      ui: {
+        router: () => {
+          return `/uc-magazines`
+        },
+        allowedActions: {
+          create: false,
+          delete: false,
+        },
+      },
+      fields: [
+        {
+          name: "lastmod",
+          label: "Last Modified",
+          type: "datetime",
+          dateFormat: "YYYY-MM-DD",
+          required: true,
+        },
+        {
+          name: "magazines",
+          label: "Magazines",
+          type: "object",
+          list: true,
+          ui: {
+            itemProps: (item) => {
+              return { label: `${item?.title} (${item?.college?.toUpperCase()})` }
+            },
+          },
+          fields: [
+            {
+              name: "url",
+              label: "URL",
+              type: "string",
+            },
+            {
+              name: "title",
+              label: "Title",
+              type: "string",
+            },
+            {
+              name: "college",
+              label: "College",
+              type: "string",
+            },
+            {
+              name: "est",
+              label: "Established year (est)",
+              type: "number",
+            },
+            {
+              name: "active",
+              label: "Active?",
+              type: "boolean",
+            },
+            {
+              name: "description",
+              label: "Description",
+              type: "string",
+            },
+          ]
         },
       ],
     },

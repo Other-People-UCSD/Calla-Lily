@@ -6,12 +6,12 @@ const ContentWarning = ({ description }) => {
     document.getElementById('cr-article').className = '';
   }
   return (
-    <div id="cw" class="content-warning">
-      <div class="warning center">
-        <p class="title">CONTENT WARNING</p>
+    <div id="cw" className={"content-warning"}>
+      <div className={"warning center"}>
+        <p className={"title"}>CONTENT WARNING</p>
         <p>{description}</p>
         <p>Viewer discretion is advised. Proceed to view content?</p>
-        <div class="options center">
+        <div className={"options center"}>
           <Link href="/">Cancel</Link>
           <button onClick={access}>Enter</button>
         </div>

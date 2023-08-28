@@ -11,18 +11,19 @@ import Search from './search';
 import { FooterLogo } from './footer';
 
 const delta = 5;
-const announcementDate = '6-2';
 
 /**
  * This is the header with the MobileNav menu nested within it. 
  * @returns 
  */
-export default function HeaderMain() {
+export default function HeaderMain({ landingPage, title, announcementData }) {
   const headerRef = useRef(null);
   const [showNav, setShowNav] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const [showAnnouncement, setShowAnnouncement] = useState(false);
+  const announcementDate = announcementData?.date;
+
 
   /**
    * Opens the mobile navigation after clicking Menu
@@ -69,7 +70,7 @@ export default function HeaderMain() {
    * Hides the announcement when the X is pressed
    */
   const hideAnnouncement = () => {
-    localStorage.setItem(announcementDate, 'hidden');
+    localStorage.setItem('announcement', announcementDate);
     setShowAnnouncement(false);
   }
 
@@ -77,8 +78,8 @@ export default function HeaderMain() {
    * Fire the announcement only once instead of rerendering every scroll
    */
   useEffect(() => {
-    const announcement = localStorage.getItem(announcementDate);
-    if (!announcement) {
+    const storedState = localStorage.getItem('announcement');
+    if (storedState !== announcementDate) {
       setShowAnnouncement(true);
     }
   }, []); // Empty dependency array only triggers this effect once
@@ -89,6 +90,7 @@ export default function HeaderMain() {
         ref={headerRef}
         onScroll={handleScroll}
         className={`${showHeader ? '' : headerStyles["nav-up"]} ${headerStyles["header-glob"]} `}
+        style={{ backgroundColor: '#ffc267'}}
       >
         <div className={headerStyles["header-main"]}>
           <h2><Link href="/">Other<br /> People ©</Link></h2>
@@ -99,9 +101,14 @@ export default function HeaderMain() {
           <button className={navStyles.menu} onClick={openNav} aria-label="Open Menu">Menu</button>
         </div>
         {
+          landingPage && title === 'Home' && 
           showAnnouncement ? (
             <div className={headerStyles.announcement} id="announcement">
-              <Link href="/6/you-have-created-an-imaginary-friend">Read Theo Erickson&apos;s experimental story &apos;You Have Created an Imaginary Friend&apos; here!</Link>
+              { announcementData?.link?.length > 0 ?
+                <Link href={`${announcementData?.link}`}>{announcementData?.description}</Link>
+                :
+                <span>{announcementData?.description}</span>
+              }
               <button 
                 id="close-notice" 
                 className={headerStyles["close-announcement"]}

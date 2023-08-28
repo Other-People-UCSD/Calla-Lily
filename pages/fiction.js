@@ -6,7 +6,7 @@ import { getSortedPostsData, getGenrePostsData } from "@/lib/posts";
 
 export default function Fiction({ fictionPosts }) {
   return (
-    <Layout genre title={"Fiction"}>
+    <Layout landingPage title={"Fiction"}>
       <div className={`${animationStyles.cssanimation} ${animationStyles.sequence} ${animationStyles.fadeInBottom}`}>
         <div className={indexStyles.IndexContainer}>
           <h1 className={indexStyles["page-title"]}>Fiction</h1>

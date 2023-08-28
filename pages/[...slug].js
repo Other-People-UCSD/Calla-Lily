@@ -15,20 +15,17 @@ import OPMparser from '@/lib/OPMparser';
 import { beginMissedConnections } from '@/public/js/missed-connections';
 import { beginCYOAStory, goto, parseString, resetCYOAProgress } from '@/public/js/cyoa';
 
+import recommenderData from '@/data/recommender.json';
+
 const Page = (props) => {
-  // console.log(props.variables)
-  // console.log(props.data)
   const { query, variables, data } = useTina({
     query: props.query,
     variables: props.variables,
     data: props.data,
   });
 
-  // console.log('POST VAR', variables);
-  // console.log('POST DATA', data);
-  // if (localStorage.getItem('hardRefresh') !== 'true') {
-  //   hasLoaded(true);
-  // }
+  // console.log('POST VAR', props.variables);
+  // console.log('POST DATA', variables);
 
   // Add JS files that affect all posts
   useEffect(() => {
@@ -86,14 +83,20 @@ const Page = (props) => {
 
 export default Page;
 
+/**
+ * Gets necessary information to render the page properly. 
+ * Include additional static features here such as anything that affects the search functionality.
+ * @param {Object} params Page parameters
+ * @returns {Object} Props for the Next.js SSG
+ */
 export const getStaticProps = async (params) => {
   const { data, query, variables } = await getPageData(params.params.slug);
-  // console.log('getStaticProps data:', data);
-  // console.log('getStaticProps vars:', variables);
   const allPostsData = getSortedPostsData();
   const fullPostData = await getPostDataAPI(variables.relativePath, allPostsData);
-  // console.log('allPostData', allPostData);
-  // console.log('fullPostData', fullPostData);
+  
+  // Recommendation Data
+  const relativePath = '/' + variables.relativePath.replace(/\.mdx?/, '');
+  const recommendedPosts = recommenderData[relativePath] || null;
 
   return {
     props: {
@@ -102,10 +105,16 @@ export const getStaticProps = async (params) => {
       query: query,
       fullPostData: fullPostData,
       allPostsData: allPostsData,
+      recommender: recommendedPosts
     },
   }
 }
 
+/**
+ * 
+ * @param {Array} slug The URL separated by its route slashes 
+ * @returns {Object} Page data
+ */
 const getPageData = async (slug) => {
   // Sorted by frequency to reduce wrong path errors
   // const years = ['2020', '2022', '2023', '2021'];
@@ -147,6 +156,10 @@ const getPageData = async (slug) => {
   }
 }
 
+/**
+ * Get all post paths in a paginated form through the GraphQL API
+ * @returns {Object} Paths for Next.js SSG
+ */
 export const getStaticPaths = async () => {
   let paths = [];
   let postsListData = undefined;
@@ -183,8 +196,8 @@ export const getStaticPaths = async () => {
 
 /**
  * 
- * @param {*} props 
- * @returns 
+ * @param {String} title The title of the experiemental work
+ * @returns Javascript to run the experimental work property
  */
 export const Experimental = ({ title }) => {
   // console.log(loaded, localStorage.getItem('loaded'))
@@ -234,7 +247,7 @@ export const Experimental = ({ title }) => {
 
             const title = parseString(storyRef.innerText);
             const storyReference = "/js/" + title + ".json";
-            
+
             if (document.getElementById('output-text').children.length === 0 || document.getElementById('9.0') === null) {
               beginCYOAStory(storyReference);
             }
@@ -249,23 +262,23 @@ export const Experimental = ({ title }) => {
             }
 
             document.getElementById('shortcut').addEventListener("keydown", (e) => {
-                if (e.code === "Enter") {
-                    shortcut()
-                }
+              if (e.code === "Enter") {
+                shortcut()
+              }
             });
           } catch {
             // Prevent code execution on other pages
           }
         }}
       />
-      default:
-        break;
+    default:
+      break;
   }
 }
 /**
  * The estimated reading time calculation
- * @param {Number} param0 
- * @returns 
+ * @param {Number} wordCount The number of words in the page 
+ * @returns {String} The estimated reading time 
  */
 export const MinsRead = ({ wordCount }) => {
   if (wordCount <= 360) {
