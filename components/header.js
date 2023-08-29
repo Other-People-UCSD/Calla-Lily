@@ -82,7 +82,7 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
     if (storedState !== announcementDate) {
       setShowAnnouncement(true);
     }
-  }, []); // Empty dependency array only triggers this effect once
+  }, [announcementDate]); // Empty dependency array only triggers this effect once
 
   return (
     <>

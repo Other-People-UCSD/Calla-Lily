@@ -38,6 +38,7 @@ export default function UCMagazines(props) {
         <p>To update or add your own information, please email us at otherpeopleucsd@gmail.com!</p>
 
         <p><strong>Last Updated: {lastmod}</strong></p>
+        <p><strong>*Magazine activity is not updated yet</strong></p>
 
         <UCCards magazines={data.ucmagazines.magazines} />
       </div>
