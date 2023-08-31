@@ -15,7 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - run: sleep 180
+      # - run: sleep 180
 
       - name: Generate URLs
         id: urls
@@ -29,7 +29,8 @@ jobs:
               }
             });
             const data = await res.json();
-            core.setOutput('urls', data.urls)
+            const urlListString = data.urls.join('\n')
+            core.setOutput('urls', data.urlListString)
 
       - run: echo ${{ steps.urls.outputs.urls }}
 
