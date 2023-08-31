@@ -4,9 +4,10 @@
 
 # Based on https://github.com/tomdye/vercel-lighthouse-action/blob/main/workflows/pr-deploy-and-audit.yml
 
-
 name: Lighthouse-CI
+
 on: [push]
+
 jobs:
   lhci:
     name: Lighthouse
@@ -15,21 +16,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-    - run: sleep 30
-    - name: vercel-preview-url
-      uses: zentered/vercel-preview-url@v1.1.9
-      id: vercel_preview_url
-      env:
-        VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-      with:
-        vercel_project_id: ${{ secrets.SITE_VERCEL_PROJECT_ID }}
-    - name: Get URL
-      run: echo 
-    - name: Audit URLs using Lighthouse
-      uses: treosh/lighthouse-ci-action@v10
-      with:
-        urls: "https://${{ steps.vercel_preview_url.outputs.preview_url }}"
-        uploadArtifacts: true # save results as an action artifacts
-        temporaryPublicStorage: true # upload lighthouse report to the temporary storage
-    - name: Output Results
-      run: echo ${{ steps.lighthouse_audit.outputs.links }}
+      - run: sleep 30
+      - name: vercel-preview-url
+        uses: zentered/vercel-preview-url@v1.1.9
+        id: vercel_preview_url
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        with:
+          vercel_project_id: ${{ secrets.SITE_VERCEL_PROJECT_ID }}
+          
+      - name: Get URL
+        run: echo ${{ steps.vercel_preview_url.outputs.preview_url }}
+
+      - name: Audit URLs using Lighthouse
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          urls: "https://${{ steps.vercel_preview_url.outputs.preview_url }}"
+          uploadArtifacts: true # save results as an action artifacts
+          temporaryPublicStorage: true # upload lighthouse report to the temporary storage
+
+      - name: Output Results
+        run: echo ${{ steps.lighthouse_audit.outputs.links }}
