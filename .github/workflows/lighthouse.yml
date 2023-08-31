@@ -32,8 +32,6 @@ jobs:
             const urlListString = data.urls.join('\n')
             core.setOutput('urls', urlListString)
 
-      - run: echo ${{ steps.urls.outputs.urls }}
-
       - name: Audit URLs using Lighthouse
         uses: treosh/lighthouse-ci-action@v10
         id: lighthouse_audit
