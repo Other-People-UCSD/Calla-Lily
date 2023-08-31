@@ -81,7 +81,7 @@ jobs:
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
         run: yarn build
       - name: Export NextJS site
-        run: npm next export
+        run: yarn run next export
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
