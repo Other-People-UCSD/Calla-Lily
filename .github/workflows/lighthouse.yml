@@ -29,6 +29,23 @@ jobs:
       - name: Get URL
         run: echo ${{ steps.vercel_preview_url.outputs.preview_url }}
 
+      # Lighthouse CI Action dynamically generate URLS
+      - name: Generate URLs
+        id: urls
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const globber = await glob.create('*');
+            const files = await globber.glob();
+            const urls = files
+              .map(x => x.match(/([\w-]+)/)[1])
+              .map(x => `https://${{ steps.vercel_preview_url.outputs.preview_url }}/${x}`)
+              .join('\n');
+            core.setOutput('urls', urls);
+
+      - run: echo ${{ steps.urls.outputs.urls }}
+
       - name: Audit URLs using Lighthouse
         uses: treosh/lighthouse-ci-action@v10
         id: lighthouse_audit
