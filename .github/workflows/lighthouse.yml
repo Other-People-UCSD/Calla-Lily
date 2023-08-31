@@ -57,8 +57,8 @@ jobs:
           TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
         run: yarn build
-        
+
       - name: run Lighthouse CI
         run: |
-          yarn add -g @lhci/cli@0.12.x
+          yarn add @lhci/cli@0.12.x
           lhci autorun
