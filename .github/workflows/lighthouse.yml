@@ -30,7 +30,7 @@ jobs:
             });
             const data = await res.json();
             const urlListString = data.urls.join('\n')
-            core.setOutput('urls', data.urlListString)
+            core.setOutput('urls', urlListString)
 
       - run: echo ${{ steps.urls.outputs.urls }}
 
