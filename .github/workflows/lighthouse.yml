@@ -1,5 +1,4 @@
 # Uses 
-# - https://github.com/zentered/vercel-preview-url
 # - https://github.com/treosh/lighthouse-ci-action
 
 # Based on https://github.com/tomdye/vercel-lighthouse-action/blob/main/workflows/pr-deploy-and-audit.yml
@@ -16,18 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # - run: sleep 180
-      # - name: vercel-preview-url
-      #   uses: zentered/vercel-preview-url@v1.1.9
-      #   id: vercel_preview_url
-      #   env:
-      #     VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-      #   with:
-      #     vercel_team_id:  ${{ secrets.VERCEL_TEAM_ID }}
-      #     vercel_project_id: ${{ secrets.SITE_VERCEL_PROJECT_ID }}
-          
-      # - name: Get URL
-      #   run: echo ${{ steps.vercel_preview_url.outputs.preview_url }}
+      - run: sleep 180
 
       - name: Generate URLs
         id: urls
@@ -40,9 +28,7 @@ jobs:
                 'Content-Type': 'application/json'
               }
             });
-
             const data = await res.json();
-            console.log(data)
             core.setOutput('urls', data.urls)
 
       - run: echo ${{ steps.urls.outputs.urls }}
@@ -51,7 +37,7 @@ jobs:
         uses: treosh/lighthouse-ci-action@v10
         id: lighthouse_audit
         with:
-          urls: "https://${{ steps.vercel_preview_url.outputs.preview_url }}"
+          urls: ${{ steps.urls.outputs.urls }}
           uploadArtifacts: true # save results as an action artifacts
           temporaryPublicStorage: true # upload lighthouse report to the temporary storage
 
