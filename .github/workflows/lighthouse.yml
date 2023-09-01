@@ -6,6 +6,10 @@
 name: Lighthouse-CI
 
 on: [push]
+  # pull_request:
+  #   branches:
+  #     - main
+  #     - lighthouse
 
 jobs:
   lhci:
@@ -14,8 +18,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      # - run: sleep 180
 
       - name: Generate URLs
         id: urls
@@ -29,8 +31,11 @@ jobs:
               }
             });
             const data = await res.json();
-            const urlListString = data.urls.join('\n')
-            core.setOutput('urls', urlListString)
+            const batch = data.urls.filter((url) => return url.includes('2023'));
+            core.setOutput('urls', batch)
+
+            # const urlListString = data.urls.join('\n')
+            # core.setOutput('urls', urlListString)
 
       - name: Audit URLs using Lighthouse
         uses: treosh/lighthouse-ci-action@v10
@@ -40,5 +45,11 @@ jobs:
           uploadArtifacts: true # save results as an action artifacts
           temporaryPublicStorage: true # upload lighthouse report to the temporary storage
 
-      - name: Output Results
-        run: echo ${{ steps.lighthouse_audit.outputs.links }}
+      - name: Save Results Into Release
+        run: ${{ steps.lighthouse_audit.outputs.manifest }} > release.txt
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: release.txt
