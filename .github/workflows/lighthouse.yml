@@ -31,7 +31,7 @@ jobs:
               }
             });
             const data = await res.json();
-            const batch = data.urls.filter((url) => {return url.includes('2023/y')});
+            const batch = data.urls.filter((url) => {return url.includes('sink')});
             core.setOutput('urls', batch.join('\n'))
 
 # const urlListString = data.urls.join('\n')
