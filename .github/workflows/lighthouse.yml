@@ -31,11 +31,11 @@ jobs:
               }
             });
             const data = await res.json();
-            const batch = data.urls.filter((url) => {return url.includes('skin')});
-            core.setOutput('urls', batch.join('\n'));
+# const batch = data.urls.filter((url) => {return url.includes('skin')});
+# core.setOutput('urls', batch.join('\n'));
 
-# const urlListString = data.urls.join('\n')
-# core.setOutput('urls', urlListString)
+            const urlListString = data.urls.join('\n')
+            core.setOutput('urls', urlListString)
 
       - name: Audit URLs using Lighthouse
         uses: treosh/lighthouse-ci-action@v10
@@ -59,7 +59,7 @@ jobs:
             core.setOutput('manifest', escapedJSON);
 
       - run: echo "${{ steps.manifest_summary.outputs.manifest }}" > manifest.json
-      
+
       - name: Upload Manifest Summary Artifact
         uses: actions/upload-artifact@v3
         with:
