@@ -52,8 +52,10 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const manifest = ${{ steps.lighthouse_audit.outputs.manifest }}
-            const summary = manifest[manifest.length - 1].summary
-            core.setOutput('manifest', summary);
+            const summaries = manifest.map((item) => {
+              return {url: item.url, summary: item.summary}
+            });
+            core.setOutput('manifest', JSON.stringify(summaries));
 
       - name: Upload Manifest Summary Artifact
         run: echo ${{ steps.manifest_summary.outputs.manifest }} > manifest.txt
