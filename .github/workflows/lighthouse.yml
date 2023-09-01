@@ -45,11 +45,10 @@ jobs:
           uploadArtifacts: true # save results as an action artifacts
           temporaryPublicStorage: true # upload lighthouse report to the temporary storage
 
-      - name: Save Results Into Release
-        run: echo ${{ steps.lighthouse_audit.outputs.manifest }} > release.txt
+      - name: Upload Manifest Artifact
+        run: echo ${{ steps.lighthouse_audit.outputs.manifest }} > manifest.txt
 
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
+      - uses: actions/upload-artifact@v3
         with:
-          files: release.txt
+          name: Lighthouse Manifest
+          path: manifest.txt
