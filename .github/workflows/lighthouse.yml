@@ -31,12 +31,10 @@ jobs:
               }
             });
             const data = await res.json();
-# const batch = data.urls.filter((url) => {return url.includes('skin')});
-# core.setOutput('urls', batch.join('\n'));
-
             const urlListString = data.urls.join('\n')
             core.setOutput('urls', urlListString)
-
+# const batch = data.urls.filter((url) => {return url.includes('skin')});
+# core.setOutput('urls', batch.join('\n'));
       - name: Audit URLs using Lighthouse
         uses: treosh/lighthouse-ci-action@v10
         id: lighthouse_audit
@@ -57,7 +55,7 @@ jobs:
             });
             const escapedJSON = JSON.stringify(summaries).replace(/"/g, '\\"')
             core.setOutput('manifest', escapedJSON);
-
+            
       - run: echo "${{ steps.manifest_summary.outputs.manifest }}" > manifest.json
 
       - name: Upload Manifest Summary Artifact
