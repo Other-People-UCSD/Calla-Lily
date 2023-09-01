@@ -32,7 +32,7 @@ jobs:
             });
             const data = await res.json();
             const batch = data.urls.filter((url) => {return url.includes('skin')});
-            core.setOutput('urls', batch.join('\n'))
+            core.setOutput('urls', batch.join('\n'));
 
 # const urlListString = data.urls.join('\n')
 # core.setOutput('urls', urlListString)
@@ -44,11 +44,5 @@ jobs:
           urls: ${{ steps.urls.outputs.urls }}
           uploadArtifacts: true # save results as an action artifacts
           temporaryPublicStorage: true # upload lighthouse report to the temporary storage
-
-      - name: Upload Manifest Artifact
-        run: echo ${{ steps.lighthouse_audit.outputs.manifest }} > manifest.txt
-
-      - uses: actions/upload-artifact@v3
-        with:
-          name: Lighthouse Manifest
-          path: manifest.txt
+      
+      - run: echo ${{ steps.lighthouse_audit.outputs.manifest }}
