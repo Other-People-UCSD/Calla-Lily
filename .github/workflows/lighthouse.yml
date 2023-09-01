@@ -31,7 +31,7 @@ jobs:
               }
             });
             const data = await res.json();
-            const batch = data.urls.filter((url) => return url.includes('2023'));
+            const batch = data.urls.filter((url) => {return url.includes('2023')});
             core.setOutput('urls', batch)
 
             # const urlListString = data.urls.join('\n')
