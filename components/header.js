@@ -90,7 +90,6 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
         ref={headerRef}
         onScroll={handleScroll}
         className={`${showHeader ? '' : headerStyles["nav-up"]} ${headerStyles["header-glob"]} `}
-        style={{ backgroundColor: '#ffc267'}}
       >
         <div className={headerStyles["header-main"]}>
           <h2><Link href="/">Other<br /> People ©</Link></h2>

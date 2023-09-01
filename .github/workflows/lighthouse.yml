@@ -1,0 +1,67 @@
+# Uses 
+# - https://github.com/treosh/lighthouse-ci-action
+
+# Based on https://github.com/tomdye/vercel-lighthouse-action/blob/main/workflows/pr-deploy-and-audit.yml
+
+name: Lighthouse-CI
+
+on:
+  pull_request:
+    branches:
+      - main
+      - lighthouse
+
+jobs:
+  lhci:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Generate URLs
+        id: urls
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const res = await fetch(`https://www.otherpeoplesd.com/api/site-urls.json`, {
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            });
+            const data = await res.json();
+            const urlListString = data.urls.join('\n')
+            core.setOutput('urls', urlListString)
+# const batch = data.urls.filter((url) => {return url.includes('skin')});
+# core.setOutput('urls', batch.join('\n'));
+
+      - name: Audit URLs using Lighthouse
+        uses: treosh/lighthouse-ci-action@v10
+        id: lighthouse_audit
+        with:
+          urls: ${{ steps.urls.outputs.urls }}
+          uploadArtifacts: true # save results as an action artifacts
+          temporaryPublicStorage: true # upload lighthouse report to the temporary storage
+      
+      - name: Get Summary From Lighthouse Manifest
+        id: manifest_summary
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const manifest = ${{ steps.lighthouse_audit.outputs.manifest }}
+            const summaries = manifest.map((item) => {
+              return {url: item.url, summary: item.summary}
+            });
+            const escapedJSON = JSON.stringify(summaries).replace(/"/g, '\\"')
+            core.setOutput('manifest', escapedJSON);
+            
+      - run: echo "${{ steps.manifest_summary.outputs.manifest }}" > manifest.json
+
+      - name: Upload Manifest Summary Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: lighthouse-manifest
+          path: manifest.json
+
