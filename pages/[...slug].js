@@ -16,6 +16,7 @@ import { beginMissedConnections } from '@/public/js/missed-connections';
 import { beginCYOAStory, goto, parseString, resetCYOAProgress } from '@/public/js/cyoa';
 
 import recommenderData from '@/data/recommender.json';
+import Head from 'next/head';
 
 const Page = (props) => {
   const { query, variables, data } = useTina({
@@ -49,6 +50,10 @@ const Page = (props) => {
           images: [{ url: previewImg }],
         }}
       />
+      <Head>
+        <meta name="robots" content="all" />
+      </Head>
+      
       <div className={`${animationStyles.cssanimation} ${animationStyles.sequence} ${animationStyles.fadeInBottom}`}>
         <h1 id="post-title" className={postStyles.post_title}>{data.post.title}</h1>
       </div>
