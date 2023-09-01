@@ -31,7 +31,7 @@ jobs:
               }
             });
             const data = await res.json();
-            const batch = data.urls.filter((url) => {return url.includes('sink')});
+            const batch = data.urls.filter((url) => {return url.includes('skin')});
             core.setOutput('urls', batch.join('\n'))
 
 # const urlListString = data.urls.join('\n')
@@ -46,7 +46,7 @@ jobs:
           temporaryPublicStorage: true # upload lighthouse report to the temporary storage
 
       - name: Save Results Into Release
-        run: ${{ steps.lighthouse_audit.outputs.manifest }} > release.txt
+        run: echo ${{ steps.lighthouse_audit.outputs.manifest }} > release.txt
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
