@@ -34,8 +34,8 @@ jobs:
             const batch = data.urls.filter((url) => {return url.includes('2023')});
             core.setOutput('urls', batch)
 
-            # const urlListString = data.urls.join('\n')
-            # core.setOutput('urls', urlListString)
+# const urlListString = data.urls.join('\n')
+# core.setOutput('urls', urlListString)
 
       - name: Audit URLs using Lighthouse
         uses: treosh/lighthouse-ci-action@v10
