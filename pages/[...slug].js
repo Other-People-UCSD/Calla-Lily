@@ -16,6 +16,7 @@ import { beginMissedConnections } from '@/public/js/missed-connections';
 import { beginCYOAStory, goto, parseString, resetCYOAProgress } from '@/public/js/cyoa';
 
 import recommenderData from '@/data/recommender.json';
+import Head from 'next/head';
 
 const Page = (props) => {
   const { query, variables, data } = useTina({
@@ -40,6 +41,10 @@ const Page = (props) => {
   const previewImg = data.post.thumbnail ? data.post.thumbnail : `https://otherpeoplesd.com/favicons/favicon-32x32.png`;
   return (
     <Layout post title={data.post.title}>
+      <Head>
+        <meta name="robots" content="all"/>
+        <meta name="robots" content="noimageindex"/>
+      </Head>
       <NextSeo
         canonical={canonical}
         description={excerpt}

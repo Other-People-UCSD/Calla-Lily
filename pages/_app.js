@@ -9,6 +9,7 @@ export default function App({ Component, pageProps }) {
   // This prevent analytics data from skewing results due to editing a page
   return (
     <>
+      <link rel="preconnect" href="https://www.googletagmanager.com/" />
       <Script src="https://www.googletagmanager.com/gtag/js?id=G-CR21DPVQJ3" strategy="afterInteractive" />
       <Script id="google-analytics">
         {`
