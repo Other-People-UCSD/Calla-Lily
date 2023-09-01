@@ -55,14 +55,13 @@ jobs:
             const summaries = manifest.map((item) => {
               return {url: item.url, summary: item.summary}
             });
-            core.setOutput('manifest', JSON.stringify(summaries));
+            const escapedJSON = JSON.stringify(summaries).replace(/"/g, '\\"')
+            core.setOutput('manifest', escapedJSON);
 
-      - run: echo ${{ steps.manifest_summary.outputs.manifest }} > manifest.txt
-      - run: cat manifest.txt
-      
       - name: Upload Manifest Summary Artifact
+        run: echo "${{ steps.manifest_summary.outputs.manifest }}" > manifest.json
         uses: actions/upload-artifact@v3
         with:
           name: lighthouse-manifest
-          path: manifest.txt
+          path: manifest.json
 
