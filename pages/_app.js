@@ -13,11 +13,13 @@ export default function App({ Component, pageProps }) {
       <Script src="https://www.googletagmanager.com/gtag/js?id=G-CR21DPVQJ3" strategy="afterInteractive" />
       <Script id="google-analytics">
         {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
           if (document.location.hostname.includes('otherpeoplesd.com')) {
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
             gtag('config', 'G-CR21DPVQJ3');
+          } else {
+            gtag('config', 'G-CR21DPVQJ3', { 'debug_mode':true });
           }`}
       </Script>
       <DefaultSeo

@@ -72,6 +72,10 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
   const hideAnnouncement = () => {
     localStorage.setItem('announcement', announcementDate);
     setShowAnnouncement(false);
+    
+    gtag('event', 'close_announcement', {
+      'announcement_date': announcementDate
+    });
   }
 
   /**

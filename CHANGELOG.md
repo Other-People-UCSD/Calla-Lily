@@ -1,4 +1,8 @@
 # Changelog 
+### v4.5.9 (9/26/23)
+- Added Google Analytics event triggers on clicking recommendations and closing announcement
+  - Configured GA debug mode for developers
+
 ## v4.5.8 
 - Created metadata recommender model based on contributors, tags, and word count
   - On post page: The recommender for the post is implemented in the search as the default result once the search bar gains focus

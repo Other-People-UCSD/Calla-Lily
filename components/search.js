@@ -87,6 +87,20 @@ const SearchResults = ({ setShowNav, searchQuery, allPostsData, recommender }) =
   results = postsQuery.slice(0, displayLimit);
 
 
+  function handleClick(e) {
+    if (searchQuery === '' && recommender) {
+      const link = e.target.parentElement;
+      const toPath = link.getAttribute('href');
+
+      gtag('event', 'click_recommendation', {
+        'from': window.location.pathname,
+        'to': toPath
+      });
+    }
+
+    closeNav();
+  }
+
   function closeNav() {
     document.getElementById("myNav").style.height = "0%";
     setShowNav(false);
@@ -102,7 +116,7 @@ const SearchResults = ({ setShowNav, searchQuery, allPostsData, recommender }) =
             return (
               <li key={key}>
                 <Link href={`/${post.slug}`}
-                  onClick={closeNav}>
+                  onClick={handleClick}>
                   <h2>{post.title}</h2>
                   <h3>{post.contributor}</h3>
                   <h4>{post.tags.join(", ")}</h4>
