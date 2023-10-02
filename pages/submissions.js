@@ -42,7 +42,7 @@ export default function Submissions(props) {
           )
         }
         
-        <p>(The list of submissions are often updated on our discord! <a href="https://discord.gg/Z9eFGkd9bU" rel="noreferer noopener">https://discord.gg/Z9eFGkd9bU</a>)</p>
+        <p>(The list of submissions are often updated on our discord! <a href="https://discord.gg/ZT3Mx78Ar7" rel="noreferer noopener">https://discord.gg/ZT3Mx78Ar7</a> <strong>Last Updated 10/2</strong>)</p>
 
         <p>*Magazine submissions will be selected based on quality, originality, creativity, and the creator’s intent!</p>
 
