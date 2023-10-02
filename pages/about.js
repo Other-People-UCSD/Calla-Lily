@@ -13,6 +13,7 @@ export default function About(props) {
     data: props.data,
   })
 
+  const forms = props.dataForms.forms;
 
   const teamKeys = ['editor_in_chief', 'editorial', 'design_team', 'publicity_events'];
   const teamTitles = ['Editor in Chief', 'Editorial', 'Design', 'PR + Events'];
@@ -99,25 +100,55 @@ export default function About(props) {
             <p>Editors review and edit submissions, then produce the pages of the magazine. Content writers create
               exclusive prose, interview submittors about their
               stories, and may write articles of their choice.</p>
-            <p className={"center"}>(Applications Closed)</p>
+            <p className={"center"}>
+              {forms?.editorial && !forms?.content &&
+                <a href={forms.editorial}>(Apply Here!)</a>
+              }
+
+              {forms?.content && !forms?.editorial &&
+                <a href={forms.content}>(Apply Here!)</a>
+              }
+
+              {!forms?.editorial && !forms?.content &&
+                <>(Applications Closed)</>
+              }
+            </p>
           </li>
           <li>
             <h3>Design & Social Media</h3>
             <p>Design illustrators create artwork to complement accepted prose. We publish digital and print copies of
               issues, as well as designing inclusive access to artistic expression through our website.</p>
-            <p className={"center"}>(Applications Closed)</p>
+            <p className={"center"}>
+              {forms?.design ?
+                <a href={forms.design}>(Apply Here!)</a>
+                :
+                <>(Applications Closed)</>
+              }
+            </p>
           </li>
           <li>
             <h3>Event Planning</h3>
             <p>Promote the magazine through social media, plan open mic nights, fundraisers, socials, etc. Marketing and
               event planners help fund the magazine and increase our outreach beyond the campus.</p>
-            <p className={"center"}><a href="https://docs.google.com/forms/d/e/1FAIpQLSfpVqluRR4TrPDJouo_Evj_J5D1fGFbvNntEgSAe6u7_tMW-A/viewform?usp=sf_link">(Apply Here!)</a></p>
+            <p className={"center"}>
+              {forms?.events ?
+                <a href={forms.events}>(Apply Here!)</a>
+                :
+                <>(Applications Closed)</>
+              }
+            </p>
           </li>
           <li>
             <h3>Web Development/UI/UX</h3>
             <p>The website developer/producer is responsible for publishing content to the website and implementing
               accessible designs to display to the public through frontend programming!</p>
-            <p className={"center"}><a href="https://docs.google.com/forms/d/e/1FAIpQLSfMolDd9ypQFG6jCyU37oTUY4DAd_2Im1Iky9i-YC2p0n8hIQ/viewform?usp=sf_link">(Apply Here!)</a></p>
+            <p className={"center"}>
+              {forms?.website ?
+                <a href={forms.website}>(Apply Here!)</a>
+                :
+                <>(Applications Closed)</>
+              }
+            </p>
           </li>
         </ul>
       </div>
@@ -152,11 +183,22 @@ export async function getStaticProps() {
   let data = {}
   let query = {}
   let variables = { relativePath: `../data/team.json` }
+
   try {
     const res = await client.queries.team(variables)
     query = res.query
     data = res.data
     variables = res.variables
+  } catch {
+    // swallow errors related to document creation
+  }
+
+  let dataForms = {}
+  let variablesForms = { relativePath: `../data/forms.json` }
+
+  try {
+    const res = await client.queries.forms(variablesForms)
+    dataForms = res.data
   } catch {
     // swallow errors related to document creation
   }
@@ -168,6 +210,7 @@ export async function getStaticProps() {
       variables: variables,
       data: data,
       query: query,
+      dataForms: dataForms,
       allPostsData,
     },
   };
