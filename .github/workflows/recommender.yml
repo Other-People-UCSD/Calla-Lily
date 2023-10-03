@@ -38,9 +38,11 @@ jobs:
 
       - name: Checkout Calla-Lily repo
         uses: actions/checkout@v4
+        with:
+          path: calla-lily
 
       - name: View files in workspace
-        run: ls -lR ${{github.workspace}}
+        run: ls -l ${{github.workspace}}
 
       # - name: Push output file to this branch's data directory
       #   run: |
