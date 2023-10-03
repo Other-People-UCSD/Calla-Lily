@@ -27,8 +27,21 @@ jobs:
       - name: run test notebook
         run: python recommender/test.py
 
+
+      - name: View files in workspace
+        run: ls ${{github.workspace}}
+      
+      # - name: run test notebook
+      #   run: python test.py
+
       - name: Upload results
         uses: actions/upload-artifact@v3
         with:
           name: test-results
           path: recommender/output.json
+
+      - name: Upload results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: output.json
