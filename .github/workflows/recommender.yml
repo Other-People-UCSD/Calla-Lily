@@ -7,6 +7,7 @@ on:
   push:
     paths:
       - '_posts/**'
+  workflow_dispatch:
 
 jobs:
   recommender:
@@ -45,23 +46,24 @@ jobs:
 # recommender/
 # recommender.json (the output from running the recommender.py script)
 
-  # Set date to compare recs to previous versions
+# First command sends the output to website
+      - name: Copy recommender.json to data directory
+        run: cp ./recommender-auto.json ./Calla-Lily/data/recommender.json
+
+
+# Set date to compare recs to previous versions
+# Final command creates and renames the file to be outputted as workflow artifact
       - name: Set Date with Commit Hash 
         id: date
         run: |
+          cd Calla-Lily
           datehash="$(date +'%Y-%m-%d')-$(git rev-parse --short '$GITHUB_SHA')"
           echo "::set-output name=datehash::$datehash"
+          cp ../recommender-auto.json ../recommender-$datehash.json
 
-# First command sends the output to website
-# Second command creates and renames the file to be outputted as workflow artifact
-      - name: Copy recommender.json to data directory
-        run: |
-          cp ./recommender-auto.json ./Calla-Lily/data/recommender.json
-          cp recommender-auto.json recommender-${{ steps.date.outputs.datehash}}.json
-
+# Runner is currently in ./Calla-lily from last step
       - name: Push output file to this branch's data directory
         run: |
-          cd Calla-Lily
           git status
           git config user.name "Github Actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
