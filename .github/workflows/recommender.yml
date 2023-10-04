@@ -52,7 +52,8 @@ jobs:
         id: date
         run: |
           date="$(date +'%Y-%m-%d')"
-          echo "::set-output name=datehash::$date"
+          echo "::set-output name=date::$date"
+          echo "date=$date" >> $GITHUB_OUTPUT
 
 # First command sends the output to website
       - name: Copy recommender.json to data directory
@@ -75,5 +76,5 @@ jobs:
       - name: Upload Recommendation Results
         uses: actions/upload-artifact@v3
         with:
-          name: recommendation-results-v1.0
+          name: recommendation-results-${{ steps.date.outputs.date }}
           path: recommender-${{ steps.date.outputs.date }}.json
