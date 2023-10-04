@@ -43,12 +43,15 @@ jobs:
           ref: recommender-cli
 
       - name: View files in workspace
-        run: ls -l ${{github.workspace}}
+        run: |
+          ls -l ${{github.workspace}}
+          ls -l ${{github.workspace}}/calla-lily/data
+          git status
 
       - name: Push output file to this branch's data directory
         run: |
-          cp ./output.json ./calla-lily/data
-          cd ./calla-lily/
+          cp output.json calla-lily/data
+          cd calla-lily
           git config user.name otherpeopleucsd
           git config user.email otherpeoplesd@gmail.com
           git add output.json
