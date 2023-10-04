@@ -44,7 +44,7 @@ jobs:
 # .
 # Calla-Lily/
 # recommender/
-# recommender.json (the output from running the recommender.py script)
+# recommender-auto.json (the output from running the recommender.py script)
 
 # Set date to compare recs to previous versions
 # Final command creates and renames the file to be outputted as workflow artifact
