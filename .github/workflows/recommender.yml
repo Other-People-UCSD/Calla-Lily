@@ -28,14 +28,9 @@ jobs:
         uses: actions/setup-python@v4
         with: 
           python-version: '3.10'
-          cache: 'pipenv'
-
-      - name: Install pipenv
-        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
-      - run: pipenv install
-      
-      - name: Run test-deps script
-        run: python recommender/test.py
+          cache: 'pip'
+          cache-dependency-path: '**/requirements.txt'
+        run: pip install -r subdirectory/requirements.txt
 
       # - name: Copy recommender.json to data directory
       #   run: |
