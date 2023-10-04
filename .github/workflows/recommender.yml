@@ -46,7 +46,6 @@ jobs:
         run: |
           ls -l ${{github.workspace}}
           ls -l ${{github.workspace}}/calla-lily/data
-          git status
 
       - name: Push output file to this branch's data directory
         run: |
