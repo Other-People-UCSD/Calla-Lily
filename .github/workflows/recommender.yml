@@ -6,7 +6,7 @@ name: Recommender Auto-Generation
 on:
   push:
     paths:
-      - 'posts/**'
+      - '_posts/**'
 
 jobs:
   recommender:
