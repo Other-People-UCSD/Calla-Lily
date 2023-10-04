@@ -63,6 +63,7 @@ jobs:
 
 # Runner is currently in ./Calla-lily from last step
       - name: Push output file to this branch's data directory
+        continue-on-error: true # If recs are the same from before, skip redundant commit
         run: |
           cd Calla-Lily
           git status
