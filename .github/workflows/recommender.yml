@@ -46,9 +46,17 @@ jobs:
           ls -l ${{github.workspace}}
           ls -l ${{github.workspace}}/calla-lily/data
 
-      - name: Push output file to this branch's data directory
+      - name: Copy output.json to data directory
         run: |
           cp output.json calla-lily/data
+        
+      - name: View files in workspace
+        run: |
+          ls -l ${{github.workspace}}
+          ls -l ${{github.workspace}}/calla-lily/data
+
+      - name: Push output file to this branch's data directory
+        run: |
           cd calla-lily
           git config user.name github-actions
           git config user.email github-actions@github.com
