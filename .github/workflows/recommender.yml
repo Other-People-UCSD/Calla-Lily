@@ -16,7 +16,7 @@ jobs:
       - name: Checkout Calla-Lily repo
         uses: actions/checkout@v4
         with:
-          path: calla-lily
+          path: Calla-Lily
 
       - name: Checkout Recommendation repo
         uses: actions/checkout@v4
@@ -35,6 +35,9 @@ jobs:
         run: | 
           python -m pip install --upgrade pip
           pip install -r recommender/requirements.txt
+
+      - name: List all directories
+        run: ls -l | grep "^d"
 
       - name: Run Recommendation Model script
         run: python recommender/recommendation-v1.0.py
