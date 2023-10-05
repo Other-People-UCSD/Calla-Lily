@@ -9,7 +9,11 @@ on:
   pull_request:
     branches:
       - main
-      - lighthouse
+    paths:
+      - '_posts/**'
+      - 'pages/**.js'
+      - '!pages/api/**'
+  workflow_dispatch:
 
 jobs:
   lhci:
@@ -17,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Generate URLs
         id: urls
