@@ -1,3 +1,4 @@
+import Announcement from "@/components/announcement";
 import Layout from "@/components/layout";
 import { getSortedPostsData } from "@/lib/posts";
 
@@ -5,6 +6,7 @@ export default function Custom404() {
   return (
     <>
       <Layout post title={"404 Page Not Found"}>
+        <Announcement></Announcement>
         <h1>404 - Page Not Found</h1>
         <p><strong>Posts that are not part of a collection are now found by the year they 
           were published e.g &quot;/missed-connections&quot; is now &quot;/2023/missed-connections&quot;</strong>.

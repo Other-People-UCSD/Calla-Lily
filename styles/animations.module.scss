@@ -53,3 +53,27 @@
       opacity: 1;
   }
 }
+
+.circle {
+  stroke: black;
+  stroke-width: 2px;
+  fill: transparent;
+}
+
+.red { 
+  fill: red;
+}
+.green {
+  fill: green;
+}
+.blue {
+  fill: blue;
+}
+.black {
+  fill: black;
+}
+
+.anno-progress {
+  opacity: 0;
+  fill: white;
+}

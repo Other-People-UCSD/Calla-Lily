@@ -8,13 +8,14 @@ import ucStyles from "@/styles/uc.module.scss";
 import { useState } from "react";
 import client from '../tina/__generated__/client'
 import { useTina } from "tinacms/dist/react";
- 
+import { FooterLogo } from "@/components/footer";
+
 export default function UCMagazines(props) {
   const { query, variables, data } = useTina({
     query: props.query,
     variables: props.variables,
     data: props.data,
-  });  
+  });
 
   const lastmod = new Date(data.ucmagazines.lastmod).toLocaleDateString();
 
@@ -40,7 +41,7 @@ export default function UCMagazines(props) {
         <p><strong>Last Updated: {lastmod}</strong></p>
         <p><strong>*Magazine activity is not updated yet</strong></p>
 
-        <UCCards magazines={data.ucmagazines.magazines} />
+        <UCCardsDropdown magazines={data.ucmagazines.magazines} />
       </div>
     </Layout>
   );
@@ -73,8 +74,7 @@ export async function getStaticProps() {
 }
 
 
-
-const UCCards = ({magazines}) => {
+const UCCards = ({ magazines }) => {
   const defaultFilter = {
     'active': true,
     'ucsd': true,
@@ -201,6 +201,142 @@ const UCCards = ({magazines}) => {
           })
         }
       </ul>
+      <p className={ucStyles.backToTop}><a href="#top">Back to top</a></p>
+    </>
+  );
+}
+
+const UCCardsDropdown = ({ magazines }) => {
+  const filterData = {
+    "active": true,
+    "colleges": [
+      'ucsd',
+      'ucb',
+      'ucd',
+      'uci',
+      'ucla',
+      'ucr',
+      'ucm',
+      'ucsb',
+      'ucsc'
+    ],
+  }
+
+  const [searchQuery, setSearchQuery] = useState(null);
+  const [filter, setFilter] = useState(new Set());
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.currentTarget.value.toLowerCase());
+  }
+
+  const displayDropdown = () => {
+    const arrow = document.getElementById("dropdown-arrow")
+    arrow.style.transform = showDropdown ? "scale(1, 1)" : "scale(1, -1) translate(0, -4px)";
+
+    setShowDropdown(!showDropdown);
+  }
+
+  const modifyCheckbox = (svgElement) => {
+    const currentColor = svgElement?.getAttribute("fill");
+    if (currentColor === "white") {
+      svgElement?.setAttribute("fill", "black");
+    } else {
+      svgElement?.setAttribute("fill", "white");
+    }
+  }
+
+  const handleFilterChange = (event, idx) => {
+    let newFilter = new Set(filter);
+    if (filter.has(filterData.colleges[idx])) {
+      newFilter.delete(filterData.colleges[idx]);
+    } else {
+      newFilter.add(filterData.colleges[idx]);
+    }
+
+    console.log(newFilter.entries())
+    modifyCheckbox(event.currentTarget?.firstChild)
+    setFilter(newFilter);
+  }
+
+  return (
+    <>
+      <div className={ucStyles.searchContainer}>
+        <div className={ucStyles.searchBox}>
+          <label id="searchBar" type="text" className={ucStyles.searchLabel}>Search</label>
+          <input htmlFor="searchBar" placeholder='Search...' onChange={handleSearchChange} className={ucStyles.searchInput} />
+        </div>
+        <div className={ucStyles.multiselectContainer}>
+          <div className={ucStyles.multiselectToolbar} onClick={displayDropdown}>
+            {filter.size > 0 ?
+              [...filter].map((college, idx) => {
+                const collegeTitle = college.toUpperCase();
+                return <li key={idx}
+                  className={ucStyles.selectedFilterItem}
+                  onClick={(e) => handleFilterChange(e, idx)}>
+                  {collegeTitle}
+                </li>
+              })
+              :
+              <div className={ucStyles.placeholder}>College</div>
+            }
+            <svg width="32" height="32" stroke="#ccc" fill="#ccc"
+              className={ucStyles.checkbox}
+              id="dropdown-arrow">
+              <path d="m4 16 l 8 8 l 8 -8" />
+            </svg>
+          </div>
+          {showDropdown &&
+            <div className={ucStyles.multiselectDropdown}>
+              {
+                filterData.colleges.map((college, idx) => {
+                  const collegeTitle = college.toUpperCase();
+                  let checkboxFillColor = "#cbcbcb";
+                  if (filter.has(filterData.colleges[idx])) {
+                    checkboxFillColor = "#333"
+                  }
+                  return <li key={idx}
+                    onClick={(e) => handleFilterChange(e, idx)}
+                    className={ucStyles.filterItem}>
+                    <svg width="16" height="16" fill={checkboxFillColor} stroke={checkboxFillColor}
+                      className={ucStyles.checkbox}>
+                      <rect x="0" y="0" width="16" height="16" rx="4px" />
+                    </svg>
+                    <div>{collegeTitle}</div>
+                  </li>
+                })
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+
+
+      <ul className={ucStyles.resultContainer}
+        aria-live="polite">
+        {
+          magazines?.map(({ title, url, college, est, active, description }) => {
+            const search = searchQuery === null || title?.toLowerCase().includes(searchQuery)
+              || college?.toLowerCase().includes(searchQuery); // description?.toLowerCase().includes(searchQuery)
+            const show = search && filter.size > 0 && filter.has(college);
+
+            return (show &&
+              <li
+                key={title}
+                className={ucStyles.resultCard}>
+                <hr />
+                <p className={ucStyles.resultTitle}>
+                  {url ? <a href={url} target='_blank' rel='noopener'>{title}</a> : title}
+                </p>
+                <span>{college.toUpperCase()} | {est && <><span className={`${postStyles.est} ${postStyles.gold}`}>Est. {est}</span> | </>} {active ? <strong>Active</strong> : 'Inactive'}</span>
+                <p className={ucStyles.resultDescription} dangerouslySetInnerHTML={{ __html: description }} />
+              </li>
+            );
+          })
+        }
+      </ul>
+
       <p className={ucStyles.backToTop}><a href="#top">Back to top</a></p>
     </>
   );

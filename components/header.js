@@ -103,7 +103,7 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
           </div>
           <button className={navStyles.menu} onClick={openNav} aria-label="Open Menu">Menu</button>
         </div>
-        {
+        {/* {
           landingPage && title === 'Home' && 
           showAnnouncement ? (
             <div className={headerStyles.announcement} id="announcement">
@@ -119,7 +119,7 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
                 aria-label="Hide the Announcement"><CloseIcon /></button>
             </div>
           ) : null
-        }
+        } */}
 
       </header>
       <div id='myNav' className={navStyles.overlay}>

@@ -103,3 +103,50 @@
         }
     }
 }
+
+.announcementOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color:  #ffa3a318;
+    z-index: 1000;
+}
+.announcement {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 300px;
+    height: 200px;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid black;
+    // padding: 12px;
+
+    .content {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+    .toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .logo {
+        margin-left: 8px;
+        margin-right: 8px;
+        width: 32px;
+        
+    }
+    .left-arrow {
+        position: absolute;
+        top: 50%;
+        left: 0;
+    }
+    .right-arrow {
+        position: absolute;
+        top: 50%;
+        right: 0;
+    }
+}
