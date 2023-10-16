@@ -99,15 +99,30 @@
   cursor: pointer;
   padding: 8px;
   border-top: 2px solid #737373;
+  border-left: 2px solid #737373;
+  border-right: 2px solid #737373;
+
+  
   display: flex;
   gap: 10px;
+  // width: fit-content;
+  background-color: white;
+}
+
+.filterItem:last-child {
+  border-bottom: 2px solid #737373;
+
 }
 
 .selectedFilterItem {
   list-style-type: none;
-  padding: 2px 4px;
-  background-color: rgb(81, 255, 255);
+  padding: 4px 6px;
+  // background-color: rgb(81, 255, 255);
+  border: 2px solid #737373;
+
   border-radius: 10px;
   width: fit-content;
+  display: flex;
+  align-items: center;
   cursor: pointer;
 }
