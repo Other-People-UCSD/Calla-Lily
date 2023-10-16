@@ -17,14 +17,12 @@
     "@mui/icons-material": "^5.13.7",
     "@mui/material": "^5.13.7",
     "@tinacms/cli": "^1.5.25",
-    "autoprefixer": "10.4.14",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.10",
     "gray-matter": "^4.0.3",
     "html-react-parser": "^4.0.0",
     "next": "13.4.10",
     "next-seo": "^6.1.0",
-    "postcss": "8.4.26",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "rehype": "^12.0.1",
@@ -32,7 +30,6 @@
     "rehype-sanitize": "^5.0.1",
     "remark": "^14.0.2",
     "remark-rehype": "^10.1.0",
-    "tailwindcss": "3.3.3",
     "tinacms": "^1.5.16"
   },
   "devDependencies": {
@@ -41,14 +38,23 @@
     "@storybook/addon-interactions": "7.4.6",
     "@storybook/addon-links": "7.4.6",
     "@storybook/addon-onboarding": "1.0.8",
+    "@storybook/addon-storysource": "^7.4.6",
     "@storybook/addon-styling-webpack": "0.0.5",
     "@storybook/blocks": "7.4.6",
     "@storybook/nextjs": "^7.4.6",
     "@storybook/react": "7.4.6",
     "@storybook/testing-library": "0.2.2",
+    "autoprefixer": "^10.4.16",
+    "css-loader": "^6.8.1",
     "eslint-plugin-storybook": "^0.6.15",
     "jsdoc": "^4.0.2",
+    "postcss": "^8.4.31",
+    "postcss-loader": "^7.3.3",
+    "resolve-url-loader": "^5.0.0",
     "sass": "^1.63.6",
-    "storybook": "7.4.6"
+    "sass-loader": "^13.3.2",
+    "storybook": "7.4.6",
+    "style-loader": "^3.3.3",
+    "tailwindcss": "^3.3.3"
   }
 }
