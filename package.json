@@ -36,5 +36,6 @@
   "devDependencies": {
     "jsdoc": "^4.0.2",
     "sass": "^1.63.6"
-  }
+  },
+  "packageManager": "yarn@3.6.4"
 }
