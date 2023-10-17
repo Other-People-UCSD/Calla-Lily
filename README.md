@@ -6,19 +6,19 @@ Refer to the [documentation](https://docs-other-people.vercel.app/) for this rep
 ## Installation
 
 ```
-$ yarn
+$ pnpm install
 ```
 
 ## Local Development
 
 ```
-$ yarn dev
+$ pnpm dev
 ```
 
 ## Linting
 
 ```
-$ yarn audit
+$ pnpm audit
 ```
 
 This command checks to make sure the Next program runs properly as well as checking that TinaCMS renders everything. 
@@ -26,7 +26,7 @@ This command checks to make sure the Next program runs properly as well as check
 ## Build
 
 ```
-$ yarn build
+$ pnpm build
 ```
 
 This command generates the static website content into the `.next/out` directory.
