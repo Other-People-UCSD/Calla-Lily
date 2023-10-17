@@ -36,6 +36,5 @@
     "@tinacms/cli": "1.5.26",
     "jsdoc": "^4.0.2",
     "sass": "^1.69.3"
-  },
-  "packageManager": "yarn@3.6.4"
+  }
 }
