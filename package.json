@@ -11,18 +11,18 @@
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.10.6",
-    "@mui/icons-material": "^5.13.7",
-    "@mui/material": "^5.13.7",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.13",
+    "@mui/material": "^5.14.13",
     "@tinacms/cli": "^1.5.25",
-    "autoprefixer": "10.4.14",
-    "eslint": "8.45.0",
-    "eslint-config-next": "13.4.10",
+    "autoprefixer": "10.4.16",
+    "eslint": "8.51.0",
+    "eslint-config-next": "13.5.5",
     "gray-matter": "^4.0.3",
-    "html-react-parser": "^4.0.0",
-    "next": "13.4.10",
+    "html-react-parser": "^4.2.4",
+    "next": "13.5.5",
     "next-seo": "^6.1.0",
-    "postcss": "8.4.26",
+    "postcss": "8.4.31",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "rehype": "^13.0.1",
@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "jsdoc": "^4.0.2",
-    "sass": "^1.63.6"
+    "sass": "^1.69.3"
   },
   "packageManager": "yarn@3.6.4"
 }
