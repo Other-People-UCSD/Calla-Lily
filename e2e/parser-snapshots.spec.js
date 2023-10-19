@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Parser (Customs)', () => {
+test.describe('Customs', () => {
   test.describe.configure({ mode: 'parallel' });
   test('Imaginary Friend', async ({ page }) => {
     // Arrange
@@ -17,7 +17,7 @@ test.describe('Parser (Customs)', () => {
   })
 });
 
-test.describe('Parser (Niche)', () => {
+test.describe('Niche', () => {
   test.describe.configure({ mode: 'parallel' });
   const options = {
     fullPage: true,
@@ -60,7 +60,7 @@ test.describe('Parser (Niche)', () => {
   });
 });
 
-test.describe('Parser (Basic)', () => {
+test.describe('Basic', () => {
   test.describe.configure({ mode: 'parallel' });
   const options = {
     fullPage: true,
