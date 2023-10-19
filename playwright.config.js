@@ -6,6 +6,7 @@ export default defineConfig({
   use: {
     baseURL: 'http://127.0.0.1:3000'
   },
+  reporter: 'html',
   // Run your local dev server before starting the tests
   webServer: {
     command: 'pnpm dev',
