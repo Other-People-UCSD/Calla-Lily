@@ -4,6 +4,7 @@
 
 # dependencies
 /node_modules
+node_modules
 /.pnp
 .pnp.js
 
@@ -14,6 +15,7 @@
 /.next/
 /out/
 /_site/
+.swc
 
 # production
 /build
@@ -36,5 +38,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-node_modules
