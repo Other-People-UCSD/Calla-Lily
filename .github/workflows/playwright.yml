@@ -6,16 +6,26 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     if: github.event.deployment_status.state == 'success'
+
     steps:
     - uses: actions/checkout@v4
+
+    - uses: pnpm/action-setup@v2
+      with:
+        version: 8
+
     - uses: actions/setup-node@v3
       with:
         node-version: 18
+        cache: 'pnpm'
+
     - name: Install dependencies
-      run: pnpm install
+      run: pnpm install --frozen-lockfile
+
     - name: Install Playwright
-      run: npx playwright install --with-deps
+      run: pnpm add -D playwright
+
     - name: Run Playwright tests
-      run: npx playwright test
+      run: pnpm test:e2e
       env:
         PLAYWRIGHT_TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}
