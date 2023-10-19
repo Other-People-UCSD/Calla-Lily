@@ -1,0 +1,58 @@
+const { test, expect } = require("@playwright/test");
+
+test.describe('DesktopHeader', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('http://localhost:3000/');
+  });
+
+  test.afterEach(async ({ page }) => {
+    page.close;
+  });
+
+  test('Index to Poetry', async ({ page }) => {
+    // Arrange
+    // Act
+    await page.click('text=Poetry')
+    // Assert
+    await expect(page).toHaveURL('http://localhost:3000/poetry');
+  });
+
+  test('Poetry to Index', async ({ page }) => {
+    await page.getByRole('link', { name: 'Other People ©' }).click();
+    await expect(page).toHaveURL('http://localhost:3000/');
+  });
+
+});
+
+
+
+test.describe('MobileNav', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('http://localhost:3000/');
+  });
+
+
+  test.afterEach(async ({ page }) => {
+    page.close;
+  });
+
+
+  test('Open Menu', async ({ page }) => {
+    await page.getByLabel('Open Menu').click();
+    await expect(page.locator("#navContent")).toBeVisible();
+  });
+
+  test('Open then Close Menu', async ({ page }) => {
+    await page.getByLabel('Open Menu').click();
+    await page.getByLabel('Close Menu').click();
+    await expect(page.locator("#navContent")).not.toBeVisible();
+  });
+
+
+  test('Menu to About', async ({ page }) => {
+    await page.getByLabel('Open Menu').click();
+    await page.getByRole('link', { name: '(THE) PEOPLE' }).click();
+    await expect(page).toHaveURL('http://localhost:3000/about');
+  });
+});
+
