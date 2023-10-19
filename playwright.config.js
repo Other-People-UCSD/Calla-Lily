@@ -11,8 +11,8 @@ export default defineConfig({
     stdout: 'ignore',
     stderr: 'pipe',
   },
-  retries: process.env.CI ? 2 : 1,
+  retries: process.env.CI ? 2 : 0,
   use: {
-    trace: 'on-first-retry'
+    baseURL: 'http://127.0.0.1:3000'
   }
 });

@@ -3,7 +3,7 @@ const { test, expect } = require("@playwright/test");
 test.describe('Post Attributes', () => {
   test('Contains Metadata', async ({ page }) => {
     // Arrange
-    await page.goto('http://localhost:3000/1/skin-vilar');
+    await page.goto('./1/skin-vilar');
 
     // Assert
     await expect(page.getByRole('heading', { name: 'skin' })).toBeVisible();
@@ -14,27 +14,27 @@ test.describe('Post Attributes', () => {
 
   test('Go to Next and Prev', async ({ page }) => {
     // Arrange
-    await page.goto('http://localhost:3000/1/skin-vilar');
+    await page.goto('./1/skin-vilar');
     // Act
     await page.getByRole('link', { name: 'next>' }).click();
     // Assert
-    await expect(page).not.toHaveURL('http://localhost:3000/1/skin-vilar');
+    await expect(page).not.toHaveURL('./1/skin-vilar');
     // Act
     await page.getByRole('link', { name: '<prev' }).click();
     // Assert
-    await expect(page).toHaveURL('http://localhost:3000/1/skin-vilar');
+    await expect(page).toHaveURL('./1/skin-vilar');
   });
 
   test('First post has no previous', async ({ page }) => {
     // Arrange
-    await page.goto('http://localhost:3000/1/skin-vilar');
+    await page.goto('./1/skin-vilar');
     // Assert
     await expect(page.getByRole('link', { name: '<prev' })).not.toBeVisible();
   });
 
   test('Most recent post has no next', async ({ page }) => {
     // Arrange
-    await page.goto('http://localhost:3000/');
+    await page.goto('./');
     await page.getByLabel('Open Menu').click();
     await page.getByPlaceholder('Search').click();
     await page.getByPlaceholder('Search').fill(' ');
@@ -52,7 +52,7 @@ test.describe('Post Attributes', () => {
 test.describe('Post Copy-Protection', () => {
   test('Keyboard (Ctrl+C) Alert', async ({ page }) => {
     // Arrange
-    await page.goto('http://localhost:3000/1/skin-vilar');
+    await page.goto('./1/skin-vilar');
     page.on("dialog", async (alert) => {
       const text = alert.message();
       // Assert
