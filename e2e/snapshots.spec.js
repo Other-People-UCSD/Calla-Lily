@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Parser (Custom Posts)', () => {
+test.describe('Parser (Customs)', () => {
   test.describe.configure({ mode: 'parallel' });
   test('Imaginary Friend', async ({ page }) => {
     // Arrange
@@ -18,22 +18,55 @@ test.describe('Parser (Custom Posts)', () => {
 });
 
 test.describe('Parser (Niche)', () => {
-  test.skip('Kalbelia (iFrame)', async ({ page }) => {
-    // Arrange
-    await page.route(/()$/, route => route.abort());
-    await page.goto('./4/kalbelia');
-
-    // Assert
-    await expect(page).toHaveScreenshot(options);
-  })
-});
-
-test.describe('Parser (Basic)', () => {
+  test.describe.configure({ mode: 'parallel' });
   const options = {
     fullPage: true,
   }
 
-  test('The Middle of All Middles', async ({ page }) => {
+  test.skip('Kalbelia (iFrame)', async ({ page }) => {
+    // Arrange
+    await page.route(/()$/, route => route.abort());
+    await page.goto('./4/kalbelia');
+    // Assert
+    await expect(page).toHaveScreenshot(options);
+  });
+
+  test('Hole (Defined Width)', async ({ page }) => {
+    // Arrange
+    await page.goto('./2023/hole');
+    // Assert
+    await expect(page).toHaveScreenshot(options);
+  });
+
+  test('Zodiac Animals (img mask-floating)', async ({ page }) => {
+    // Arrange
+    await page.goto('./5/the-twelve-zodiac-animals-visit');
+    // Assert
+    await expect(page).toHaveScreenshot(options);
+  });
+
+  test('Blood Pacts (text wrapping)', async ({ page }) => {
+    // Arrange
+    await page.goto('./2/blood-pacts');
+    // Assert
+    await expect(page).toHaveScreenshot(options);
+  });
+
+  test('poets sleep in graves (Blackout)', async ({ page }) => {
+    // Arrange
+    await page.goto('./2023/poets-sleep-in-graves');
+    // Assert
+    await expect(page).toHaveScreenshot(options);
+  });
+});
+
+test.describe('Parser (Basic)', () => {
+  test.describe.configure({ mode: 'parallel' });
+  const options = {
+    fullPage: true,
+  }
+
+  test('Middle of All Middles (imgs + text)', async ({ page }) => {
     // Arrange
     await page.goto('./3/the-middle-of-all-middles');
     // Assert
@@ -45,5 +78,12 @@ test.describe('Parser (Basic)', () => {
     await page.goto('./1/brain-fish');
     // Assert
     await expect(page).toHaveScreenshot(options);
+  });
+
+  test('Worm (Content Warning)', async ({ page }) => {
+    // Arrange
+    await page.goto('./4/worm');
+    // Assert
+    await expect(page).toHaveScreenshot();
   })
 });
