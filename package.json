@@ -8,8 +8,8 @@
     "start": "next start",
     "lint": "next lint && tinacms audit",
     "audit": "next lint && tinacms audit",
-    "storybook": "npx storybook dev -p 6006",
-    "build-storybook": "npx storybook build",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
     "chromatic": "chromatic --exit-zero-on-changes"
   },
   "dependencies": {
