@@ -4,12 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "tinacms dev -c \"next dev\"",
-    "build": "tinacms build && next build",
+    "build": "tinacms build && pnpm build-storybook && next build",
     "start": "next start",
     "lint": "next lint && tinacms audit",
     "audit": "next lint && tinacms audit",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
+    "build-storybook": "storybook build -- -o ./public/storybook",
     "chromatic": "chromatic --exit-zero-on-changes"
   },
   "dependencies": {

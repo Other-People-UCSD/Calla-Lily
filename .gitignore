@@ -11,6 +11,7 @@
 # testing
 /coverage
 /playwright-report
+/e2e/**/trace.zip
 
 # next.js
 /.next/
@@ -20,6 +21,7 @@
 # production
 /build
 /storybook-static
+/public/storybook/*
 
 # misc
 .DS_Store
