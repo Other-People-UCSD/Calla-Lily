@@ -1,12 +1,13 @@
 ### Your checklist for this pull request:
 🚨 Please review the checklist below before submitting your pull request!
 
-***DO NOT COMMIT NODE_MODULES, .NEXT, _SITE TO THE REPO***
+***DO NOT COMMIT .env, NODE_MODULES, .NEXT, _SITE TO THE REPO***
 
 - [ ] Make sure you are requesting to **pull a *development* branch. Don't pull the *published* branch!**.
 - [ ] Does `yarn lint` pass all checks?
 - [ ] (Optional) Does `yarn build` pass all checks? (Make sure Tina config has the right branch name)
 - [ ] Does `yarn dev` pass all checks?
+- [ ] Do all the Playwright end-to-end (E2E) tests pass? 
 
 ### Types of changes:
 - [ ] Publishing posts for the most recent Collection
