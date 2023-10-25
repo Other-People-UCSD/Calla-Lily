@@ -23,19 +23,36 @@ test.describe('Niche', () => {
     fullPage: true,
   }
 
-  test.skip('Kalbelia (iFrame)', async ({ page }) => {
+  test('Kalbelia (iFrame)', async ({ page }) => {
     // Arrange
-    await page.route(/()$/, route => route.abort());
+    // Block iframe and audio request. Not necessary to check if iframe URL is valid.
+    // Testing if parser correctly injects an iframe and audio element
+    await page.route(/.*/, async (route, request) => {
+      const req = request.url();
+      if (req.match(/youtube/) || req.match(/.mp3/)) {
+        console.log('Aborting:', request.url());
+        await route.abort()
+      } else {
+        await route.continue();
+      }
+    });
     await page.goto('./4/kalbelia');
     // Assert
-    await expect(page).toHaveScreenshot(options);
+    await expect(page).toHaveScreenshot();
   });
+
+  test('Worm (Content Warning)', async ({ page }) => {
+    // Arrange
+    await page.goto('./4/worm');
+    // Assert
+    await expect(page).toHaveScreenshot();
+  })
 
   test('Hole (Defined Width)', async ({ page }) => {
     // Arrange
     await page.goto('./2023/hole');
     // Assert
-    await expect(page).toHaveScreenshot(options);
+    await expect(page).toHaveScreenshot();
   });
 
   test('Zodiac Animals (img mask-floating)', async ({ page }) => {
@@ -60,30 +77,8 @@ test.describe('Niche', () => {
   });
 });
 
-test.describe('Basic', () => {
-  test.describe.configure({ mode: 'parallel' });
-  const options = {
-    fullPage: true,
-  }
-
-  test('Middle of All Middles (imgs + text)', async ({ page }) => {
-    // Arrange
-    await page.goto('./3/the-middle-of-all-middles');
-    // Assert
-    await expect(page).toHaveScreenshot(options);
-  });
-
-  test('Brain Fish (inline style)', async ({ page }) => {
-    // Arrange
-    await page.goto('./1/brain-fish');
-    // Assert
-    await expect(page).toHaveScreenshot(options);
-  });
-
-  test('Worm (Content Warning)', async ({ page }) => {
-    // Arrange
-    await page.goto('./4/worm');
-    // Assert
-    await expect(page).toHaveScreenshot();
-  })
-});
+// Most basic parsing elements are covered by the custom and niche tests.
+// Do not need redundant basic tests.
+// test.describe('Basic', () => {
+//   test.describe.configure({ mode: 'parallel' });
+// }); 

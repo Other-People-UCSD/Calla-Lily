@@ -10,7 +10,8 @@ node_modules
 
 # testing
 /coverage
-/playwright-report
+/**/playwright-report
+/**/trace.zip
 
 # next.js
 /.next/

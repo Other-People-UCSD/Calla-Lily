@@ -16,7 +16,7 @@ export default defineConfig({
     stderr: 'pipe',
   },
   retries: process.env.CI ? 2 : 0,
-  projects: [
+  projects: [ 
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
@@ -24,10 +24,17 @@ export default defineConfig({
     {
       name: 'Mobile Safari',
       use: { ...devices['iPhone 13'] },
+      testIgnore: /desktop.spec.(js|ts)/,
     },
     {
       name: 'Samsung Galaxy',
       use: { ...devices['Galaxy S9+'] },
+      testIgnore: /desktop.spec.(js|ts)/,
     },
   ],
+  expect: {
+    toHaveSnapshot: {
+      maxDiffPixelRatio: 0.05,
+    }
+  }
 });

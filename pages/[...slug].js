@@ -42,8 +42,8 @@ const Page = (props) => {
   return (
     <Layout post title={data.post.title}>
       <Head>
-        <meta name="robots" content="all"/>
-        <meta name="robots" content="noimageindex"/>
+        <meta name="robots" content="all" />
+        <meta name="robots" content="noimageindex" />
       </Head>
       <NextSeo
         canonical={canonical}
@@ -57,7 +57,7 @@ const Page = (props) => {
       <Head>
         <meta name="robots" content="all" />
       </Head>
-      
+
       <div className={`${animationStyles.cssanimation} ${animationStyles.sequence} ${animationStyles.fadeInBottom}`}>
         <h1 id="post-title" className={postStyles.post_title}>{data.post.title}</h1>
       </div>
@@ -102,7 +102,7 @@ export const getStaticProps = async (params) => {
   const { data, query, variables } = await getPageData(params.params.slug);
   const allPostsData = getSortedPostsData();
   const fullPostData = await getPostDataAPI(variables.relativePath, allPostsData);
-  
+
   // Recommendation Data
   const relativePath = '/' + variables.relativePath.replace(/\.mdx?/, '');
   const recommendedPosts = recommenderData[relativePath] || null;
@@ -232,11 +232,11 @@ export const Experimental = ({ title }) => {
       return <Script type='module'
         src={"/js/missed-connections.js"}
         onReady={() => {
-          document.querySelector('#post-title').remove();
-          document.getElementById('cr-article').classList.add('monospace');
+          document.querySelector('#post-title')?.remove();
+          document.getElementById('cr-article')?.classList.add('monospace');
           document.getElementById('mc_embed_signup').innerHTML = '';
-          document.getElementById('mc-begin').addEventListener('click', beginMissedConnections);
-          // console.log('missed connections');
+          document.getElementById('mc-begin')?.addEventListener('click', beginMissedConnections);
+
         }}
       />
     case "You Have Created an Imaginary Friend":
