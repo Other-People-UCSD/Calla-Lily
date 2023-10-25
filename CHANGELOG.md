@@ -1,4 +1,9 @@
 # Changelog 
+## v4.5.10 (9/26 - 10/24/23)
+- Implemented Playwright E2E testing for parser operations and desktop/mobile navigation properties
+- Changed package manager to pnpm from yarn to resolve issues with peer dependencies and Vercel incompabilities
+- TinaCMS connection to team application forms 
+
 ### v4.5.9 (9/26/23)
 - Added Google Analytics event triggers on clicking recommendations and closing announcement
   - Configured GA debug mode for developers

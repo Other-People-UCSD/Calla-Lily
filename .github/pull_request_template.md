@@ -17,7 +17,7 @@
 - [ ] Bug fix (non-breaking change which fixes a code issue)
 - [ ] Breaking change (fix or feature that would cause existing functionality to change)
 
-### Screenshots of each page (one per page is fine):
+### Screenshots of each modified page (one per page is fine):
 Take a screenshot/clip the screen and paste here on the GitHub website. It should automatically upload the image.
 
 ### Description:
