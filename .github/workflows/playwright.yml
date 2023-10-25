@@ -7,7 +7,7 @@ on:
 jobs:
   playwright-tests:
     timeout-minutes: 60
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     strategy:
       fail-fast: false
       matrix:
@@ -42,7 +42,7 @@ jobs:
     if: always()
     needs: [playwright-tests]
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@v4
     - uses: pnpm/action-setup@v2
