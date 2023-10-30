@@ -1,0 +1,21 @@
+{
+  "source": ["stories/tokens/**/*.json"],
+  "platforms": {
+    "scss": {
+      "transformGroup": "scss",
+      "buildPath": "./stories/",
+      "files": [{
+        "destination": "_variables.scss",
+        "format": "scss/variables"
+      }]
+    },
+    "js": {
+      "transformGroup": "js",
+      "buildPath": "./stories/",
+      "files": [{
+        "destination": "_variables.js",
+        "format": "javascript/es6"
+      }]
+    }
+  }
+}

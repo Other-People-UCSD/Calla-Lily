@@ -1,5 +1,4 @@
 
-import '../styles/globals.scss';
 import '../stories/stylesheet.module.scss';
 
 const preview = {

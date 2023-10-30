@@ -1,0 +1,71 @@
+{
+  "opm": {
+    "color": {
+      "black": { "value": "#000000" },
+      "white": { "value": "#FFFFFF" },
+      "grey": {
+        "label": { "value": "#8A8A8A" },
+        "light": { "value": "#E5E5E5" },
+        "dark": { "value": "#333333" },
+        "darkest": { "value": "#151515"}
+      },
+      "accent": { 
+        "orange": { "value": "#FFB94F" }
+      },
+      "highlight": {
+        "red": {"value": "#F4BAB9" }
+      }
+    },
+    "background": {
+      "black": { "value": "{opm.color.grey.darkest}" },
+      "white": { "value": "{opm.color.white}"}
+    },
+    "font": {
+      "arial": { "value": "Arial" },
+      "basier": { "value": "basier_circlemonoregular" },
+      "apple": { "value": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'" },
+      "monospace": { "value": "monospace, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'" },
+      "weight": {
+        "regular": { "value": "regular" },
+        "bold": { "value": "bold" }
+      },
+      "size": {
+        "h1": { "value": "4rem" },
+        "h2": { "value": "2rem" },
+        "h3": { "value": "1.25rem" },
+        "h4": { "value": "1.25rem" },
+        "h5": { "value": "1.25rem" },
+        "h6": { "value": "1.25rem" },
+        "body": { "value": "16px" },
+        "subtext": { "value": "0.9rem" }
+      }
+    },
+    "opacity": {
+      "animation": {
+        "fade": { "value": "0.3" }
+      },
+      "placeholder": { "value": "0.5" },
+      "subtext": { "value": "0.8" }
+    },
+    "spacing": {
+      "0": { "value": "0px" },
+      "50": { "value": "2px" },
+      "75": { "value": "4px" },
+      "100": { "value": "8px" },
+      "200": { "value": "12px" },
+      "300": { "value": "16px" },
+      "400": { "value": "24px" },
+      "500": { "value": "32px" },
+      "600": { "value": "64px" },
+      "700": { "value": "128px"}
+    }
+  },
+  "animation": {
+    "duration": {
+      "slowest": { "value": "6000ms" },
+      "slow": { "value": "3000ms" },
+      "normal": { "value": "1000ms" },
+      "fast": { "value": "300ms"}
+    }
+  }
+}
