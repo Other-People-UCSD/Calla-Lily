@@ -2,162 +2,165 @@
 @import '@/stories/_variables.scss';
 
 @font-face {
-    font-family: "basier_circlemonoregular";
-    src: url("/fonts/basiercirclemono/basiercirclemono-regular-webfont.eot");
-    src: url("/fonts/basiercirclemono/basiercirclemono-regular-webfont.eot") format("embedded-opentype"),
-        url("/fonts/basiercirclemono/basiercirclemono-regular-webfont.woff2") format("woff2"),
-        url("/fonts/basiercirclemono/basiercirclemono-regular-webfont.woff") format("woff"),
-        url("/fonts/basiercirclemono/basiercirclemono-regular-webfont.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: "basier_circlemonoregular";
+  src: url("/fonts/basiercirclemono/basiercirclemono-regular-webfont.eot");
+  src: url("/fonts/basiercirclemono/basiercirclemono-regular-webfont.eot") format("embedded-opentype"),
+    url("/fonts/basiercirclemono/basiercirclemono-regular-webfont.woff2") format("woff2"),
+    url("/fonts/basiercirclemono/basiercirclemono-regular-webfont.woff") format("woff"),
+    url("/fonts/basiercirclemono/basiercirclemono-regular-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 body {
-    width: 100%;
-    margin: auto;
+  width: 100%;
+  margin: auto;
 
-    background: $backgroundColor;
-    color: $bodyColor;
-    font-family: $bodyFont;
+  background: $backgroundColor;
+  color: $bodyColor;
+  font-family: $bodyFont;
 
-    padding: 0;
-    padding-top: 110px;
+  padding: 0;
+  padding-top: 110px;
 
-    transition: background-color 0.8s ease-in-out;
+  transition: background-color 0.8s ease-in-out;
 
-    ::selection {
-        background: #ffb7b7;
-    }
+  ::selection {
+    background: #ffb7b7;
+  }
 
-    ::-moz-selection {
-        background: #ffb7b7;
-    }
+  ::-moz-selection {
+    background: #ffb7b7;
+  }
 }
 
 main {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1080px;
-    button {
-        cursor: pointer;
-    }
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1080px;
+
+  button {
+    cursor: pointer;
+  }
 }
 
 h1 {
-    font-family: Arial;
-    font-size: 4rem;
-    font-weight: normal;
-    margin: 0;
-    padding: 0;
+  font-family: $opm-font-arial;
+  font-size: 4rem;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
 }
 
 h2,
 button {
-    font-family: Arial;
-    font-size: 1.2rem;
-    font-weight: normal;
-    text-transform: uppercase;
-    margin: 0;
-    padding: 0;
+  font-family: $opm-font-arial;
+
+  font-size: 1.2rem;
+  font-weight: normal;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0;
 }
 
 h3 {
-    font-family: Arial;
-    font-size: 1rem;
-    font-weight: normal;
-    margin: 0;
-    padding: 0;
+  font-family: $opm-font-arial;
+
+  font-size: 1rem;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
 }
 
 h4 {
-    font-family: $opm-font-basier;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    font-weight: normal;
-    margin: 0;
-    padding: 0;
+  font-family: $opm-font-basier;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
 }
 
 p {
-    line-height: 1.8rem;
-    font-size: 1rem;
+  line-height: 1.8rem;
+  font-size: 1rem;
 }
 
 ul {
-    line-height: 1.8rem;
-    list-style-type: ">   ";
+  line-height: 1.8rem;
+  list-style-type: ">   ";
 }
 
 a {
-    color: $bodyColor;
-    text-decoration: underline;
+  color: $bodyColor;
+  text-decoration: underline;
 }
 
 a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 button {
-    background-color: inherit;
-    border: none;
-    color: var(--light-text-color);
+  background-color: inherit;
+  border: none;
+  color: var(--light-text-color);
 }
 
 sup {
-    font-family: "basier_circlemonoregular";
-    text-transform: uppercase;
-    font-weight: normal;
-    margin: 0;
-    padding: 0;
-    color: rgb(255, 153, 0);
+  font-family: "basier_circlemonoregular";
+  text-transform: uppercase;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+  color: rgb(255, 153, 0);
 }
 
 iframe {
-    max-width: 980px;
+  max-width: 980px;
 }
 
 html,
 html[data-theme="light"] {
+  --background-color: $opm-background-white;
+  --light-text-color: $opm-color-grey-darkest;
+  --button-background: #ffb94f;
+  --button-outline: #151515;
+
+}
+
+html[data-theme="dark"] {
+  --background-color: $opm-background-black;
+  --light-text-color: $opm-color-white;
+  --button-background: #ff9900;
+  --button-outline: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-theme="light"] {
     --background-color: $opm-background-white;
     --light-text-color: $opm-color-grey-darkest;
     --button-background: #ffb94f;
     --button-outline: #151515;
 
-}
+  }
 
-html[data-theme="dark"] {
+  html,
+  html[data-theme="dark"] {
     --background-color: $opm-background-black;
     --light-text-color: $opm-color-white;
     --button-background: #ff9900;
     --button-outline: #ffffff;
-}
 
-@media (prefers-color-scheme: dark) {
-    html[data-theme="light"] {
-        --background-color: $opm-background-white;
-        --light-text-color: $opm-color-grey-darkest;
-        --button-background: #ffb94f;
-        --button-outline: #151515;
-
-    }
-
-    html,
-    html[data-theme="dark"] {
-        --background-color: $opm-background-black;
-        --light-text-color: $opm-color-white;
-        --button-background: #ff9900;
-        --button-outline: #ffffff;
-
-    }
+  }
 }
 
 @media only screen and (max-width: 728px) {
-    h1 {
-        font-size: 3rem;
-    }
+  h1 {
+    font-size: 3rem;
+  }
 }

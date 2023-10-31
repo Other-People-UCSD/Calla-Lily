@@ -7,7 +7,7 @@
 }
 
 .h2 {
-    font-family: Arial;
+    font-family: $opm-font-arial;
     font-size: 1.2rem;
     font-weight: normal;
     text-transform: uppercase;
@@ -114,9 +114,9 @@
 }
 
 .nav-menu {
+    font-family: $opm-font-arial;
     margin: 0 0;
     padding-left: 0px;
-    font-family: Arial;
     font-size: 4rem;
     list-style: none;
 

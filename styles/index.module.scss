@@ -6,39 +6,46 @@
 
 .IndexContainer {
   img {
-      width: 100%; /* width of container */
-      height: 550px;
-      object-fit: cover;
-      animation: fadein 2s;
-      -moz-animation: fadein 2s; /* Firefox */
-      -webkit-animation: fadein 2s; /* Safari and Chrome */
-      -o-animation: fadein 2s; /* Opera */
+    width: 100%;
+    /* width of container */
+    height: 550px;
+    object-fit: cover;
+    animation: fadein 2s;
+    -moz-animation: fadein 2s;
+    /* Firefox */
+    -webkit-animation: fadein 2s;
+    /* Safari and Chrome */
+    -o-animation: fadein 2s;
+    /* Opera */
   }
 
   a {
-      text-decoration: none;
-      color: inherit;
+    text-decoration: none;
+    color: inherit;
 
-      h4 {
-          color: #585858;
-      }
+    h4 {
+      color: #585858;
+    }
   }
+
   a:hover {
-      opacity: 1;
-      cursor: pointer;
+    opacity: 1;
+    cursor: pointer;
 
-      h4 {
-          color: #000;
-      }
+    h4 {
+      color: #000;
+    }
   }
 
-  h2, h3, h4 {
-      text-align: right;
-      padding: $blockTwo $blockThree $blockTwo $blockThree;
+  h2,
+  h3,
+  h4 {
+    text-align: right;
+    padding: $blockTwo $blockThree $blockTwo $blockThree;
   }
 }
 
-h1.index-title {
+.index-title {
   padding: 0 $blockThree 0 $blockThree;
   bottom: $blockThree;
 
@@ -46,7 +53,7 @@ h1.index-title {
   right: 0;
 }
 
-h1.page-title {
+.page-title {
   padding: 0 $blockThree 0 $blockThree;
   bottom: $blockThree;
   margin-top: $blockThree;
@@ -56,77 +63,78 @@ h1.page-title {
 
 .home-announcement {
   ol {
-      line-height: 1.8rem;
+    line-height: 1.8rem;
   }
-}
-
-/* Slideshow container */
-.featured-container {
-position: relative;
-margin: auto;
-width: 100%;
-a {
-text-decoration: none;
-color: inherit;
-
-h4 {
-  text-align: right;
-      padding: $blockTwo $blockThree $blockTwo $blockThree;
-  color: #585858;
-}
-}
-
-a:hover {
-  cursor: pointer;
-
-  h4 {
-    color: #000;
-  }
-}
 }
 
 @keyframes fadein {
-  from { opacity: 0.3; }
-  to { opacity: 1; }
+  from {
+    opacity: 0.3;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
+
 @-moz-keyframes fadein {
+
   /* Firefox */
-  from { opacity: 0.3; }
-  to { opacity: 1; }
+  from {
+    opacity: 0.3;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @-webkit-keyframes fadein {
+
   /* Safari and Chrome */
-  from { opacity: 0.3; }
-  to { opacity: 1; }
+  from {
+    opacity: 0.3;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @-o-keyframes fadein {
+
   /* Opera */
-  from { opacity: 0.3; }
-  to { opacity: 1; }
+  from {
+    opacity: 0.3;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @media only screen and (max-width: 728px) {
   h1.index-title {
-      padding-top: $blockThree;
-      margin-top: $blockTwo;
-      padding: 0 $blockTwo 0 $blockTwo;
+    padding-top: $blockThree;
+    margin-top: $blockTwo;
+    padding: 0 $blockTwo 0 $blockTwo;
   }
 
   h1.page-title {
-      padding: 0 $blockTwo 0 $blockTwo;
-      margin-top: $blockFour;
+    padding: 0 $blockTwo 0 $blockTwo;
+    margin-top: $blockFour;
   }
 
-  .IndexContainer, .featured-container {
-      img {
-          height: 350px;
-      }
-      
-      h2, h3, h4 {
-          text-align: right;
-          padding: $blockTwo $blockTwo $blockTwo $blockTwo;
-      }
+  .IndexContainer {
+    img {
+      height: 350px;
+    }
+
+    h2,
+    h3,
+    h4 {
+      text-align: right;
+      padding: $blockTwo $blockTwo $blockTwo $blockTwo;
+    }
   }
 }

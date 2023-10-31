@@ -23,11 +23,7 @@ export default function UCMagazines(props) {
     <Layout title={"UC Magazines"}>
       <div className={contentStyles.content}>
         <div className={`${animationStyles.cssanimation} ${animationStyles.sequence} ${animationStyles.fadeInBottom}`}>
-          <div className={indexStyles.IndexContainer}>
-            <div className={indexStyles["landing-title"]}>
-              <h1 id="top" style={{ fontSize: 2 + 'rem' }}>List of UC Creative Magazines & Journals</h1>
-            </div>
-          </div>
+          <h1 id="top" style={{ fontSize: 2 + 'rem' }}>List of UC Creative Magazines & Journals</h1>
         </div>
 
         <p>The University of California system has dozens of magazines and journals highlighting the creative

@@ -1,282 +1,222 @@
 @import '@/styles/variables.scss';
 
 .content {
-    margin-top: $blockThree;
-    padding-left: $blockThree;
-    padding-right: $blockThree;
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
+  margin-top: $blockThree;
+  padding-left: $blockThree;
+  padding-right: $blockThree;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
 
-    h1 {
-        font-family: Arial;
-        font-weight: normal;
-        margin: 0;
-        padding: 0;
-        margin-top: $blockFour;
-        margin-bottom: $blockThree;
-    }
+  h1 {
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    margin-top: $blockFour;
+    margin-bottom: $blockThree;
+  }
 
-    h3,
-    h4 {
-        line-height: 1.5rem;
-    }
+  h3,
+  h4 {
+    line-height: 1.5rem;
+  }
 
-    img {
-        width: 100%;
-    }
+  img {
+    width: 100%;
+  }
 }
 
 .submissions-content {
-    padding: $blockThree;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1080px;
+  padding: $blockThree;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1080px;
 
-    h2 {
-        font-family: Arial;
-        font-size: 1.4rem;
-        font-weight: normal;
-        text-transform: uppercase;
-        margin: 0;
-        padding: 0;
-        margin-top: $blockFour;
-        margin-bottom: $blockThree;
-    }
+  h2 {
+    font-size: 1.4rem;
+    font-weight: normal;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+    margin-top: $blockFour;
+    margin-bottom: $blockThree;
+  }
 
-    h4 {
-        opacity: 0.3;
-        line-height: 1.2rem;
-    }
+  h4 {
+    opacity: 0.3;
+    line-height: 1.2rem;
+  }
 }
 
 .submissions-status {
-    h4 {
-        color: rgb(255, 153, 0);
-        opacity: 1;
-    }
-}
-
-.landing-title {
-    // About, Team
-    margin-top: $blockFour;
-    padding: $blockThree 0 0 $blockThree;
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
-}
-
-.content-title {
-    margin-top: $blockFour;
-    padding: $blockThree $blockThree 0 $blockThree;
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
-
-    h4 {
-        line-height: 1.8rem;
-    }
+  h4 {
+    color: rgb(255, 153, 0);
+    opacity: 1;
+  }
 }
 
 .left {
-    text-align: left;
+  text-align: left;
 }
 
 .right {
-    text-align: right;
+  text-align: right;
 }
 
 .showcase {
 
-    max-width: 800px;
+  max-width: 800px;
 
-    h2 {
-        text-transform: uppercase;
-        font-weight: bold;
-    }
+  h2 {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
 
-    .subtitle {
-        margin-top: 0px;
-    }
+  .subtitle {
+    margin-top: 0px;
+  }
 
-    .collection {
-        margin-bottom: 24px;
-    }
+  .collection {
+    margin-bottom: 24px;
+  }
 }
 
 .logo-container {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 500px;
 }
 
 .staticGIF {
-    max-width: 800px;
+  max-width: 800px;
 }
 
 .showcase-grid {
-    display: flex;
-    padding-left: 0px;
-    list-style-type: none;
+  display: flex;
+  padding-left: 0px;
+  list-style-type: none;
 
-    h3 {
-        text-transform: uppercase;
-        font-weight: bold;
-    }
+  h3 {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
 
-    li {
-        margin-top: 16px;
-        margin-bottom: 16px;
-        padding: 16px 16px;
-        flex-grow: 1;
-        flex-basis: 0;
-        border-left: 2px solid #e7e7e7;
-    }
+  li {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    padding: 16px 16px;
+    flex-grow: 1;
+    flex-basis: 0;
+    border-left: 2px solid #e7e7e7;
+  }
 
-    li:first-child {
-        border-left: none;
-    }
+  li:first-child {
+    border-left: none;
+  }
 
-    p {
-        text-align: left;
-    }
+  p {
+    text-align: left;
+  }
 }
 
 .application-grid-wrapper {
-    padding: $blockThree;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1080px;
+  padding: $blockThree;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1080px;
 }
+
 .application-grid {
-    display: grid;
-    padding-left: 0px;
-    list-style-type: none;
-    grid-template-columns: 1fr 1fr;
+  display: grid;
+  padding-left: 0px;
+  list-style-type: none;
+  grid-template-columns: 1fr 1fr;
 
-    h3 {
-        text-transform: uppercase;
-        font-weight: bold;
-    }
+  h3 {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
 
-    li {
-        padding: 16px 16px;
-    }
+  li {
+    padding: 16px 16px;
+  }
 
-    li:nth-child(1) {
-        border-right: 1px solid #e7e7e7;
-        border-bottom: 1px solid #e7e7e7;
-    }
+  li:nth-child(1) {
+    border-right: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+  }
 
-    li:nth-child(2) {
-        border-left: 1px solid #e7e7e7;
-        border-bottom: 1px solid #e7e7e7;
-    }
+  li:nth-child(2) {
+    border-left: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+  }
 
-    li:nth-child(3) {
-        border-right: 1px solid #e7e7e7;
-        border-top: 1px solid #e7e7e7;
-    }
+  li:nth-child(3) {
+    border-right: 1px solid #e7e7e7;
+    border-top: 1px solid #e7e7e7;
+  }
 
-    li:nth-child(4) {
-        border-left: 1px solid #e7e7e7;
-        border-top: 1px solid #e7e7e7;
-    }
+  li:nth-child(4) {
+    border-left: 1px solid #e7e7e7;
+    border-top: 1px solid #e7e7e7;
+  }
 }
 
 @media only screen and (max-width: 728px) {
-    .content {
-        padding: $blockTwo;
-        margin-left: auto;
-        margin-right: auto;
-        width: 90%;
-    }
+  .content {
+    padding: $blockTwo;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+  }
 
-    .content-title {
-        margin-top: $blockFour;
-        padding: $blockTwo $blockTwo 0 $blockTwo;
-        margin-left: auto;
-        margin-right: auto;
-        width: 90%;
-        ;
-    }
+  .submissions-content,
+  .application-grid-wrapper {
+    padding: $blockTwo;
+    margin-left: 0;
+    margin-right: 0;
+  }
 
-    .submissions-content,
-    .application-grid-wrapper {
-        padding: $blockTwo;
-        margin-left: 0;
-        margin-right: 0;
-    }
+  .post-nav {
+    padding: $blockThree $blockTwo $blockThree $blockTwo;
+    display: flex;
+  }
 
-    .IndexContainer .content-title,
-    .IndexContainer .landing-title {
-        margin-left: 0;
-        margin-right: 0;
-    }
+  .showcase-grid {
+    display: block;
 
-    .post-nav {
-        padding: $blockThree $blockTwo $blockThree $blockTwo;
-        display: flex;
+    li {
+      border-left: none;
+      border-bottom: 2px solid #e7e7e7;
     }
+  }
 
-    .showcase-grid {
-        display: block;
-
-        li {
-            border-left: none;
-            border-bottom: 2px solid #e7e7e7;
-        }
-    }
-
-    .staticGIF {
-        max-width: 100%;
-    }
+  .staticGIF {
+    max-width: 100%;
+  }
 }
 
 @media only screen and (max-width: 1024px) and (min-width: 729px) {
-    .content-title {
-        margin-top: $blockThree;
-        padding: $blockThree $blockThree 0 $blockThree;
-        margin-left: $blockFour;
-        margin-right: $blockFour;
-    }
+  .submissions-content {
+    padding: $blockThree;
+    margin-left: $blockFour;
+    margin-right: $blockFour;
+  }
 
-    .submissions-content {
-        padding: $blockThree;
-        margin-left: $blockFour;
-        margin-right: $blockFour;
-    }
-
-    .application-grid-wrapper {
-        margin-left: $blockFour;
-        margin-right: $blockFour;
-    }
-
-    .IndexContainer .content-title,
-    .IndexContainer .landing-title {
-        margin-left: $blockFour;
-        margin-right: $blockFour;
-    }
+  .application-grid-wrapper {
+    margin-left: $blockFour;
+    margin-right: $blockFour;
+  }
 }
 
 
 
 @media screen and (min-width: 2400px) {
 
-    .content,
-    .submissions-content,
-    .application-grid-wrapper {
-        padding: $blockThree;
+  .content,
+  .submissions-content,
+  .application-grid-wrapper {
+    padding: $blockThree;
 
-    }
-
-    .content-title {
-        margin-top: $blockFive;
-        padding: $blockThree $blockThree 0 $blockThree;
-
-    }
-
-    // body {
-    //     width: 65%;
-    // }
+  }
 }
