@@ -9,6 +9,10 @@
         "dark": { "value": "#333333" },
         "darkest": { "value": "#151515"}
       },
+      "blue": {
+        "light": { "value": "#0070C9" },
+        "dark": { "value": "#64D2FF"}
+      },
       "accent": { 
         "orange": { "value": "#FFB94F" }
       },

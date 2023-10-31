@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Sun, 29 Oct 2023 05:54:56 GMT
+ * Generated on Tue, 31 Oct 2023 20:53:39 GMT
  */
 
 export const OpmColorBlack = "#000000";
@@ -9,6 +9,8 @@ export const OpmColorGreyLabel = "#8A8A8A";
 export const OpmColorGreyLight = "#E5E5E5";
 export const OpmColorGreyDark = "#333333";
 export const OpmColorGreyDarkest = "#151515";
+export const OpmColorBlueLight = "#0070C9";
+export const OpmColorBlueDark = "#64D2FF";
 export const OpmColorAccentOrange = "#FFB94F";
 export const OpmColorHighlightRed = "#F4BAB9";
 export const OpmBackgroundBlack = "#151515";

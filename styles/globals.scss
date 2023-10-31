@@ -1,4 +1,5 @@
 @import '@/styles/variables.scss';
+@import '@/stories/_variables.scss';
 
 @font-face {
     font-family: "basier_circlemonoregular";
@@ -74,7 +75,7 @@ h3 {
 }
 
 h4 {
-    font-family: "basier_circlemonoregular";
+    font-family: $opm-font-basier;
     text-transform: uppercase;
     font-size: 0.8rem;
     font-weight: normal;
@@ -122,33 +123,24 @@ iframe {
 
 html,
 html[data-theme="light"] {
-    --background-color: #ffffff;
-    --light-text-color: #151515;
-    --link-color: rgb(0, 112, 201);
-    --main-background-color: rgb(255, 255, 255);
-    --main-text-color: rgb(51, 51, 51);
+    --background-color: $opm-background-white;
+    --light-text-color: $opm-color-grey-darkest;
     --button-background: #ffb94f;
     --button-outline: #151515;
 
 }
 
 html[data-theme="dark"] {
-    --background-color: #151515;
-    --light-text-color: #ffffff;
-    --link-color: rgb(100, 210, 255);
-    --main-background-color: rgb(28, 28, 30);
-    --main-text-color: rgb(229, 229, 234);
+    --background-color: $opm-background-black;
+    --light-text-color: $opm-color-white;
     --button-background: #ff9900;
     --button-outline: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
     html[data-theme="light"] {
-        --background-color: #ffffff;
-        --light-text-color: #151515;
-        --link-color: rgb(0, 112, 201);
-        --main-background-color: rgb(255, 255, 255);
-        --main-text-color: rgb(51, 51, 51);
+        --background-color: $opm-background-white;
+        --light-text-color: $opm-color-grey-darkest;
         --button-background: #ffb94f;
         --button-outline: #151515;
 
@@ -156,11 +148,8 @@ html[data-theme="dark"] {
 
     html,
     html[data-theme="dark"] {
-        --background-color: #151515;
-        --light-text-color: #ffffff;
-        --link-color: rgb(100, 210, 255);
-        --main-background-color: rgb(28, 28, 30);
-        --main-text-color: rgb(229, 229, 234);
+        --background-color: $opm-background-black;
+        --light-text-color: $opm-color-white;
         --button-background: #ff9900;
         --button-outline: #ffffff;
 
