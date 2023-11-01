@@ -29,7 +29,7 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
    * Opens the mobile navigation after clicking Menu
    */
   const openNav = () => {
-    document.getElementById("myNav").style.height = "100%";
+    document.getElementById("mobileNav").style.height = "100%";
     setShowNav(true);
   }
 
@@ -72,7 +72,7 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
   const hideAnnouncement = () => {
     localStorage.setItem('announcement', announcementDate);
     setShowAnnouncement(false);
-    
+
     gtag('event', 'close_announcement', {
       'announcement_date': announcementDate
     });
@@ -93,37 +93,37 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
       <header
         ref={headerRef}
         onScroll={handleScroll}
-        className={`${showHeader ? '' : headerStyles["nav-up"]} ${headerStyles["header-glob"]} `}
+        className={`${showHeader ? '' : headerStyles["nav-up"]} ${headerStyles.base}`}
       >
-        <div className={headerStyles["header-main"]}>
+        <div className={headerStyles.base__content}>
           <h2><Link href="/">Other<br /> People ©</Link></h2>
-          <div className={`${headerStyles["nav-genres"]} ${navStyles["h2"]}`}>
+          <div className={navStyles.genres__top}>
             <Link href="/poetry">Poetry</Link> / <Link href="/fiction">Fiction</Link> / <br />
             <Link href="/nonfiction">Nonfiction</Link> / <Link href="/visualarts">Visual Arts</Link>
           </div>
           <button className={navStyles.menu} onClick={openNav} aria-label="Open Menu">Menu</button>
         </div>
-        {/* {
-          landingPage && title === 'Home' && 
-          showAnnouncement ? (
+
+        {
+          landingPage && title === 'Home' &&
+          showAnnouncement && (
             <div className={headerStyles.announcement} id="announcement">
-              { announcementData?.link?.length > 0 ?
+              {announcementData?.link?.length > 0 ?
                 <Link href={`${announcementData?.link}`}>{announcementData?.description}</Link>
                 :
                 <span>{announcementData?.description}</span>
               }
-              <button 
-                id="close-notice" 
-                className={headerStyles["close-announcement"]}
-                onClick={hideAnnouncement} 
+              <button
+                className={headerStyles.announcement__close}
+                onClick={hideAnnouncement}
                 aria-label="Hide the Announcement"><CloseIcon /></button>
             </div>
-          ) : null
-        } */}
-
+          )
+        }
       </header>
-      <div id='myNav' className={navStyles.overlay}>
-        {showNav ? <MobileNav setShowNav={setShowNav} /> : null}
+
+      <div id='mobileNav' className={navStyles.overlay}>
+        {showNav && <MobileNav setShowNav={setShowNav} />}
       </div>
     </>
   );
@@ -140,29 +140,29 @@ export function MobileNav({ setShowNav }) {
    * Closes the mobile navigation after clicking Close or a search result
    */
   const closeNav = () => {
-    document.getElementById("myNav").style.height = "0%";
+    document.getElementById("mobileNav").style.height = "0%";
     setShowNav(false);
   }
 
   return (
-    <div id="navContent" className={navStyles["overlay-content"]}>
-      <div className={navStyles["overlay-header"]}>
+    <>
+      <div className={navStyles.overlay__header}>
         <h2><Link href="/" onClick={closeNav}>Other<br /> People ©</Link></h2>
-        <div className={`${headerStyles["nav-genres"]} ${navStyles["h2"]}`}>
+        <div className={navStyles.genres__top}>
           <Link href="/poetry" onClick={closeNav}>Poetry</Link> / <Link href="/fiction" onClick={closeNav}>Fiction</Link> / <br />
           <Link href="/nonfiction" onClick={closeNav}>Nonfiction</Link> / <Link href="/visualarts" onClick={closeNav}>Visual Arts</Link>
         </div>
-        <button id="close-notice"
-          className={navStyles.closebtn}
+        <button
+          className={navStyles.menu__close}
           onClick={closeNav}
           aria-label="Close Menu">Close</button>
       </div>
 
-      <nav className={navStyles["mobile-nav"]}>
+      <nav className={navStyles.nav__content}>
         <Search setShowNav={setShowNav} />
         <div className={navStyles.genres}>
           <h3>Genres</h3>
-          <ul className={navStyles["nav-menu"]}>
+          <ul className={navStyles.nav__list}>
             <li><Link href="/poetry" onClick={closeNav}>Poetry</Link></li>
             <li><Link href="/fiction" onClick={closeNav}>Fiction</Link></li>
             <li><Link href="/nonfiction" onClick={closeNav}>Nonfiction</Link></li>
@@ -170,24 +170,23 @@ export function MobileNav({ setShowNav }) {
           </ul>
         </div>
         <h3>Menu</h3>
-        <ul className={navStyles["nav-menu"]}>
+        <ul className={navStyles.nav__list}>
           <li><Link href="/about">(THE) PEOPLE</Link></li>
           <li><a href="https://issuu.com/otherpeoplesd" className={navStyles.external}>Issuu <ArrowForwardIcon fontSize='inherit' /></a></li>
           <li><Link href="/submissions">Submissions</Link></li>
           <li><Link href="/uc-magazines">UC Magazines</Link></li>
         </ul>
-        <ul className={navStyles["social-footer"]}>
-          <li><a href="https://www.instagram.com/otherpeoplesd/">
-            <InstagramIcon /></a></li>
+        <ul className={navStyles.footer__socials}>
+          <li><a href="https://www.instagram.com/otherpeoplesd/"><InstagramIcon /></a></li>
           <li><a href="https://www.facebook.com/otherpeoplesd/"><FacebookIcon /></a></li>
           <li><a href="mailto:otherpeopleucsd@gmail.com"><MailOutlineIcon /></a></li>
         </ul>
-        <div className={navStyles["nav-footer"]}>
+        <div className={navStyles.footer__nav}>
           <FooterLogo />
           <h4>{`Other People © ${getYear()}`} <br />ALL RIGHTS RESERVED</h4>
         </div>
       </nav>
-    </div>
+    </>
   );
 
   /**

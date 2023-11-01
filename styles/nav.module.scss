@@ -1,18 +1,20 @@
 @import '@/styles/variables.scss';
 
 // MOBILENAV
-.menu {
+.menu,
+.menu__close {
     margin-left: auto;
     margin-right: 0px;
 }
 
-.h2 {
-    font-family: $opm-font-arial;
-    font-size: 1.2rem;
-    font-weight: normal;
-    text-transform: uppercase;
-    margin: 0;
-    padding: 0;
+.menu__close {
+    color: $opm-color-white;
+}
+
+.menu:hover,
+.menu__close:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .overlay {
@@ -26,9 +28,19 @@
 
     overflow-x: hidden;
     transition: 0.3s;
+
+    a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
 }
 
-.overlay-header {
+.overlay__header {
     position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -48,72 +60,31 @@
     }
 }
 
-.overlay-content {
-    a {
-        color: #fff;
-        text-decoration: none;
-    }
-
-    a:hover {
-        text-decoration: underline;
-        cursor: pointer;
-    }
-}
-
-.closebtn {
-    margin-left: auto;
-    margin-right: 0;
-    color: #fff;
-}
-
-.closebtn:hover,
-.menu:hover {
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-.hidden {
-    display: none;
-}
-
-.mobile-nav {
-    padding: $blockThree;
-    left: 0;
-    right: 0;
-    color: #fff;
-
-    h1 {
-        line-height: 5rem;
-    }
-
-    h3 {
-        margin-top: $blockThree;
-        opacity: 0.5;
-        padding-bottom: $blockThree;
-    }
-
-    .social-footer {
-        display: grid;
-        padding-left: 0px;
-        max-width: 500px;
-        grid-template-columns: 1fr 1fr 1fr;
-        column-gap: 60px;
-        list-style: none;
-
-        svg {
-            width: 3rem;
-            transform: scale(1.25);
-            font-size: 48px;
-        }
-    }
-
+.genres__top {
+    font-family: $opm-font-arial;
+    font-size: 1.2rem;
+    font-weight: normal;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
 }
 
 .genres {
     display: none;
 }
 
-.nav-menu {
+.nav__content {
+    padding: $blockThree;
+    color: $opm-color-white;
+
+    h3 {
+        margin-top: $blockThree;
+        opacity: 0.5;
+        padding-bottom: $blockThree;
+    }
+}
+
+.nav__list {
     font-family: $opm-font-arial;
     margin: 0 0;
     padding-left: 0px;
@@ -135,13 +106,13 @@
     }
 }
 
-.mobile-nav {
-    .nav-menu a:hover svg {
+.nav__content {
+    .nav__list a:hover svg {
         margin-left: $blockTwo;
     }
 }
 
-.mobile-nav .nav-footer {
+.footer__nav {
     text-align: left;
     padding: 0;
     margin-top: $blockThree;
@@ -153,7 +124,7 @@
     }
 
     svg {
-        fill: $bodyColor;
+        fill: $opm-color-white;
         margin-left: $blockThree;
         margin-bottom: $blockOne;
         display: block;
@@ -162,24 +133,50 @@
     }
 }
 
+.footer__socials {
+    display: grid;
+    padding-left: 0px;
+    max-width: 500px;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 60px;
+    list-style: none;
+
+    svg {
+        width: 3rem;
+        transform: scale(1.25);
+        font-size: 48px;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+
+    .overlay__header,
+    .nav__content {
+        grid-template-columns: 1fr 1fr;
+        padding: $blockThree;
+    }
+
+    .genres__top {
+        display: none;
+    }
+
+    .genres {
+        display: initial;
+    }
+}
+
 
 @media only screen and (max-width: 728px) {
 
-    .overlay-header,
-    .mobile-nav {
-        grid-template-columns: 1fr 1fr;
+    .overlay__header,
+    .nav__content {
         padding: $blockTwo;
     }
 
-    .overlay-header {
-        :nth-child(2) {
-            display: none;
-        }
-    }
-
-    .mobile-nav {
+    .nav__content {
         li {
-            font-size: 4rem;
+            font-size: $mobile-font-size-h2;
+            line-height: normal;
         }
     }
 
@@ -187,30 +184,17 @@
         margin-top: $blockOne;
     }
 
-    .genres {
-        display: initial;
-    }
+    .footer__socials {
+        max-width: 300px;
+        column-gap: $opm-spacing-100;
 
-    .menu {
-        display: block;
-    }
-}
-
-@media only screen and (max-width: 1024px) and (min-width: 729px) {
-
-    .overlay-header,
-    .mobile-nav {
-        grid-template-columns: 1fr 1fr;
-        padding: $blockThree;
-    }
-
-    .overlay-header {
-        :nth-child(2) {
-            display: none;
+        svg {
+            transform: scale(1);
+            font-size: 48px;
         }
     }
 
-    .genres {
-        display: initial;
+    .footer__nav {
+        margin-top: $opm-spacing-200;
     }
 }

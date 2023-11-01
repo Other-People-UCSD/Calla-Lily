@@ -62,6 +62,9 @@
       "500": { "value": "32px" },
       "600": { "value": "64px" },
       "700": { "value": "128px"}
+    },
+    "zindex": {
+      "header": { "value": "9" }
     }
   },
   "animation": {
@@ -70,6 +73,14 @@
       "slow": { "value": "3000ms" },
       "normal": { "value": "1000ms" },
       "fast": { "value": "300ms"}
+    }
+  },
+  "mobile": {
+    "font": {
+      "size": {
+        "h1": { "value": "3rem" },
+        "h2": { "value": "2rem" }
+      }
     }
   }
 }

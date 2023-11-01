@@ -51,7 +51,7 @@
   }
 
   h4 {
-    opacity: 0.5;
+    opacity: 0.5; // subtext?
   }
 
   li {
@@ -63,13 +63,13 @@
 
 #search-container {
   input {
-    background-color: #151515;
-    color: #fff;
-    border-bottom: 5px solid #fff;
+    background-color: $opm-background-black;
+    color: $opm-color-white;
+    border-bottom: 5px solid $opm-color-white;
   }
 }
 
-.searchContainer input[type="text"] {
+.searchContainer input {
   font-size: 4rem;
   font-weight: normal;
   margin: 0;
@@ -85,17 +85,17 @@
 
 .searchContainer ::placeholder {
   /* Firefox */
-  opacity: 0.5;
+  opacity: $opm-opacity-placeholder;
 }
 
 .searchContainer :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  opacity: 0.5;
+  opacity: $opm-opacity-placeholder;
 }
 
 .searchContainer ::-ms-input-placeholder {
   /* Microsoft Edge */
-  opacity: 0.5;
+  opacity: $opm-opacity-placeholder;
 }
 
 .searchContainer input:focus,
@@ -107,9 +107,7 @@
 
 
 @media only screen and (max-width: 728px) {
-
-  .searchContainer input[type="text"],
-  .searchContainer input[type="text2"] {
+  .searchContainer input {
     font-size: 3rem;
   }
 }

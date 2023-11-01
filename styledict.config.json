@@ -1,9 +1,9 @@
 {
-  "source": ["styles/tokens/**/*.json"],
+  "source": ["stories/tokens/**/*.json"],
   "platforms": {
     "scss": {
       "transformGroup": "scss",
-      "buildPath": "./styles/",
+      "buildPath": "./stories/",
       "files": [{
         "destination": "_variables.scss",
         "format": "scss/variables"
@@ -11,7 +11,7 @@
     },
     "js": {
       "transformGroup": "js",
-      "buildPath": "./styles/",
+      "buildPath": "./stories/",
       "files": [{
         "destination": "_variables.js",
         "format": "javascript/es6"
