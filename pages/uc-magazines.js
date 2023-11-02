@@ -1,6 +1,5 @@
 import Layout from "@/components/layout";
 import animationStyles from "@/styles/animations.module.scss";
-import indexStyles from "@/styles/index.module.scss";
 import contentStyles from "@/styles/content.module.scss";
 import postStyles from "@/styles/posts.module.scss";
 import { getSortedPostsData } from "@/lib/posts";
@@ -8,7 +7,6 @@ import ucStyles from "@/styles/uc.module.scss";
 import { useState } from "react";
 import client from '../tina/__generated__/client'
 import { useTina } from "tinacms/dist/react";
-import { FooterLogo } from "@/components/footer";
 
 export default function UCMagazines(props) {
   const { query, variables, data } = useTina({
@@ -69,139 +67,6 @@ export async function getStaticProps() {
   };
 }
 
-
-const UCCards = ({ magazines }) => {
-  const defaultFilter = {
-    'active': true,
-    'ucsd': true,
-    'ucb': false,
-    'ucd': false,
-    'uci': false,
-    'ucla': false,
-    'ucr': false,
-    'ucm': false,
-    'ucsb': false,
-    'ucsc': false,
-  }
-
-  const [searchQuery, setSearchQuery] = useState(null);
-  const [filter, setFilter] = useState(defaultFilter);
-
-  const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value.toLowerCase());
-  }
-
-  const toggleAll = (event) => {
-    const inputs = document.querySelectorAll(`.${ucStyles.filterCollege} input`);
-    for (const input of inputs) {
-      if (input !== event.target.name) {
-        input.checked = event.target.checked;
-      }
-    }
-
-    if (event.target.checked) {
-      const toggleAll = {
-        'active': true, 'ucsd': true, 'ucb': true, 'ucd': true, 'uci': true,
-        'ucla': true, 'ucr': true, 'ucm': true, 'ucsb': true, 'ucsc': true,
-      };
-      setFilter(toggleAll);
-    } else {
-      const toggleNone = {
-        'active': true, 'ucsd': false, 'ucb': false, 'ucd': false, 'uci': false,
-        'ucla': false, 'ucr': false, 'ucm': false, 'ucsb': false, 'ucsc': false,
-      }
-      setFilter(toggleNone)
-    }
-  }
-
-  const handleFilterChange = (event) => {
-    const newFilter = {
-      ...filter,
-      [event.target.name]: event.target.checked
-    }
-    setFilter(newFilter);
-  }
-
-  return (
-    <>
-      <div className={ucStyles.searchContainer}>
-        <div className={ucStyles.searchBox}>
-          <label id="searchBar" type="text" className={ucStyles.searchLabel}>Search</label>
-          <input htmlFor="searchBar" placeholder='Search' onChange={handleSearchChange} className={ucStyles.searchInput} />
-        </div>
-        <div className={ucStyles.filterContainer}>
-          <div className={ucStyles.filterCollege}>
-            <div>
-              <input type="checkbox" id="toggleAll" name="toggleAll" onChange={toggleAll} />
-              <label htmlFor="toggleAll">Display All</label>
-            </div>
-            <div>
-              <input type="checkbox" id="ucsd" name="ucsd" onChange={handleFilterChange} defaultChecked={true} />
-              <label htmlFor="ucsd">UCSD</label>
-            </div>
-            <div>
-              <input type="checkbox" id="ucb" name="ucb" onChange={handleFilterChange} />
-              <label htmlFor="ucb">UCB</label>
-            </div>
-            <div>
-              <input type="checkbox" id="ucd" name="ucd" onChange={handleFilterChange} />
-              <label htmlFor="ucd">UCD</label>
-            </div>
-            <div>
-              <input type="checkbox" id="uci" name="uci" onChange={handleFilterChange} />
-              <label htmlFor="uci">UCI</label>
-            </div>
-            <div>
-              <input type="checkbox" id="ucla" name="ucla" onChange={handleFilterChange} />
-              <label htmlFor="ucla">UCLA</label>
-            </div>
-            <div>
-              <input type="checkbox" id="ucr" name="ucr" onChange={handleFilterChange} />
-              <label htmlFor="ucr">UCR</label>
-            </div>
-            <div>
-              <input type="checkbox" id="ucm" name="ucm" onChange={handleFilterChange} />
-              <label htmlFor="ucm">UCM</label>
-            </div>
-            <div>
-              <input type="checkbox" id="ucsb" name="ucsb" onChange={handleFilterChange} />
-              <label htmlFor="ucsb">UCSB</label>
-            </div>
-            <div>
-              <input type="checkbox" id="ucsc" name="ucsc" onChange={handleFilterChange} />
-              <label htmlFor="ucsc">UCSC</label>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <ul className={ucStyles.resultContainer}>
-        {
-          magazines?.map(({ title, url, college, est, active, description }) => {
-            const search = searchQuery === null || title?.toLowerCase().includes(searchQuery)
-              || college?.toLowerCase().includes(searchQuery); // description?.toLowerCase().includes(searchQuery)
-            const show = search && filter[college] && filter['active'] === active;
-
-            return (show &&
-              <li
-                key={title}
-                className={ucStyles.resultCard}>
-                <hr />
-                <p className={ucStyles.resultTitle}>
-                  {url ? <a href={url} target='_blank' rel='noopener'>{title}</a> : title}
-                </p>
-                <span>{college.toUpperCase()} | {est && <><span className={`${postStyles.est} ${postStyles.gold}`}>Est. {est}</span> | </>} {active ? <strong>Active</strong> : 'Inactive'}</span>
-                <p className={ucStyles.resultDescription} dangerouslySetInnerHTML={{ __html: description }} />
-              </li>
-            );
-          })
-        }
-      </ul>
-      <p className={ucStyles.backToTop}><a href="#top">Back to top</a></p>
-    </>
-  );
-}
-
 const UCCardsDropdown = ({ magazines }) => {
   const filterData = {
     "active": true,
@@ -257,24 +122,24 @@ const UCCardsDropdown = ({ magazines }) => {
 
   return (
     <>
-      <div className={ucStyles.searchContainer}>
-        <div className={ucStyles.searchBox}>
-          <label id="searchBar" type="text" className={ucStyles.searchLabel}>Search</label>
-          <input htmlFor="searchBar" placeholder='Search...' onChange={handleSearchChange} className={ucStyles.searchInput} />
+      <div className={ucStyles.search__container}>
+        <div className={ucStyles.search__bar}>
+          <label id="searchBar" type="text" className={ucStyles.search__label}>Search</label>
+          <input htmlFor="searchBar" placeholder='Search...' onChange={handleSearchChange} className={ucStyles.search__input} />
         </div>
-        <div className={ucStyles.multiselectContainer}>
-          <div className={ucStyles.multiselectToolbar} onClick={displayDropdown}>
+        <div className={ucStyles.multiselect__container}>
+          <div className={ucStyles.multiselect__toolbar} onClick={displayDropdown}>
             {filter.size > 0 ?
               [...filter].map((college, idx) => {
                 const collegeTitle = college.toUpperCase();
                 return <li key={idx}
-                  className={ucStyles.selectedFilterItem}
+                  className={ucStyles["filter__item--selected"]}
                   onClick={(e) => handleFilterChange(e, idx)}>
                   {collegeTitle}
                 </li>
               })
               :
-              <div className={ucStyles.placeholder}>College</div>
+              <div className={ucStyles.placeholder}>Filter by College</div>
             }
             <svg width="32" height="32" stroke="#ccc" fill="#ccc"
               className={ucStyles.checkbox}
@@ -283,7 +148,7 @@ const UCCardsDropdown = ({ magazines }) => {
             </svg>
           </div>
           {showDropdown &&
-            <div className={ucStyles.multiselectDropdown}>
+            <div className={ucStyles.multiselect__dropdown}>
               {
                 filterData.colleges.map((college, idx) => {
                   const collegeTitle = college.toUpperCase();
@@ -293,7 +158,7 @@ const UCCardsDropdown = ({ magazines }) => {
                   }
                   return <li key={idx}
                     onClick={(e) => handleFilterChange(e, idx)}
-                    className={ucStyles.filterItem}>
+                    className={ucStyles.filter__item}>
                     <svg width="16" height="16" fill={checkboxFillColor} stroke={checkboxFillColor}
                       className={ucStyles.checkbox}>
                       <rect x="0" y="0" width="16" height="16" rx="4px" />
@@ -309,7 +174,7 @@ const UCCardsDropdown = ({ magazines }) => {
 
 
 
-      <ul className={ucStyles.resultContainer}
+      <ul className={ucStyles.result__list}
         aria-live="polite">
         {
           magazines?.map(({ title, url, college, est, active, description }) => {
@@ -320,13 +185,12 @@ const UCCardsDropdown = ({ magazines }) => {
             return (show &&
               <li
                 key={title}
-                className={ucStyles.resultCard}>
-                <hr />
-                <p className={ucStyles.resultTitle}>
+                className={ucStyles.result__item}>
+                <p className={ucStyles.result__title}>
                   {url ? <a href={url} target='_blank' rel='noopener'>{title}</a> : title}
                 </p>
                 <span>{college.toUpperCase()} | {est && <><span className={`${postStyles.est} ${postStyles.gold}`}>Est. {est}</span> | </>} {active ? <strong>Active</strong> : 'Inactive'}</span>
-                <p className={ucStyles.resultDescription} dangerouslySetInnerHTML={{ __html: description }} />
+                <p className={ucStyles.result__description} dangerouslySetInnerHTML={{ __html: description }} />
               </li>
             );
           })

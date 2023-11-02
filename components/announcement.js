@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { FooterLogo } from "./footer";
-import headerStyles from "@/styles/header.module.scss";
 import animStyles from "@/styles/animations.module.scss";
 import { useState, useRef, useEffect } from "react";
 import { Opacity } from "@mui/icons-material";
@@ -33,8 +32,7 @@ export default function Announcement(props) {
 
   return (
     <div
-      ref={overlayRef}
-      className={headerStyles.announcementOverlay}>
+      ref={overlayRef}>
 
       <svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
 

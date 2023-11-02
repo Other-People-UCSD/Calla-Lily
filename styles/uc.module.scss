@@ -1,4 +1,20 @@
-.searchLabel {
+@import '@/styles/variables.scss';
+
+.search__container {
+  position: relative;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 60px;
+  width: auto;
+}
+
+.search__bar {
+  display: flex;
+  justify-content: center;
+}
+
+.search__label {
   position: absolute;
   left: -1000px;
   width: 1px;
@@ -6,22 +22,7 @@
   overflow: hidden;
 }
 
-.searchContainer {
-  position: relative;
-  display: grid;
-  grid-template-columns: 6fr 4fr;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 60px;
-  width: auto;
-}
-
-.searchBox {
-  display: flex;
-  justify-content: center;
-}
-
-.searchInput {
+.search__input {
   padding: 3px 8px;
   height: 2rem;
   width: 400px;
@@ -30,20 +31,7 @@
   font-size: 1rem;
 }
 
-.filterContainer {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  margin-top: 8px;
-}
-
-.filterCollege {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-.resultContainer {
+.result__list {
   list-style-type: none;
   margin-left: auto;
   margin-right: auto;
@@ -51,11 +39,17 @@
   width: auto;
 }
 
-.resultTitle {
+.result__item {
+  border-bottom: 2px solid $opm-color-grey-darkest;
+  padding-bottom: $opm-spacing-500;
+  margin-bottom: $opm-spacing-300;
+}
+
+.result__title {
   margin: 0;
 }
 
-.resultDescription {
+.result__description {
   margin: 0;
 }
 
@@ -68,7 +62,7 @@
   color: grey;
 }
 
-.multiselectContainer {
+.multiselect__container {
   position: absolute;
   right: 0;
   width: 350px;
@@ -79,7 +73,7 @@
   background-color: white;
 }
 
-.multiselectToolbar {
+.multiselect__toolbar {
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -95,15 +89,30 @@
   }
 }
 
-.filterItem {
+.filter__item {
   padding: 8px;
   border-top: 2px solid #737373;
   display: flex;
   gap: 10px;
 }
 
-.selectedFilterItem {
+.filter__item--selected {
   padding: 2px 4px;
-  background-color: rgb(81, 255, 255);
   border-radius: 10px;
+}
+
+@media screen and (max-width: 1028px) {
+  .search__container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: $opm-spacing-200;
+  }
+
+  .multiselect__container {
+    position: initial;
+  }
+
+  .multiselect__dropdown {
+    position: relative;
+  }
 }
