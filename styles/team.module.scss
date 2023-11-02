@@ -5,17 +5,14 @@
   margin-left: auto;
   margin-right: auto;
   max-width: 1080px;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 1px;
 
   ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
+    list-style-type: none;
+    padding: 0;
   }
+
   li {
-       margin: 10px 0 10px 0;
+    margin-bottom: 10px;
   }
 }
 
@@ -25,23 +22,58 @@
   margin-top: $blockThree;
 
   h2 {
-      margin-bottom: $blockThree;
+    margin-bottom: $blockThree;
   }
+}
+
+
+.application-grid-wrapper {
+  padding: $blockThree;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1080px;
+}
+
+.application-grid {
+  display: grid;
+  padding-left: 0px;
+  list-style-type: none;
+  grid-template-columns: 1fr 1fr;
+
+  h3 {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  li {
+    padding: 16px 16px;
+  }
+}
+
+.application-grid-wrapper {
+  padding: $blockTwo;
 }
 
 @media only screen and (max-width: 728px) {
   .team_module {
-      padding: $blockTwo;
-      margin-left: 0;
-      margin-right: 0;
-      grid-template-columns: 1fr;
+    padding: $blockTwo;
+  }
+
+  .application-grid {
+    grid-template-columns: 1fr;
   }
 }
 
 @media only screen and (max-width: 1024px) and (min-width: 729px) {
   .team_module {
-      padding: $blockThree;
-      margin-left: $blockFour;
-      margin-right: $blockFour;
+    padding: $blockThree;
+    margin-left: $blockFour;
+    margin-right: $blockFour;
+
+  }
+
+  .application-grid-wrapper {
+    margin-left: $blockFour;
+    margin-right: $blockFour;
   }
 }

@@ -119,48 +119,6 @@
   }
 }
 
-.application-grid-wrapper {
-  padding: $blockThree;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1080px;
-}
-
-.application-grid {
-  display: grid;
-  padding-left: 0px;
-  list-style-type: none;
-  grid-template-columns: 1fr 1fr;
-
-  h3 {
-    text-transform: uppercase;
-    font-weight: bold;
-  }
-
-  li {
-    padding: 16px 16px;
-  }
-
-  li:nth-child(1) {
-    border-right: 1px solid #e7e7e7;
-    border-bottom: 1px solid #e7e7e7;
-  }
-
-  li:nth-child(2) {
-    border-left: 1px solid #e7e7e7;
-    border-bottom: 1px solid #e7e7e7;
-  }
-
-  li:nth-child(3) {
-    border-right: 1px solid #e7e7e7;
-    border-top: 1px solid #e7e7e7;
-  }
-
-  li:nth-child(4) {
-    border-left: 1px solid #e7e7e7;
-    border-top: 1px solid #e7e7e7;
-  }
-}
 
 @media only screen and (max-width: 728px) {
   .content {
@@ -170,8 +128,7 @@
     width: 90%;
   }
 
-  .submissions-content,
-  .application-grid-wrapper {
+  .submissions-content {
     padding: $blockTwo;
     margin-left: 0;
     margin-right: 0;
@@ -203,19 +160,13 @@
     margin-right: $blockFour;
   }
 
-  .application-grid-wrapper {
-    margin-left: $blockFour;
-    margin-right: $blockFour;
-  }
+
 }
-
-
 
 @media screen and (min-width: 2400px) {
 
   .content,
-  .submissions-content,
-  .application-grid-wrapper {
+  .submissions-content {
     padding: $blockThree;
 
   }

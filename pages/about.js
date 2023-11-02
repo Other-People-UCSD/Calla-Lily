@@ -1,5 +1,4 @@
 import Layout from '@/components/layout';
-import contentStyles from '@/styles/content.module.scss';
 import animationStyles from "@/styles/animations.module.scss";
 import teamStyles from "@/styles/team.module.scss";
 import { useTina } from 'tinacms/dist/react';
@@ -92,9 +91,9 @@ export default function About(props) {
         </p>
       </div>
 
-      <div className={contentStyles["application-grid-wrapper"]}>
+      <div className={teamStyles["application-grid-wrapper"]}>
         <h2>TEAM ROLES</h2>
-        <ul className={contentStyles["application-grid"]}>
+        <ul className={teamStyles["application-grid"]}>
           <li>
             <h3>Editorial & Content</h3>
             <p>Editors review and edit submissions, then produce the pages of the magazine. Content writers create
