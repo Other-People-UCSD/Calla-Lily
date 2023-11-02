@@ -20,25 +20,24 @@ export default function Search({ setShowNav }) {
   }, []);
 
   return (
-    <div className={searchStyles["search-wrapper"]}>
-      <div id="search-container" className={searchStyles.searchContainer}>
-        <input
-          type="text"
-          id="search-input"
-          placeholder="Search"
-          aria-placeholder="Type here to search"
-          // autoFocus={true}
-          onChange={getSearchQuery} />
-        {searchQuery === '' && recommender &&
-          <p>Enjoyed this work? Here are our recommendations!</p>
-        }
-        <SearchResults
-          setShowNav={setShowNav}
-          searchQuery={searchQuery}
-          allPostsData={allPostsData}
-          recommender={recommender}
-        />
-      </div>
+    <div className={searchStyles.wrapper}>
+      <input
+        type="text"
+        id="search-input"
+        className={searchStyles.input}
+        placeholder="Search"
+        aria-placeholder="Type here to search"
+        // autoFocus={true}
+        onChange={getSearchQuery} />
+      {searchQuery === '' && recommender &&
+        <p>Enjoyed this work? Here are our recommendations!</p>
+      }
+      <SearchResults
+        setShowNav={setShowNav}
+        searchQuery={searchQuery}
+        allPostsData={allPostsData}
+        recommender={recommender}
+      />
     </div>
 
   );
@@ -107,22 +106,20 @@ const SearchResults = ({ setShowNav, searchQuery, allPostsData, recommender }) =
   }
 
   return (
-    <ul id="results-container">
+    <ul className={searchStyles.results}>
       {
         results.length > 0 ? (
           results.map((key) => {
             const post = allPostsData[key];
             // console.log(key);
             return (
-              <li key={key}>
+              <li key={key} className={searchStyles.results__item}>
                 <Link href={`/${post.slug}`}
                   onClick={handleClick}>
                   <h2>{post.title}</h2>
-                  <h3>{post.contributor}</h3>
-                  <h4>{post.tags.join(", ")}</h4>
+                  <p className={searchStyles.results__item__contributor}>{post.contributor}</p>
+                  <p className={searchStyles.results__item__genre}>{post.tags.join(", ")}</p>
                 </Link>
-                <br />
-                <hr />
               </li>
             );
           })
