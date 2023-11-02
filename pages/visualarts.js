@@ -7,10 +7,8 @@ import { getSortedPostsData, getGenrePostsData } from "@/lib/posts";
 export default function VisualArts({ artPosts }) {
   return (
     <Layout landingPage title={"Visual Arts"}>
-      <div className={`${animationStyles.cssanimation} ${animationStyles.sequence} ${animationStyles.fadeInBottom}`}>
-        <div className={indexStyles.IndexContainer}>
-          <h1 className={indexStyles["page-title"]}>Visual Arts</h1>
-        </div>
+      <div className={`${animationStyles.fadeInBottom}`}>
+        <h1 className={indexStyles.page__title}>Visual Arts</h1>
       </div>
 
       <Genre genre={artPosts} />

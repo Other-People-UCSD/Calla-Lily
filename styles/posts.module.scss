@@ -74,29 +74,11 @@
 
 }
 
-h2.post-title {
-  padding: 0 $blockThree 0 $blockThree;
-  font-size: 4rem;
-  text-transform: capitalize;
-}
-
-
-h3.post-title {
-  padding: 0 $blockThree 0 $blockThree;
+.genre__title {
+  padding-left: $blockThree;
   margin-top: $blockThree;
-  font-size: 2rem;
-  opacity: .5;
-
-  a {
-    font-size: 1rem;
-    color: $backgroundColor;
-    text-decoration: none;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-
+  font-size: $opm-font-size-h2;
+  opacity: 0.5;
 }
 
 
@@ -159,15 +141,12 @@ h3.post-title {
     grid-template-columns: 1fr;
   }
 
-  h2.post-title {
-    padding: 0 $blockTwo 0 $blockTwo;
-  }
+  
 
-  h3.post-title {
-    font-size: 1.5rem;
-    padding: 0 $blockTwo 0 $blockTwo;
+  .genre__title {
+    padding-left: $blockTwo;
     margin-top: $blockThree;
-    opacity: 0.5;
+    font-size: 1.5rem;
   }
 }
 

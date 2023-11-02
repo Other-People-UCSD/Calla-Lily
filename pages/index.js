@@ -21,7 +21,7 @@ const Home = (props) => {
   useEffect(() => {
     /**
      * Homepage only.
-     * When the user scrolls to the "keep reading" section marked by the "w2b" class, 
+     * When the user scrolls to the "keep reading" section marked by the "keep__reading" class, 
      * the style of the page changes to dark mode. 
      * If the user's client preference is dark mode, scrolling beyond the "keep reading" section
      * will cause that section to become light mode instead.
@@ -50,50 +50,54 @@ const Home = (props) => {
 
   return (
     <Layout landingPage title={"Home"} announcementData={data.homepage.announcement}>
-      <div className={indexStyles.IndexContainer}>
-        <a href={data.homepage.featured_link} target="_blank" rel="noopener noreferer">
+      <div>
+        <a href={data.homepage.featured_link} target="_blank" rel="noopener noreferer"
+          className={indexStyles.cover__link}>
           <Image
             src={data.homepage.image}
             alt={data.homepage.featured_alt}
+            className={indexStyles.cover__img}
             width={1024}
             height={525}
             quality={75}
             priority={true}
           />
-          <h4>{data.homepage.featured_piece_name} by {data.homepage.featured_contributor}</h4>
+          <p className={indexStyles.cover__credits}>
+            {data.homepage.featured_piece_name} by {data.homepage.featured_contributor}
+          </p>
         </a>
       </div>
-      <h1 className={`${indexStyles["index-title"]} ${animationStyles.cssanimation} ${animationStyles.sequence} ${animationStyles.fadeInBottom}`}>
+      <h1 className={`${indexStyles["index__title"]} ${animationStyles.fadeInBottom}`}>
         {data.homepage.term} &mdash;<br />Collection No. {data.homepage.collection}<br />{data.homepage.theme}
       </h1>
 
-      <h3 className={postStyles["post-title"]}>Poetry</h3>
+      <h3 className={postStyles.genre__title}>Poetry</h3>
       <Genre genre={props.poetry} limit={data.homepage.poetryLimit} />
 
-      <h3 className={postStyles["post-title"]}>Fiction</h3>
+      <h3 className={postStyles.genre__title}>Fiction</h3>
       <Genre genre={props.fiction} limit={data.homepage.fictionLimit} />
 
-      <h3 className={postStyles["post-title"]}>Nonfiction</h3>
+      <h3 className={postStyles.genre__title}>Nonfiction</h3>
       <Genre genre={props.nonfiction} limit={data.homepage.nonfictionLimit} />
 
-      <h3 className={postStyles["post-title"]}>Visual Arts</h3>
+      <h3 className={postStyles.genre__title}>Visual Arts</h3>
       <Genre genre={props.visualarts} limit={data.homepage.visartsLimit} />
 
       <h2
         ref={keepReadingRef}
-        className={`${indexStyles.w2b} ${postStyles["post-title"]}`}
+        className={`${indexStyles.w2b} ${indexStyles.keep__reading}`}
       >Keep Reading</h2>
 
-      <h3 className={postStyles["post-title"]}>Poetry</h3>
+      <h3 className={postStyles.genre__title}>Poetry</h3>
       <Genre genre={props.poetry} offset={data.homepage.poetryLimit} limit={6} />
 
-      <h3 className={postStyles["post-title"]}>Fiction</h3>
+      <h3 className={postStyles.genre__title}>Fiction</h3>
       <Genre genre={props.fiction} offset={data.homepage.fictionLimit} limit={6} />
 
-      <h3 className={postStyles["post-title"]}>Nonfiction</h3>
+      <h3 className={postStyles.genre__title}>Nonfiction</h3>
       <Genre genre={props.nonfiction} offset={data.homepage.nonfictionLimit} limit={6} />
 
-      <h3 className={postStyles["post-title"]}>Visual Arts</h3>
+      <h3 className={postStyles.genre__title}>Visual Arts</h3>
       <Genre genre={props.visualarts} offset={data.homepage.visartsLimit} limit={6} />
     </Layout>
   );

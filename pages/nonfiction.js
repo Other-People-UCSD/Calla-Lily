@@ -7,10 +7,8 @@ import Genre from "../components/genre";
 export default function Nonfiction({ nonfictionPosts }) {
   return (
     <Layout landingPage title={"Nonfiction"}>
-      <div className={`${animationStyles.cssanimation} ${animationStyles.sequence} ${animationStyles.fadeInBottom}`}>
-        <div className={indexStyles.IndexContainer}>
-          <h1 className={indexStyles["page-title"]}>Nonfiction</h1>
-        </div>
+      <div className={`${animationStyles.fadeInBottom}`}>
+        <h1 className={indexStyles.page__title}>Nonfiction</h1>
       </div>
 
       <Genre genre={nonfictionPosts} />

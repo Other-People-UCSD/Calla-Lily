@@ -21,7 +21,7 @@ export default function About(props) {
   return (
     <Layout landingPage title={"About"}>
       <div className={teamStyles["team_module"]}>
-        <div className={`${animationStyles.cssanimation} ${animationStyles.sequence} ${animationStyles.fadeInBottom}`}>
+        <div className={`${animationStyles.fadeInBottom}`}>
           <h1>O(THE)R PEOPLE</h1>
         </div>
         <h2><strong>ABOUT US</strong></h2>
@@ -153,7 +153,7 @@ export default function About(props) {
       </div>
 
       <div className={teamStyles.team_module}>
-        <div className={`${animationStyles.cssanimation} ${animationStyles.sequence} ${animationStyles.fadeInBottom}`}>
+        <div className={`${animationStyles.fadeInBottom}`}>
           <h2>OUR TEAM</h2>
         </div>
 

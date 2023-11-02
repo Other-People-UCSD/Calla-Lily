@@ -10,16 +10,16 @@ export default function Footer() {
       <div className={footerStyles.base__nav}>
         <div className={footerStyles.base__nav__item}
           id="mc_embed_signup">
-          <form action="https://gmail.us4.list-manage.com/subscribe/post?u=4b1b080bf138808842bdfbe2b&amp;id=32695fe3bf" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate>
+          <form action="https://gmail.us4.list-manage.com/subscribe/post?u=4b1b080bf138808842bdfbe2b&amp;id=32695fe3bf" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" noValidate>
             <div id="mc_embed_signup_scroll">
               <label htmlFor="mce-EMAIL">Subscribe to Our Newsletter!</label>
-              <input type="email" value="" name="EMAIL" id="mce-EMAIL" placeholder="Email Address" required />
+              <input type="email" defaultValue="" name="EMAIL" id="mce-EMAIL" placeholder="Email Address" required />
               {/* <real people should not fill this in and expect good things - do not remove this or risk form bot signups */}
               <div style={{ position: "absolute", left: "-5000px" }} aria-hidden="true">
-                <input type="text" name="b_4b1b080bf138808842bdfbe2b_32695fe3bf" tabindex="-1" value="" />
+                <input type="text" name="b_4b1b080bf138808842bdfbe2b_32695fe3bf" tabIndex="-1" defaultValue="" />
               </div>
               <div>
-                <input type="submit" value="Subscribe!" name="subscribe" id="mc-embedded-subscribe" />
+                <input type="submit" defaultValue="Subscribe!" name="subscribe" id="mc-embedded-subscribe" />
               </div>
             </div>
           </form>
@@ -40,7 +40,6 @@ export default function Footer() {
 }
 
 export const FooterLogo = (props) => {
-  console.log(props)
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -20,7 +20,7 @@ export default function UCMagazines(props) {
   return (
     <Layout title={"UC Magazines"}>
       <div className={contentStyles.content}>
-        <div className={`${animationStyles.cssanimation} ${animationStyles.sequence} ${animationStyles.fadeInBottom}`}>
+        <div className={`${animationStyles.fadeInBottom}`}>
           <h1 id="top" style={{ fontSize: 2 + 'rem' }}>List of UC Creative Magazines & Journals</h1>
         </div>
 

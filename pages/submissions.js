@@ -1,14 +1,13 @@
 import Layout from '@/components/layout';
 import contentStyles from '@/styles/content.module.scss';
 import animationStyles from "@/styles/animations.module.scss";
-import indexStyles from "@/styles/index.module.scss";
 import client from '../tina/__generated__/client'
 import { useTina } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { getSortedPostsData } from '@/lib/posts';
 
 export default function Submissions(props) {
-  const {query, variables, data } = useTina({
+  const { query, variables, data } = useTina({
     query: props.query,
     variables: props.variables,
     data: props.data,
@@ -18,9 +17,9 @@ export default function Submissions(props) {
   return (
     <Layout landingPage title={"Submissions"}>
       <div className={contentStyles["submissions-content"]}>
-      <div className={`${animationStyles.cssanimation} ${animationStyles.sequence} ${animationStyles.fadeInBottom}`}>
+        <div className={`${animationStyles.fadeInBottom}`}>
           <h1>Submissions</h1>
-      </div>
+        </div>
         <div className={contentStyles["submissions-status"]}>
           <h4>
             {status ? (
@@ -32,16 +31,16 @@ export default function Submissions(props) {
           </h4>
         </div>
 
-        { status ? (
+        {status ? (
           <>
-            { data.forms.written ? (<p><a href={data.forms.written}>Written Submissions</a></p>) : null}
-            { data.forms.visual ? (<p><a href={data.forms.visual}>Visual Submissions</a></p>) : null }
+            {data.forms.written ? (<p><a href={data.forms.written}>Written Submissions</a></p>) : null}
+            {data.forms.visual ? (<p><a href={data.forms.visual}>Visual Submissions</a></p>) : null}
           </>
-          ) : (
-            <TinaMarkdown content={data.forms.subsClosedText} />
-          )
+        ) : (
+          <TinaMarkdown content={data.forms.subsClosedText} />
+        )
         }
-        
+
         <p>(The list of submissions are often updated on our discord! <a href="https://discord.gg/ZT3Mx78Ar7" rel="noreferer noopener">https://discord.gg/ZT3Mx78Ar7</a> <strong>Last Updated 10/2</strong>)</p>
 
         <p>*Magazine submissions will be selected based on quality, originality, creativity, and the creator’s intent!</p>
@@ -119,7 +118,7 @@ export async function getStaticProps() {
   } catch {
     // swallow errors related to document creation
   }
-  
+
   const allPostsData = getSortedPostsData();
 
   return {
