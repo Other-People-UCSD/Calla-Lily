@@ -18,8 +18,8 @@ export default function UCMagazines(props) {
   const lastmod = new Date(data.ucmagazines.lastmod).toLocaleDateString();
 
   return (
-    <Layout title={"UC Magazines"}>
-      <div className={contentStyles.content}>
+    <Layout landingPage title={"UC Magazines"}>
+      <div className={contentStyles.submissions__content}>
         <div className={`${animationStyles.fadeInBottom}`}>
           <h1 id="top" style={{ fontSize: 2 + 'rem' }}>List of UC Creative Magazines & Journals</h1>
         </div>

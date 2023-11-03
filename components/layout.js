@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import HeaderMain from './header';
 import Footer from './footer';
-import contentStyles from '@/styles/content.module.scss';
+import postStyles from '@/styles/posts.module.scss';
 import { NextSeo } from 'next-seo';
 
 export default function Layout({ children, post, landingPage, title, announcementData }) {
@@ -12,7 +12,7 @@ export default function Layout({ children, post, landingPage, title, announcemen
     if (landingPage) {
       return <>{children}</>;
     } else if (post) {
-      return <main className={contentStyles.content}>{children}</main>;
+      return <main className={postStyles.post__content}>{children}</main>;
     } else {
       return <main>{children}</main>
     }

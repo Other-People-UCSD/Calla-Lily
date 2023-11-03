@@ -59,7 +59,7 @@ const Page = (props) => {
       </Head>
       
       <div className={`${animationStyles.fadeInBottom}`}>
-        <h1 id="post-title">{data.post.title}</h1>
+        <h1 id="post-title" className={postStyles.post__title}>{data.post.title}</h1>
       </div>
 
       <h3>/ {data.post.contributor}</h3>

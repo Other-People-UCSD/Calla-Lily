@@ -1,5 +1,23 @@
 @import '@/styles/variables.scss';
 
+.post__content {
+  margin-top: $blockThree;
+  padding-left: $blockThree;
+  padding-right: $blockThree;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+
+  img {
+    width: 100%;
+  }
+}
+
+.post__title {
+  margin-top: $blockFour;
+  margin-bottom: $blockThree;
+}
+
 .post-container {
   padding: $blockThree;
   margin-top: $blockThree;
@@ -136,12 +154,19 @@
 }
 
 @media only screen and (max-width: 728px) {
+
+  .post__content {
+    padding: $blockTwo;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+  }
+
+
   .post-container {
     padding: $blockTwo;
     grid-template-columns: 1fr;
   }
-
-  
 
   .genre__title {
     padding-left: $blockTwo;

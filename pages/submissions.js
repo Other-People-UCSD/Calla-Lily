@@ -16,20 +16,18 @@ export default function Submissions(props) {
 
   return (
     <Layout landingPage title={"Submissions"}>
-      <div className={contentStyles["submissions-content"]}>
+      <div className={contentStyles.submissions__content}>
         <div className={`${animationStyles.fadeInBottom}`}>
           <h1>Submissions</h1>
         </div>
-        <div className={contentStyles["submissions-status"]}>
-          <h4>
+        <p className={contentStyles.submissions__status}>
             {status ? (
               "Currently accepting submissions"
             ) : (
               "Currently closed"
             )
             }
-          </h4>
-        </div>
+        </p>
 
         {status ? (
           <>
@@ -98,9 +96,8 @@ export default function Submissions(props) {
           </li>
         </ul>
 
-        <h4 id="1a-we-do-not-consider-previously-published-work">[1A] We do not consider previously published work.</h4>
-        <h4 id="1b-currently-we-do-not-have-the-funds-to-pay-our-contributors">[1B] Currently, we do not have the funds to pay our contributors.</h4>
-        <p><br /></p>
+        <p className={contentStyles.submissions__footnote}>[1A] We do not consider previously published work.</p>
+        <p className={contentStyles.submissions__footnote}>[1B] Currently, we do not have the funds to pay our contributors.</p>
       </div>
     </Layout>
   );
