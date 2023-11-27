@@ -120,28 +120,28 @@ function MobileNav({ setShowNav }) {
    * Closes the mobile navigation after clicking Close or a search result
    */
   const closeNav = () => {
-    document.getElementById("myNav").style.height = "0%";
+    document.getElementById("mobileNav").style.height = "0%";
     setShowNav(false);
   }
 
   return (
-    <div id="navContent" className={navStyles["overlay-content"]}>
-      <div className={navStyles["overlay__header"]}>
+    <>
+      <div className={navStyles.overlay__header}>
         <h2><Link href="/" onClick={closeNav}>Other<br /> People ©</Link></h2>
-        <div className={`${styles["nav-genres"]} ${navStyles["h2"]}`}>
+        <div className={`${navStyles.genres__top}`}>
           <Link href="/poetry" onClick={closeNav}>Poetry</Link> / <Link href="/fiction" onClick={closeNav}>Fiction</Link> / <br />
           <Link href="/nonfiction" onClick={closeNav}>Nonfiction</Link> / <Link href="/visualarts" onClick={closeNav}>Visual Arts</Link>
         </div>
-        <button id="close-notice"
-          className={navStyles.closebtn}
+        <button
+          className={navStyles.menu__close}
           onClick={closeNav}
           aria-label="Close Menu">Close</button>
       </div>
 
-      <nav className={navStyles["mobile-nav"]}>
+      <nav className={navStyles.nav__content}>
         <div className={navStyles.genres}>
           <h3>Genres</h3>
-          <ul className={navStyles["nav-menu"]}>
+          <ul className={navStyles.nav__list}>
             <li><Link href="/poetry" onClick={closeNav}>Poetry</Link></li>
             <li><Link href="/fiction" onClick={closeNav}>Fiction</Link></li>
             <li><Link href="/nonfiction" onClick={closeNav}>Nonfiction</Link></li>
@@ -149,24 +149,24 @@ function MobileNav({ setShowNav }) {
           </ul>
         </div>
         <h3>Menu</h3>
-        <ul className={navStyles["nav-menu"]}>
+        <ul className={navStyles.nav__list}>
           <li><Link href="/about">(THE) PEOPLE</Link></li>
           <li><a href="https://issuu.com/otherpeoplesd" className={navStyles.external}>Issuu <ArrowForwardIcon fontSize='inherit' /></a></li>
           <li><Link href="/submissions">Submissions</Link></li>
           <li><Link href="/uc-magazines">UC Magazines</Link></li>
         </ul>
-        <ul className={navStyles["social-footer"]}>
+        <ul className={navStyles.footer__socials}>
           <li><a href="https://www.instagram.com/otherpeoplesd/">
             <InstagramIcon /></a></li>
           <li><a href="https://www.facebook.com/otherpeoplesd/"><FacebookIcon /></a></li>
           <li><a href="mailto:otherpeopleucsd@gmail.com"><MailOutlineIcon /></a></li>
         </ul>
-        <div className={navStyles["nav-footer"]}>
+        <div className={navStyles.footer__nav}>
           <FooterLogo />
           <h4>{`Other People © ${getYear()}`} <br />ALL RIGHTS RESERVED</h4>
         </div>
       </nav>
-    </div>
+    </>
   );
 
   /**
