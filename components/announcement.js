@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { FooterLogo } from "./footer";
+import { FooterLogo } from "./footer-old";
 import animStyles from "@/styles/animations.module.scss";
 import { useState, useRef, useEffect } from "react";
 import { Opacity } from "@mui/icons-material";

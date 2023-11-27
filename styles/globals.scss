@@ -13,17 +13,28 @@
   font-display: swap;
 }
 
+// * {
+//   box-sizing: border-box;
+//   padding: 0;
+//   margin: 0;
+// }
+
 .hidden {
   display: none;
 }
 
+html, body {
+  width: 100vw;
+  overflow-x: hidden;
+}
+
 body {
-  width: 100%;
   margin: auto;
 
   background: $backgroundColor;
   color: $bodyColor;
   font-family: $bodyFont;
+  font-size: 16px;
 
   padding: 0;
   padding-top: 110px;
@@ -49,6 +60,19 @@ main {
   }
 }
 
+.text--heading_1 {
+  font-family: Helvetica, sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+h2, .text--heading_2 {
+  font-family: Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
 h1 {
   font-family: $opm-font-arial;
   font-size: 4rem;
@@ -57,12 +81,10 @@ h1 {
   padding: 0;
 }
 
-h2,
-button {
+h2 {
   font-family: $opm-font-arial;
-
-  font-size: 1.2rem;
-  font-weight: normal;
+  font-size: 1.5rem;
+  font-weight: bold;
   text-transform: uppercase;
   margin: 0;
   padding: 0;
@@ -85,6 +107,7 @@ h4 {
   margin: 0;
   padding: 0;
 }
+
 
 p {
   line-height: 1.8rem;

@@ -1,141 +1,129 @@
-import Layout from '@/components/layout';
-import client from '../tina/__generated__/client'
-import indexStyles from '@/styles/index.module.scss';
-import animationStyles from '@/styles/animations.module.scss';
-import postStyles from '@/styles/posts.module.scss';
-import Genre from '@/components/genre';
-import { useTina } from 'tinacms/dist/react';
-import Image from 'next/image';
-import { getSortedPostsData, getGenrePostsData } from '@/lib/posts';
-import { useEffect, useRef } from 'react';
-import { setDarkTheme, setLightTheme } from '@/lib/bgTheme';
+import Image from 'next/image'
+import styles from '@/styles/homepage.module.scss'
+import CarouselGenre from '@/components/Carousel'
+import Layout from '@/components/layout'
 
-const Home = (props) => {
-  const keepReadingRef = useRef(null);
-  const { query, variables, data } = useTina({
-    query: props.query,
-    variables: props.variables,
-    data: props.data,
-  });
 
-  useEffect(() => {
-    /**
-     * Homepage only.
-     * When the user scrolls to the "keep reading" section marked by the "keep__reading" class, 
-     * the style of the page changes to dark mode. 
-     * If the user's client preference is dark mode, scrolling beyond the "keep reading" section
-     * will cause that section to become light mode instead.
-     */
-    function homepageChange() {
-      try {
-        const windowHeight = window.innerHeight / 3.5;
-        const scrollY = this.scrollY;
-        const bgChange = keepReadingRef.current.offsetTop;
-
-        if (scrollY >= bgChange - windowHeight) {
-          setDarkTheme();
-        } else {
-          setLightTheme();
-        }
-      } catch {
-        // May catch ref undefined when quickly bouncing homepage to a different page
-      }
-    }
-
-    window.addEventListener('scroll', homepageChange);
-    return () => {
-      window.removeEventListener('scroll', homepageChange);
-    }
-  });
-
+export default function Home() {
   return (
-    <Layout landingPage title={"Home"} announcementData={data.homepage.announcement}>
-      <div>
-        <a href={data.homepage.featured_link} target="_blank" rel="noopener noreferer"
-          className={indexStyles.cover__link}>
-          <Image
-            src={data.homepage.image}
-            alt={data.homepage.featured_alt}
-            className={indexStyles.cover__img}
-            width={1024}
-            height={525}
-            quality={75}
-            priority={true}
-          />
-          <p className={indexStyles.cover__credits}>
-            {data.homepage.featured_piece_name} by {data.homepage.featured_contributor}
-          </p>
-        </a>
-      </div>
-      <h1 className={`${indexStyles["index__title"]} ${animationStyles.fadeInBottom}`}>
-        {data.homepage.term} &mdash;<br />Collection No. {data.homepage.collection}<br />{data.homepage.theme}
-      </h1>
+    <Layout>
+      <main className={`${styles.main}`}>
+        <div className={styles.hero}>
+          <div className={`${styles.hero__img__container}`}>
+            <Image className={`${styles.hero__img__cover} ${styles["animate--rotate"]}`}
+              src="opm-text-circle.svg" fill={true} />
+          </div>
+          <p className={`${styles.hero__text}`}>the visual and literary arts magazine</p>
+        </div>
 
-      <h3 className={postStyles.genre__title}>Poetry</h3>
-      <Genre genre={props.poetry} limit={data.homepage.poetryLimit} />
 
-      <h3 className={postStyles.genre__title}>Fiction</h3>
-      <Genre genre={props.fiction} limit={data.homepage.fictionLimit} />
+        <div className={`${styles.block} ${styles.collection__cover}`}>
+          <div className={`${styles.block__text} ${styles.collection__title}`}>
+            <p className={"text--heading_1"}>Spring 2023</p>
+            <hr className={styles.collection__hr} />
+            <p className={"text--heading_1"}>Collection</p>
+            <p className={"text--heading_1"}> No. 6</p>
+            <p className={"text--heading_1"}>LIMINAL</p>
+          </div>
+          <div className={styles.block__img__container} style={{ width: '500px' }}>
+            <figure className={styles.block__img}>
+              <Image className={`${styles.img__cover} ${styles["img__cover--right"]}`}
+                src="/images/5/eclipse-cover-caroline-tjoe.webp" fill={true} />
+              <figcaption className={styles.block__img__caption}>Eclipse Cover by Caroline Tjoe</figcaption>
+            </figure>
+          </div>
+        </div>
 
-      <h3 className={postStyles.genre__title}>Nonfiction</h3>
-      <Genre genre={props.nonfiction} limit={data.homepage.nonfictionLimit} />
 
-      <h3 className={postStyles.genre__title}>Visual Arts</h3>
-      <Genre genre={props.visualarts} limit={data.homepage.visartsLimit} />
 
-      <h2
-        ref={keepReadingRef}
-        className={`${indexStyles.w2b} ${indexStyles.keep__reading}`}
-      >Keep Reading</h2>
+        <div className={styles.genre__container}>
+          <svg className={styles.svg__poetry}>
+            <circle cx="400" cy="400" r="400" />
+          </svg>
+          <div className={styles.headline}>
+            <h2 className={styles.headline__text}>Poetry</h2>
+          </div>
+          <hr className={styles.genre__hr} />
+          <CarouselGenre genre={'poetry'} contentAlign={'left'} />
+        </div>
 
-      <h3 className={postStyles.genre__title}>Poetry</h3>
-      <Genre genre={props.poetry} offset={data.homepage.poetryLimit} limit={6} />
 
-      <h3 className={postStyles.genre__title}>Fiction</h3>
-      <Genre genre={props.fiction} offset={data.homepage.fictionLimit} limit={6} />
+        <div className={`${styles.genre__container} ${styles['genre__container--right']}`}>
+          <svg className={styles.svg__visual}>
+            <circle cx="200" cy="200" r="350" />
+            <circle cx="400" cy="400" r="350" />
+          </svg>
+          <div className={`${styles.headline} ${styles['headline--right']}`}>
+            <h2 className={`${styles.headline__text} ${styles['headline__text--right']}`}>Visual Arts</h2>
+          </div>
+          <hr className={`${styles.genre__hr} ${styles['genre__hr--right']}`} />
+          <CarouselGenre genre={'visual'} contentAlign={'right'} />
+        </div>
 
-      <h3 className={postStyles.genre__title}>Nonfiction</h3>
-      <Genre genre={props.nonfiction} offset={data.homepage.nonfictionLimit} limit={6} />
+        <div className={`${styles.genre__container}`}>
+          <svg className={styles.svg__fiction}>
+            <circle cx="400" cy="400" r="400" />
+          </svg>
+          <div className={styles.headline}>
+            <h2 className={styles.headline__text}>Fiction</h2>
+          </div>
+          <hr className={styles.genre__hr} />
+          <CarouselGenre genre={'fiction'} contentAlign={'left'} />
+        </div>
 
-      <h3 className={postStyles.genre__title}>Visual Arts</h3>
-      <Genre genre={props.visualarts} offset={data.homepage.visartsLimit} limit={6} />
+        <div className={`${styles.genre__container} ${styles['genre__container--right']}`}>
+          <div className={`${styles.headline} ${styles['headline--right']}`}>
+            <h2 className={`${styles.headline__text} ${styles['headline__text--right']}`}>Nonfiction</h2>
+          </div>
+          <hr className={`${styles.genre__hr} ${styles['genre__hr--right']}`} />
+          <CarouselGenre genre={'nonfiction'} contentAlign={'right'} />
+        </div>
+      </main>
+
     </Layout>
-  );
+
+
+  )
 }
 
-export default Home;
+const Logo256 = () => {
+  return <svg viewBox="0 0 356 256" width="400" height="256" xmlns="http://www.w3.org/2000/svg" className={styles.logo}>
+    <circle id="lcirc" cx="128" cy="128" r="100" stroke="black" strokeWidth="5" fill="transparent" />
+    <circle id="rcirc" cx="228" cy="128" r="100" stroke="black" strokeWidth="5" fill="transparent" />
 
-export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
-  const poetry = getGenrePostsData('Poetry', allPostsData);
-  const fiction = getGenrePostsData('Fiction', allPostsData);
-  const nonfiction = getGenrePostsData('Nonfiction', allPostsData);
-  const visualarts = getGenrePostsData('Visual Arts', allPostsData);
+    <mask id="mask-intersect256" maskMode="luminance">
+      <circle cx="128" cy="128" r="100" fill="white" />
+    </mask>
 
-  let data = {}
-  let query = {}
-  let variables = { relativePath: `../data/homepage.json` }
-
-  try {
-    const res = await client.queries.homepage(variables)
-    query = res.query
-    data = res.data
-    variables = res.variables
-  } catch {
-    // swallow errors related to document creation
-  }
-
-  return {
-    props: {
-      variables: variables,
-      data: data,
-      query: query,
-      allPostsData,
-      poetry,
-      fiction,
-      nonfiction,
-      visualarts,
-    },
-  };
+    <circle id="intersect" cx="228" cy="128" r="100" stroke="black" strokeWidth="5" fill="black"
+      mask="url(#mask-intersect256)" />
+  </svg>
 }
 
+const Logo128 = () => {
+  return <svg viewBox="0 0 178 128" width="178" height="128" xmlns="http://www.w3.org/2000/svg" className={styles.logo}>
+    <circle id="lcirc" cx="64" cy="64" r="50" stroke="black" strokeWidth="5" fill="transparent" />
+    <circle id="rcirc" cx="114" cy="64" r="50" stroke="black" strokeWidth="5" fill="transparent" />
+
+    <mask id="mask-intersect128" mask-mode="luminance">
+      <circle cx="64" cy="64" r="50" fill="white" />
+    </mask>
+
+    <circle id="intersect" cx="114" cy="64" r="50" stroke="black" strokeWidth="5" fill="black"
+      mask="url(#mask-intersect128)" />
+  </svg>
+}
+
+export const Logo64 = () => {
+  return <svg viewBox="0 0 89 64" width="89" height="64" xmlns="http://www.w3.org/2000/svg" className={styles.logo}>
+    <circle id="lcirc" cx="32" cy="32" r="25" stroke="black" strokeWidth="3" fill="transparent" />
+    <circle id="rcirc" cx="57" cy="32" r="25" stroke="black" strokeWidth="3" fill="transparent" />
+
+    <mask id="mask-intersect64" mask-mode="luminance">
+      <circle cx="32" cy="32" r="25" fill="white" />
+    </mask>
+
+    <circle id="intersect" cx="57" cy="32" r="25" stroke="black" strokeWidth="3" fill="black"
+      mask="url(#mask-intersect64)" />
+  </svg>
+}

@@ -1,0 +1,61 @@
+@import '@/styles/variables.scss';
+
+.base {
+  position: relative;
+  /* background-color: teal; */
+}
+
+.base__genre {
+  margin-top: 24px;
+  margin-bottom: 64px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+
+.viewer {
+  display: flex;
+  height: auto;
+  min-height: 40vw;
+  max-height: 1080px;
+  box-sizing: border-box;
+  /* border: 1px solid black; */
+  /* background-color: #eeeeeeaa; */
+  overflow-x: hidden;
+  overflow-y: clip;
+}
+
+.item {
+  flex-shrink: 0;
+  width: 100%;
+  height: fit-content;
+  min-height: inherit;
+  transition: 1500ms ease-in-out;
+  margin: 0; /* override homepage.block */ 
+  padding-left: 16px;
+  padding-right: 16px;
+} 
+
+.control {
+  position: absolute;
+  width: fit-content;
+  bottom: 0;
+}
+
+.control--left {
+  right: 0;
+}
+.control--right {
+  left: 0;
+}
+
+.control__prev,
+.control__next {
+  margin-left: 8px;
+  margin-right: 8px;
+  background-color: initial;
+  color: unset;
+  border: unset;
+  cursor: pointer;
+  transform: scale(0.75);
+}
