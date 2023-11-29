@@ -1,6 +1,6 @@
 import Layout from '@/components/layout';
 import animationStyles from "@/styles/animations.module.scss";
-import teamStyles from "@/styles/team.module.scss";
+import styles from "@/styles/about.module.scss";
 import { useTina } from 'tinacms/dist/react';
 import client from '@/tina/__generated__/client';
 import { getSortedPostsData } from '@/lib/posts';
@@ -17,17 +17,46 @@ export default function About(props) {
   const teamKeys = ['editor_in_chief', 'editorial', 'design_team', 'publicity_events'];
   const teamTitles = ['Editor in Chief', 'Editorial', 'Design', 'PR + Events'];
 
+  const alumniKeys = ['alumni_editorial', 'alumni_design', 'alumni_pr'];
+  const alumniTitles = ['Editorial', 'Design', 'PR + Events'];
+
+
+  function TeamList({ cmsKeys, labels }) {
+    if (cmsKeys.length !== labels.length) {
+      throw Error('TeamList: Each key must have a label!');
+    }
+
+    return cmsKeys.map((key, index) => {
+      return (
+        <ul key={index} className={styles.team__list}>
+          <h4 className={`text--heading_3`}>{labels[index]}</h4>
+          {
+            data.team[key].map(member => {
+              return <li key={member}>/ {member}</li>
+            })
+          }
+        </ul>
+      );
+    })
+  }
+
   // console.log(data)
   return (
-    <Layout landingPage title={"About"}>
-      <div className={teamStyles["team_module"]}>
+    <Layout landingPage title={"About"} excludeGradient className={styles.main}>
+      <div className={styles.content}>
         <div className={`${animationStyles.fadeInBottom}`}>
-          <h1>O(THE)R PEOPLE</h1>
+          <h1 className={`text--heading_1 ${styles.heading1}`}>O(THE)R PEOPLE</h1>
         </div>
-        <h2><strong>ABOUT US</strong></h2>
-        <div>
-          <p>Other People Literary Magazine at UC San Diego is the first student-run literary magazine and club.</p>
 
+        <p className={`${styles.values} ${styles['values--right']}`}>A place to explore the timeless human experience;</p>
+
+        <div className={styles.block__about}>
+          <svg className={styles.svg__about}>
+            <circle cx="300" cy="300" r="300" />
+          </svg>
+
+          <h2 className={`text--heading_1`}>About Us</h2>
+          <p>Other People Literary Magazine at UC San Diego is the first student-run literary magazine and club.</p>
           <p>
             We publish biannually in the Fall and Spring and accept works of fiction, poetry, creative nonfiction,
             art,
@@ -44,135 +73,117 @@ export default function About(props) {
           </p>
         </div>
 
-        <h2><strong>SUBMISSIONS INFO</strong></h2>
 
-        <p>
-          Our Editorial team reviews submissions individually and votes on their favorite pieces based on quality,
-          creativity, craft, and style. The team then convenes to determine the strongest pieces of the selection, the
-          number of which is adjusted to fit the maximum length of the magazine publication. For detailed submissions
-          instructions, please see our <a href="https://otherpeoplesd.com/submissions">Submissions</a> page.
-        </p>
+        <div className={styles.block__story}>
+          <h2 className={`text--heading_1`}>Our Story</h2>
+          <p className={styles.values}>A place to revere the joys and struggles of our journeys through life;</p>
 
-        <h2><strong>OUR MISSION</strong></h2>
+          <p>
+            Other People Magazine began as a dream shared by a group of writing and art enthusiasts. The magazine&apos;s
+            founders all had the same wish—for UCSD to have a place where literary and artistic creativity could
+            flourish on a predominately STEM-focused campus. When a Fall 2019 writing workshop class brought this group
+            of Literature/Writing majors and art lovers together, their dream began to become reality. Together, the
+            founders inspired each other to embark on the journey of turning their dream into an enduring legacy of
+            artistic expression on campus. And so Other People began—in a flurry of mission-statement writing, logo
+            designing, team recruitment, flyer posting, and excited member meetings late at night.
+          </p>
 
-        <div className={"center"}>
-          <em>Other People<br />
-            A place to explore the timeless human experience;<br />
-            A place to revere the joys and struggles of our journeys through life;<br />
-            A place to celebrate the uniqueness of the human spirit;<br />
-            Through a fusion of Language, Art, Image, and Technology.</em>
+          <p>
+            Gradually, a magazine and club began to take shape. We were thrilled by the outpouring of support and
+            attendees from Other People&apos;s first informational session, as well as by the volume of creative work
+            submitted to the magazine during the first submissions cycle. Drawing upon the strength of collaboration
+            from students of many disciplines, backgrounds, and talents, the dream of Other People became reality in
+            July 2020, which marked the publication of Other People Literary Magazine&apos;s first issue.
+          </p>
+
+          <p>
+            This project was one that was months in the making. We could not have reached the milestone of publishing
+            our first issue without the help of all those who supported Other People, who believed in us back when we
+            were just a dream, who offered us their advice and wisdom, who shared with us their creativity. Thank you;
+            you are our inspiration. We hope Other People is a reality that lives up to your dreams.
+          </p>
         </div>
 
-        <h2><strong>OUR STORY</strong></h2>
+        <p className={`${styles.values} ${styles['values--right']}`}>A place to celebrate the uniqueness of the human spirit;</p>
+        <div className={styles.block__roles}>
+          <svg className={styles.svg__roles}>
+            <circle cx="400" cy="400" r="400" />
+          </svg>
 
-        <p>
-          Other People Magazine began as a dream shared by a group of writing and art enthusiasts. The magazine&apos;s
-          founders all had the same wish—for UCSD to have a place where literary and artistic creativity could
-          flourish on a predominately STEM-focused campus. When a Fall 2019 writing workshop class brought this group
-          of Literature/Writing majors and art lovers together, their dream began to become reality. Together, the
-          founders inspired each other to embark on the journey of turning their dream into an enduring legacy of
-          artistic expression on campus. And so Other People began—in a flurry of mission-statement writing, logo
-          designing, team recruitment, flyer posting, and excited member meetings late at night.
-        </p>
+          <h2>Team Roles</h2>
 
-        <p>
-          Gradually, a magazine and club began to take shape. We were thrilled by the outpouring of support and
-          attendees from Other People&apos;s first informational session, as well as by the volume of creative work
-          submitted to the magazine during the first submissions cycle. Drawing upon the strength of collaboration
-          from students of many disciplines, backgrounds, and talents, the dream of Other People became reality in
-          July 2020, which marked the publication of Other People Literary Magazine&apos;s first issue.
-        </p>
+          <p>EDITORIAL & CONTENT</p>
+          <p>Editors review and edit submissions, then produce the pages of the magazine. Content writers create exclusive prose, interview submittors about their stories, and may write articles of their choice.</p>
 
-        <p>
-          This project was one that was months in the making. We could not have reached the milestone of publishing
-          our first issue without the help of all those who supported Other People, who believed in us back when we
-          were just a dream, who offered us their advice and wisdom, who shared with us their creativity. Thank you;
-          you are our inspiration. We hope Other People is a reality that lives up to your dreams.
-        </p>
-      </div>
+          <p>DESIGN & SOCIAL MEDIA</p>
+          <p>Design illustrators create artwork to complement accepted prose. We publish digital and print copies of issues, as well as designing inclusive access to artistic expression through our website.</p>
 
-      <div className={teamStyles["application-grid-wrapper"]}>
-        <h2>TEAM ROLES</h2>
-        <ul className={teamStyles["application-grid"]}>
-          <li>
-            <h3>Editorial & Content</h3>
-            <p>Editors review and edit submissions, then produce the pages of the magazine. Content writers create
-              exclusive prose, interview submittors about their
-              stories, and may write articles of their choice.</p>
-            <p className={"center"}>
-              {forms?.editorial && !forms?.content &&
-                <a href={forms.editorial}>(Apply Here!)</a>
-              }
+          <p>EVENT PLANNING</p>
+          <p>Promote the magazine through social media, plan open mic nights, fundraisers, socials, etc. Marketing and event planners help fund the magazine and increase our outreach beyond the campus.</p>
 
-              {forms?.content && !forms?.editorial &&
-                <a href={forms.content}>(Apply Here!)</a>
-              }
-
-              {!forms?.editorial && !forms?.content &&
-                <>(Applications Closed)</>
-              }
-            </p>
-          </li>
-          <li>
-            <h3>Design & Social Media</h3>
-            <p>Design illustrators create artwork to complement accepted prose. We publish digital and print copies of
-              issues, as well as designing inclusive access to artistic expression through our website.</p>
-            <p className={"center"}>
-              {forms?.design ?
-                <a href={forms.design}>(Apply Here!)</a>
-                :
-                <>(Applications Closed)</>
-              }
-            </p>
-          </li>
-          <li>
-            <h3>Event Planning</h3>
-            <p>Promote the magazine through social media, plan open mic nights, fundraisers, socials, etc. Marketing and
-              event planners help fund the magazine and increase our outreach beyond the campus.</p>
-            <p className={"center"}>
-              {forms?.events ?
-                <a href={forms.events}>(Apply Here!)</a>
-                :
-                <>(Applications Closed)</>
-              }
-            </p>
-          </li>
-          <li>
-            <h3>Web Development/UI/UX</h3>
-            <p>The website developer/producer is responsible for publishing content to the website and implementing
-              accessible designs to display to the public through frontend programming!</p>
-            <p className={"center"}>
-              {forms?.website ?
-                <a href={forms.website}>(Apply Here!)</a>
-                :
-                <>(Applications Closed)</>
-              }
-            </p>
-          </li>
-        </ul>
-      </div>
-
-      <div className={teamStyles.team_module}>
-        <div className={`${animationStyles.fadeInBottom}`}>
-          <h2>OUR TEAM</h2>
+          <p>WEB DEVELOPMENT/UI/UX</p>
+          <p>The website developer/producer is responsible for publishing content to the website and implementing accessible designs to display to the public through frontend programming!</p>
         </div>
+      </div>
 
-        {
-          teamKeys.map((key, index) => {
-            return (
-              <div key={index} className={teamStyles.team_module_child}>
-                <ul>
-                  <h2>{teamTitles[index]}</h2>
-                  {
-                    data.team[key].map(member => {
-                      return <li key={member}><h3>/ {member}</h3></li>
-                    })
-                  }
-                </ul>
-              </div>
-            );
-          })
-        }
+      <p className={`${styles.values} ${styles['values--center']}`}>Through a fusion of Language, Art, Image, and Technology.</p>
+      <div className={styles.block__team}>
+        <div className={styles.content}>
+          <h2 className={`text--heading_1 ${styles.header}`}>Our Team</h2>
+
+          <div className={`${styles.block__team__section} ${styles.block__team__editorial}`}>
+            <h3 className={`text--heading_2`}>Editorial Team</h3>
+            <TeamList cmsKeys={['editor_in_chief']} labels={['Editor in Chief']} />
+            <div className={styles.block__team__lists}>
+              <TeamList cmsKeys={['editorial', 'content']} labels={['Editors', 'Content Writers']} />
+            </div>
+
+            <svg className={styles.svg__editorial__bottom}>
+              <circle cx="250" cy="250" r="250" />
+            </svg>
+          </div>
+
+          <div className={`${styles.block__team__section} ${styles.block__team__design}`}>
+            <h3 className={`text--heading_2`}>Design Team</h3>
+            <TeamList cmsKeys={['design_directors']} labels={['Design Directors']} />
+            <div className={styles.block__team__lists}>
+              <TeamList cmsKeys={['design', 'digital']} labels={['Designers', 'Digital Team']} />
+            </div>
+
+            <svg className={styles.svg__design__bottom}>
+              <circle cx="200" cy="200" r="200" />
+            </svg>
+          </div>
+
+          <div className={`${styles.block__team__section} ${styles.block__team__outreach}`}>
+            <h3 className={`text--heading_2`}>Outreach Team</h3>
+            <div className={styles.block__team__lists}>
+              <TeamList cmsKeys={['publicity_events']} labels={['PR/Events']} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.block__alumni}>
+        <div className={styles.content}>
+          <h2 className={`text--heading_1 ${styles.header}`}>Alumni</h2>
+          <div className={styles.block__alumni__lists}>
+            {
+              alumniKeys.map((key, index) => {
+                return (
+                  <ul key={index} className={styles.alumni__list}>
+                    <h2>{alumniTitles[index]}</h2>
+                    {
+                      data.team[key].map(member => {
+                        return <li key={member}>/ {member}</li>
+                      })
+                    }
+                  </ul>
+                );
+              })
+            }
+          </div>
+        </div>
       </div>
     </Layout>
   );

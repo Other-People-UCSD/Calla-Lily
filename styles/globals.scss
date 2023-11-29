@@ -60,6 +60,13 @@ main {
   }
 }
 
+.main__landing {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 64px;
+  max-width: 1440px;
+}
+
 .text--heading_1 {
   font-family: Helvetica, sans-serif;
   font-size: 32px;
@@ -69,6 +76,13 @@ main {
 h2, .text--heading_2 {
   font-family: Helvetica, sans-serif;
   font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+h3, .text--heading_3 {
+  font-family: Helvetica, sans-serif;
+  font-size: 18px;
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -110,12 +124,13 @@ h4 {
 
 
 p {
-  line-height: 1.8rem;
+  // line-height: 1.8rem;
   font-size: 1rem;
 }
 
 ul {
-  line-height: 1.8rem;
+  margin: 0;
+  padding: 0;
   list-style-type: ">   ";
 }
 

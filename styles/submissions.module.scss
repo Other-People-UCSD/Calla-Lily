@@ -1,0 +1,65 @@
+@import '@/styles/variables.scss';
+
+.main {
+  font-weight: 500;
+}
+.heading1 {
+  font-size: 64px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.status {
+  text-align: center;
+}
+
+.forms {
+  text-align: center;
+}
+
+.guidelines {
+  position: relative;
+  font-weight: 500;
+}
+
+.guidelines h2 {
+  margin-top: 32px;
+}
+
+.guidelines ul {
+  padding-left: 40px;
+}
+
+.guidelines li {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.list__subitem {
+  margin-left: 40px;
+}
+.answer {
+  display: list-item;
+  margin-left: 40px;
+}
+
+.svg__guidelines {
+  position: absolute;
+  top: 100px;
+  right: -200px;
+  width: 600px;
+  height: 600px;
+  z-index: -1;
+  fill: #ECFFE5;
+}
+
+.svg__guidelines__bottom {
+  position: absolute;
+  bottom: -200px;
+  left: -100px;
+  width: 800px;
+  height: 800px;
+  z-index: -1;
+  fill: #FFE5E5;
+  mix-blend-mode: screen;
+}

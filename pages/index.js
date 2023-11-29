@@ -6,8 +6,7 @@ import Layout from '@/components/layout'
 
 export default function Home() {
   return (
-    <Layout>
-      <main className={`${styles.main}`}>
+    <Layout homepage className={`${styles.main}`}>
         <div className={styles.hero}>
           <div className={`${styles.hero__img__container}`}>
             <Image className={`${styles.hero__img__cover} ${styles["animate--rotate"]}`}
@@ -78,11 +77,7 @@ export default function Home() {
           <hr className={`${styles.genre__hr} ${styles['genre__hr--right']}`} />
           <CarouselGenre genre={'nonfiction'} contentAlign={'right'} />
         </div>
-      </main>
-
     </Layout>
-
-
   )
 }
 
@@ -114,16 +109,18 @@ const Logo128 = () => {
   </svg>
 }
 
-export const Logo64 = () => {
+export const Logo64 = ({theme}) => {
+  const themeColor = theme === 'dark' ? 'white' : 'black';
+
   return <svg viewBox="0 0 89 64" width="89" height="64" xmlns="http://www.w3.org/2000/svg" className={styles.logo}>
-    <circle id="lcirc" cx="32" cy="32" r="25" stroke="black" strokeWidth="3" fill="transparent" />
-    <circle id="rcirc" cx="57" cy="32" r="25" stroke="black" strokeWidth="3" fill="transparent" />
+    <circle id="lcirc" cx="32" cy="32" r="25" stroke={themeColor} strokeWidth="3" fill="transparent" />
+    <circle id="rcirc" cx="57" cy="32" r="25" stroke={themeColor}strokeWidth="3" fill="transparent" />
 
     <mask id="mask-intersect64" mask-mode="luminance">
       <circle cx="32" cy="32" r="25" fill="white" />
     </mask>
 
-    <circle id="intersect" cx="57" cy="32" r="25" stroke="black" strokeWidth="3" fill="black"
+    <circle id="intersect" cx="57" cy="32" r="25" stroke={themeColor} strokeWidth="3" fill={themeColor}
       mask="url(#mask-intersect64)" />
   </svg>
 }

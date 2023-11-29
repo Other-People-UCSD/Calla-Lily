@@ -73,14 +73,14 @@ const col4 = [
 ]
 
 
-export default function Footer({ pageType }) {
+export default function Footer({ pageType, excludeGradient }) {
   function getYear() {
     return new Date().getFullYear();
   }
 
+  const gradient = excludeGradient ? '' : `${styles.gradient}`; 
   return (
-
-    <footer className={styles.base}>
+    <footer className={`${styles.base} ${gradient}`}>
       <div className={styles.base__content}>
 
         {

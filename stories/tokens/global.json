@@ -21,8 +21,8 @@
       }
     },
     "background": {
-      "black": { "value": "{opm.color.grey.darkest}" },
-      "white": { "value": "{opm.color.white}"}
+      "black": { "value": "#303030" },
+      "white": { "value": "#FFFFFC"}
     },
     "font": {
       "arial": { "value": "Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'" },
@@ -78,8 +78,8 @@
   "mobile": {
     "font": {
       "size": {
-        "h1": { "value": "3rem" },
-        "h2": { "value": "2rem" }
+        "h1": { "value": "2rem" },
+        "h2": { "value": "1.5rem" }
       }
     }
   }

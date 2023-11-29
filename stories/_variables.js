@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Wed, 01 Nov 2023 22:53:53 GMT
+ * Generated on Wed, 29 Nov 2023 00:30:46 GMT
  */
 
 export const OpmColorBlack = "#000000";
@@ -13,8 +13,8 @@ export const OpmColorBlueLight = "#0070C9";
 export const OpmColorBlueDark = "#64D2FF";
 export const OpmColorAccentOrange = "#FFB94F";
 export const OpmColorHighlightRed = "#F4BAB9";
-export const OpmBackgroundBlack = "#151515";
-export const OpmBackgroundWhite = "#FFFFFF";
+export const OpmBackgroundBlack = "#303030";
+export const OpmBackgroundWhite = "#FFFFFC";
 export const OpmFontArial = "Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'";
 export const OpmFontBasier = "basier_circlemonoregular";
 export const OpmFontApple = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'";
@@ -47,5 +47,5 @@ export const AnimationDurationSlowest = "6000ms";
 export const AnimationDurationSlow = "3000ms";
 export const AnimationDurationNormal = "1000ms";
 export const AnimationDurationFast = "300ms";
-export const MobileFontSizeH1 = "3rem";
-export const MobileFontSizeH2 = "2rem";
+export const MobileFontSizeH1 = "2rem";
+export const MobileFontSizeH2 = "1.5rem";

@@ -1,5 +1,5 @@
 import Layout from '@/components/layout';
-import contentStyles from '@/styles/content.module.scss';
+import styles from '@/styles/submissions.module.scss';
 import animationStyles from "@/styles/animations.module.scss";
 import client from '../tina/__generated__/client'
 import { useTina } from 'tinacms/dist/react';
@@ -15,90 +15,93 @@ export default function Submissions(props) {
   const status = data.forms["written"] || data.forms["visual"];
 
   return (
-    <Layout landingPage title={"Submissions"}>
-      <div className={contentStyles.submissions__content}>
+    <Layout landingPage title={"Submissions"} className={styles.main}>
         <div className={`${animationStyles.fadeInBottom}`}>
-          <h1>Submissions</h1>
+          <h1 className={`text--heading_1 ${styles.heading1}`}>Submissions</h1>
         </div>
-        <p className={contentStyles.submissions__status}>
-            {status ? (
-              "Currently accepting submissions"
-            ) : (
-              "Currently closed"
-            )
-            }
+        <p className={styles.status}>
+          {status ? (
+            "Currently accepting submissions"
+          ) : (
+            "Currently closed"
+          )
+          }
         </p>
 
-        {status ? (
-          <>
-            {data.forms.written ? (<p><a href={data.forms.written}>Written Submissions</a></p>) : null}
-            {data.forms.visual ? (<p><a href={data.forms.visual}>Visual Submissions</a></p>) : null}
-          </>
-        ) : (
-          <TinaMarkdown content={data.forms.subsClosedText} />
-        )
-        }
+        <div className={styles.forms}>
+          {status ? (
+            <>
+              {data.forms.written ? (<p><a href={data.forms.written}>Written Submissions</a></p>) : null}
+              {data.forms.visual ? (<p><a href={data.forms.visual}>Visual Submissions</a></p>) : null}
+            </>
+          ) : (
+            <TinaMarkdown content={data.forms.subsClosedText} />
+          )
+          }
 
-        <p>(The list of submissions are often updated on our discord! <a href="https://discord.gg/ZT3Mx78Ar7" rel="noreferer noopener">https://discord.gg/ZT3Mx78Ar7</a> <strong>Last Updated 10/2</strong>)</p>
+          <p>(The list of submissions are often updated on our discord! <a href="https://discord.gg/ZT3Mx78Ar7" rel="noreferer noopener">https://discord.gg/ZT3Mx78Ar7</a>)</p>
+          <p>Magazine submissions are selected based on quality, originality, creativity, and the creator’s intent!</p>
+        </div>
 
-        <p>*Magazine submissions will be selected based on quality, originality, creativity, and the creator’s intent!</p>
+        <hr />
+        <svg className={styles.svg__guidelines}>
+          <circle cx="300" cy="300" r="300" />
+        </svg>
 
-        <h2 id="reading-period">Reading Period:</h2>
+        <div className={styles.guidelines}>
 
-        <p>The editorial team will be reviewing and sending out acceptances on a rolling basis. Our waiting period is approximately three months, but this could vary.</p>
+          <h2>Reading Period:</h2>
 
-        <h2 id="what-we-accept">&zwj;What we accept:</h2>
+          <p>The editorial team will be reviewing and sending out acceptances on a rolling basis. Our waiting period is approximately three months, but this could vary.</p>
 
-        <ul>
-          <li>Prose of any genre under 3k words</li>
-          <li>Poetry</li>
-          <li>Art (traditional or digital, short comics, photography, graphic text, etc). &zwj;</li>
-          <li>We encourage you to submit spoken word, performance, experimental, cross-genre, and other data.forms of work!</li>
-          <li>If you have a question about what we accept, please email us at otherpeopleucsd@gmail.com.<sup>[1]</sup></li>
-        </ul>
+          <h2>What we accept:</h2>
+          <ul>
+            <li>Prose of any genre under 3k words</li>
+            <li>Poetry</li>
+            <li>Art (traditional or digital, short comics, photography, graphic text, etc).</li>
+            <li>We encourage you to submit spoken word, performance, experimental, cross-genre, and other forms of work!</li>
+            <li>If you have a question about what we accept, please email us at otherpeopleucsd@gmail.com.<sup>[1]</sup></li>
+          </ul>
 
-        <h2 id="how-we-want-it">How we want it:</h2>
-        <ul>
-          <li><strong>Please create an individual submission for each work.</strong></li>
-          <li>Remove your name and other personally identifying information from the document. Files should be ANONYMIZED - do not include your name anywhere so that our team can review submissions anonymously.</li>
-          <li>Written works: please submit a PDF in standard manuscript format.</li>
-          <li>Only the piece’s title, word count, and story/poem should be contained in the PDF.</li>
-          <li>Art: High fidelity .pdf, .jpg, .tiff accepted.
-            <ul>
-              <li>If you would like to submit a series, please create an individual submission for each work.</li>
-            </ul>
-          </li>
-          <li>More detailed instructions are listed in the Google Form submission form as well! In this form, please answer the questions about the genre of your work, input your email address and name, and attach an <strong>anonymized</strong> copy of your work. Optional: tell us anything you want us to know about your work and its meaning.</li>
-        </ul>
+          <h2>How we want it:</h2>
+          <ul>
+            <li><strong>Please create an individual submission for each work.</strong></li>
+            <li>Remove your name and other personally identifying information within the contents of the work so that our team can review submissions anonymously. If you notice that your name is on the filename, that is okay as it'll be removed during review.</li>
+            <li>Literature: please submit a PDF in standard manuscript format.</li>
+            <li className={styles.list__subitem}>Only the piece’s title, word count, and story/poem should be contained in the PDF.</li>
+            <li>Art: High fidelity .pdf, .jpg, .tiff, .heic accepted.</li>
+            <li className={styles.list__subitem}>If you would like to submit a series, please create an individual submission for each work.</li>
+            <li className={styles.list__subitem}>If submitting a photograph of a physical work, please ensure there is good lighting and the work is fully inside the frame.</li>
+            <li>More detailed instructions are listed in the Google Form submission form as well! In this form, please answer the questions about the genre of your work, input your email address and name, and attach an <strong>anonymized</strong> copy of your work. Optional: tell us anything you want us to know about your work and its meaning.</li>
+          </ul>
 
-        <h2 id="who-we-accept-from">Who we accept from:</h2>
+          <h2>Who we accept from:</h2>
 
-        <ul>
-          <li>Current UCSD undergraduates</li>
-          <li>Graduate students</li>
-          <li>UCSD alumni graduated within the last 3 years&zwj;</li>
-        </ul>
+          <ul>
+            <li>Current UCSD undergraduates</li>
+            <li>UCSD graduate students</li>
+            <li>UCSD alumni graduated within the last 3 years</li>
+          </ul>
 
-        <p>Short and sweet, right?</p>
+          <h2>FAQ</h2>
+          <ul>
+            <p>Q: Can we submit multiple submissions?</p>
+            <p className={styles.answer}>Yes. Please submit them in individual files. Please review the submission form for any restrictions.</p>
+            <p>Q: When do your submission periods usually open?</p>
+            <p className={styles.answer}>End of Spring Quarter - Early Fall Quarter</p>
+            <p className={styles.answer}>Late Fall Quarter - End of Winter Quarter</p>
+          </ul>
 
-        <h2 id="faq">FAQ</h2>
-        <ul>
-          <li>Q: Can we submit multiple submissions?
-            <ul>
-              <li>A: Yes. Please submit them in individual files. Please review the submission form for any restrictions.</li>
-            </ul>
-          </li>
-          <li>Q: When do your submission periods usually open?
-            <ul>
-              <li>End of Spring Quarter - Early Fall Quarter</li>
-              <li>Late Fall Quarter - End of Winter Quarter</li>
-            </ul>
-          </li>
-        </ul>
+          <p className={styles.footnote}>[1A] We do not consider previously published work.</p>
+          <p className={styles.footnote}>[1B] Currently, we do not have the funds to pay our contributors.</p>
+        
+          <svg className={styles.svg__guidelines__bottom}>
+            <circle cx="200" cy="300" r="250" />
+            <circle cx="400" cy="500" r="250" />
+          </svg>
 
-        <p className={contentStyles.submissions__footnote}>[1A] We do not consider previously published work.</p>
-        <p className={contentStyles.submissions__footnote}>[1B] Currently, we do not have the funds to pay our contributors.</p>
-      </div>
+        </div>
+
     </Layout>
   );
 }

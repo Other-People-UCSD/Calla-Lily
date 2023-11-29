@@ -8,7 +8,9 @@
     "Jessie Truong — Editorial",
     "Suphala Nibhanupudi — Editorial",
     "Hallie Macaulay — Editorial, Content",
-    "Stephanie Collins — Editorial",
+    "Stephanie Collins — Editorial"
+  ],
+  "content": [
     "Spencer Vossman — Content",
     "Katie Clemmer — Content",
     "Sophia Donner — Content",
@@ -19,7 +21,35 @@
     "Tracy Truong — Content",
     "Angel Sta Maria — Content",
     "Ivy Du — Content",
-    "Nika Shlopov — Content",
+    "Nika Shlopov — Content"
+  ],
+  "design_directors": [
+    "Allison Gable — Design Director",
+    "Caroline Tjoe — Co-Design Director",
+    "Kevin Jang — Web Developer"
+  ],
+  "design": [
+    "Helen Huang — Design Illustrator",
+    "Kevin Phan — Design Illustrator",
+    "Amy Stukenholtz — Design Illustrator",
+    "Kayla Weiss — Design Illustrator",
+    "Tammy Ding — Design Illustrator",
+    "Katie Gasper — Design Illustrator",
+    "Isabella Villante — UX Design"
+  ],
+  "digital": [
+    "Katie Lew — UI Design",
+    "Steven Tran — UI/UX Design"
+  ],
+  "publicity_events": [
+    "Christopher Chan — Social Media Director",
+    "Chelsea Idahosa — Treasurer",
+    "Sneh Pancholi — Social Media",
+    "Alvin Zhou — Social Media",
+    "Johann Milios — Social Media",
+    "Dayton Garret — Social Media"
+  ],
+  "alumni_editorial": [
     "Zoe Wong — Editorial (2019-21), Co-Editor in Chief (2022-2023)",
     "Montanna Harling — Co-Founder, Editorial & Production (2019-22)",
     "Isaac Kopstein — Head Editor & Finance (2019-22)",
@@ -43,18 +73,7 @@
     "Hemmy Chun — Content (2019-20)",
     "Jasmine Torres — Content (2019-20)"
   ],
-  "design_team": [
-    "Allison Gable — Design Director",
-    "Caroline Tjoe — Co-Design Director",
-    "Kevin Jang — Web Developer",
-    "Helen Huang — Design Illustrator",
-    "Kevin Phan — Design Illustrator",
-    "Amy Stukenholtz — Design Illustrator",
-    "Kayla Weiss — Design Illustrator",
-    "Tammy Ding — Design Illustrator",
-    "Katie Gasper — Design Illustrator",
-    "Isabella Villante — UX Design",
-    "Katie Lew — UI Design, Web Developer Intern",
+  "alumni_design": [
     "Camille Wang — Design Illustrator (2021-22)",
     "Geraldine Wambersie — Design Director (2019-21)",
     "Elysia Mac — Design Illustrator (2019-21)",
@@ -68,13 +87,7 @@
     "Kelly Tran — Design Illustrator (2019-20)",
     "Zhilin Li — Design Illustrator (2019-20)"
   ],
-  "publicity_events": [
-    "Christopher Chan — Social Media Director",
-    "Chelsea Idahosa — Treasurer",
-    "Sneh Pancholi — Social Media",
-    "Alvin Zhou — Social Media",
-    "Johann Milios — Social Media",
-    "Dayton Garret — Social Media",
+  "alumni_pr": [
     "Kristy Lee — Co-Design Director (Social Media) (2021-2023)",
     "Casey Tran — Treasurer (2022-2023)",
     "Victor Wang — Event Planning (2022-2023)",
