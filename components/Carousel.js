@@ -9,7 +9,7 @@ const poetryItems = [
     "title": "I Sold My Soul At Sun God",
     "description": "",
     "item_link": "",
-    "image_url": "/images/5/i-sold-my-soul-katie-gasper.jpg",
+    "image_url": "/images/5/temporariness-of-twenty-kyoko-downey.jpg",
     "image_caption": "",
   },
   {
@@ -133,7 +133,9 @@ function Carousel__GenreItem({ item, contentAlign, style }) {
       <div className={homepageStyles.block__img}>
         <div className={homepageStyles.block__img__container}>
           <Image className={`${homepageStyles.img__cover}  ${homepageStyles[`img__cover--${contentAlign}`]}`}
-            src={item.image_url} fill={true} />
+            src={item.image_url} fill={true} 
+            placeholder={'empty'}
+            sizes={"(max-width: 768px) 100vw, 50vw"}/>
         </div>
         <div className={homepageStyles.block__img__caption}>Katie Gasper</div>
       </div>

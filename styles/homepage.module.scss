@@ -108,6 +108,7 @@
 }
 
 .block__img__container {
+  position: relative;
   width: 100%;
   height: 100%;
 }
@@ -170,12 +171,15 @@
 .genre__hr--right {
   margin-left: auto;
 }
+
 .carousel {
   height: 600px;
   background-color: #eee;
 }
 
-
+@media screen and (max-width: 768px) {
+  
+}
 
 
 .svg__poetry {

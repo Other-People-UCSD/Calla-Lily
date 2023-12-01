@@ -7,7 +7,6 @@ import Search from './search';
 import { Logo64 } from '@/pages';
 import { FooterLogo } from './footer';
 
-
 const delta = 5;
 
 /**
@@ -105,7 +104,7 @@ function MobileNav({ setShowNav }) {
       <div className={navStyles.overlay__header}>
         <Link href="/" onClick={closeNav}><Logo64 theme={'dark'} /></Link>
         <div className={styles.toolbar}>
-          <Link href="/search" className={styles.searchIcon}><SearchIcon theme={'dark'} /></Link>
+          <Link href="/search" onClick={closeNav} className={styles.searchIcon}><SearchIcon theme={'dark'} /></Link>
           <button
             className={navStyles.menu__close}
             onClick={closeNav}
