@@ -1,14 +1,33 @@
 import Layout from "@/components/layout";
-import animationStyles from "@/styles/animations.module.scss";
-import indexStyles from "@/styles/index.module.scss";
+import styles from "@/styles/posts.module.scss";
+import Link from "next/link";
 import { getGenrePostsData, getSortedPostsData } from "@/lib/posts";
 import Genre from "../components/genre";
 
 export default function Poetry({ poetryPosts }) {
   return (
-    <Layout landingPage title={"Poetry"}>
-      <div className={`${animationStyles.fadeInBottom}`}>
-        <h1 className={indexStyles["page__title"]}>Poetry</h1>
+    <Layout landingPage title={"Poetry"} className={styles.genre__main}>
+      <div className={styles.genre__header__row}>
+        <Link href="/fiction"
+          className={`${styles.genre__header__link} ${styles.genre__header__fiction}`}>Fiction</Link>
+        <hr className={styles.genre__header__line} />
+      </div>
+
+      <div className={styles.genre__header__row}>
+        <Link href="/nonfiction"
+          className={`${styles.genre__header__link} ${styles.genre__header__nonfiction}`}>Nonfiction</Link>
+        <hr className={styles.genre__header__line} />
+      </div>
+
+      <div className={styles.genre__header__row}>
+        <Link href="/visualarts"
+          className={`${styles.genre__header__link} ${styles.genre__header__arts}`}>Visual Arts</Link>
+        <hr className={styles.genre__header__line} />
+      </div>
+
+      <div className={styles.genre__header__row}>
+        <h1 className={`${styles.genre__header__link} ${styles.genre__header__poetry}`}>Poetry</h1>
+        <hr className={styles.genre__header__line} />
       </div>
 
       <Genre genre={poetryPosts} />

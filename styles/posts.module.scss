@@ -1,5 +1,72 @@
 @import '@/styles/variables.scss';
 
+.genre__main {
+  margin-top: 24px;
+  padding: 0;
+  max-width: unset;
+}
+.genre__header__row {
+  margin-top: 8px;
+  // margin-bottom: 8px;
+}
+.genre__header__line {
+  margin: 0;
+  margin-top: -3px;
+  border: none;
+  border-bottom: 3px solid black;
+}
+
+.genre__header__link {
+  position: relative;
+  display: block;
+  padding-top: 4px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 0;
+  width: fit-content;
+  text-transform: uppercase;
+  font-family: $opm-font-apple;
+  font-size: 24px;
+  font-weight: 500;
+  border: 3px solid black;
+  border-bottom: none;
+  border-top-left-radius: 20px 30px;
+  border-top-right-radius: 20px 30px;
+  box-sizing: border-box;
+  background-color: $opm-background-white;
+  text-decoration: none;
+}
+
+.genre__header__fiction {
+  margin-top: -24px;
+  margin-left: 40%;
+}
+
+.genre__header__nonfiction {
+  margin-top: -24px;
+  margin-left: 20%;
+}
+
+.genre__header__arts {
+  margin-top: -24px;
+  margin-left: 60%;
+}
+
+.genre__header__poetry {
+  margin-top: -24px;
+  margin-left: 50%;
+}
+
+.genre__nav {
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+.genre__nav button {
+  font-size: 18px;
+  font-weight: bold;
+}
+
 .post__content {
   margin-top: $blockThree;
   padding-left: $blockThree;

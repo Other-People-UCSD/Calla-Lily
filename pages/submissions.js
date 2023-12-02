@@ -66,7 +66,7 @@ export default function Submissions(props) {
           <h2>How we want it:</h2>
           <ul>
             <li><strong>Please create an individual submission for each work.</strong></li>
-            <li>Remove your name and other personally identifying information within the contents of the work so that our team can review submissions anonymously. If you notice that your name is on the filename, that is okay as it'll be removed during review.</li>
+            <li>Remove your name and other personally identifying information within the contents of the work so that our team can review submissions anonymously. If you notice that your name is on the filename, that is okay as it&apos;ll be removed during review.</li>
             <li>Literature: please submit a PDF in standard manuscript format.</li>
             <li className={styles.list__subitem}>Only the piece’s title, word count, and story/poem should be contained in the PDF.</li>
             <li>Art: High fidelity .pdf, .jpg, .tiff, .heic accepted.</li>
