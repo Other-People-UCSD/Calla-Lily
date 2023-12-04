@@ -3,10 +3,9 @@
 .base {
   padding-top: 200px;
   padding-bottom: 64px;
-  font-family: monospace;
+  font-family: $opm-font-monospace;
   color: white;
   font-size: 16px;
-
   background: #303030;
 }
 
@@ -21,7 +20,8 @@
 .base__content {
   margin-left: auto;
   margin-right: auto;
-  max-width: 1080px;
+  max-width: 1440px;
+  padding: 0px 32px;
 }
 
 .newsletter {
@@ -31,6 +31,8 @@
 }
 
 .newsletter__label {
+  display: block;
+  text-align: center;
   text-transform: uppercase;
   font-weight: bold;
 }
@@ -46,12 +48,12 @@
 .newsletter__inputbox {
   display: flex;
   gap: 16px;
-  padding-top: 16px;
-  padding-bottom: 16px;
-  padding-left: 32px;
-  padding-right: 32px;  
-  border: 2px solid white;
-  border-radius: 4px;
+  padding: 16px 32px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  // border: 2px solid white;
+  // border-radius: 4px;
 }
 
 
@@ -61,10 +63,9 @@
   padding-left: 16px;
   background-color: inherit;
   border: 2px solid white;
-  border-radius: 4px;
+  border-radius: 3px;
   color: white;
-  font-size: inherit;
-}
+  font-size: inherit;}
 
 .newsletter__input__email::placeholder {
   color: white;
@@ -76,6 +77,10 @@
   padding-left: 16px;
   padding-right: 16px;
   font-size: inherit;
+  background-color: $opm-color-white;
+  border-style: solid;
+  border-radius: 3px;
+  border-color: white;
 }
 .nav {
   display: grid;

@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Wed, 29 Nov 2023 00:30:46 GMT
+ * Generated on Sun, 03 Dec 2023 23:34:13 GMT
  */
 
 export const OpmColorBlack = "#000000";
@@ -18,7 +18,7 @@ export const OpmBackgroundWhite = "#FFFFFC";
 export const OpmFontArial = "Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'";
 export const OpmFontBasier = "basier_circlemonoregular";
 export const OpmFontApple = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'";
-export const OpmFontMonospace = "monospace, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'";
+export const OpmFontMonospace = "b612mono, monospace, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'";
 export const OpmFontWeightRegular = "regular";
 export const OpmFontWeightBold = "bold";
 export const OpmFontSizeH1 = "4rem";

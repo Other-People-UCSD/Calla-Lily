@@ -13,11 +13,13 @@
   font-display: swap;
 }
 
-// * {
-//   box-sizing: border-box;
-//   padding: 0;
-//   margin: 0;
-// }
+@font-face {
+  font-family: "b612mono";
+  src: url("/fonts/b612mono/b612mono-regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 .hidden {
   display: none;
