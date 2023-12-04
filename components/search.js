@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import searchStyles from "@/styles/search.module.scss";
+import styles from "@/styles/search.module.scss";
 import Link from "next/link";
 import { useAppContext } from "@/components/appContext";
 
-export default function Search({ setShowNav }) {
+export default function Search({ setShowNav, closeNav }) {
   const [searchQuery, setSearchQuery] = useState('');
   const context = useAppContext();
   const allPostsData = context.allPostsData;
@@ -20,11 +20,11 @@ export default function Search({ setShowNav }) {
   }, []);
 
   return (
-    <div className={searchStyles.wrapper}>
+    <div className={styles.wrapper}>
       <input
         type="text"
         id="search-input"
-        className={searchStyles.input}
+        className={styles.input}
         placeholder="Search"
         aria-placeholder="Type here to search"
         // autoFocus={true}
@@ -33,22 +33,22 @@ export default function Search({ setShowNav }) {
         <p>Enjoyed this work? Here are our recommendations!</p>
       }
       <SearchResults
-        setShowNav={setShowNav}
+        closeNav={closeNav}
         searchQuery={searchQuery}
         allPostsData={allPostsData}
         recommender={recommender}
       />
     </div>
-
   );
 }
 
-const SearchResults = ({ setShowNav, searchQuery, allPostsData, recommender }) => {
+const SearchResults = ({ closeNav, searchQuery, allPostsData, recommender }) => {
+  const [displayLimit, setDisplayLimit] = useState(10);
+
   if (searchQuery === '' && !recommender) {
     return;
   }
 
-  const displayLimit = 10;
   const searchKeys = [
     "slug", "collection", "category", "title",
     "date", "contributor", "tags"
@@ -85,6 +85,9 @@ const SearchResults = ({ setShowNav, searchQuery, allPostsData, recommender }) =
 
   results = postsQuery.slice(0, displayLimit);
 
+  function handleViewMore() {
+    setDisplayLimit(displayLimit + 10)
+  }
 
   function handleClick(e) {
     if (searchQuery === '' && recommender) {
@@ -100,29 +103,36 @@ const SearchResults = ({ setShowNav, searchQuery, allPostsData, recommender }) =
     closeNav();
   }
 
-  function closeNav() {
-    document.getElementById("myNav").style.height = "0%";
-    setShowNav(false);
-  }
-
   return (
-    <ul className={searchStyles.results}>
+    <ul className={styles.results}>
       {
         results.length > 0 ? (
-          results.map((key) => {
-            const post = allPostsData[key];
-            // console.log(key);
-            return (
-              <li key={key} className={searchStyles.results__item}>
-                <Link href={`/${post.slug}`}
-                  onClick={handleClick}>
-                  <h2>{post.title}</h2>
-                  <p className={searchStyles.results__item__contributor}>{post.contributor}</p>
-                  <p className={searchStyles.results__item__genre}>{post.tags.join(", ")}</p>
-                </Link>
-              </li>
-            );
-          })
+          <>
+            <div className={`${styles.results__grid} ${styles.results__header}`}>
+              <p>Title</p>
+              <p>Author</p>
+              <p>Genre</p>
+            </div>
+            {results.map((key) => {
+              const post = allPostsData[key];
+              const author = post.contributor.split(',')[0].replace(/\(.*\)/g, '');
+              const collection = post.slug.split('/')[0];
+              return (
+                <li key={key} className={styles.results__item}>
+                  <Link href={`/${post.slug}`}
+                    className={styles.results__grid}
+                    onClick={handleClick}>
+                    <p>{post.title}</p>
+                    <p>{author}</p>
+                    <p>{post.tags.join(", ")}</p>
+                  </Link>
+                </li>
+              );
+            })}
+            {postsQuery.length > displayLimit &&
+              <button className={`text--heading_2 ${styles.view_more}`} onClick={handleViewMore}>View More</button>
+            }
+          </>
         ) : (
           "No results found. Try searching by title, author, tags, or collection number/year!"
         )

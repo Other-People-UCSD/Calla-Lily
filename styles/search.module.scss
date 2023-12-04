@@ -1,5 +1,8 @@
 @import '@/styles/variables.scss';
 
+.wrapper {
+  margin: 32px;
+}
 .input {
   background-color: $opm-background-black;
   color: $opm-color-white;
@@ -46,29 +49,45 @@
 
 .results__item {
   margin-top: $opm-spacing-500;
-  padding-bottom: $opm-spacing-300;
-  border-bottom: 2px groove $opm-color-grey-light;
+  border-bottom: 2px solid $opm-color-grey-light;
   list-style-type: none;
-  line-height: inherit;
-
-  a:hover {
-    text-decoration: none;
-
-    h2 {
-      text-decoration: underline;
-    }
-  }
+  font-weight: 500;
 }
 
-.results__item__contributor,
-.results__item__genre {
+.results:nth-child(2) {
+  margin-top: 0;
+}
+
+.results__item p {
   margin: 0;
-  padding: 0;
+  padding-bottom: 8px;
+  font-size: 20px;
 }
 
-.results__item__genre {
-  opacity: 0.5; // subtext?
+.results__grid {
+  display: grid;
+  grid-template-columns: 6fr 4fr 2fr;
+  column-gap: 8px;
+  align-items: end;
+  text-decoration: none;
 }
+
+.results__header {
+  font-weight: bold;
+  opacity: $opm-opacity-placeholder;
+}
+
+.results__item a:hover {
+  text-decoration: underline;
+}
+
+.view_more {
+  margin-top: 32px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
 
 @media only screen and (max-width: 728px) {
   .input {

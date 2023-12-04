@@ -16,15 +16,23 @@ const delta = 5;
 export default function HeaderMain({ landingPage, title, announcementData }) {
   const headerRef = useRef(null);
   const [showNav, setShowNav] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollTop, setLastScrollTop] = useState(0);
 
+  const openSearch = () => {
+    document.getElementById("mobileNav").style.overflowY = "auto";
+    document.getElementById("mobileNav").style.height = "100%";
+    document.querySelector("html").style.overflowY = "hidden";
+    setShowSearch(true)
+  }
   /**
    * Opens the mobile navigation after clicking Menu
    */
   const openNav = () => {
+    document.getElementById("mobileNav").style.overflowY = "auto";
+    document.querySelector("html").style.overflowY = "hidden";
     document.getElementById("mobileNav").style.height = "100%";
-    document.querySelector("html").style.overflow = "hidden";
     setShowNav(true);
   }
 
@@ -61,16 +69,27 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
     }
   }, [handleScroll]);
 
+  /**
+   * Closes the mobile navigation after clicking Close or a search result
+   */
+  const closeNav = () => {
+    document.getElementById("mobileNav").style.height = "0%";
+    document.querySelector("html").style.overflowY = "initial";
+    setShowNav(false);
+    setShowSearch(false);
+  }
+
   return (
     <>
       <header
         ref={headerRef}
         onScroll={handleScroll}
-        className={`${styles.base} ${showHeader ? '' : styles["nav-up"]} `}
+        className={`${styles.base} ${showHeader && styles["nav-up"]}`}
       >
         <Link href="/" className={styles.logo}><Logo64 /></Link>
         <div className={styles.toolbar}>
-          <Link href="/search" className={styles.searchIcon}><SearchIcon /></Link>
+          {/* <Link href="/search" className={styles.search__wrapper}><SearchIcon /></Link> */}
+          <button className={styles.search__wrapper} onClick={openSearch}><SearchIcon /></button>
           <button className={styles.menu} onClick={openNav} aria-label="Open Menu">Menu</button>
         </div>
 
@@ -78,7 +97,19 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
       <div
         id='mobileNav'
         className={navStyles.overlay}>
-        {showNav ? <MobileNav setShowNav={setShowNav} /> : null}
+        {(showNav || showSearch) &&
+          <div className={navStyles.overlay__header}>
+            <Link href="/" onClick={closeNav}><Logo64 theme={'dark'} /></Link>
+            <div className={styles.toolbar}>
+              <button
+                className={navStyles.menu__close}
+                onClick={closeNav}
+                aria-label="Close Menu">Close</button>
+            </div>
+          </div>
+        }
+        {showNav && <MobileNav setShowNav={setShowNav} closeNav={closeNav} />}
+        {showSearch && <Search setShowSearch={setShowSearch} closeNav={closeNav} />}
       </div>
     </>
   );
@@ -89,29 +120,9 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
  * @param {state} setShowNav 
  * @returns 
  */
-function MobileNav({ setShowNav }) {
-  /**
-   * Closes the mobile navigation after clicking Close or a search result
-   */
-  const closeNav = () => {
-    document.getElementById("mobileNav").style.height = "0%";
-    document.querySelector("html").style.overflow = "initial";
-    setShowNav(false);
-  }
-
+function MobileNav({ setShowNav, closeNav }) {
   return (
     <>
-      <div className={navStyles.overlay__header}>
-        <Link href="/" onClick={closeNav}><Logo64 theme={'dark'} /></Link>
-        <div className={styles.toolbar}>
-          <Link href="/search" onClick={closeNav} className={styles.searchIcon}><SearchIcon theme={'dark'} /></Link>
-          <button
-            className={navStyles.menu__close}
-            onClick={closeNav}
-            aria-label="Close Menu">Close</button>
-        </div>
-      </div>
-
       <nav className={navStyles.nav__content}>
         <div className={navStyles.genres}>
           <h3>Genres</h3>
@@ -125,7 +136,6 @@ function MobileNav({ setShowNav }) {
 
         <div>
           <h3>Info</h3>
-
           <ul className={navStyles.nav__list}>
             <li><Link href="/about" onClick={closeNav}>About Us</Link></li>
             <li><Link href="/submissions" onClick={closeNav}>Submissions</Link></li>
@@ -155,7 +165,7 @@ function MobileNav({ setShowNav }) {
 
 
 const SearchIcon = ({ theme }) => {
-  const themeColor = theme === 'dark' ? 'white' : '#3E3E3E';
+  const themeColor = (theme === 'dark') ? 'white' : '#3E3E3E';
 
   return <svg width="41" height="44" viewBox="0 0 41 44" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M38.5 17C38.5 24.9403 31.8531 31.5 23.5 31.5C15.1469 31.5 8.5 24.9403 8.5 17C8.5 9.05969 15.1469 2.5 23.5 2.5C31.8531 2.5 38.5 9.05969 38.5 17Z" stroke={themeColor} strokeWidth="5" />

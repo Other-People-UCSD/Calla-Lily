@@ -16,6 +16,12 @@
   transition: top 0.3s ease-in-out, background-color 0.8s ease-in-out;
 }
 
+.logo {
+  width: 70px;
+  height: 54px;
+  transform: scale(0.8);
+}
+
 .toolbar {
   margin-left: auto;
 }
@@ -27,14 +33,15 @@
   cursor: pointer;
 }
 
-.searchIcon svg {
+.search__wrapper {
+  display: inline-block;
   margin-right: 16px;
   transform: scale(0.65) translate(0px, 12px);
 }
 
 .menu {
   font-family: Helvetica, sans-serif;
-  font-size: 32px;
+  font-size: 28px;
   font-weight: bold;
   text-transform: uppercase;
 }
