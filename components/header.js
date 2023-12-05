@@ -20,11 +20,14 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollTop, setLastScrollTop] = useState(0);
 
+  /**
+   * Opens the search after clicking the search icon
+   */
   const openSearch = () => {
     document.getElementById("mobileNav").style.overflowY = "auto";
     document.getElementById("mobileNav").style.height = "100%";
     document.querySelector("html").style.overflowY = "hidden";
-    setShowSearch(true)
+    setShowSearch(true);
   }
   /**
    * Opens the mobile navigation after clicking Menu
@@ -37,7 +40,7 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
   }
 
   /**
-   * Hide/show the header
+   * Hide/show the header when scrolling down/up the page
    * @returns 
    */
   const handleScroll = useCallback(() => {
@@ -70,7 +73,8 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
   }, [handleScroll]);
 
   /**
-   * Closes the mobile navigation after clicking Close or a search result
+   * Closes the mobile navigation after clicking Close or a search result.
+   * Func passed down to MobileNav and Search components as a prop
    */
   const closeNav = () => {
     document.getElementById("mobileNav").style.height = "0%";
@@ -84,7 +88,7 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
       <header
         ref={headerRef}
         onScroll={handleScroll}
-        className={`${styles.base} ${showHeader && styles["nav-up"]}`}
+        className={`${styles.base} ${showHeader ? '' : styles["nav-up"]}`}
       >
         <Link href="/" className={styles.logo}><Logo64 /></Link>
         <div className={styles.toolbar}>
@@ -98,11 +102,11 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
         id='mobileNav'
         className={navStyles.overlay}>
         {(showNav || showSearch) &&
-          <div className={navStyles.overlay__header}>
-            <Link href="/" onClick={closeNav}><Logo64 theme={'dark'} /></Link>
+          <div className={styles.overlay__header}>
+            <Link href="/" onClick={closeNav} className={styles.logo}><Logo64 theme={'dark'} /></Link>
             <div className={styles.toolbar}>
               <button
-                className={navStyles.menu__close}
+                className={styles.menu__close}
                 onClick={closeNav}
                 aria-label="Close Menu">Close</button>
             </div>
@@ -120,7 +124,7 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
  * @param {state} setShowNav 
  * @returns 
  */
-function MobileNav({ setShowNav, closeNav }) {
+function MobileNav({ closeNav }) {
   return (
     <>
       <nav className={navStyles.nav__content}>

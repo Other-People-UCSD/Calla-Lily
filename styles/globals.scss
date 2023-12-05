@@ -124,7 +124,31 @@ h4 {
   padding: 0;
 }
 
+.text__landing--heading_1 {
+  font-size: 64px;
+  text-align: center;
+  text-transform: uppercase;
+}
 
+
+
+.title__accent {
+  position: relative;
+}
+.text__accent {
+  position: absolute;
+  top: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  width: 100%;
+  z-index: -1;
+  user-select: none;
+  color: transparent;
+}
+
+.text__accent--visible {
+  color: black;
+}
 p {
   // line-height: 1.8rem;
   font-size: 1rem;
@@ -200,7 +224,14 @@ html[data-theme="dark"] {
 }
 
 @media only screen and (max-width: 728px) {
-  h1 {
+  h1, 
+  .text--heading_1, 
+  .text__landing--heading_1 {
     font-size: 3rem;
   }
+
+  .text__landing--heading_1.text__accent {
+    top: 15px
+  }
+
 }

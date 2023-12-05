@@ -3,7 +3,7 @@ import styles from "@/styles/search.module.scss";
 import Link from "next/link";
 import { useAppContext } from "@/components/appContext";
 
-export default function Search({ setShowNav, closeNav }) {
+export default function Search({ closeNav }) {
   const [searchQuery, setSearchQuery] = useState('');
   const context = useAppContext();
   const allPostsData = context.allPostsData;
@@ -44,6 +44,7 @@ export default function Search({ setShowNav, closeNav }) {
 
 const SearchResults = ({ closeNav, searchQuery, allPostsData, recommender }) => {
   const [displayLimit, setDisplayLimit] = useState(10);
+  const [offset, setOffset] = useState(0);
 
   if (searchQuery === '' && !recommender) {
     return;
@@ -83,10 +84,13 @@ const SearchResults = ({ closeNav, searchQuery, allPostsData, recommender }) => 
     });
   }
 
-  results = postsQuery.slice(0, displayLimit);
+  results = postsQuery.slice(offset, displayLimit);
+  
+  const numPages = Math.ceil(postsQuery.length / displayLimit);
+  const pageArr = [...Array(numPages).keys()];
 
-  function handleViewMore() {
-    setDisplayLimit(displayLimit + 10)
+  function handleChangeOffset(mult) {
+    setOffset(offset * mult)
   }
 
   function handleClick(e) {
@@ -129,9 +133,20 @@ const SearchResults = ({ closeNav, searchQuery, allPostsData, recommender }) => 
                 </li>
               );
             })}
-            {postsQuery.length > displayLimit &&
+            {/* {postsQuery.length > displayLimit &&
               <button className={`text--heading_2 ${styles.view_more}`} onClick={handleViewMore}>View More</button>
-            }
+            } */}
+            <div className={styles.results__nav}>
+              {<button onClick={() => handleChangeOffset(0)}>&lt;</button>}
+              {
+                pageArr.map((pageNum) => {
+                  return (
+                    <button key={pageNum} onClick={(pageNum) => handleChangeOffset(pageNum)}>{pageNum + 1}</button>
+                  )
+                })
+              }
+              {<button onClick={() => handleChangeOffset(1)}>&gt;</button>}
+            </div>
           </>
         ) : (
           "No results found. Try searching by title, author, tags, or collection number/year!"

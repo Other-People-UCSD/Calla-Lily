@@ -7,13 +7,6 @@
   margin-right: 0px;
 }
 
-.menu__close {
-  font-family: Helvetica, sans-serif;
-  font-size: 28px;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: $opm-color-white;
-}
 
 .menu:hover,
 .menu__close:hover {
@@ -43,42 +36,6 @@
     text-decoration: underline;
     cursor: pointer;
   }
-}
-
-.overlay__header {
-  position: relative;
-  display: flex;
-
-  padding: 16px;
-  left: 0;
-  right: 0;
-  color: #fff;
-
-
-  ul {
-    display: flex;
-    justify-content: space-between;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    cursor: pointer;
-  }
-}
-
-.toolbar {
-  margin-left: auto;
-}
-
-.toolbar button {
-  background-color: initial;
-  color: unset;
-  border: unset;
-  cursor: pointer;
-}
-
-.searchIcon {
-  margin-right: 16px;
-  transform: scale(0.65) translate(0px, 12px);
 }
 
 .nav__content {
@@ -116,8 +73,7 @@
 }
 
 .nav__list li {
-  margin-top: 24px;
-  margin-bottom: 24px;
+  margin: 24px 0px;
 }
 
 .nav__content {
@@ -146,7 +102,6 @@
 }
 
 @media only screen and (max-width: 1024px) {
-
   .overlay__header,
   .nav__content {
     grid-template-columns: 1fr 1fr;
@@ -156,31 +111,32 @@
 
 
 @media only screen and (max-width: 728px) {
-  .overlay__header,
   .nav__content {
     padding: $blockTwo;
+    gap: 16px
   }
 
   .nav__content {
     flex-direction: column;
   }
 
-  .menu__close,
   .nav__list li {
     font-size: $mobile-font-size-h2;
+  }
+
+  .nav__list li {
+    margin: 16px 0px;
   }
 
   .search {
     margin-top: $blockOne;
   }
 
-  .footer__socials {
-    max-width: 300px;
-    column-gap: $opm-spacing-100;
+  .footer {
+    margin-top: 8px;
+  }
 
-    svg {
-      transform: scale(1);
-      font-size: 48px;
-    }
+  .footer p {
+    font-size: 14px;
   }
 }

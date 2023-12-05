@@ -72,19 +72,27 @@ const col4 = [
   },
 ]
 
+const defaultConfig = {
+  'showGradient': true,
+  'showMore': true,
+}
 
-export default function Footer({ pageType, excludeGradient }) {
+export default function Footer({ pageType, footerConfig }) {
+  // Updates values in the defaultConfig if they are provided in footerConfig
+  const config = {...defaultConfig, ...footerConfig}
+
   function getYear() {
     return new Date().getFullYear();
   }
 
-  const gradient = excludeGradient ? '' : `${styles.gradient}`; 
+  const gradient = config.showGradient ? `${styles.gradient}`: ''; 
+
   return (
     <footer className={`${styles.base} ${gradient}`}>
       <div className={styles.base__content}>
 
         {
-          !pageType &&
+          !pageType && config.showMore !== false &&
           <div className={styles.more} >
             <p className={`${styles.more__block__heading} text--heading_2`}>More Information</p>
             <hr />

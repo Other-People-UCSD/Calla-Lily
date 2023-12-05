@@ -43,7 +43,7 @@ export default function Genre({ genre, limit, offset }) {
               ) : (
                 <h2>{title}</h2>
               )}
-              <p className={postStyles.genre__post__author}>{contributor.split(', ')[0]}</p>
+              <p className={postStyles.genre__post__author}>{contributor.split(',')[0].replace(/\(.*\)/g, '')}</p>
             </Link>
           ))}
 
@@ -53,7 +53,6 @@ export default function Genre({ genre, limit, offset }) {
         {page !== 0 && <button onClick={() => handlePageChange(-1)}>&lt;</button>}
         {
           pageArr.map((pageNum) => {
-            console.log(pageNum)
             return (
               <button key={pageNum} onClick={() => jumpToPage(pageNum)}>{pageNum+1}</button>
             )

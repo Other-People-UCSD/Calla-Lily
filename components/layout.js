@@ -4,7 +4,7 @@ import Footer from './footer';
 import postStyles from '@/styles/posts.module.scss';
 import { NextSeo } from 'next-seo';
 
-export default function Layout({ children, post, landingPage, title, announcementData, excludeGradient, className }) {
+export default function Layout({ children, post, landingPage, title, announcementData, footerConfig, className }) {
   const siteTitle = title ? (`${title} - Other People`) : (`Other People`);
 
   // console.log('layour children:', children)
@@ -54,7 +54,7 @@ export default function Layout({ children, post, landingPage, title, announcemen
       <OPMSEO />
       <HeaderMain landingPage={landingPage} title={title} announcementData={announcementData} />
       <Content>{children}</Content>
-      <Footer excludeGradient={excludeGradient} />
+      <Footer footerConfig={footerConfig} />
     </>
   );
 }
