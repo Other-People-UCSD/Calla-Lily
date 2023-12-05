@@ -3,16 +3,8 @@
 .main {
   font-weight: 500;
 }
-.heading1 {
-  font-size: 64px;
-  text-align: center;
-  text-transform: uppercase;
-}
 
-.status {
-  text-align: center;
-}
-
+.status,
 .forms {
   text-align: center;
 }
@@ -49,7 +41,7 @@
   right: -200px;
   width: 600px;
   height: 600px;
-  z-index: -1;
+  z-index: -10;
   fill: #ECFFE5;
 }
 
@@ -59,7 +51,7 @@
   left: -100px;
   width: 800px;
   height: 800px;
-  z-index: -1;
+  z-index: -10;
   fill: #FFE5E5;
   mix-blend-mode: screen;
 }

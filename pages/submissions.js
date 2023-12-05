@@ -15,9 +15,10 @@ export default function Submissions(props) {
   const status = data.forms["written"] || data.forms["visual"];
 
   return (
-    <Layout landingPage title={"Submissions"} className={styles.main}>
-        <div className={`${animationStyles.fadeInBottom}`}>
-          <h1 className={`text--heading_1 ${styles.heading1}`}>Submissions</h1>
+    <Layout landingPage title={"Submissions"} className={styles.main} footerConfig={{'showMore': false}}>
+        <div className={`${animationStyles.fadeInBottom} title__accent`}>
+          <h1 className={`text--heading_1 text__landing--heading_1`}>Submissions</h1>
+          <p className={`text--heading_1 text__landing--heading_1 text__accent`} aria-hidden="true">Submissi<span class="text__accent--visible">o</span>ns</p>
         </div>
         <p className={styles.status}>
           {status ? (

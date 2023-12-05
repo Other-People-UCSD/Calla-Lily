@@ -13,11 +13,6 @@
   padding: 64px;
 }
 
-.heading1 {
-  text-align: center;
-  font-size: 64px;
-}
-
 .values {
   float: left;
   clear: both;
@@ -134,7 +129,7 @@
 .svg__about {
   position: absolute;
   top: 100px;
-  right: -200px;
+  right: -300px;
   width: 600px;
   height: 600px;
   z-index: -1;

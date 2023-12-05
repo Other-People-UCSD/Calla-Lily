@@ -39,13 +39,27 @@
   transform: scale(0.65) translate(0px, 12px);
 }
 
-.menu {
+.menu,
+.menu__close {
   font-family: Helvetica, sans-serif;
   font-size: 28px;
   font-weight: bold;
   text-transform: uppercase;
 }
 
+.menu__close {
+  color: $opm-color-white;
+}
+
+.overlay__header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  left: 0;
+  right: 0;
+  color: #fff;
+}
 
 .nav-up {
   top: -150px;
@@ -62,7 +76,8 @@
 }
 
 @media screen and (max-width: 768px) {
-  .menu {
+  .menu,
+  .menu__close {
     font-size: $mobile-font-size-h2;
   }
 }

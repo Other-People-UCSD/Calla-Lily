@@ -6,16 +6,16 @@ import client from '@/tina/__generated__/client';
 import { getSortedPostsData } from '@/lib/posts';
 
 export default function About(props) {
+  const footerConfig = {
+    'showGradient': false,
+    'showMore': false,
+  };
+
   const { query, variables, data } = useTina({
     query: props.query,
     variables: props.variables,
     data: props.data,
   })
-
-  const forms = props.dataForms.forms;
-
-  const teamKeys = ['editor_in_chief', 'editorial', 'design_team', 'publicity_events'];
-  const teamTitles = ['Editor in Chief', 'Editorial', 'Design', 'PR + Events'];
 
   const alumniKeys = ['alumni_editorial', 'alumni_design', 'alumni_pr'];
   const alumniTitles = ['Editorial', 'Design', 'PR + Events'];
@@ -40,12 +40,13 @@ export default function About(props) {
     })
   }
 
-  // console.log(data)
   return (
-    <Layout landingPage title={"About"} excludeGradient className={styles.main}>
+    <Layout landingPage title={"About"} footerConfig={footerConfig} className={styles.main}>
       <div className={styles.content}>
-        <div className={`${animationStyles.fadeInBottom}`}>
-          <h1 className={`text--heading_1 ${styles.heading1}`}>O(THE)R PEOPLE</h1>
+        <div className={`${animationStyles.fadeInBottom} title__accent`}>
+          <h1 className={`text--heading_1 text__landing--heading_1`}>O(THE)R PEOPLE</h1>
+          <p className={`text--heading_1 text__landing--heading_1 text__accent`} aria-hidden="true"><span class="text__accent--visible">O</span>(THE)R PE<span class="text__accent--visible">O</span>PLE</p>
+
         </div>
 
         <p className={`${styles.values} ${styles['values--right']}`}>A place to explore the timeless human experience;</p>
