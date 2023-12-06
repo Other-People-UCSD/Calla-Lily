@@ -29,8 +29,10 @@
       "basier": { "value": "basier_circlemonoregular" },
       "apple": { "value": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'" },
       "monospace": { "value": "b612mono, monospace, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'" },
+      "helvetica": { "value": "Helvetica, Arial, sans-serif"},
       "weight": {
-        "regular": { "value": "regular" },
+        "normal": { "value": "normal" },
+        "semibold": { "value": "500" },
         "bold": { "value": "bold" }
       },
       "size": {
@@ -41,7 +43,8 @@
         "h5": { "value": "1.25rem" },
         "h6": { "value": "1.25rem" },
         "body": { "value": "16px" },
-        "subtext": { "value": "0.9rem" }
+        "subtext": { "value": "0.9rem" },
+        "small": { "value": "14px" }
       }
     },
     "opacity": {
@@ -78,7 +81,7 @@
   "mobile": {
     "font": {
       "size": {
-        "h1": { "value": "2rem" },
+        "h1": { "value": "3rem" },
         "h2": { "value": "1.5rem" }
       }
     }
