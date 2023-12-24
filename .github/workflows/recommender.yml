@@ -5,6 +5,11 @@ name: Recommender Auto-Generation
 # when modifying the rest of the website
 on:
   push:
+    branches: [ main ]
+    paths:
+      - '_posts/**'
+  pull_request:
+    branches: [ main ]
     paths:
       - '_posts/**'
   workflow_dispatch:
