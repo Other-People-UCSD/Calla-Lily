@@ -4,6 +4,10 @@ on:
     branches: [ main, tests ]
   pull_request:
     branches: [ main ]
+  schedule:
+    - cron: '1 1 * * 1'
+  workflow_dispatch:
+
 jobs:
   playwright-tests:
     timeout-minutes: 60
