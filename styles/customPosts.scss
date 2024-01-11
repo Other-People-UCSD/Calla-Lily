@@ -83,6 +83,12 @@
 .left40 { margin-left: 40px; }
 .right-50-block { margin-left: auto; width: 50%;}
 .monospace { font-family: monospace, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; }
+
+// Collection No. 6 Black Out
+.courier {
+  font-family: 'Courier New', Courier, monospace;
+}
+
 .hr40 {
   margin-top: 40px; 
   margin-bottom: 40px; 
@@ -105,19 +111,6 @@
   display: none;
 }
 .uppercase { text-transform: uppercase; }
-
-// Through Fuchsia-Colored Glasses
-.h1 {
-  font-size: 1.4rem;
-  text-transform: uppercase;
-}
-
-// POMEGRANATE
-#pomegranate {
-  width: 100%;
-  max-width: 350px;
-}
-
 
 // BLOOD PACTS
 .blood-pacts-bg {
@@ -147,8 +140,6 @@
 .arrow-list {
   list-style: arrow-list;
 }
-
-
 
 // LITTLE DOLL
 .little-doll-main {
@@ -318,6 +309,54 @@
   max-width: 768px;
 }
 
+// Collection No. 6 Black Out
+.black-out--red {
+  color: #e06666;
+}
+
+.black-out-blackout {
+  background-color: #000;
+  color: #fff;
+}
+
+// Collection No. 6 Failures of Boats
+.failures-of-boats-and {
+  font-size: 24px;
+}
+.failures-of-boats-center {
+  padding-left: 200px;
+}
+
+.failures-of-boats-100 {
+  padding-left: 100px;
+}
+
+.failures-of-boats-right {
+  padding-left: 400px;
+}
+
+.failures-of-boats-indent {
+  padding-left: 50px;
+}
+
+// Collection No. 6 When One Loses Themselves
+.when-one-loses-right {
+  float: right;
+}
+
+.when-one-loses-200 {
+  text-align: center;
+  padding-left: 30px;
+}
+
+.when-one-loses-100 {
+  display: block;
+  text-align: center;
+  margin: 0;
+}
+
+
+// CUSTOMS
 // CYOA
 #progress-container {
   display: grid;
@@ -476,6 +515,34 @@ html[data-theme="dark"] {
   #progress-container {
     width: 60%;
   }
+
+  .failures-of-boats-center {
+    padding-left: 40px;
+  }
+  
+  .failures-of-boats-100 {
+    padding-left: 20px;
+  }
+  
+  .failures-of-boats-right {
+    padding-left: 80px;
+  }
+  
+  .failures-of-boats-indent {
+    padding-left: 20px;
+  }
+
+  .when-one-loses-200 {
+    text-align: left;
+    padding-left: 40px;
+  }
+  
+  .when-one-loses-100 {
+    display: block;
+    text-align: left;
+    padding-left: 20px;
+  }
+
 }
 
 @media only screen and (max-width: 1536px) {

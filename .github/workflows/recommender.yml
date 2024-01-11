@@ -4,10 +4,13 @@ name: Recommender Auto-Generation
 # This will prevent redundant recommendations and extraneous commits 
 # when modifying the rest of the website
 on:
-  push:
+  pull_request:
+    branches: [ main ]
     paths:
       - '_posts/**'
-  workflow_dispatch:
+  workflow_dispatch: 
+  # Manually run if manually uploading the artifact to the repo. 
+  # Due to branch protections, pull request trigger is the only way to automatically upload results.
 
 jobs:
   recommender:

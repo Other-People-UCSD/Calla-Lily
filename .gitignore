@@ -4,19 +4,17 @@
 
 # dependencies
 /node_modules
-/.pnp
-.pnp.js
-.yarn
 
 # testing
 /coverage
-/playwright-report
-/e2e/**/trace.zip
+/**/playwright-report
+/**/trace.zip
 
 # next.js
 /.next/
 /out/
 /_site/
+.swc
 
 # production
 /build
@@ -42,5 +40,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-node_modules
