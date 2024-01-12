@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Wed, 06 Dec 2023 22:20:22 GMT
+ * Generated on Wed, 06 Dec 2023 23:51:08 GMT
  */
 
 export const OpmColorBlack = "#000000";
@@ -23,8 +23,8 @@ export const OpmFontHelvetica = "Helvetica, Arial, sans-serif";
 export const OpmFontWeightNormal = "normal";
 export const OpmFontWeightSemibold = "500";
 export const OpmFontWeightBold = "bold";
-export const OpmFontSizeH1 = "4rem";
-export const OpmFontSizeH2 = "2rem";
+export const OpmFontSizeH1 = "2rem";
+export const OpmFontSizeH2 = "1.5rem";
 export const OpmFontSizeH3 = "1.25rem";
 export const OpmFontSizeH4 = "1.25rem";
 export const OpmFontSizeH5 = "1.25rem";
@@ -32,9 +32,12 @@ export const OpmFontSizeH6 = "1.25rem";
 export const OpmFontSizeBody = "16px";
 export const OpmFontSizeSubtext = "0.9rem";
 export const OpmFontSizeSmall = "14px";
+export const OpmFontSizeLargest = "4rem";
+export const OpmFontSizeLarge = "3rem";
 export const OpmOpacityAnimationFade = "0.3";
 export const OpmOpacityPlaceholder = "0.5";
 export const OpmOpacitySubtext = "0.8";
+export const OpmOpacitySvg = "0.4";
 export const OpmSpacing0 = "0px";
 export const OpmSpacing50 = "2px";
 export const OpmSpacing75 = "4px";

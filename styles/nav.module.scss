@@ -1,4 +1,4 @@
-@import '@/styles/variables.scss';
+@import '@/stories/_variables.scss';
 
 // MOBILENAV
 .menu,
@@ -20,7 +20,7 @@
   z-index: 10;
   top: 0;
   left: 0;
-  background-color: #151515;
+  background-color: $opm-background-black;
   color: $opm-color-white;
 
   overflow-x: hidden;
@@ -39,7 +39,7 @@
 }
 
 .nav__content {
-  padding: $blockThree;
+  padding: $opm-spacing-500;
   color: $opm-color-white;
   display: flex;
   flex-direction: row;
@@ -68,7 +68,7 @@
   }
 
   a:hover #arrowRight {
-    margin-left: $blockTwo;
+    margin-left: $opm-spacing-300;
   }
 }
 
@@ -78,14 +78,14 @@
 
 .nav__content {
   .nav__list a:hover svg {
-    margin-left: $blockTwo;
+    margin-left: $opm-spacing-300;
   }
 }
 
 .footer {
   padding: 0;
-  margin-top: $blockThree;
-  margin-bottom: $blockThree;
+  margin-top: $opm-spacing-500;
+  margin-bottom: $opm-spacing-500;
 
   display: flex;
   flex-direction: column;
@@ -105,14 +105,14 @@
   .overlay__header,
   .nav__content {
     grid-template-columns: 1fr 1fr;
-    padding: $blockThree;
+    padding: $opm-spacing-500;
   }
 }
 
 
 @media only screen and (max-width: 728px) {
   .nav__content {
-    padding: $blockTwo;
+    padding: $opm-spacing-300;
     gap: 16px
   }
 
@@ -129,7 +129,7 @@
   }
 
   .search {
-    margin-top: $blockOne;
+    margin-top: $opm-spacing-0;
   }
 
   .footer {

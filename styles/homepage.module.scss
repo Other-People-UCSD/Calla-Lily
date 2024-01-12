@@ -1,4 +1,4 @@
-@import '@/styles/variables.scss';
+@import '@/stories/_variables.scss';
 
 .text--h1 {
   font-size: 2rem;
@@ -177,10 +177,6 @@
   background-color: #eee;
 }
 
-@media screen and (max-width: 768px) {
-  
-}
-
 
 .svg__poetry {
   position: absolute;
@@ -189,17 +185,18 @@
   width: 800px;
   height: 800px;
   z-index: -1;
-  fill: #3363431A;
+  fill: #33634366;
+  opacity: $opm-opacity-svg;
 }
 
 .svg__visual {
   position: absolute;
   top: -200px;
-  left: -200px;
-  width: 800px;
-  height: 800px;
+  left: -350px;
+  width: 900px;
+  height: 900px;
   z-index: -1;
-  fill: #73CDFF1A;
+  fill: #73CDFF66;
 }
 
 .svg__fiction {
@@ -209,7 +206,8 @@
   width: 800px;
   height: 800px;
   z-index: -1;
-  fill: #6e1f3f1a;
+  fill: #6e1f3f66;
+  opacity: $opm-opacity-svg;
   /* fill: linear-gradient(180deg, rgba(110, 31, 63, 0.1) 54.69%, rgba(115, 205, 255, 0) 100%);; */
 }
 

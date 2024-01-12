@@ -1,4 +1,4 @@
-@import '@/styles/variables.scss';
+@import '@/stories/_variables.scss';
 
 .wrapper {
   margin: 32px;
@@ -43,7 +43,7 @@
 }
 
 .results {
-  margin-top: $blockThree;
+  margin-top: $opm-spacing-500;
   padding-left: 0;
 }
 

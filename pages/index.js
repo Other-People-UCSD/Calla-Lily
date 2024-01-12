@@ -59,8 +59,8 @@ export default function Home(props) {
 
       <div className={`${styles.genre__container} ${styles['genre__container--right']}`}>
         <svg className={styles.svg__visual}>
-          <circle cx="200" cy="200" r="350" />
-          <circle cx="400" cy="400" r="350" />
+          <circle cx="350" cy="350" r="350" />
+          <circle cx="550" cy="550" r="350" />
         </svg>
         <div className={`${styles.headline} ${styles['headline--right']}`}>
           <h2 className={`${styles.headline__text} ${styles['headline__text--right']}`}>Visual Arts</h2>

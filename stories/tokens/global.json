@@ -36,15 +36,17 @@
         "bold": { "value": "bold" }
       },
       "size": {
-        "h1": { "value": "4rem" },
-        "h2": { "value": "2rem" },
+        "h1": { "value": "2rem" },
+        "h2": { "value": "1.5rem" },
         "h3": { "value": "1.25rem" },
         "h4": { "value": "1.25rem" },
         "h5": { "value": "1.25rem" },
         "h6": { "value": "1.25rem" },
         "body": { "value": "16px" },
         "subtext": { "value": "0.9rem" },
-        "small": { "value": "14px" }
+        "small": { "value": "14px" },
+        "largest": { "value": "4rem"},
+        "large": { "value": "3rem" }
       }
     },
     "opacity": {
@@ -52,7 +54,8 @@
         "fade": { "value": "0.3" }
       },
       "placeholder": { "value": "0.5" },
-      "subtext": { "value": "0.8" }
+      "subtext": { "value": "0.8" },
+      "svg": { "value": "0.4" }
     },
     "spacing": {
       "0": { "value": "0px" },

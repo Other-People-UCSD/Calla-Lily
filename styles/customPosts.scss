@@ -1,5 +1,3 @@
-@import '@/styles/variables.scss';
-
 // Content Warnings
 .lock {
   position: fixed;
@@ -100,7 +98,7 @@
 .w650 { max-width: 650px; }
 .white { color: #fff; }
 // For dark theme blackout pieces
-.blackout { color: $backgroundColor; }
+.blackout { color: var(--background-color); }
 // For light theme blackout pieces (poets sleep in graves)
 .blackoutText { background-color: var(--light-text-color);}
 .blackoutText::selection { color: #ffb7b7 }

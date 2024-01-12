@@ -1,4 +1,4 @@
-@import '@/styles/variables.scss';
+@import '@/stories/_variables.scss';
 
 .genre__main {
   margin-top: 24px;
@@ -30,7 +30,7 @@
   padding-bottom: 0;
   width: fit-content;
   text-transform: uppercase;
-  font-family: $opm-font-apple;
+  font-family: $opm-font-helvetica;
   font-size: 24px;
   font-weight: 500;
   border: 3px solid black;
@@ -38,10 +38,11 @@
   border-top-left-radius: 20px 30px;
   border-top-right-radius: 20px 30px;
   box-sizing: border-box;
-  background-color: $opm-background-white;
+  background-color: var(--background-color); // Review differnet coloration
   text-decoration: none;
 }
 
+.genre__header__link:horizontal
 
 .genre__header__selected {
   background-color: $opm-background-black;
@@ -83,9 +84,9 @@
 }
 
 .post__content {
-  margin-top: $blockThree;
-  padding-left: $blockThree;
-  padding-right: $blockThree;
+  margin-top: $opm-spacing-500;
+  padding-left: $opm-spacing-500;
+  padding-right: $opm-spacing-500;
   margin-left: auto;
   margin-right: auto;
   width: 80%;
@@ -96,8 +97,8 @@
 }
 
 .post__title {
-  margin-top: $blockFour;
-  margin-bottom: $blockThree;
+  margin-top: $opm-spacing-600;
+  margin-bottom: $opm-spacing-500;
 }
 
 .genre__grid {
@@ -107,8 +108,8 @@
   grid-template-columns: 1fr 1fr 1fr;
 
   box-sizing: border-box;
-  border: 2px solid black;
-  background-color: $opm-background-white;
+  border: 2px solid $opm-color-black;
+  background-color: var(--background-color);
 }
 
 .genre__grid::after {
@@ -117,6 +118,7 @@
   width: 100%;
   height: 100%;
   border: inherit;
+  transition: 1500ms ease-out transform;
   transform: rotate(-1deg);
   z-index: -1;
 }
@@ -139,7 +141,7 @@
   right: 1px;
   width: 1px;
   height: 80%;
-  background: black;
+  background: var(--background-color);
 }
 
 .post__link:hover h2 {
@@ -159,8 +161,8 @@
 }
 
 .genre__title {
-  padding-left: $blockThree;
-  margin-top: $blockThree;
+  padding-left: $opm-spacing-500;
+  margin-top: $opm-spacing-500;
   font-size: $opm-font-size-h2;
   opacity: 0.5;
 }
@@ -185,7 +187,7 @@
 }
 
 .copyright-footer {
-  margin-top: $blockThree;
+  margin-top: $opm-spacing-500;
   opacity: 0.3;
 
   h4 {
@@ -194,11 +196,11 @@
 }
 
 .post-nav {
-  padding: $blockFour;
+  padding: $opm-spacing-600;
   display: flex;
 
   a {
-    color: $bodyColor;
+    color: var(--light-text-color);
     text-decoration: none;
   }
 
@@ -223,7 +225,7 @@
 @media only screen and (max-width: 728px) {
 
   .post__content {
-    padding: $blockTwo;
+    padding: $opm-spacing-300;
     margin-left: auto;
     margin-right: auto;
     width: 90%;

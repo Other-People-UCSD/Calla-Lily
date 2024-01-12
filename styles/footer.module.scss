@@ -1,12 +1,16 @@
-@import '@/styles/variables.scss';
+@import '@/stories/_variables.scss';
 
 .base {
   padding-top: 200px;
   padding-bottom: 64px;
   font-family: $opm-font-monospace;
   color: white;
-  font-size: 16px;
+  font-size: $opm-font-size-small;
   background: #303030;
+}
+
+.base a {
+  color: white;
 }
 
 .gradient {
@@ -56,8 +60,6 @@
   // border: 2px solid white;
   // border-radius: 4px;
 }
-
-
 
 .newsletter__input__email {
   flex-grow: 1;
@@ -176,10 +178,12 @@
 @media screen and (max-width: 768px) {
   .base,
   .base p {
-    font-size: 14px;
+    font-size: $opm-font-size-small;
   }
 
-  .base .more__block__heading {
+  .base .more__block__heading,
+  .newsletter, 
+  .newsletter__label {
     font-size: 20px;
   }
 
@@ -199,22 +203,13 @@
     border-bottom: none;
   }
 
-  .newsletter, 
-  .newsletter__label {
-    font-size: 20px;
-  }
-
   .newsletter__inputbox {
     flex-direction: column;
     padding: 8px 16px;
   }
   
-  
-  
   .newsletter__input__email {
     padding: 8px 16px;
-    font-size: inherit;
-    // max-width: 90vw;
   }
   
   .newsletter__submit {
@@ -223,5 +218,15 @@
 
   .nav {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .base {
+    padding-top: 0;
+  }
+  
+  .gradient { 
+    background: $opm-background-black;
   }
 }

@@ -111,7 +111,7 @@ export default function About(props) {
             <circle cx="400" cy="400" r="400" />
           </svg>
 
-          <h2>Team Roles</h2>
+          <h2 className={styles['text--clear-left']}>Team Roles</h2>
 
           <p>EDITORIAL & CONTENT</p>
           <p>Editors review and edit submissions, then produce the pages of the magazine. Content writers create exclusive prose, interview submittors about their stories, and may write articles of their choice.</p>
@@ -134,6 +134,8 @@ export default function About(props) {
 
           <div className={`${styles.block__team__section} ${styles.block__team__editorial}`}>
             <h3 className={`text--heading_2`}>Editorial Team</h3>
+            <p>Editors review and edit submissions, then produce the pages of the magazine. Content writers create exclusive prose, interview submittors about their stories, and may write articles of their choice.</p>
+
             <TeamList cmsKeys={['editor_in_chief']} labels={['Editor in Chief']} />
             <div className={styles.block__team__lists}>
               <TeamList cmsKeys={['editorial', 'content']} labels={['Editors', 'Content Writers']} />
@@ -146,6 +148,9 @@ export default function About(props) {
 
           <div className={`${styles.block__team__section} ${styles.block__team__design}`}>
             <h3 className={`text--heading_2`}>Design Team</h3>
+            <p>Design illustrators create artwork to complement accepted prose and develop the physical and digital magazine publications.</p>
+            <p>The digital team is responsible for publishing content to the website, designing for accessibility and aesthetic, reader retention, and building features through programming!</p>
+
             <TeamList cmsKeys={['design_directors']} labels={['Design Directors']} />
             <div className={styles.block__team__lists}>
               <TeamList cmsKeys={['design', 'digital']} labels={['Designers', 'Digital Team']} />
@@ -158,6 +163,8 @@ export default function About(props) {
 
           <div className={`${styles.block__team__section} ${styles.block__team__outreach}`}>
             <h3 className={`text--heading_2`}>Outreach Team</h3>
+            <p>Promote the magazine through social media, plan open mic nights, fundraisers, socials, etc. Marketing and event planners help fund the magazine and increase our outreach beyond the campus.</p>
+
             <div className={styles.block__team__lists}>
               <TeamList cmsKeys={['publicity_events']} labels={['PR/Events']} />
             </div>

@@ -1,5 +1,5 @@
-@import '@/styles/variables.scss';
 @import '@/stories/_variables.scss';
+@import '@/stories/_variables.css';
 
 @font-face {
   font-family: "basier_circlemonoregular";
@@ -33,10 +33,10 @@ html, body {
 body {
   margin: auto;
 
-  background: $backgroundColor;
-  color: $bodyColor;
-  font-family: $bodyFont;
-  font-size: 16px;
+  background: var(--background-color);
+  color: var(--light-text-color);
+  font-family: $opm-font-apple;
+  font-size: $opm-font-size-body;
 
   padding: 0;
   padding-top: 110px;
@@ -69,72 +69,57 @@ main {
   max-width: 1440px;
 }
 
-.text--heading_1 {
-  font-family: Helvetica, sans-serif;
-  font-size: 32px;
-  font-weight: bold;
+h1, .text--heading_1 {
+  font-family: $opm-font-helvetica;
+  font-size: $opm-font-size-h1;
+  font-weight: $opm-font-weight-bold;
 }
 
 h2, .text--heading_2 {
-  font-family: Helvetica, sans-serif;
-  font-size: 24px;
-  font-weight: bold;
+  font-family: $opm-font-helvetica;
+  font-size: $opm-font-size-h2;
+  font-weight: $opm-font-weight-bold;
   text-transform: uppercase;
+  margin: 0;
+  padding: 0;
 }
 
 h3, .text--heading_3 {
-  font-family: Helvetica, sans-serif;
-  font-size: 18px;
-  font-weight: bold;
+  font-family: $opm-font-helvetica;
+  font-size: $opm-font-size-h3; 
+  font-weight: $opm-font-weight-bold;
   text-transform: uppercase;
-}
-
-h1 {
-  font-family: $opm-font-arial;
-  font-size: 4rem;
-  font-weight: normal;
-  margin: 0;
-  padding: 0;
-}
-
-h2 {
-  font-family: $opm-font-arial;
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  margin: 0;
-  padding: 0;
 }
 
 h3 {
   font-family: $opm-font-arial;
 
   font-size: 1rem;
-  font-weight: normal;
+  font-weight: $opm-font-weight-normal;
   margin: 0;
   padding: 0;
 }
 
 h4 {
-  font-family: $opm-font-basier;
+  font-family: $opm-font-helvetica;
   text-transform: uppercase;
   font-size: 0.8rem;
-  font-weight: normal;
+  font-weight: $opm-font-weight-normal;
   margin: 0;
   padding: 0;
 }
 
 .text__landing--heading_1 {
-  font-size: 64px;
+  font-size: $opm-font-size-largest;
   text-align: center;
   text-transform: uppercase;
 }
 
 
-
 .title__accent {
   position: relative;
 }
+
 .text__accent {
   position: absolute;
   top: 20px;
@@ -149,9 +134,9 @@ h4 {
 .text__accent--visible {
   color: black;
 }
+
 p {
-  // line-height: 1.8rem;
-  font-size: 1rem;
+  font-size: $opm-font-size-body;
 }
 
 ul {
@@ -161,7 +146,7 @@ ul {
 }
 
 a {
-  color: $bodyColor;
+  color: var(--light-text-color);
   text-decoration: underline;
 }
 
@@ -178,7 +163,7 @@ button {
 sup {
   font-family: "basier_circlemonoregular";
   text-transform: uppercase;
-  font-weight: normal;
+  font-weight: var(--opm-font-weight-normal);
   margin: 0;
   padding: 0;
   color: rgb(255, 153, 0);
@@ -190,24 +175,26 @@ iframe {
 
 html,
 html[data-theme="light"] {
-  --background-color: $opm-background-white;
-  --light-text-color: $opm-color-grey-darkest;
+  --background-color: var(--opm-background-white);
+  --light-text-color: var(--opm-color-grey-darkest);
   --button-background: #ffb94f;
   --button-outline: #151515;
-
 }
 
+// If a page is intentionally meant to be viewed dark
+// Example: blackout prose
 html[data-theme="dark"] {
-  --background-color: $opm-background-black;
-  --light-text-color: $opm-color-white;
+  --background-color: var(--opm-background-black);
+  --light-text-color: var(--opm-color-white);
   --button-background: #ff9900;
   --button-outline: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
+  // If a page is intentionally meant to be viewed light
   html[data-theme="light"] {
-    --background-color: $opm-background-white;
-    --light-text-color: $opm-color-grey-darkest;
+    --background-color: var(--opm-background-black);
+    --light-text-color: var(--opm-color-grey-darkest);
     --button-background: #ffb94f;
     --button-outline: #151515;
 
@@ -215,8 +202,8 @@ html[data-theme="dark"] {
 
   html,
   html[data-theme="dark"] {
-    --background-color: $opm-background-black;
-    --light-text-color: $opm-color-white;
+    --background-color: var(--opm-background-black);
+    --light-text-color: var(--opm-color-white);
     --button-background: #ff9900;
     --button-outline: #ffffff;
 
@@ -227,9 +214,13 @@ html[data-theme="dark"] {
   h1, 
   .text--heading_1, 
   .text__landing--heading_1 {
-    font-size: 3rem;
+    font-size: $mobile-font-size-h1;
   }
 
+  h2,
+  .text--heading_2 {
+    font-size: $mobile-font-size-h2;
+  }
   .text__landing--heading_1.text__accent {
     top: 15px
   }

@@ -66,6 +66,6 @@
     "sass-loader": "^13.3.2",
     "storybook": "7.4.6",
     "style-dictionary": "^3.9.0",
-    "style-loader": "^3.3.3",
+    "style-loader": "^3.3.3"
   }
 }

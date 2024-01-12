@@ -1,4 +1,4 @@
-@import '@/styles/variables.scss';
+@import '@/stories/_variables.scss';
 
 .main {
   margin: 0;
@@ -10,7 +10,7 @@
   position: relative;;
   margin-left: auto;
   margin-right: auto;
-  padding: 64px;
+  padding: $opm-spacing-600;
 }
 
 .values {
@@ -18,16 +18,16 @@
   clear: both;
   width: 300px;
   height: 300px;
-  margin: 24px;
-  padding: 16px;
+  margin: $opm-spacing-400;
+  padding: $opm-spacing-300;
   display: flex;
   align-items: center;
   text-align: center;
   border-radius: 50%;
-  font-size: 24px;
+  font-size: $opm-font-size-h2;
   font-style: italic;
   color: white;
-  background-color: $opm-background-black;
+  background-color: $opm-color-grey-dark;
   shape-outside: circle(50%)
 }
 
@@ -39,6 +39,10 @@
   float: initial;
   margin-left: auto;
   margin-right: auto;
+}
+
+.text--clear-left {
+  clear: left;
 }
 
 .block_about, .block__story, .block__roles {
@@ -54,12 +58,16 @@
   clear: both;
 }
 
+.block__team .content {
+  max-width: 1080px;
+}
+
 .block__team__section {
   position: relative;
 }
 .block__team__section h3 {
-  margin-top: 32px;
-  margin-bottom: 32px;
+  margin-top: $opm-spacing-500;
+  margin-bottom: $opm-spacing-500;
   text-align: center;
 }
 
@@ -70,15 +78,15 @@
 
 .block__team .header, 
 .block__alumni .header {
-  margin-top: 32px;
-  margin-bottom: 32px;
+  margin-top: $opm-spacing-500;
+  margin-bottom: $opm-spacing-500;
   text-align: center;
 }
 
 .block__team__lists,
 .block__alumni__lists {
-  padding-left: 64px;
-  padding-right: 64px;
+  padding-left: $opm-spacing-600;
+  padding-right: $opm-spacing-600;
   // display: grid;
   // grid-template-columns: 1fr 1fr;
   // justify-items: center;
@@ -91,8 +99,8 @@
 .block__alumni {
   margin-top: 100px;
   padding-top: 200px;
-  padding-left: 64px;
-  padding-right: 64px;
+  padding-left: $opm-spacing-600;
+  padding-right: $opm-spacing-600;
   color: $opm-color-white;
 
 
@@ -109,14 +117,8 @@
   list-style-type: none;
 }
 
-// .block__team__lists .team__list,
-// .block__alumni__lists .alumni__list  {
-//   margin-left: unset;
-//   margin-right: unset;
-// }
-
 .alumni__list {
-  font-size: 14px;
+  font-size: $opm-font-size-small;
 }
 
 .team__list li,
@@ -133,9 +135,8 @@
   width: 600px;
   height: 600px;
   z-index: -1;
-  fill: #5d86edaa;
+  fill: #5d86ed66;
 }
-
 
 .svg__roles {
   position: absolute;
@@ -144,7 +145,7 @@
   width: 800px;
   height: 800px;
   z-index: -1;
-  fill: #ed5d99aa;
+  fill: #ed5d9966;
 }
 
 .svg__editorial__bottom {
@@ -154,7 +155,7 @@
   width: 500px;
   height: 500px;
   z-index: -1;
-  fill: #49DF58aa;
+  fill: #49DF5866;
 }
 
 .svg__design__bottom {
@@ -163,5 +164,12 @@
   width: 500px;
   height: 500px;
   z-index: -1;
-  fill: #F8D808aa;
+  fill: #F8D80866;
+}
+
+@media (prefers-color-scheme: dark) {
+  .block__alumni { 
+    background: $opm-background-black;
+    padding-top: 0;
+  }
 }
