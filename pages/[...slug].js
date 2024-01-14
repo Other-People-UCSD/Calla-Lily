@@ -44,6 +44,8 @@ const Page = (props) => {
       <Head>
         <meta name="robots" content="all" />
         <meta name="robots" content="noimageindex" />
+        <meta name="robots" content="noai" />
+        <meta name="robots" content="noimageai" />
       </Head>
       <NextSeo
         canonical={canonical}
@@ -54,9 +56,6 @@ const Page = (props) => {
           images: [{ url: previewImg }],
         }}
       />
-      <Head>
-        <meta name="robots" content="all" />
-      </Head>
 
       <div className={`${animationStyles.cssanimation} ${animationStyles.sequence} ${animationStyles.fadeInBottom}`}>
         <h1 id="post-title" className={postStyles.post_title}>{data.post.title}</h1>
