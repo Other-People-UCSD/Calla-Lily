@@ -1,4 +1,4 @@
-const SITE_URL = 'https://www.otherpeoplesd.com';
+const SITE_URL = (process.env.NODE_ENV === 'development') ? 'http://127.0.0.1:3000' : 'https://www.otherpeoplesd.com';
 const EXTERNAL_DATA_URL = `${SITE_URL}/api/post-metadata.json`;
 const EXTERNAL_PAGE_URL = `${SITE_URL}/api/pages.json`;
 
