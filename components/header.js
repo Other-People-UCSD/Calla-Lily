@@ -104,7 +104,7 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
           <button className={navStyles.menu} onClick={openNav} aria-label="Open Menu">Menu</button>
         </div>
         {
-          landingPage && title === 'Home' && 
+          false && landingPage && title === 'Home' && 
           showAnnouncement ? (
             <div className={headerStyles.announcement} id="announcement">
               { announcementData?.link?.length > 0 ?

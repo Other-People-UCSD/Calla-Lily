@@ -1,17 +1,20 @@
-import { getLandingPages } from "@/lib/posts";
-
 export default async function handler(req, res) {
   try {
-    const landingPages = await getLandingPages();
-    const keyedPages = {};
+    const landingPages = {
+      "/": { "slug": "/" },
+      "/404": { "slug": "404" },
+      "/about": { "slug": "about" },
+      "/submissions": { "slug": "submissions" },
+      "/uc-magazines": { "slug": "/uc-magazines" },
+      "/fiction": { "slug": "fiction" },
+      "/nonfiction": { "slug": "nonfiction" },
+      "/poetry": { "slug": "poetry" },
+      "/visualarts": { "slug": "visualarts" },
+      "/sitemap.xml": { "slug": "/sitemap.xml" }
+    };
 
-    landingPages.map((page) => {
-      const key = `/${page.slug}`;
-      keyedPages[key] = page;
-    });
     res.setHeader('Content-Type', 'application/json');
-
-    return res.status(200).json(keyedPages);
+    return res.status(200).json(landingPages);
   } catch {
     res.status(500).send({ error: 'Failed to fetch data' });
   }
