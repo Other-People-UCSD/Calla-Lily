@@ -9,7 +9,7 @@ export default async function handler(req, res) {
     const landing = await fetch(EXTERNAL_PAGE_URL);
     const landingPages = await landing.json();
     res.setHeader('Content-Type', 'application/json');
-    console.log(process.env)
+
     const outputUrls = { urls: [] }
     Object.keys(landingPages).forEach((slug) => {outputUrls.urls.push(`${SITE_URL}${slug}`)})
     Object.keys(posts).forEach((slug) => {outputUrls.urls.push(`${SITE_URL}${slug}`)})

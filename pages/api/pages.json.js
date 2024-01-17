@@ -15,8 +15,7 @@ export default async function handler(req, res) {
 
     res.setHeader('Content-Type', 'application/json');
     return res.status(200).json(landingPages);
-  } catch (e) {
-    console.log(e)
+  } catch {
     res.status(500).send({ error: 'Failed to fetch data' });
   }
 }
