@@ -83,17 +83,19 @@
   text-align: center;
 }
 
-.block__team__lists,
-.block__alumni__lists {
-  padding-left: $opm-spacing-600;
-  padding-right: $opm-spacing-600;
-  // display: grid;
-  // grid-template-columns: 1fr 1fr;
-  // justify-items: center;
+.block__team__lists {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
+}
+
+
+.block__alumni__lists {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .block__alumni {
@@ -119,6 +121,7 @@
 
 .alumni__list {
   font-size: $opm-font-size-small;
+  background-color: #49DF5866;
 }
 
 .team__list li,

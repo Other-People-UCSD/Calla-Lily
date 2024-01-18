@@ -19,7 +19,7 @@ export default function Genre({ genre, limit, offset }) {
   const pageArr = [...Array(numPages).keys()];
 
   function handlePageChange(change) {
-    if (page + change < 0 || page + change >= numPages.length) {
+    if (page + change < 0 || page + change >= numPages) {
       return;
     }
     document.querySelector('html').scrollIntoView({ behavior: 'smooth'});

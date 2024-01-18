@@ -166,6 +166,12 @@ export const schema = {
           list: true,
         },
         {
+          name: "outreach_directors",
+          label: "Outreach Directors",
+          type: "string",
+          list: true,
+        },
+        {
           name: "publicity_events",
           label: "Social Media/PR",
           type: "string",

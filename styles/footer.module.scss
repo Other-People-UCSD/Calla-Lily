@@ -45,8 +45,9 @@
   margin-top: 4px;
   margin-bottom: 16px;
   border-style: solid;
-  border-width: 3px;
-  max-width: 60%;
+  border-width: 2px;
+  width: 600px;
+  max-width: 600px;
 }
 
 .newsletter__inputbox {
@@ -56,7 +57,8 @@
   padding: 16px 32px;
   margin-left: auto;
   margin-right: auto;
-  width: 90%;
+  width: 60%;
+  max-width: 600px;
   // border: 2px solid white;
   // border-radius: 4px;
 }
@@ -135,10 +137,8 @@
 .more hr {
   margin-top: 4px;
   margin-bottom: 16px;
-  margin-left: auto;
-  margin-right: auto;
   border-style: solid;
-  border-width: 3px;
+  border-width: 2px;
   max-width: 60%;
 }
 
@@ -150,7 +150,7 @@
 .more__block {
   padding: 16px 32px;
   text-align: center;
-  border-right: 6px solid white;
+  border-right: 3px solid white;
 }
 
 .more__block:last-child {

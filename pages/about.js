@@ -136,9 +136,9 @@ export default function About(props) {
             <h3 className={`text--heading_2`}>Editorial Team</h3>
             <p>Editors review and edit submissions, then produce the pages of the magazine. Content writers create exclusive prose, interview submittors about their stories, and may write articles of their choice.</p>
 
-            <TeamList cmsKeys={['editor_in_chief']} labels={['Editor in Chief']} />
+            {/* <TeamList cmsKeys={['editor_in_chief']} labels={['Editor in Chief']} /> */}
             <div className={styles.block__team__lists}>
-              <TeamList cmsKeys={['editorial', 'content']} labels={['Editors', 'Content Writers']} />
+              <TeamList cmsKeys={['editor_in_chief', 'editorial', 'content']} labels={['Editor in Chief', 'Editors', 'Content Writers']} />
             </div>
 
             <svg className={styles.svg__editorial__bottom}>
@@ -151,9 +151,9 @@ export default function About(props) {
             <p>Design illustrators create artwork to complement accepted prose and develop the physical and digital magazine publications.</p>
             <p>The digital team is responsible for publishing content to the website, designing for accessibility and aesthetic, reader retention, and building features through programming!</p>
 
-            <TeamList cmsKeys={['design_directors']} labels={['Design Directors']} />
+            {/* <TeamList cmsKeys={['design_directors']} labels={['Design Directors']} /> */}
             <div className={styles.block__team__lists}>
-              <TeamList cmsKeys={['design', 'digital']} labels={['Designers', 'Digital Team']} />
+              <TeamList cmsKeys={['design_directors', 'design', 'digital']} labels={['Design Directors', 'Designers', 'Digital Team']} />
             </div>
 
             <svg className={styles.svg__design__bottom}>
@@ -166,7 +166,7 @@ export default function About(props) {
             <p>Promote the magazine through social media, plan open mic nights, fundraisers, socials, etc. Marketing and event planners help fund the magazine and increase our outreach beyond the campus.</p>
 
             <div className={styles.block__team__lists}>
-              <TeamList cmsKeys={['publicity_events']} labels={['PR/Events']} />
+              <TeamList cmsKeys={['outreach_directors', 'publicity_events']} labels={['Outreach Directors', 'PR/Events']} />
             </div>
           </div>
         </div>
@@ -176,20 +176,11 @@ export default function About(props) {
         <div className={styles.content}>
           <h2 className={`text--heading_1 ${styles.header}`}>Alumni</h2>
           <div className={styles.block__alumni__lists}>
-            {
-              alumniKeys.map((key, index) => {
-                return (
-                  <ul key={index} className={styles.alumni__list}>
-                    <h2>{alumniTitles[index]}</h2>
-                    {
-                      data.team[key].map(member => {
-                        return <li key={member}>/ {member}</li>
-                      })
-                    }
-                  </ul>
-                );
-              })
-            }
+            <TeamList cmsKeys={['alumni_editorial']} labels={['Editorial']} />
+            <div>
+              <TeamList cmsKeys={['alumni_design', 'alumni_pr']} labels={['Design', 'PR + Events']} />
+            </div>
+
           </div>
         </div>
       </div>

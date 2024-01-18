@@ -90,7 +90,7 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
         onScroll={handleScroll}
         className={`${styles.base} ${showHeader ? '' : styles["nav-up"]}`}
       >
-        <Link href="/" className={styles.logo}><Logo64 /></Link>
+        <Link href="/" className={styles.logo}><OP_Logo /></Link>
         <div className={styles.toolbar}>
           {/* <Link href="/search" className={styles.search__wrapper}><SearchIcon /></Link> */}
           <button className={styles.search__wrapper} onClick={openSearch}><SearchIcon /></button>
@@ -171,8 +171,18 @@ function MobileNav({ closeNav }) {
 const SearchIcon = ({ theme }) => {
   const themeColor = (theme === 'dark') ? 'white' : '#3E3E3E';
 
-  return <svg width="41" height="44" viewBox="0 0 41 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+  return <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M38.5 17C38.5 24.9403 31.8531 31.5 23.5 31.5C15.1469 31.5 8.5 24.9403 8.5 17C8.5 9.05969 15.1469 2.5 23.5 2.5C31.8531 2.5 38.5 9.05969 38.5 17Z" stroke={themeColor} strokeWidth="5" />
     <line y1="-2.5" x2="17.194" y2="-2.5" transform="matrix(-0.684767 0.728762 -0.746998 -0.664826 11.7739 28)" stroke={themeColor} strokeWidth="5" />
+  </svg>
+}
+
+const OP_Logo = ({ theme }) => {
+  const themeColor = (theme) ? '#231f20' : '#231f20';
+  return <svg id="op_logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
+    <title>Other People Logo</title>
+    <path fill={themeColor} d="M245.56,430.39q-70.8,0-108.18-44.2T100,272.52q0-69.48,37.38-113.68t108.18-44.2q70.35,0,108,44.2t37.6,113.68q0,69.48-37.6,113.67T245.56,430.39Zm-62.89-82.46q21.12,27.49,62.89,27.49t62.88-27.49q21.12-27.48,21.11-75.41T308.44,197.1q-21.1-27.48-62.88-27.49T182.67,197.1q-21.1,27.48-21.11,75.42T182.67,347.93Z" />
+    <path fill={themeColor} d="M531,426.43V118.6H662.89q46.17,0,73.88,28.14t27.7,72.12q0,44.87-27.92,73.45t-73.66,28.58H591.2V426.43ZM591.2,266.8h60.69q51,0,51-47.94,0-22.43-13.42-34.51t-37.6-12.1H591.2Z" />
+    <path fill={themeColor} d="M886.72,485.36V438.3H1100v47.06Z" />
   </svg>
 }

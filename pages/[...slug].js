@@ -85,6 +85,8 @@ const Page = (props) => {
         </div>
       </div>
 
+      <div>{props.recommender}</div>
+
       <Experimental title={data.post.title} />
     </Layout>
   );

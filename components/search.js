@@ -22,11 +22,11 @@ export default function Search({ closeNav }) {
   return (
     <div className={styles.wrapper}>
       <input
-        type="text"
+        type="search"
         id="search-input"
         className={styles.input}
         placeholder="Search"
-        aria-placeholder="Type here to search"
+        aria-placeholder="Search for a work"
         // autoFocus={true}
         onChange={getSearchQuery} />
       {searchQuery === '' && recommender &&
@@ -85,7 +85,7 @@ const SearchResults = ({ closeNav, searchQuery, allPostsData, recommender }) => 
   }
 
   results = postsQuery.slice(offset, displayLimit);
-  
+
   const numPages = Math.ceil(postsQuery.length / displayLimit);
   const pageArr = [...Array(numPages).keys()];
 
@@ -120,7 +120,6 @@ const SearchResults = ({ closeNav, searchQuery, allPostsData, recommender }) => 
             {results.map((key) => {
               const post = allPostsData[key];
               const author = post.contributor.split(',')[0].replace(/\(.*\)/g, '');
-              const collection = post.slug.split('/')[0];
               return (
                 <li key={key} className={styles.results__item}>
                   <Link href={`/${post.slug}`}

@@ -53,7 +53,6 @@ export default function Home(props) {
           <h2 className={styles.headline__text}>Poetry</h2>
         </div>
         <hr className={styles.genre__hr} />
-        <CarouselGenre genre={'poetry'} contentAlign={'left'} />
       </div>
 
 
@@ -66,7 +65,6 @@ export default function Home(props) {
           <h2 className={`${styles.headline__text} ${styles['headline__text--right']}`}>Visual Arts</h2>
         </div>
         <hr className={`${styles.genre__hr} ${styles['genre__hr--right']}`} />
-        <CarouselGenre genre={'visual'} contentAlign={'right'} />
       </div>
 
       <div className={`${styles.genre__container}`}>
@@ -77,7 +75,6 @@ export default function Home(props) {
           <h2 className={styles.headline__text}>Fiction</h2>
         </div>
         <hr className={styles.genre__hr} />
-        <CarouselGenre genre={'fiction'} contentAlign={'left'} />
       </div>
 
       <div className={`${styles.genre__container} ${styles['genre__container--right']}`}>
@@ -85,7 +82,6 @@ export default function Home(props) {
           <h2 className={`${styles.headline__text} ${styles['headline__text--right']}`}>Nonfiction</h2>
         </div>
         <hr className={`${styles.genre__hr} ${styles['genre__hr--right']}`} />
-        <CarouselGenre genre={'nonfiction'} contentAlign={'right'} />
       </div>
     </Layout>
   )
