@@ -2,7 +2,6 @@ export default async function handler(req, res) {
   try {
     const landingPages = {
       "/": { "slug": "/" },
-      "/404": { "slug": "404" },
       "/about": { "slug": "about" },
       "/submissions": { "slug": "submissions" },
       "/uc-magazines": { "slug": "/uc-magazines" },
