@@ -24,12 +24,12 @@ export default defineConfig({
     {
       name: 'Mobile Safari',
       use: { ...devices['iPhone 13'] },
-      testIgnore: /desktop.spec.(js|ts)/,
+      testIgnore: [/desktop.spec.(js|ts)/, 'api.spec.js'],
     },
     {
       name: 'Samsung Galaxy',
       use: { ...devices['Galaxy S9+'] },
-      testIgnore: /desktop.spec.(js|ts)/,
+      testIgnore: [/desktop.spec.(js|ts)/, 'api.spec.js'],
     },
   ],
   expect: {
