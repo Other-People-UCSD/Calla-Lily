@@ -19,7 +19,7 @@ export default function Layout({ children, post, landingPage, title, announcemen
   }
 
   function OPMSEO() {
-    const favicon = 'https://otherpeoplesd.com/favicons/favicon-32x32.png';
+    const favicon = 'https://www.otherpeoplesd.com/favicons/favicon-32x32.png';
     return (
       <>
         <NextSeo

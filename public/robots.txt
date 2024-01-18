@@ -4,4 +4,15 @@ User-agent: *
 Disallow: /production/
 Disallow: /images/
 
-# How did you get here?
+# AI-specific Rules
+# Disallow GPT and ChatGPT
+User-agent: GPTBot
+Disallow: /
+
+# Disallow Common Crawl
+User-agent: CCBot
+Disallow: /
+
+# Disallow img2dataset
+User-agent: img2dataset
+Disallow: /
