@@ -172,6 +172,21 @@
   margin-left: auto;
 }
 
+.genre__content {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+
+.genre__content__overlay {
+  position: relative;
+  margin-top: -240px;
+  width: 100vw;
+  height: 250px;
+  background: linear-gradient(rgba(255, 255, 255, 0), rgb(255, 255, 255));
+
+}
+
 .carousel {
   height: 600px;
   background-color: #eee;

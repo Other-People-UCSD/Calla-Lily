@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import Link from "next/link";
 import postStyles from "@/styles/posts.module.scss";
@@ -6,7 +6,6 @@ import Image from "next/image";
 
 export default function Genre({ genre, limit, offset }) {
   const [page, setPage] = useState(0);
-  const genreGridRef = useRef(null)
 
   // The limit must be a common multiple of the number of columns in all viewport widths
   // This ensures that responsive styling is preserved without having empty grid cells

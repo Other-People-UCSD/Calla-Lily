@@ -5,6 +5,7 @@ import Layout from '@/components/layout';
 import client from '../tina/__generated__/client';
 import { useTina } from 'tinacms/dist/react';
 import { getSortedPostsData, getGenrePostsData } from '@/lib/posts';
+import { PostCardGrid } from '../components/PostCard';
 
 
 export default function Home(props) {
@@ -14,13 +15,14 @@ export default function Home(props) {
     data: props.data,
   });
 
-  
+
   return (
     <Layout homepage className={`${styles.main}`}>
       <div className={styles.hero}>
         <div className={`${styles.hero__img__container}`}>
           <Image className={`${styles.hero__img__cover} ${styles["animate--rotate"]}`}
-            src="opm-text-circle.svg" fill={true} />
+            src="opm-text-circle.svg" fill={true}
+            alt="circle" />
         </div>
         <p className={`${styles.hero__text}`}>the visual and literary arts magazine</p>
       </div>
@@ -37,7 +39,9 @@ export default function Home(props) {
         <div className={styles.block__img__container} style={{ width: '500px' }}>
           <figure className={styles.block__img}>
             <Image className={`${styles.img__cover} ${styles["img__cover--right"]}`}
-              src="/images/5/eclipse-cover-caroline-tjoe.webp" fill={true} />
+              src="/images/5/eclipse-cover-caroline-tjoe.webp" fill={true}
+              sizes='1080px'
+              alt="cover" />
             <figcaption className={styles.block__img__caption}>Eclipse Cover by Caroline Tjoe</figcaption>
           </figure>
         </div>
@@ -53,18 +57,25 @@ export default function Home(props) {
           <h2 className={styles.headline__text}>Poetry</h2>
         </div>
         <hr className={styles.genre__hr} />
+        <div className={styles.genre__content}>
+          <PostCardGrid entries={props.poetry} />
+          <div className={styles.genre__content__overlay}>
+            Read More
+          </div>
+        </div>
       </div>
 
 
       <div className={`${styles.genre__container} ${styles['genre__container--right']}`}>
-        <svg className={styles.svg__visual}>
+        {/* <svg className={styles.svg__visual}>
           <circle cx="350" cy="350" r="350" />
           <circle cx="550" cy="550" r="350" />
-        </svg>
+        </svg> */}
         <div className={`${styles.headline} ${styles['headline--right']}`}>
           <h2 className={`${styles.headline__text} ${styles['headline__text--right']}`}>Visual Arts</h2>
         </div>
         <hr className={`${styles.genre__hr} ${styles['genre__hr--right']}`} />
+        <PostCardGrid entries={props.visualarts} />
       </div>
 
       <div className={`${styles.genre__container}`}>
@@ -75,6 +86,13 @@ export default function Home(props) {
           <h2 className={styles.headline__text}>Fiction</h2>
         </div>
         <hr className={styles.genre__hr} />
+        <div className={styles.genre__content}>
+          <PostCardGrid entries={props.fiction} />
+          <div className={styles.genre__content__overlay}>
+            Read More
+          </div>
+        </div>
+
       </div>
 
       <div className={`${styles.genre__container} ${styles['genre__container--right']}`}>
@@ -82,6 +100,8 @@ export default function Home(props) {
           <h2 className={`${styles.headline__text} ${styles['headline__text--right']}`}>Nonfiction</h2>
         </div>
         <hr className={`${styles.genre__hr} ${styles['genre__hr--right']}`} />
+        <PostCardGrid entries={props.nonfiction} />
+
       </div>
     </Layout>
   )

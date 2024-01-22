@@ -1,5 +1,69 @@
 @import '@/stories/_variables.scss';
 
+
+.card__grid__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 24px;
+  row-gap: 24px;
+}
+
+.card__container {
+  display: flex;
+  position: relative;
+  padding: 16px;
+  border: 2px solid black;
+  border-radius: 20px;
+  text-decoration: none;
+  gap: 16px;
+  height: 182px;
+  max-height: 182px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.card__contentbox {
+  flex: 1 0 0;
+}
+
+.card__title,
+.card__author {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+}
+
+.card__title--small {
+  font-size: 20px;
+}
+
+.card__preview {
+  font-family: $opm-font-basier;
+}
+
+.card__thumbnail__frame {
+  position: relative;
+  align-self: center;
+  width: 150px;
+  height: 150px;
+  flex: 0 0 auto;
+}
+
+.card__thumbnail {
+  align-self: center;
+  object-fit: cover;
+}
+
+.card__chip {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background-color: #cc7eb0;
+  font-size: 12px;
+  color: $opm-color-white;
+}
+
 .genre__main {
   margin-top: 24px;
   padding: 0;
@@ -271,8 +335,13 @@
   }
 }
 
+@media only screen and (max-width: 1024px) { 
+  .card__grid__container {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media only screen and (min-width: 1025px) {
-  
   .genre__post__link:nth-child(-n+3) {
     border-top: none;
   }
