@@ -55,6 +55,31 @@
   float: right;
 }
 
+.filter__container {
+  display: block;
+  border: 1px solid black;
+}
+
+
+.filter__container__group label {
+  display: block;
+}
+
+.chip {
+  display: inline-block;
+  margin: 4px;
+  padding: 8px 16px;
+  background-color: $opm-color-grey-light;
+  border-radius: 20px;
+}
+
+.chip--selected {
+  background-color: $opm-color-blue-dark;
+}
+
+
+
+
 .results {
   margin-top: $opm-spacing-500;
   padding-left: 0;
@@ -96,6 +121,7 @@
 
 .results__thumbnail {
   max-width: 100px;
+  object-fit: cover;
 }
 
 .view_more {

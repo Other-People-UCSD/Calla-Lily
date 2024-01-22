@@ -29,6 +29,11 @@ const col2 = [
     "link": "/visual",
     "outbound": false
   },
+  {
+    "name": "Search",
+    "link": "/search",
+    "outbound": false
+  },
 ]
 
 const col3 = [
