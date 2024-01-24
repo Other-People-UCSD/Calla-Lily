@@ -3,12 +3,13 @@ import { getPostDataAPI } from "@/lib/posts";
 export default async function handler(req, res) {
   try {
     const { slug } = req.query;
-    let postData;
-    if (req.headers['opm-content-preview'] === 'true') {
-      postData = await getPostDataAPI(`${slug.join('/')}.mdx`, null, "preview");
-    } else {
-      postData = await getPostDataAPI(`${slug.join('/')}.mdx`);
-    }
+
+    const postData = await getPostDataAPI({
+      relativePath: `${slug.join('/')}.mdx`, 
+      allPostsData: undefined, 
+      headerType: req.headers['opm-content']
+    });
+
     res.setHeader('Content-Type', 'application/json');
     return res.status(200).json(postData);
   } catch (e) {

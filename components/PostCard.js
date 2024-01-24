@@ -20,18 +20,17 @@ export function PostCardGrid({ entries, limit, offset }) {
 export function PostCard({ slug, title, contributor, collection, thumbnail }) {
   const [preview, setPreview] = useState('');
 
-  useEffect(() =>
-  {
+  useEffect(() => {
     (async () => {
       const res = await fetch(`/api/post/${slug}`, {
         method: "get",
-        headers: { "opm-content-preview": true }
+        headers: { "opm-content": "preview" }
       });
       const postData = await res.json();
       setPreview(postData.excerpt);
     })();
     return
-  }, [])
+  }, [slug])
 
 
   return (
@@ -44,15 +43,15 @@ export function PostCard({ slug, title, contributor, collection, thumbnail }) {
           <h2 className={styles.card__title}>{title}</h2>
         )}
         <p className={styles.card__author}>/ {contributor.split(',')[0].replace(/\(.*\)/g, '')}</p>
-        { collection ? <Chip value={collection} /> : <Chip value="Content" /> }
+        {collection ? <Chip value={collection} /> : <Chip value="Content" />}
         <p className={styles.card__preview}>{preview}</p>
       </div>
 
       {thumbnail &&
         <div className={styles.card__thumbnail__frame}>
-          <Image src={thumbnail} 
+          <Image src={thumbnail}
             fill={true} sizes="100px"
-            
+
             placeholder="blur" blurDataURL={thumbnail}
             className={styles.card__thumbnail}
             alt={title} />
@@ -63,7 +62,7 @@ export function PostCard({ slug, title, contributor, collection, thumbnail }) {
   );
 }
 
-function Chip({value}) {
+function Chip({ value }) {
   if (value !== "Content") {
     value = `No. ${value}`;
   }

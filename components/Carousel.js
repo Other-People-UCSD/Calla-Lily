@@ -135,7 +135,8 @@ function Carousel__GenreItem({ item, contentAlign, style }) {
           <Image className={`${homepageStyles.img__cover}  ${homepageStyles[`img__cover--${contentAlign}`]}`}
             src={item.image_url} fill={true} 
             placeholder={'empty'}
-            sizes={"(max-width: 768px) 100vw, 50vw"}/>
+            sizes={"(max-width: 768px) 100vw, 50vw"}
+            alt={item.image_url} />
         </div>
         <div className={homepageStyles.block__img__caption}>Katie Gasper</div>
       </div>
