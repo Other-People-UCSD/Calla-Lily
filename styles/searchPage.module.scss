@@ -4,27 +4,36 @@
   margin: 32px;
 }
 
-// .toolbar__main {
-//   position: relative;;
-// }
-
-.query__input {
+.toolbar__main {
+  display: flex;
+  position: relative;
   background-color: $opm-background-black;
-  color: $opm-color-white;
-  border-bottom: 5px solid $opm-color-white;
 }
 
+.filter__dropdown {
+  flex: 0 0 auto;
+}
+
+.filter__button {
+  height: 100%;
+  font-size: $opm-font-size-h3;
+  color: $opm-color-white;
+  opacity: $opm-opacity-placeholder;
+}
+
+
 .query__input {
+  box-sizing: border-box;
   margin: 0;
   padding-bottom: $opm-spacing-300;
   width: 100%;
   color: $opm-color-white;
   font-size: $opm-font-size-h1;
   font-weight: normal;
-  box-sizing: border-box;
+  background-color: inherit;
   border: none;
-  border-bottom: 5px solid $opm-color-white;
-  -webkit-padding-start: 0;
+  // border-bottom: 5px solid $opm-color-white;
+  // -webkit-padding-start: 0;
 }
 
 .query__input::placeholder {
@@ -47,29 +56,52 @@
   // -webkit-focus-ring-color: none;
 }
 
-.toolbar__submit {
-  float: right;
-}
 
-.filter__button {
-  float: right;
-}
 
 .filter__container {
-  display: block;
+  display: flex;
+  position: absolute;
+  right: 0;
+  padding: 8px;
+  height: fit-content;
+  width: fit-content;
+  max-width: 60%;
   border: 1px solid black;
+  border-radius: 20px;
+  border-top-right-radius: 0px;
+  background-color: var(--background-color);
+  z-index: 1;
 }
 
+.filter__container__group {
+  flex: 0 1 auto;
+  padding: 0;
+  border: none;
+}
 
-.filter__container__group label {
-  display: block;
+.filter__container__group legend {
+  font-weight: 500;
+}
+
+.filter__container__group .chip {
+  box-shadow: 0px 1px;
+}
+
+.filter__container__genre {
+  min-width: 100px;
+}
+
+.filter__container__years {
+  min-width: 130px;
 }
 
 .chip {
   display: inline-block;
   margin: 4px;
-  padding: 8px 16px;
-  background-color: $opm-color-grey-light;
+  padding: 4px 12px;
+  background-color: $opm-background-white;
+  border: 1px solid black;
+  border-style: outset;
   border-radius: 20px;
 }
 
@@ -99,7 +131,6 @@
 .results__item p {
   margin: 0;
   padding-bottom: 8px;
-  font-size: 20px;
 }
 
 .results__grid {
@@ -117,6 +148,23 @@
 
 .results__item a:hover {
   text-decoration: underline;
+}
+
+.results__title {
+
+}
+
+.results__text--match {
+  color: hotpink;
+}
+
+.results__contributor {
+
+} 
+
+.results__excerpt {
+  font-size: 12px;
+  opacity: $opm-opacity-placeholder;
 }
 
 .results__thumbnail {

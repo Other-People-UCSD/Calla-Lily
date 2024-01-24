@@ -1,8 +1,8 @@
-import { getSortedPostsData } from "@/lib/posts";
+import { getSortedPostsAPIData } from "@/lib/posts";
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   try {
-    const sortedPosts = getSortedPostsData();
+    const sortedPosts = await getSortedPostsAPIData(req.headers['opm-content']);
     const keyedPosts = {};
     const years = new Set();
     const collections = new Set();

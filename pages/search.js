@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import styles from "@/styles/searchPage.module.scss";
 import Link from "next/link";
 import Image from "next/image";
-import { getSortedPostsData } from '@/lib/posts';
+import { getSortedPostsData } from "@/lib/posts";
+
 
 export default function SearchPage() {
   return (
@@ -22,7 +23,6 @@ export async function getStaticProps() {
     }
   }
 }
-
 function debounce(fn, time) {
   let timeoutId;
   return function (...args) {
@@ -52,8 +52,10 @@ function SearchBar() {
 
   useEffect(() => {
     (async () => {
-      const res = await fetch('http://localhost:3000/api/post-metadata.json');
-      const fetchedMetadata = await res.json();
+      const res = await fetch(`/api/post-metadata.json`, {
+        method: "get",
+        headers: { "opm-content": 'preview' }
+      }); const fetchedMetadata = await res.json();
       setMetadata(fetchedMetadata);
     })();
   }, [])
@@ -72,19 +74,34 @@ function SearchBar() {
     }));
   }
 
+  /**
+   * Filter the matching query using the provided filter options
+   * (GENRE) AND (COLLECTION OR CONTENT_YEAR)
+   * COLLECTION and CONTENT_YEAR are mutually exclusive groups.
+   * @param {Object} matchingQueryResults 
+   * @param {Array.<Object>} recentSearchOptions 
+   * @returns {Object} Filtered results
+   */
   function filterOptions(matchingQueryResults, recentSearchOptions) {
     return Object.fromEntries(Object.entries(matchingQueryResults).filter(([_slug, data]) => {
       if (_slug === 'years' || _slug === 'collections') {
         return false;
       }
+
+      // Array.<String> compare Array.<String> case is not normalized
       const tagFilter = data['tags'].filter((tag) => {
+        const lowerTag = tag.toLowerCase();
         for (const genre of recentSearchOptions['genres']) {
-          if (tag.toLowerCase().includes(genre.toLowerCase())) {
+          // Differentiate Fiction and Nonfiction by checking start of tag
+          // Some genres are 'Blackout Poetry' so match non-starting case
+          if (lowerTag.indexOf(genre.toLowerCase()) === 0 ||
+            (genre.toLowerCase() === 'poetry' && lowerTag.indexOf('poetry') !== -1)) {
             return true;
           }
         };
       });
 
+      // Number compare Array.<Number>
       let collectionFilter = false; // recentSearchOptions['collections'].length === 0;
       for (const collection of recentSearchOptions['collections']) {
         if (collection === data['collection']) {
@@ -93,6 +110,7 @@ function SearchBar() {
         }
       }
 
+      // Date compare Array.<Number>, convert Number and Number
       let contentFilter = false; // recentSearchOptions['contentYears'].length === 0;
       for (const year of recentSearchOptions['contentYears']) {
         const date = new Date(data.date);
@@ -102,7 +120,15 @@ function SearchBar() {
         }
       }
 
-      return [tagFilter.length > 0, collectionFilter, contentFilter].includes(true);
+      const genreIsFiltered = tagFilter.length > 0;
+      const collectionIsFiltered = recentSearchOptions['collections'].length > 0;
+      const yearIsFiltered = recentSearchOptions['contentYears'].length > 0;
+
+      console.log(genreIsFiltered, collectionIsFiltered, yearIsFiltered)
+      return (
+        genreIsFiltered &&
+        (collectionIsFiltered && collectionFilter) || (yearIsFiltered && contentFilter)
+      ) || genreIsFiltered && !collectionIsFiltered && !yearIsFiltered;
     }));
   }
 
@@ -119,6 +145,7 @@ function SearchBar() {
       numSearchPages: numSearchPages,
       results: matchingFilter,
     });
+    setSearchPage(0); // Reset to first page on search change because there may not be as many results
   }
 
   // Must debounce like this to pass in the new value instead of using the old state
@@ -177,6 +204,7 @@ function SearchBar() {
       {searchResults &&
         <SearchResults
           searchOptions={searchOptions}
+          searchQuery={searchQuery}
           searchResults={searchResults}
           searchPage={searchPage}
           handlePageChange={handlePageChange}
@@ -202,40 +230,43 @@ function SearchToolbar({ metadata, searchOptions, searchQuery, handleSearchQuery
           autoComplete="search"
           className={styles.query__input} />
         {/* <button type="submit" className={styles.toolbar__submit}>Search</button> */}
-      </div>
-      <button
-        type="button"
-        onClick={handleFilter}
-        className={styles.filter__button}>Filter {filterArrowIcon}</button>
-      {searchOptions.showFilter &&
-        <div className={styles.filter__container}>
-          <fieldset className={styles.filter__container__group}>
-            <label htmlFor="genre">Genre</label>
-            {["Poetry", "Visual Arts", "Fiction", "Nonfiction"].map((genre) => {
-              return <Chip key={genre} value={genre} group="genres" searchOptions={searchOptions} handleFilterOptions={handleFilterOptions} />
-            })}
-          </fieldset>
+        <div className={styles.filter__dropdown}>
+          <button
+            type="button"
+            onClick={handleFilter}
+            className={styles.filter__button}>Filter {filterArrowIcon}</button>
 
-          <fieldset className={styles.filter__container__group}>
-            <label htmlFor="collection">Collection</label>
-            {metadata?.collections.map((collection) => {
-              return <Chip key={collection} value={collection} group="collections" searchOptions={searchOptions} handleFilterOptions={handleFilterOptions} />
-            })
-            }
-          </fieldset>
+          {searchOptions.showFilter && metadata &&
+            <div className={styles.filter__container}>
+              <fieldset className={`${styles.filter__container__group} ${styles.filter__container__genre}`}>
+                <legend>Genre</legend>
+                {["Poetry", "Visual Arts", "Fiction", "Nonfiction"].map((genre) => {
+                  return <Chip key={genre} value={genre} group="genres" searchOptions={searchOptions} handleFilterOptions={handleFilterOptions} />
+                })}
+              </fieldset>
 
-          <fieldset className={styles.filter__container__group}>
-            <label htmlFor="content_year">Content Writer (Year)</label>
-            {metadata?.years.map((year) => {
-              return <Chip key={year} value={year} group="contentYears" searchOptions={searchOptions} handleFilterOptions={handleFilterOptions} />
-            })
-            }
-          </fieldset>
+              <fieldset className={`${styles.filter__container__group} ${styles.filter__container__collection}`}>
+                <legend>Collection</legend>
+                {[...metadata?.collections, ...Array.from({ length: 20 }, (_, i) => i + 7)].sort((a, b) => b - a).map((collection) => {
+                  return <Chip key={collection} value={collection} group="collections" searchOptions={searchOptions} handleFilterOptions={handleFilterOptions} />
+                })
+                }
+              </fieldset>
+
+              <fieldset className={`${styles.filter__container__group} ${styles.filter__container__years}`}>
+                <legend>Content Year</legend>
+                {[...metadata?.years, ...Array.from({ length: 5 }, (_, i) => i + 2024)].sort((a, b) => b - a).map((year) => {
+                  return <Chip key={year} value={year} group="contentYears" searchOptions={searchOptions} handleFilterOptions={handleFilterOptions} />
+                })
+                }
+              </fieldset>
+            </div>
+          }
         </div>
-      }
+      </div>
+
     </form>
   );
-
 }
 
 function Chip({ value, group, searchOptions, handleFilterOptions }) {
@@ -245,36 +276,38 @@ function Chip({ value, group, searchOptions, handleFilterOptions }) {
 
   // Check if there are posts that have this result using the passed search options  
   // If no results disable chip
-  const hasValidEntries = true;
+  const hasValidEntries = !true;
 
   const classes = `${styles.chip} ${(searchOptions[group]?.includes(value)) && styles['chip--selected']}`;
 
   return <button type="button"
     className={classes}
+    disabled={hasValidEntries}
     name={group}
     value={value}
     onClick={() => handleChip(group, value)}>
-    {value}
+    {group === "collections" ? `No. ${value}` : value}
   </button>
 }
 
-function SearchResults({ searchOptions, searchResults, searchPage, handlePageChange, jumpToPage }) {
+function SearchResults({ searchOptions, searchQuery, searchResults, searchPage, handlePageChange, jumpToPage }) {
   const results = searchResults.results;
-
+  console.log(searchPage, searchResults.numSearchPages)
   return (
     <div>
       <p>{Object.keys(results).length}</p>
       <ul aria-live="polite">
         {
           Object.keys(results).slice(searchPage * searchOptions.resultsPerPage, (searchPage + 1) * searchOptions.resultsPerPage).map((key) => {
-            let title = results[key].title;
+            const title = results[key].title;
             let contributor = results[key].contributor;
-
+            const excerpt = results[key].excerpt;
 
             return <li key={key} className={styles.results__item}>
               <Link href={key}>
-                <p>{results[key].title}</p>
-                <p>{results[key].contributor}</p>
+                <h3 className={styles.results__title}><MatchingText text={title} query={searchQuery} /></h3>
+                <p className={styles.results__contributor}><MatchingText text={contributor} query={searchQuery} /></p>
+                <p className={styles.results__excerpt}>{excerpt}</p>
                 {results[key].thumbnail &&
                   <Image src={results[key].thumbnail} width={100} height={100}
                     placeholder={"blur"} blurDataURL={results[key].thumbnail}
@@ -295,8 +328,23 @@ function SearchResults({ searchOptions, searchResults, searchPage, handlePageCha
           return <button key={pageNum} onClick={() => jumpToPage(pageNum)}>{pageNum + 1}</button>
         })
       }
-      {searchPage !== searchResults.numSearchPages - 1 && <button onClick={() => handlePageChange(1)}>&gt;</button>}
+      {searchResults.numSearchPages !== 0 && searchPage !== searchResults.numSearchPages - 1 && <button onClick={() => handlePageChange(1)}>&gt;</button>}
     </div>
   );
 
+}
+
+function MatchingText({ text, query }) {
+  const parts = text.split(new RegExp(`(${query})`, 'gi'));
+  const query_lower = query.toLowerCase();
+  return (
+    <>
+      {parts.map((part, idx) => {
+        if (part.toLowerCase() === query_lower) {
+          return <span key={idx} className={styles["results__text--match"]}>{part}</span>
+        }
+        return <span key={idx}>{part}</span>
+      })}
+    </>
+  )
 }
