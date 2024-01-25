@@ -105,7 +105,10 @@ export default Page;
 export const getStaticProps = async (params) => {
   const { data, query, variables } = await getPageData(params.params.slug);
   const allPostsData = getSortedPostsData();
-  const fullPostData = await getPostDataAPI(variables.relativePath, allPostsData);
+  const fullPostData = await getPostDataAPI({
+    relativePath: variables.relativePath, 
+    allPostsData
+  });
 
   // Recommendation Data
   const relativePath = '/' + variables.relativePath.replace(/\.mdx?/, '');
