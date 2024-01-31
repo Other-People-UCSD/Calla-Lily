@@ -1,14 +1,13 @@
 import Layout from "@/components/layout";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import styles from "@/styles/searchPage.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import { getSortedPostsData } from "@/lib/posts";
 
-
 export default function SearchPage() {
   return (
-    <Layout post title={"Search"}>
+    <Layout landingPage title={"Search"}>
       <h1>Advanced Search</h1>
       <SearchBar />
     </Layout>
@@ -23,6 +22,7 @@ export async function getStaticProps() {
     }
   }
 }
+
 function debounce(fn, time) {
   let timeoutId;
   return function (...args) {
@@ -36,13 +36,14 @@ function debounce(fn, time) {
 
 const defaultSearchOptions = {
   'resultsPerPage': 10,
-  'showFilter': true,
-  'genres': ['Poetry', 'Visual Arts', 'Fiction', 'Nonfiction'],
+  'showFilter': false,
+  'genres': [],
   'collections': [],
   'contentYears': [],
 }
 
 function SearchBar() {
+  const [isLoading, setLoading] = useState(true);
   const [metadata, setMetadata] = useState(null);
   const [searchOptions, setSearchOptions] = useState(defaultSearchOptions);
   const [searchQuery, setSearchQuery] = useState('');
@@ -55,10 +56,20 @@ function SearchBar() {
       const res = await fetch(`/api/post-metadata.json`, {
         method: "get",
         headers: { "opm-content": 'preview' }
-      }); const fetchedMetadata = await res.json();
+      });
+      const fetchedMetadata = await res.json();
       setMetadata(fetchedMetadata);
+      setLoading(false);
     })();
-  }, [])
+  }, []);
+
+  /**
+   * After initial loading of data into metadata state, display the results
+   * @param {Object} Metadata
+   */
+  useEffect(() => {
+    filterResults(searchQuery, searchOptions)
+  }, [metadata])
 
   function filterQuery(recentSearchQuery) {
     if (recentSearchQuery === undefined || recentSearchQuery === '') {
@@ -124,11 +135,10 @@ function SearchBar() {
       const collectionIsFiltered = recentSearchOptions['collections'].length > 0;
       const yearIsFiltered = recentSearchOptions['contentYears'].length > 0;
 
-      console.log(genreIsFiltered, collectionIsFiltered, yearIsFiltered)
       return (
         genreIsFiltered &&
         (collectionIsFiltered && collectionFilter) || (yearIsFiltered && contentFilter)
-      ) || genreIsFiltered && !collectionIsFiltered && !yearIsFiltered;
+      ) || (genreIsFiltered || recentSearchOptions['genres'].length === 0) && !collectionIsFiltered && !yearIsFiltered;
     }));
   }
 
@@ -170,7 +180,6 @@ function SearchBar() {
 
   function handleFilter() {
     const newSearchOptions = { ...searchOptions, 'showFilter': !searchOptions.showFilter };
-    console.log(newSearchOptions)
     setSearchOptions(newSearchOptions)
   }
 
@@ -189,6 +198,21 @@ function SearchBar() {
     setSearchOptions(newSearchOptions);
     filterResults(searchQuery, newSearchOptions);
   }
+
+  if (isLoading) {
+    return <>
+      <SearchToolbar
+        metadata={metadata}
+        searchOptions={searchOptions}
+        searchQuery={searchQuery}
+        handleSearchQuery={handleSearchQuery}
+        handleFilter={handleFilter}
+        handleFilterOptions={handleFilterOptions}
+      />
+      <p>Loading...</p>
+    </>
+  }
+
 
   return (
     <>
@@ -292,24 +316,31 @@ function Chip({ value, group, searchOptions, handleFilterOptions }) {
 
 function SearchResults({ searchOptions, searchQuery, searchResults, searchPage, handlePageChange, jumpToPage }) {
   const results = searchResults.results;
-  console.log(searchPage, searchResults.numSearchPages)
   return (
-    <div>
-      <p>{Object.keys(results).length}</p>
+    <div className={styles.results__container}>
+      <p>Found {Object.keys(results).length} results.</p>
+      <div className={`${styles.results__grid} ${styles.results__header}`}>
+        <p>Title</p>
+        <p>Creator(s)</p>
+        <p>Genre</p>
+      </div>
       <ul aria-live="polite">
         {
           Object.keys(results).slice(searchPage * searchOptions.resultsPerPage, (searchPage + 1) * searchOptions.resultsPerPage).map((key) => {
             const title = results[key].title;
             let contributor = results[key].contributor;
             const excerpt = results[key].excerpt;
+            const tags = results[key].tags.join(', ');
 
             return <li key={key} className={styles.results__item}>
-              <Link href={key}>
+              <Link href={key}
+                className={styles.results__grid}>
                 <h3 className={styles.results__title}><MatchingText text={title} query={searchQuery} /></h3>
                 <p className={styles.results__contributor}><MatchingText text={contributor} query={searchQuery} /></p>
+                <p className={styles.results__tags}><MatchingText text={tags} query={searchQuery} /></p>
                 <p className={styles.results__excerpt}>{excerpt}</p>
                 {results[key].thumbnail &&
-                  <Image src={results[key].thumbnail} width={100} height={100}
+                  <Image src={results[key].thumbnail} width={200} height={200}
                     placeholder={"blur"} blurDataURL={results[key].thumbnail}
                     quality={20}
                     className={styles.results__thumbnail}
@@ -321,22 +352,27 @@ function SearchResults({ searchOptions, searchQuery, searchResults, searchPage, 
         }
       </ul>
 
-      {searchPage !== 0 && <button onClick={() => handlePageChange(-1)}>&lt;</button>}
-      {
-        searchResults.numSearchPages > 1 &&
-        [...Array(searchResults.numSearchPages).keys()].map((pageNum) => {
-          return <button key={pageNum} onClick={() => jumpToPage(pageNum)}>{pageNum + 1}</button>
-        })
-      }
-      {searchResults.numSearchPages !== 0 && searchPage !== searchResults.numSearchPages - 1 && <button onClick={() => handlePageChange(1)}>&gt;</button>}
+      <nav className={styles.nav}>
+        {searchPage !== 0 && <button onClick={() => handlePageChange(-1)}>&lt;</button>}
+        {
+          searchResults.numSearchPages > 1 &&
+          [...Array(searchResults.numSearchPages).keys()].map((pageNum) => {
+            return <button key={pageNum} onClick={() => jumpToPage(pageNum)}>{pageNum + 1}</button>
+          })
+        }
+        {searchResults.numSearchPages !== 0 && searchPage !== searchResults.numSearchPages - 1 && <button onClick={() => handlePageChange(1)}>&gt;</button>}
+        <p>1 2 3 ... 17 </p>
+      </nav>
+
     </div>
   );
 
 }
 
 function MatchingText({ text, query }) {
-  const parts = text.split(new RegExp(`(${query})`, 'gi'));
+  const parts = (query === '') ? [text] : text.split(new RegExp(`(${query})`, 'gi'));
   const query_lower = query.toLowerCase();
+
   return (
     <>
       {parts.map((part, idx) => {

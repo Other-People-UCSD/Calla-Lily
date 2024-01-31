@@ -7,7 +7,9 @@
 .toolbar__main {
   display: flex;
   position: relative;
-  background-color: $opm-background-black;
+  // background-color: $opm-background-black;
+  border-bottom: 5px solid $opm-color-black;
+
 }
 
 .filter__dropdown {
@@ -17,7 +19,7 @@
 .filter__button {
   height: 100%;
   font-size: $opm-font-size-h3;
-  color: $opm-color-white;
+  // color: $opm-color-white;
   opacity: $opm-opacity-placeholder;
 }
 
@@ -27,12 +29,11 @@
   margin: 0;
   padding-bottom: $opm-spacing-300;
   width: 100%;
-  color: $opm-color-white;
+  // color: $opm-color-white;
   font-size: $opm-font-size-h1;
   font-weight: normal;
   background-color: inherit;
   border: none;
-  // border-bottom: 5px solid $opm-color-white;
   // -webkit-padding-start: 0;
 }
 
@@ -66,6 +67,7 @@
   height: fit-content;
   width: fit-content;
   max-width: 60%;
+  gap: 20px;
   border: 1px solid black;
   border-radius: 20px;
   border-top-right-radius: 0px;
@@ -88,7 +90,7 @@
 }
 
 .filter__container__genre {
-  min-width: 100px;
+  min-width: 120px;
 }
 
 .filter__container__years {
@@ -103,12 +105,12 @@
   border: 1px solid black;
   border-style: outset;
   border-radius: 20px;
+  font-size: 1rem;
 }
 
 .chip--selected {
-  background-color: $opm-color-blue-dark;
+  background-color: #F4BAB9;
 }
-
 
 
 
@@ -136,9 +138,13 @@
 .results__grid {
   display: grid;
   grid-template-columns: 6fr 4fr 2fr;
+  grid-template-areas: 
+    "title contributor tags"
+    "excerpt excerpt excerpt";
   column-gap: 8px;
   align-items: end;
   text-decoration: none;
+  font-family: $opm-font-apple;
 }
 
 .results__header {
@@ -151,25 +157,45 @@
 }
 
 .results__title {
-
+  grid-area: title;
+  font-family: $opm-font-apple;
+  font-size: 20px;
+  font-weight: 500;
+  font-style: italic;
 }
 
 .results__text--match {
-  color: hotpink;
+  color: #C05B5B;
 }
 
 .results__contributor {
-
+  grid-area: contributor;
+  font-size: 20px;
 } 
 
+.results__tags {
+  grid-area: tags;
+  font-size: 20px;
+}
 .results__excerpt {
-  font-size: 12px;
+  grid-area: excerpt;
+  font-size: 16px;
   opacity: $opm-opacity-placeholder;
 }
 
 .results__thumbnail {
-  max-width: 100px;
+  max-width: 200px;
   object-fit: cover;
+}
+
+.nav {
+  margin: 16px auto;
+  width: 100%;
+  text-align: center;
+}
+.nav button {
+  font-size: 20px;
+
 }
 
 .view_more {
