@@ -56,9 +56,6 @@ const Page = (props) => {
           images: [{ url: previewImg }],
         }}
       />
-      <Head>
-        <meta name="robots" content="all" />
-      </Head>
       
       <div className={`${animationStyles.fadeInBottom}`}>
         <h1 id="post-title" className={postStyles.post__title}>{data.post.title}</h1>

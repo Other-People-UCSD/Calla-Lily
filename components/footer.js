@@ -4,7 +4,7 @@ import styles from '@/styles/footer.module.scss';
 const col1 = [
   {
     "name": "Issuu ->",
-    "link": "https://issuu.com",
+    "link": "https://issuu.com/otherpeoplesd",
     "outbound": true
   }];
 

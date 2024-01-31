@@ -45,7 +45,7 @@ export default function About(props) {
       <div className={styles.content}>
         <div className={`${animationStyles.fadeInBottom} title__accent`}>
           <h1 className={`text--heading_1 text__landing--heading_1`}>O(THE)R PEOPLE</h1>
-          <p className={`text--heading_1 text__landing--heading_1 text__accent`} aria-hidden="true"><span class="text__accent--visible">O</span>(THE)R PE<span class="text__accent--visible">O</span>PLE</p>
+          <p className={`text--heading_1 text__landing--heading_1 text__accent`} aria-hidden="true"><span className="text__accent--visible">O</span>(THE)R PE<span className="text__accent--visible">O</span>PLE</p>
 
         </div>
 
@@ -180,7 +180,6 @@ export default function About(props) {
             <div>
               <TeamList cmsKeys={['alumni_design', 'alumni_pr']} labels={['Design', 'PR + Events']} />
             </div>
-
           </div>
         </div>
       </div>

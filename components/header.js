@@ -144,7 +144,8 @@ function MobileNav({ closeNav }) {
             <li><Link href="/about" onClick={closeNav}>About Us</Link></li>
             <li><Link href="/submissions" onClick={closeNav}>Submissions</Link></li>
             <li><Link href="/uc-magazines" onClick={closeNav}>Community &lt;3</Link></li>
-            <li><a href="https://issuu.com/otherpeoplesd" className={navStyles.external}>Issuu <ArrowForwardIcon fontSize='inherit' /></a></li>
+            <li><a href="https://issuu.com/otherpeoplesd" target="_blank" rel="noopener noreferer"
+              className={navStyles.external}>Issuu <ArrowForwardIcon fontSize='inherit' /></a></li>
           </ul>
         </div>
       </nav>

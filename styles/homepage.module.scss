@@ -12,7 +12,7 @@
 
 
 .main {
-  padding: 16px;
+  // padding: 16px;
   z-index: 2;
   max-width: unset;
 }
@@ -234,4 +234,21 @@
 
 .black {
   fill: black;
+}
+
+
+
+.ui3_section__covers {
+  display: flex;
+}
+
+.ui3_section__post_selector {
+  margin-top: 100px;
+  
+}
+
+.ui3_headline {
+  max-width: 100%;
+  margin: 0;
+  background-color: pink;
 }

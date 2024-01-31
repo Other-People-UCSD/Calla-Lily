@@ -3,7 +3,7 @@
 
 .card__grid__container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
   column-gap: 24px;
   row-gap: 24px;
 }
@@ -63,6 +63,93 @@
   font-size: 12px;
   color: $opm-color-white;
 }
+
+// Post Card Selector
+
+.selector__container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+.selector__wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.selector__controls {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-end;
+}
+
+.selector__button {
+  padding: 4px 12px;
+  border: 2px solid black;
+  border-radius: 20px;
+  width: fit-content;
+  font-weight: bold;
+}
+
+
+.selector__divider {
+  flex: 0 0 8px;
+  margin: 0;
+  background-color: black;
+  border: none;
+}
+
+.selector__button--poetry {  color: purple; }
+.selector__button--poetry.selector__button--selected { background-color: purple; color: white; }
+.selector__button--fiction {  color: orange; }
+.selector__button--fiction.selector__button--selected { background-color: orange; color: white; }
+
+.selector__button--nonfiction {  color: skyblue; }
+.selector__button--nonfiction.selector__button--selected { background-color: skyblue; color: white; }
+
+.selector__button--visualarts {  color: green; }
+.selector__button--visualarts.selector__button--selected { background-color: green; color: white; }
+
+.divider--poetry {  background-color: purple; }
+.divider--fiction {  background-color: orange; }
+.divider--nonfiction {  background-color: skyblue; }
+.divider--visualarts {  background-color: green; }
+
+.selector__grid__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  // grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+
+  column-gap: 8px;
+  row-gap: 8px;
+}
+
+.selector__explore {
+  margin-top: 16px;
+  float: right;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.selector__explore span {
+  text-decoration: underline;
+}
+
+.selector__explore:hover span {
+  text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+// Genre pages styling
 
 .genre__main {
   margin-top: 24px;

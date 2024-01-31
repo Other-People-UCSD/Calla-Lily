@@ -5,8 +5,7 @@ import Layout from '@/components/layout';
 import client from '../tina/__generated__/client';
 import { useTina } from 'tinacms/dist/react';
 import { getSortedPostsData, getGenrePostsData } from '@/lib/posts';
-import { PostCardGrid } from '../components/PostCard';
-
+import { PostCardGrid, PostCardSelector } from '../components/PostCard';
 
 export default function Home(props) {
   const { query, variables, data } = useTina({
@@ -14,6 +13,7 @@ export default function Home(props) {
     variables: props.variables,
     data: props.data,
   });
+
 
 
   return (
@@ -26,7 +26,6 @@ export default function Home(props) {
         </div>
         <p className={`${styles.hero__text}`}>the visual and literary arts magazine</p>
       </div>
-
 
       <div className={`${styles.block} ${styles.collection__cover}`}>
         <div className={`${styles.block__text} ${styles.collection__title}`}>
@@ -47,9 +46,27 @@ export default function Home(props) {
         </div>
       </div>
 
+      <div className={styles.ui3_section__featured}>
+        <div className={styles.ui3_headline}>
+          <p>From our latest collection...</p>
+        </div>
+        <CarouselGenre genre={props.poetry} />
+      </div>
 
 
-      <div className={styles.genre__container}>
+      <div className={styles.ui3_section__post_selector}>
+        <div className={styles.ui3_headline}>
+          <p>Some of our latest posts...</p>
+        </div>
+        <PostCardSelector entries={{
+          poetry: props.poetry,
+          fiction: props.fiction,
+          nonfiction: props.nonfiction,
+          visualarts: props.visualarts
+        }} />
+      </div>
+
+      {/* <div className={styles.genre__container}>
         <svg className={styles.svg__poetry}>
           <circle cx="400" cy="400" r="400" />
         </svg>
@@ -63,46 +80,8 @@ export default function Home(props) {
             Read More
           </div>
         </div>
-      </div>
+      </div> */}
 
-
-      <div className={`${styles.genre__container} ${styles['genre__container--right']}`}>
-        {/* <svg className={styles.svg__visual}>
-          <circle cx="350" cy="350" r="350" />
-          <circle cx="550" cy="550" r="350" />
-        </svg> */}
-        <div className={`${styles.headline} ${styles['headline--right']}`}>
-          <h2 className={`${styles.headline__text} ${styles['headline__text--right']}`}>Visual Arts</h2>
-        </div>
-        <hr className={`${styles.genre__hr} ${styles['genre__hr--right']}`} />
-        <PostCardGrid entries={props.visualarts} />
-      </div>
-
-      <div className={`${styles.genre__container}`}>
-        <svg className={styles.svg__fiction}>
-          <circle cx="400" cy="400" r="400" />
-        </svg>
-        <div className={styles.headline}>
-          <h2 className={styles.headline__text}>Fiction</h2>
-        </div>
-        <hr className={styles.genre__hr} />
-        <div className={styles.genre__content}>
-          <PostCardGrid entries={props.fiction} />
-          <div className={styles.genre__content__overlay}>
-            Read More
-          </div>
-        </div>
-
-      </div>
-
-      <div className={`${styles.genre__container} ${styles['genre__container--right']}`}>
-        <div className={`${styles.headline} ${styles['headline--right']}`}>
-          <h2 className={`${styles.headline__text} ${styles['headline__text--right']}`}>Nonfiction</h2>
-        </div>
-        <hr className={`${styles.genre__hr} ${styles['genre__hr--right']}`} />
-        <PostCardGrid entries={props.nonfiction} />
-
-      </div>
     </Layout>
   )
 }
