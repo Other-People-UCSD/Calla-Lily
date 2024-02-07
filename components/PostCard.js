@@ -50,7 +50,7 @@ function PostSelectorChild({ selector, handleSelector = { handleSelector } }) {
           {Object.entries(selectorControlObj).map(([genre_str, label]) => {
             const btnClassGenre = `${styles[`selector__button--${genre_str}`]}`;
 
-            const isSelected = `${(genre_str === selector.genre) && styles['selector__button--selected']}`;
+            const isSelected = `${(genre_str === selector.genre) ? styles['selector__button--selected'] : ''}`;
 
             return <button
               key={label}

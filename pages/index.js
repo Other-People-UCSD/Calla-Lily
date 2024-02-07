@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import styles from '@/styles/homepage.module.scss';
-import CarouselGenre from '@/components/Carousel';
 import Layout from '@/components/layout';
 import client from '../tina/__generated__/client';
 import { useTina } from 'tinacms/dist/react';
 import { getSortedPostsData, getGenrePostsData } from '@/lib/posts';
-import { PostCardGrid, PostCardSelector } from '../components/PostCard';
+import { PostCardSelector } from '../components/PostCard';
+import { Randomizer } from '@/components/Randomizer';
 
 export default function Home(props) {
   const { query, variables, data } = useTina({
@@ -13,8 +13,6 @@ export default function Home(props) {
     variables: props.variables,
     data: props.data,
   });
-
-
 
   return (
     <Layout homepage className={`${styles.main}`}>
@@ -27,36 +25,54 @@ export default function Home(props) {
         <p className={`${styles.hero__text}`}>the visual and literary arts magazine</p>
       </div>
 
-      <div className={`${styles.block} ${styles.collection__cover}`}>
-        <div className={`${styles.block__text} ${styles.collection__title}`}>
-          <p className={"text--heading_1"}>Spring 2023</p>
-          <hr className={styles.collection__hr} />
-          <p className={"text--heading_1"}>Collection</p>
-          <p className={"text--heading_1"}> No. 6</p>
-          <p className={"text--heading_1"}>LIMINAL</p>
-        </div>
-        <div className={styles.block__img__container} style={{ width: '500px' }}>
-          <figure className={styles.block__img}>
-            <Image className={`${styles.img__cover} ${styles["img__cover--right"]}`}
-              src="/images/5/eclipse-cover-caroline-tjoe.webp" fill={true}
+      <div className={`${styles.collection__block} ${styles.collection__cover}`}>
+        
+        <div className={styles.block__img__container}>
+            <Image className={`${styles.img__cover}`}
+              src="/images/6/liminal-cover-caroline-tjoe.webp" fill={true}
               sizes='1080px'
               alt="cover" />
-            <figcaption className={styles.block__img__caption}>Eclipse Cover by Caroline Tjoe</figcaption>
-          </figure>
+        </div>
+        <div className={`${styles.collection__block__text}`}>
+          <p className={`text--heading_1 ${styles.collection__date}`}>Spring 2023</p>
+          <hr className={styles.collection__block__hr} />
+          <p className={`text--heading_1 ${styles.collection__number}`}>Collection No. 6</p>
+          <p className={`text--heading_1 ${styles.collection__title}`}>LIMINAL</p>
         </div>
       </div>
 
       <div className={styles.ui3_section__featured}>
-        <div className={styles.ui3_headline}>
-          <p>From our latest collection...</p>
+        <div className={`${styles.ui3_headline}`}>
+          <div className={styles.ui3_marquee}>
+            <span>COLLECTION 6 IS OUT!</span>
+            <span>LIMINAL IS OUT!</span>
+            <span>COLLECTION 6 IS OUT!</span>
+            <span>LIMINAL IS OUT!</span>
+          </div>
         </div>
-        <CarouselGenre genre={props.poetry} />
+        <Randomizer entries={props.allPostsData} group={6} numResults={4} />
       </div>
 
+      <div className={styles.ui3_section__flipbook}>
+        <div className={`${styles.ui3_headline}`}>
+          <div className={styles.ui3_marquee}>
+            <span>View Issues on Issuu...</span>
+            <span>View Issues on Issuu...</span>
+          </div>
+        </div>
+        <MagazinesDesktop />
+        <MagazinesMobile />
+
+      </div>
 
       <div className={styles.ui3_section__post_selector}>
         <div className={styles.ui3_headline}>
-          <p>Some of our latest posts...</p>
+          <div className={styles.ui3_marquee}>
+            <span>Our latest posts...</span>
+            <span>Discover {props.allPostsData.length} publications!</span>
+            <span>Our latest posts...</span>
+            <span>Discover {props.allPostsData.length} publications!</span>
+          </div>
         </div>
         <PostCardSelector entries={{
           poetry: props.poetry,
@@ -65,23 +81,6 @@ export default function Home(props) {
           visualarts: props.visualarts
         }} />
       </div>
-
-      {/* <div className={styles.genre__container}>
-        <svg className={styles.svg__poetry}>
-          <circle cx="400" cy="400" r="400" />
-        </svg>
-        <div className={styles.headline}>
-          <h2 className={styles.headline__text}>Poetry</h2>
-        </div>
-        <hr className={styles.genre__hr} />
-        <div className={styles.genre__content}>
-          <PostCardGrid entries={props.poetry} />
-          <div className={styles.genre__content__overlay}>
-            Read More
-          </div>
-        </div>
-      </div> */}
-
     </Layout>
   )
 }
@@ -121,6 +120,51 @@ export async function getStaticProps() {
   };
 }
 
+const MagazinesDesktop = () => {
+  return (
+    <div className={`${styles.flipbook__container} ${styles.flipbook__desktop}`}>
+      <div className={styles.flipbook__track}>
+        {Object.entries({
+          "/images/cover/collection-1-cover.webp": "https://issuu.com/otherpeoplesd/docs/otherpeople_31jul2020",
+          "/images/cover/midnight-oil-cover.webp": "https://issuu.com/otherpeoplesd/docs/midnight_oil_final_version",
+          "/images/cover/self-identity-cover-kristy-lee.webp": "https://issuu.com/otherpeoplesd/docs/collection_3",
+          "/images/cover/refraction-cover-caroline-tjoe.webp": "https://issuu.com/otherpeoplesd/docs/refractionissuu"
+        }).map(([url, link], idx) => {
+          return <a key={idx} href={link} target='_blank' rel={"noopener noreferer"}
+            className={styles.flipbook__frame}>
+            <Image src={url} alt={url}
+              fill={true}
+              sizes={"300px;"}
+            />
+          </a>
+        })}
+      </div>
+    </div>)
+}
+
+const MagazinesMobile = () => {
+  return (
+    <div className={`${styles.flipbook__mobile}`}>
+      <div className={styles.flipbook__grid}>
+
+        {Object.entries({
+          "/images/cover/collection-1-cover.webp": "https://issuu.com/otherpeoplesd/docs/otherpeople_31jul2020",
+          "/images/cover/midnight-oil-cover.webp": "https://issuu.com/otherpeoplesd/docs/midnight_oil_final_version",
+          "/images/cover/self-identity-cover-kristy-lee.webp": "https://issuu.com/otherpeoplesd/docs/collection_3",
+          "/images/cover/refraction-cover-caroline-tjoe.webp": "https://issuu.com/otherpeoplesd/docs/refractionissuu"
+        }).map(([url, link], idx) => {
+          return <a key={idx} href={link} target='_blank' rel={"noopener noreferer"}
+            className={styles.flipbook__frame}>
+            <Image src={url} alt={url}
+              fill={true}
+              sizes={"150px;"}
+            />
+          </a>
+        })}
+      </div>
+    </div>
+  )
+}
 
 
 const Logo256 = () => {

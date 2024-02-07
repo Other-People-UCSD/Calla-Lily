@@ -1,6 +1,16 @@
 @import '@/stories/_variables.scss';
+// -----------------------
+// PostCard styles
+// [1] Card base
+// [2] PostSelector
+// [3] Randomizer
+
+// Genre pages styles
+// [4] Genre
+// -----------------------
 
 
+// [1] Card base
 .card__grid__container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
@@ -12,18 +22,20 @@
   display: flex;
   position: relative;
   padding: 16px;
-  border: 2px solid black;
-  border-radius: 20px;
+  border-top: 2px solid black;
+  border-radius: 5px;
   text-decoration: none;
   gap: 16px;
   height: 182px;
   max-height: 182px;
   box-sizing: border-box;
+  box-shadow: inset 1px 1px 1px 1px grey, 2px 2px 1px 0px grey;
   overflow: hidden;
 }
 
 .card__contentbox {
-  flex: 1 0 0;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .card__title,
@@ -31,6 +43,10 @@
   margin: 0;
   padding: 0;
   font-weight: bold;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .card__title--small {
@@ -64,8 +80,32 @@
   color: $opm-color-white;
 }
 
-// Post Card Selector
+@media screen and (max-width: 768px) {
+  .card__container {
+    padding: 12px;
+    height: 100px;
+  }
 
+  .card__container .card__title {
+    font-size: 20px;
+  }
+
+  .card__container .card__author {
+    font-size: 16px;
+  }
+
+  .card__thumbnail__frame {
+    width: 60px;
+    height: 60px;
+  }
+
+  .card__chip {
+    font-size: 12px;
+  }
+}
+
+
+// [2] Post Card Selector
 .selector__container {
   margin-left: auto;
   margin-right: auto;
@@ -91,6 +131,7 @@
   border-radius: 20px;
   width: fit-content;
   font-weight: bold;
+  box-shadow: 1px 1px;
 }
 
 
@@ -118,12 +159,11 @@
 .divider--visualarts {  background-color: green; }
 
 .selector__grid__container {
+  flex: 1 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  // grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-
-  column-gap: 8px;
-  row-gap: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(49%, 1fr));
+  gap: 16px 20px;
 }
 
 .selector__explore {
@@ -141,15 +181,44 @@
   text-decoration: none;
 }
 
+@media screen and (max-width: 768px) {
+  .selector__container {
+    width: 90%;
+  }
+
+  .selector__wrapper {
+    flex-direction: column;
+  }
+
+  .selector__controls {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px
+  }
+
+  .selector__button {
+    flex: 1 1 40%;
+    height: 32px;
+    font-size: 16px;
+  }
+}
+
+// [3] Randomizer
+
+.random__grid__container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(49%, 1fr));
+  gap: 8px;
+
+}
 
 
 
 
-
-
-
-
-// Genre pages styling
+// [4] Genre pages styling
 
 .genre__main {
   margin-top: 24px;
@@ -374,6 +443,7 @@
 }
 
 @media only screen and (max-width: 728px) {
+  
 
   .post__content {
     padding: $opm-spacing-300;
@@ -381,7 +451,6 @@
     margin-right: auto;
     width: 90%;
   }
-
 
   .genre__grid {
     grid-template-columns: 1fr;
