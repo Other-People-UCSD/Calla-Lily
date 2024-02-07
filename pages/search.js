@@ -1,5 +1,5 @@
 import Layout from "@/components/layout";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import styles from "@/styles/searchPage.module.scss";
 import Link from "next/link";
 import Image from "next/image";
@@ -42,7 +42,7 @@ const defaultSearchOptions = {
   'contentYears': [],
 }
 
-function SearchBar() {
+export function SearchBar({isHeader, theme}) {
   const [isLoading, setLoading] = useState(true);
   const [metadata, setMetadata] = useState(null);
   const [searchOptions, setSearchOptions] = useState(defaultSearchOptions);
@@ -215,7 +215,7 @@ function SearchBar() {
 
 
   return (
-    <>
+    <div className={`${isHeader ? styles.header : ''} ${theme ? styles[`theme--${theme}`] : ''}`}>
       <SearchToolbar
         metadata={metadata}
         searchOptions={searchOptions}
@@ -234,7 +234,7 @@ function SearchBar() {
           handlePageChange={handlePageChange}
           jumpToPage={jumpToPage} />
       }
-    </>
+    </div>
   )
 }
 
@@ -329,6 +329,7 @@ function SearchResults({ searchOptions, searchQuery, searchResults, searchPage, 
           Object.keys(results).slice(searchPage * searchOptions.resultsPerPage, (searchPage + 1) * searchOptions.resultsPerPage).map((key) => {
             const title = results[key].title;
             let contributor = results[key].contributor;
+            // console.log(contributor)
             const excerpt = results[key].excerpt;
             const tags = results[key].tags.join(', ');
 
@@ -336,9 +337,19 @@ function SearchResults({ searchOptions, searchQuery, searchResults, searchPage, 
               <Link href={key}
                 className={styles.results__grid}>
                 <h3 className={styles.results__title}><MatchingText text={title} query={searchQuery} /></h3>
-                <p className={styles.results__contributor}><MatchingText text={contributor} query={searchQuery} /></p>
-                <p className={styles.results__tags}><MatchingText text={tags} query={searchQuery} /></p>
+                <p className={styles.results__contributor}>
+                  {contributor.split(',').map((creator) => {
+                    return <><MatchingText text={creator} query={searchQuery} /><br /></>
+                  })}
+                </p>
+                <p className={styles.results__tags}>
+                  {tags.split(',').map((tag) => {
+                    return <><MatchingText text={tag} query={searchQuery} /><br /></>
+                  })}
+                </p>
+                <div className={styles.results__contentrow}>
                 <p className={styles.results__excerpt}>{excerpt}</p>
+
                 {results[key].thumbnail &&
                   <Image src={results[key].thumbnail} width={200} height={200}
                     placeholder={"blur"} blurDataURL={results[key].thumbnail}
@@ -346,6 +357,7 @@ function SearchResults({ searchOptions, searchQuery, searchResults, searchPage, 
                     className={styles.results__thumbnail}
                     alt={results[key].thumbnail} />
                 }
+                </div>
               </Link>
             </li>
           })
@@ -361,7 +373,6 @@ function SearchResults({ searchOptions, searchQuery, searchResults, searchPage, 
           })
         }
         {searchResults.numSearchPages !== 0 && searchPage !== searchResults.numSearchPages - 1 && <button onClick={() => handlePageChange(1)}>&gt;</button>}
-        <p>1 2 3 ... 17 </p>
       </nav>
 
     </div>
@@ -370,7 +381,8 @@ function SearchResults({ searchOptions, searchQuery, searchResults, searchPage, 
 }
 
 function MatchingText({ text, query }) {
-  const parts = (query === '') ? [text] : text.split(new RegExp(`(${query})`, 'gi'));
+  const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const parts = (query === '') ? [text] : text.split(new RegExp(`(${escapedQuery})`, 'gi'));
   const query_lower = query.toLowerCase();
 
   return (

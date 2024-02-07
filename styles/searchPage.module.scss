@@ -58,6 +58,32 @@
 }
 
 
+.query__input {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+.query__input::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.query__input::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.query__input::-webkit-search-decoration,
+.query__input::-webkit-search-cancel-button,
+.query__input::-webkit-search-results-button,
+.query__input::-webkit-search-results-decoration {
+  display: none;
+}
+
+
 
 .filter__container {
   display: flex;
@@ -66,7 +92,7 @@
   padding: 8px;
   height: fit-content;
   width: fit-content;
-  max-width: 60%;
+  width: 600px;
   gap: 20px;
   border: 1px solid black;
   border-radius: 20px;
@@ -94,7 +120,7 @@
 }
 
 .filter__container__years {
-  min-width: 130px;
+  min-width: 140px;
 }
 
 .chip {
@@ -108,7 +134,7 @@
   font-size: 1rem;
 }
 
-.chip--selected {
+.filter__container .chip--selected {
   background-color: #F4BAB9;
 }
 
@@ -124,6 +150,7 @@
   border-bottom: 2px solid $opm-color-grey-light;
   list-style-type: none;
   font-weight: 500;
+  overflow: hidden;
 }
 
 .results:nth-child(2) {
@@ -138,11 +165,11 @@
 .results__grid {
   display: grid;
   grid-template-columns: 6fr 4fr 2fr;
-  grid-template-areas: 
+  grid-template-areas:
     "title contributor tags"
     "excerpt excerpt excerpt";
   column-gap: 8px;
-  align-items: end;
+  align-items: start;
   text-decoration: none;
   font-family: $opm-font-apple;
 }
@@ -171,21 +198,35 @@
 .results__contributor {
   grid-area: contributor;
   font-size: 20px;
-} 
+}
 
 .results__tags {
   grid-area: tags;
   font-size: 20px;
 }
-.results__excerpt {
+
+.results__contentrow {
   grid-area: excerpt;
-  font-size: 16px;
-  opacity: $opm-opacity-placeholder;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 16px;
 }
 
 .results__thumbnail {
+  flex: 1 0 auto;
   max-width: 200px;
   object-fit: cover;
+  display: inline-block;
+}
+
+
+.results__excerpt {
+  flex: 1 1 auto;
+  font-size: 16px;
+  opacity: $opm-opacity-placeholder;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .nav {
@@ -193,6 +234,7 @@
   width: 100%;
   text-align: center;
 }
+
 .nav button {
   font-size: 20px;
 
@@ -206,8 +248,38 @@
 }
 
 
-@media only screen and (max-width: 728px) {
+@media only screen and (max-width: 768px) {
   .query__input {
     font-size: 3rem;
   }
+
+  .filter__container {
+    max-width: 100%;
+    flex-direction: column;
+
+  }
+
+  .results__contentrow {
+    flex-direction: column;
+  }
+}
+
+
+.header {
+  padding: 32px;
+}
+
+.theme--dark .query__input {
+  color: white;
+}
+
+.theme--dark button {
+  background-color: $opm-background-black;
+  color: white;
+  cursor: pointer;
+}
+
+.theme--dark .filter__container {
+  background-color: $opm-background-black;
+
 }

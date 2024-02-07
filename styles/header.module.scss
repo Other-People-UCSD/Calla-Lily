@@ -19,7 +19,6 @@
 .logo {
   width: 70px;
   height: 54px;
-  transform: scale(1);
 }
 
 .toolbar {
@@ -38,7 +37,13 @@
 .search__wrapper {
   display: inline-block;
   margin-right: 16px;
-  transform: scale(0.6) translate(0px, 12px);
+  width: 44px;
+  height: 44px;
+}
+
+.search__wrapper svg {
+  height: 95%;
+  width: 95%;
 }
 
 .menu,
@@ -62,6 +67,10 @@
   right: 0;
 }
 
+.overlay__search {
+  padding: 32px;
+}
+
 .nav-up {
   top: -150px;
 }
@@ -77,8 +86,22 @@
 }
 
 @media screen and (max-width: 768px) {
+
+  .base {
+    padding: 8px;
+  }
+
+  .logo {
+    height: 32px;
+  }
+
   .menu,
   .menu__close {
-    font-size: $mobile-font-size-h2;
+    font-size: 20px;
+  }
+
+  .search__wrapper {
+    height: 32px;
+    width: 32px;
   }
 }

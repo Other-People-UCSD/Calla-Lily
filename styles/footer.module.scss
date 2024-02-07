@@ -9,6 +9,10 @@
   background: #303030;
 }
 
+.base p {
+  font-size: $opm-font-size-small;
+}
+
 .base a {
   color: white;
 }
@@ -31,7 +35,7 @@
 .newsletter {
   margin-top: 48px;
   margin-bottom: 48px;
-  font-size: 24px;
+  font-size: 1.2rem;
 }
 
 .newsletter__label {
@@ -39,6 +43,7 @@
   text-align: center;
   text-transform: uppercase;
   font-weight: bold;
+  font-size: 1.5rem;
 }
 
 .newsletter hr {
@@ -157,8 +162,9 @@
   border-right: none;
 }
 
-.more__block__heading {
+.base .more__block__heading {
   margin-bottom: 16px;
+  font-size: 1.5rem;
 }
 
 .team__app__list {
@@ -178,13 +184,13 @@
 @media screen and (max-width: 768px) {
   .base,
   .base p {
-    font-size: $opm-font-size-small;
+    font-size: 12px;
   }
 
   .base .more__block__heading,
   .newsletter, 
   .newsletter__label {
-    font-size: 20px;
+    font-size: 1.2rem;
   }
 
   .base__content {
@@ -206,6 +212,7 @@
   .newsletter__inputbox {
     flex-direction: column;
     padding: 8px 16px;
+    width: 90%;
   }
   
   .newsletter__input__email {

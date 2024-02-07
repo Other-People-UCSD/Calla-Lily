@@ -6,6 +6,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Search from './search';
 import { Logo64 } from '@/pages';
 import { FooterLogo } from './footer';
+import { SearchBar } from '@/pages/search';
 
 const delta = 5;
 
@@ -113,7 +114,7 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
           </div>
         }
         {showNav && <MobileNav setShowNav={setShowNav} closeNav={closeNav} />}
-        {showSearch && <Search setShowSearch={setShowSearch} closeNav={closeNav} />}
+        {showSearch && <SearchBar isHeader={true} theme={"dark"} />}
       </div>
     </>
   );
@@ -171,8 +172,7 @@ function MobileNav({ closeNav }) {
 
 const SearchIcon = ({ theme }) => {
   const themeColor = (theme === 'dark') ? 'white' : '#3E3E3E';
-
-  return <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+  return <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M38.5 17C38.5 24.9403 31.8531 31.5 23.5 31.5C15.1469 31.5 8.5 24.9403 8.5 17C8.5 9.05969 15.1469 2.5 23.5 2.5C31.8531 2.5 38.5 9.05969 38.5 17Z" stroke={themeColor} strokeWidth="5" />
     <line y1="-2.5" x2="17.194" y2="-2.5" transform="matrix(-0.684767 0.728762 -0.746998 -0.664826 11.7739 28)" stroke={themeColor} strokeWidth="5" />
   </svg>
