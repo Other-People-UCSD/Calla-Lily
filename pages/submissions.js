@@ -18,7 +18,7 @@ export default function Submissions(props) {
     <Layout landingPage title={"Submissions"} className={styles.main} footerConfig={{'showMore': false}}>
         <div className={`${animationStyles.fadeInBottom} title__accent`}>
           <h1 className={`text--heading_1 text__landing--heading_1`}>Submissions</h1>
-          <p className={`text--heading_1 text__landing--heading_1 text__accent`} aria-hidden="true">Submissi<span class="text__accent--visible">o</span>ns</p>
+          <p className={`text--heading_1 text__landing--heading_1 text__accent`} aria-hidden="true">Submissi<span className={"text__accent--visible"}>o</span>ns</p>
         </div>
         <p className={styles.status}>
           {status ? (

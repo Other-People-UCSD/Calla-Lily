@@ -1,5 +1,5 @@
 import Layout from "@/components/layout";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styles from "@/styles/searchPage.module.scss";
 import Link from "next/link";
 import Image from "next/image";
@@ -9,7 +9,7 @@ export default function SearchPage() {
   return (
     <Layout landingPage title={"Search"}>
       <h1>Advanced Search</h1>
-      <SearchBar />
+      <SearchProvider />
     </Layout>
   );
 }
@@ -42,16 +42,18 @@ const defaultSearchOptions = {
   'contentYears': [],
 }
 
-export function SearchBar({isHeader, theme}) {
+/**
+ * Only fetch from the API on demand when the user opens the search bar.
+ * Do not re-fetch on rerenders by checking if metadata has been set before.
+ */
+export function SearchProvider({showSearch, isHeader, theme}) {
   const [isLoading, setLoading] = useState(true);
   const [metadata, setMetadata] = useState(null);
-  const [searchOptions, setSearchOptions] = useState(defaultSearchOptions);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState(null)
-  const [searchPage, setSearchPage] = useState(0);
-  const searchFilterKeys = ["title", "contributor", "tags"];
 
   useEffect(() => {
+    if(showSearch === false || metadata !== null) {
+      return;
+    }
     (async () => {
       const res = await fetch(`/api/post-metadata.json`, {
         method: "get",
@@ -61,15 +63,29 @@ export function SearchBar({isHeader, theme}) {
       setMetadata(fetchedMetadata);
       setLoading(false);
     })();
-  }, []);
+  }, [showSearch, metadata]);
 
-  /**
-   * After initial loading of data into metadata state, display the results
-   * @param {Object} Metadata
-   */
-  useEffect(() => {
-    filterResults(searchQuery, searchOptions)
-  }, [metadata])
+  if (showSearch === false) {
+    return null;
+  }
+
+  return <SearchBar metadata={metadata} isLoading={isLoading} isHeader={isHeader} theme={theme}/>
+}
+
+export function SearchBar({metadata, isLoading, isHeader, theme}) {
+  const [searchOptions, setSearchOptions] = useState(defaultSearchOptions);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState(null)
+  const [searchPage, setSearchPage] = useState(0);
+  const searchFilterKeys = ["title", "contributor", "tags"];
+
+  // /**
+  //  * After initial loading of data into metadata state, display the results
+  //  * @param {Object} Metadata
+  //  */
+  // useEffect(() => {
+  //   filterResults(searchQuery, searchOptions)
+  // });
 
   function filterQuery(recentSearchQuery) {
     if (recentSearchQuery === undefined || recentSearchQuery === '') {
@@ -200,7 +216,7 @@ export function SearchBar({isHeader, theme}) {
   }
 
   if (isLoading) {
-    return <>
+    return <div className={`${isHeader ? styles.header : ''} ${theme ? styles[`theme--${theme}`] : ''}`}>
       <SearchToolbar
         metadata={metadata}
         searchOptions={searchOptions}
@@ -210,9 +226,8 @@ export function SearchBar({isHeader, theme}) {
         handleFilterOptions={handleFilterOptions}
       />
       <p>Loading...</p>
-    </>
+    </div>
   }
-
 
   return (
     <div className={`${isHeader ? styles.header : ''} ${theme ? styles[`theme--${theme}`] : ''}`}>
@@ -252,7 +267,8 @@ function SearchToolbar({ metadata, searchOptions, searchQuery, handleSearchQuery
           placeholder="Search"
           aria-placeholder="Search for a work"
           autoComplete="search"
-          className={styles.query__input} />
+          className={styles.query__input}
+          autoFocus />
         {/* <button type="submit" className={styles.toolbar__submit}>Search</button> */}
         <div className={styles.filter__dropdown}>
           <button
@@ -339,12 +355,12 @@ function SearchResults({ searchOptions, searchQuery, searchResults, searchPage, 
                 <h3 className={styles.results__title}><MatchingText text={title} query={searchQuery} /></h3>
                 <p className={styles.results__contributor}>
                   {contributor.split(',').map((creator) => {
-                    return <><MatchingText text={creator} query={searchQuery} /><br /></>
+                    return <span key={creator}><MatchingText text={creator} query={searchQuery} /><br /></span>
                   })}
                 </p>
                 <p className={styles.results__tags}>
                   {tags.split(',').map((tag) => {
-                    return <><MatchingText text={tag} query={searchQuery} /><br /></>
+                    return <span key={tag}><MatchingText text={tag} query={searchQuery} /><br /></span>
                   })}
                 </p>
                 <div className={styles.results__contentrow}>

@@ -3,10 +3,9 @@ import Link from 'next/link';
 import styles from '@/styles/header.module.scss';
 import navStyles from '@/styles/nav.module.scss';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import Search from './search';
 import { Logo64 } from '@/pages';
 import { FooterLogo } from './footer';
-import { SearchBar } from '@/pages/search';
+import { SearchProvider } from '@/pages/search';
 
 const delta = 5;
 
@@ -114,7 +113,7 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
           </div>
         }
         {showNav && <MobileNav setShowNav={setShowNav} closeNav={closeNav} />}
-        {showSearch && <SearchBar isHeader={true} theme={"dark"} />}
+        <SearchProvider showSearch={showSearch} isHeader={true} theme={"dark"} />
       </div>
     </>
   );

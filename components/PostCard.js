@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useState } from "react";
 
 import Link from "next/link";
 import styles from "@/styles/posts.module.scss";
@@ -27,12 +27,9 @@ export function PostCardSelector({ entries }) {
     setSelector({ 'genre': genre_str, 'entries': entries[genre_str] });
   }
 
-  const children = useMemo(() =>
-    <PostSelectorChild
-      selector={selector}
-      handleSelector={handleSelector} />, [selector]);
 
-  return <>{children}</>
+  return <PostSelectorChild selector={selector} handleSelector={handleSelector} />
+
 }
 
 function PostSelectorChild({ selector, handleSelector = { handleSelector } }) {
