@@ -1,5 +1,5 @@
 import Layout from "@/components/layout";
-import { useCallback, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import styles from "@/styles/searchPage.module.scss";
 import Link from "next/link";
 import Image from "next/image";
@@ -42,16 +42,20 @@ const defaultSearchOptions = {
   'contentYears': [],
 }
 
+// For Header Search, pass the closeNav function to set the html overflow to scroll 
+// after a SearchResult link is pressed
+const SearchContext = createContext(null);
+
 /**
  * Only fetch from the API on demand when the user opens the search bar.
  * Do not re-fetch on rerenders by checking if metadata has been set before.
  */
-export function SearchProvider({showSearch, isHeader, theme}) {
+export function SearchProvider({ showSearch, closeNav, isHeader, theme }) {
   const [isLoading, setLoading] = useState(true);
   const [metadata, setMetadata] = useState(null);
 
   useEffect(() => {
-    if(showSearch === false || metadata !== null) {
+    if (showSearch === false || metadata !== null) {
       return;
     }
     (async () => {
@@ -69,10 +73,14 @@ export function SearchProvider({showSearch, isHeader, theme}) {
     return null;
   }
 
-  return <SearchBar metadata={metadata} isLoading={isLoading} isHeader={isHeader} theme={theme}/>
+  return (
+    <SearchContext.Provider value={closeNav}>
+      <SearchBar metadata={metadata} isLoading={isLoading} isHeader={isHeader} theme={theme} />
+    </SearchContext.Provider>
+  )
 }
 
-export function SearchBar({metadata, isLoading, isHeader, theme}) {
+export function SearchBar({ metadata, isLoading, isHeader, theme }) {
   const [searchOptions, setSearchOptions] = useState(defaultSearchOptions);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState(null)
@@ -115,7 +123,7 @@ export function SearchBar({metadata, isLoading, isHeader, theme}) {
         return false;
       }
 
-      // Array.<String> compare Array.<String> case is not normalized
+      // Array.<String> compare Array.<String> letter-case is not normalized
       const tagFilter = data['tags'].filter((tag) => {
         const lowerTag = tag.toLowerCase();
         for (const genre of recentSearchOptions['genres']) {
@@ -331,6 +339,7 @@ function Chip({ value, group, searchOptions, handleFilterOptions }) {
 }
 
 function SearchResults({ searchOptions, searchQuery, searchResults, searchPage, handlePageChange, jumpToPage }) {
+  const closeNav = useContext(SearchContext);
   const results = searchResults.results;
   return (
     <div className={styles.results__container}>
@@ -351,6 +360,7 @@ function SearchResults({ searchOptions, searchQuery, searchResults, searchPage, 
 
             return <li key={key} className={styles.results__item}>
               <Link href={key}
+                onClick={closeNav}
                 className={styles.results__grid}>
                 <h3 className={styles.results__title}><MatchingText text={title} query={searchQuery} /></h3>
                 <p className={styles.results__contributor}>
@@ -364,15 +374,15 @@ function SearchResults({ searchOptions, searchQuery, searchResults, searchPage, 
                   })}
                 </p>
                 <div className={styles.results__contentrow}>
-                <p className={styles.results__excerpt}>{excerpt}</p>
+                  <p className={styles.results__excerpt}>{excerpt}</p>
 
-                {results[key].thumbnail &&
-                  <Image src={results[key].thumbnail} width={200} height={200}
-                    placeholder={"blur"} blurDataURL={results[key].thumbnail}
-                    quality={20}
-                    className={styles.results__thumbnail}
-                    alt={results[key].thumbnail} />
-                }
+                  {results[key].thumbnail &&
+                    <Image src={results[key].thumbnail} width={200} height={200}
+                      placeholder={"blur"} blurDataURL={results[key].thumbnail}
+                      quality={20}
+                      className={styles.results__thumbnail}
+                      alt={results[key].thumbnail} />
+                  }
                 </div>
               </Link>
             </li>

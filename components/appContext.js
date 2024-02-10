@@ -5,7 +5,7 @@ import { createContext, useContext } from 'react';
  * Each page must have the function getStaticProps 
  * and call getSortedPostsData for the search to work on that page.
  */
-const AppContext = createContext();
+const AppContext = createContext(null);
 
 export const AppWrapper = ({ children }) => {
   let sharedState = {

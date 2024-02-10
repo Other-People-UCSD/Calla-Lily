@@ -113,7 +113,7 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
           </div>
         }
         {showNav && <MobileNav setShowNav={setShowNav} closeNav={closeNav} />}
-        <SearchProvider showSearch={showSearch} isHeader={true} theme={"dark"} />
+        <SearchProvider showSearch={showSearch} closeNav={closeNav} isHeader={true} theme={"dark"} />
       </div>
     </>
   );
