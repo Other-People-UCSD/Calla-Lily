@@ -159,10 +159,12 @@ export function SearchBar({ metadata, isLoading, isHeader, theme }) {
       const collectionIsFiltered = recentSearchOptions['collections'].length > 0;
       const yearIsFiltered = recentSearchOptions['contentYears'].length > 0;
 
-      return (
-        genreIsFiltered &&
-        (collectionIsFiltered && collectionFilter) || (yearIsFiltered && contentFilter)
-      ) || (genreIsFiltered || recentSearchOptions['genres'].length === 0) && !collectionIsFiltered && !yearIsFiltered;
+      // Specific genre for collection or year:     genre AND (collection OR year)
+      // All genres, selecting collection or years: !genre AND (collection OR year)
+      // Everything or filter by genre only:        !collection and !year
+      return (genreIsFiltered && ((collectionIsFiltered && collectionFilter) || (yearIsFiltered && contentFilter)))
+        || (recentSearchOptions['genres'].length === 0 && ((collectionIsFiltered && collectionFilter) || (yearIsFiltered && contentFilter)))
+        || (genreIsFiltered || recentSearchOptions['genres'].length === 0) && !collectionIsFiltered && !yearIsFiltered;
     }));
   }
 
@@ -174,6 +176,7 @@ export function SearchBar({ metadata, isLoading, isHeader, theme }) {
 
     const matchingFilter = filterOptions(matchingQueryResults, recentSearchOptions);
 
+    console.log(matchingFilter)
     const numSearchPages = Math.ceil(Object.keys(matchingFilter).length / searchOptions.resultsPerPage);
     setSearchResults({
       numSearchPages: numSearchPages,
