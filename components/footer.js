@@ -26,7 +26,7 @@ const col2 = [
   },
   {
     "name": "Visual Arts",
-    "link": "/visual",
+    "link": "/visualarts",
     "outbound": false
   },
   {
@@ -43,13 +43,18 @@ const col3 = [
     "outbound": false
   },
   {
+    "name": "Team Applications",
+    "link": "/about#team",
+    "outbound": false
+  },
+  {
     "name": "Submissions",
     "link": "/submissions",
     "outbound": false
   },
   {
     "name": "Community <3",
-    "link": "/community",
+    "link": "/uc-magazines",
     "outbound": false
   },
 ]
@@ -84,13 +89,13 @@ const defaultConfig = {
 
 export default function Footer({ pageType, footerConfig }) {
   // Updates values in the defaultConfig if they are provided in footerConfig
-  const config = {...defaultConfig, ...footerConfig}
+  const config = { ...defaultConfig, ...footerConfig }
 
   function getYear() {
     return new Date().getFullYear();
   }
 
-  const gradient = config.showGradient ? `${styles.gradient}`: ''; 
+  const gradient = config.showGradient ? `${styles.gradient}` : '';
 
   return (
     <footer className={`${styles.base} ${gradient}`}>
@@ -98,81 +103,82 @@ export default function Footer({ pageType, footerConfig }) {
 
         {
           !pageType && config.showMore !== false &&
-          <div className={styles.more} >
-            <p className={`${styles.more__block__heading} text--heading_2`}>More Information</p>
-            <hr />
-            <div className={styles.more__grid}>
-              <div className={styles.more__block}>
-                <p className={`${styles.more__block__heading} text--heading_2`}>Submissions Info</p>
-                <p>Our Editorial team reviews submissions individually and votes on their favorite pieces based on quality, creativity, craft, and style. The team then convenes to determine the strongest pieces of the selection, the number of which is adjusted to fit the maximum length of the magazine publication.</p>
-                <p>For detailed submissions instructions, please see our Submissions page.</p>
-              </div>
-
-              <div className={styles.more__block}>
-                <p className={`${styles.more__block__heading} text--heading_2`}>Team Applications</p>
-                <p></p>
-                <ul className={styles.team__app__list}>
-                  <li>
-                    <p>Editorial & Content</p>
-                    <a href="">[Apply Here!]</a>
-                  </li>
-                  <li>
-                    <p>Design & Social Media</p>
-                    <a href="">[Apply Here!]</a>
-                  </li>
-                  <li>
-                    <p>Event Planning</p>
-                    <a href="">[Apply Here!]</a>
-                  </li>
-                  <li>
-                    <p>Web Dev/UI/UX</p>
-                    <a href="">[Apply Here!]</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        }
-
-
-
-        <div className={styles.newsletter} id="mc_embed_signup">
-          <form action="https://gmail.us4.list-manage.com/subscribe/post?u=4b1b080bf138808842bdfbe2b&amp;id=32695fe3bf" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" noValidate>
-            <div id="mc_embed_signup_scroll">
-              <label htmlFor="mce-EMAIL"
-                className={`${styles.newsletter__label} text--heading_2`}>
-                Sign Up For Our Newsletter!
-              </label>
-
+          <>
+            <div className={styles.more} >
+              <p className={`${styles.more__block__heading} text--heading_2`}>More Information</p>
               <hr />
-
-              <div className={styles.newsletter__inputbox}>
-                <input
-                  type="email"
-                  defaultValue=""
-                  name="EMAIL"
-                  id="mce-EMAIL"
-                  placeholder="EMAIL"
-                  required
-                  className={styles.newsletter__input__email} />
-
-
-                {/* <real people should not fill this in and expect good things - do not remove this or risk form bot signups */}
-                <div style={{ position: "absolute", left: "-5000px" }} aria-hidden="true">
-                  <input type="text" name="b_4b1b080bf138808842bdfbe2b_32695fe3bf" tabIndex="-1" defaultValue="" />
+              <div className={styles.more__grid}>
+                <div className={styles.more__block}>
+                  <p className={`${styles.more__block__heading} text--heading_2`}>Submissions Info</p>
+                  <p>Our Editorial team reviews submissions individually and votes on their favorite pieces based on quality, creativity, craft, and style. The team then convenes to determine the strongest pieces of the selection, the number of which is adjusted to fit the maximum length of the magazine publication.</p>
+                  <p>For detailed submissions instructions, please see our Submissions page.</p>
                 </div>
 
-                <input
-                  type="submit"
-                  value="SIGN UP!"
-                  name="subscribe"
-                  id="mc-embedded-subscribe"
-                  className={styles.newsletter__submit}
-                />
+                <div className={styles.more__block}>
+                  <p className={`${styles.more__block__heading} text--heading_2`}>Team Applications</p>
+                  <p></p>
+                  <ul className={styles.team__app__list}>
+                    <li>
+                      <p>Editorial & Content</p>
+                      <a href="">[Apply Here!]</a>
+                    </li>
+                    <li>
+                      <p>Design & Social Media</p>
+                      <a href="">[Apply Here!]</a>
+                    </li>
+                    <li>
+                      <p>Event Planning</p>
+                      <a href="">[Apply Here!]</a>
+                    </li>
+                    <li>
+                      <p>Web Dev/UI/UX</p>
+                      <a href="">[Apply Here!]</a>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
-          </form>
-        </div>
+
+            <div className={styles.newsletter} id="mc_embed_signup">
+              <form action="https://gmail.us4.list-manage.com/subscribe/post?u=4b1b080bf138808842bdfbe2b&amp;id=32695fe3bf" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" noValidate>
+                <div id="mc_embed_signup_scroll">
+                  <label htmlFor="mce-EMAIL"
+                    className={`${styles.newsletter__label} text--heading_2`}>
+                    Sign Up For Our Newsletter!
+                  </label>
+
+                  <hr />
+
+                  <div className={styles.newsletter__inputbox}>
+                    <input
+                      type="email"
+                      defaultValue=""
+                      name="EMAIL"
+                      id="mce-EMAIL"
+                      placeholder="EMAIL"
+                      required
+                      className={styles.newsletter__input__email} />
+
+
+                    {/* <real people should not fill this in and expect good things - do not remove this or risk form bot signups */}
+                    <div style={{ position: "absolute", left: "-5000px" }} aria-hidden="true">
+                      <input type="text" name="b_4b1b080bf138808842bdfbe2b_32695fe3bf" tabIndex="-1" defaultValue="" />
+                    </div>
+
+                    <input
+                      type="submit"
+                      value="SIGN UP!"
+                      name="subscribe"
+                      id="mc-embedded-subscribe"
+                      className={styles.newsletter__submit}
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </>
+        }
+
 
 
         <div className={styles.nav}>

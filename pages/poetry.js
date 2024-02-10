@@ -5,8 +5,13 @@ import { getGenrePostsData, getSortedPostsData } from "@/lib/posts";
 import Genre from "../components/genre";
 
 export default function Poetry({ poetryPosts }) {
+  const footerConfig = {
+    'showGradient': true,
+    'showMore': false,
+  };
+
   return (
-    <Layout landingPage title={"Poetry"} className={styles.genre__main}>
+    <Layout landingPage footerConfig={footerConfig} title={"Poetry"} className={styles.genre__main}>
       <div className={styles.genre__header__row}>
         <Link href="/fiction"
           className={`${styles.genre__header__link} ${styles.genre__header__fiction}`}>Fiction</Link>

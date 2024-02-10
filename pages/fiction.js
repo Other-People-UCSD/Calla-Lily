@@ -6,8 +6,13 @@ import { getSortedPostsData, getGenrePostsData } from "@/lib/posts";
 import Link from "next/link";
 
 export default function Fiction({ fictionPosts }) {
+  const footerConfig = {
+    'showGradient': true,
+    'showMore': false,
+  };
+
   return (
-    <Layout landingPage title={"Fiction"} className={styles.genre__main}>
+    <Layout landingPage footerConfig={footerConfig} title={"Fiction"} className={styles.genre__main}>
       <div className={`${animationStyles.fadeInBottom} title__accent ${styles.genre__header__title}`}>
         <h1 className={`indexStyles.page__title text--heading_1 text__landing--heading_1`}>Fiction</h1>
         <p className={`text--heading_1 text__landing--heading_1 text__accent`} aria-hidden="true">Ficti<span class="text__accent--visible">o</span>n</p>

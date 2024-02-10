@@ -6,8 +6,13 @@ import { getSortedPostsData, getGenrePostsData } from "@/lib/posts";
 import Link from "next/link";
 
 export default function VisualArts({ artPosts }) {
+  const footerConfig = {
+    'showGradient': true,
+    'showMore': false,
+  };
+
   return (
-    <Layout landingPage title={"Visual Arts"} className={styles.genre__main}>
+    <Layout landingPage footerConfig={footerConfig} title={"Visual Arts"} className={styles.genre__main}>
       <div className={styles.genre__header__row}>
         <Link href="/fiction"
           className={`${styles.genre__header__link} ${styles.genre__header__fiction}`}>Fiction</Link>
