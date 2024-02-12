@@ -124,7 +124,7 @@ export default function About(props) {
             <h3 className={`text--heading_2`}>Editorial Team</h3>
             {data.forms.editorial && <a href={data.forms.editorial} className={styles.application__link}>[Apply Here!]</a>}
             <p>Editors review submissions and often workshop with writers to edit accepted submissions for publishing. They may arrange the pages of the magazine to create a pleasant reading experience through the magazine.</p>
-            <p>Content writers go through pitches, workshops with editors, and writers' rooms to publish exclusive prose. They may interview submittors about their stories, and may write creative articles of their choice.</p>
+            <p>Content writers go through pitches, workshops with editors, and writers&apos; rooms to publish exclusive prose. They may interview submittors about their stories, and may write creative articles of their choice.</p>
 
             {/* <TeamList cmsKeys={['editor_in_chief']} labels={['Editor in Chief']} /> */}
             <div className={styles.block__team__lists}>
@@ -141,7 +141,7 @@ export default function About(props) {
             {data.forms.design && <a href={data.forms.design} className={styles.application__link}>[Apply Here!]</a>}
             {data.forms.website && <a href={data.forms.website} className={styles.application__link}>[Apply to Digital (UI/UX/Dev)!]</a>}
 
-            <p>Design illustrators create artwork to complement accepted prose or to feature onto many facets of our organization's culture. They design a stunning aesthetic for the physical and digital magazine publications.</p>
+            <p>Design illustrators create artwork to complement accepted prose or to feature onto many facets of our organization&apos;s culture. They design a stunning aesthetic for the physical and digital magazine publications.</p>
             <p>The digital team is responsible for publishing content to the website, designing for accessibility and aesthetic, reader retention, and building features through programming! They also keep internals organized for the other teams in the long run.</p>
 
             {/* <TeamList cmsKeys={['design_directors']} labels={['Design Directors']} /> */}
@@ -157,7 +157,7 @@ export default function About(props) {
           <div className={`${styles.block__team__section} ${styles.block__team__outreach}`}>
             <h3 className={`text--heading_2`}>Outreach Team</h3>
             {data.forms.events && <a href={data.forms.events} className={styles.application__link}>[Apply Here!]</a>}
-            <p>Social media members design illustrations that follow what's trending to increase engagement with the community. They also create captivating previews for upcoming events and stories about to be published!</p>
+            <p>Social media members design illustrations that follow what&apos;s trending to increase engagement with the community. They also create captivating previews for upcoming events and stories about to be published!</p>
             <p>Event planners plan open mic nights, fundraisers, socials, etc. and help fund magazine production for our community to enjoy!</p>
 
             <div className={styles.block__team__lists}>
