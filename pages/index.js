@@ -6,6 +6,7 @@ import { useTina } from 'tinacms/dist/react';
 import { getSortedPostsData, getGenrePostsData } from '@/lib/posts';
 import { PostCardSelector } from '../components/PostCard';
 import { Randomizer } from '@/components/Randomizer';
+import { NewsletterForm } from '@/components/footer';
 
 export default function Home(props) {
   const { query, variables, data } = useTina({
@@ -14,8 +15,12 @@ export default function Home(props) {
     data: props.data,
   });
 
+  const footerConfig = {
+    'showNewsletter': false,
+  }
+
   return (
-    <Layout homepage className={`${styles.main}`}>
+    <Layout homepage footerConfig={footerConfig} className={`${styles.main}`}>
       <div className={styles.hero}>
         <div className={`${styles.hero__img__container}`}>
           <Image className={`${styles.hero__img__cover} ${styles["animate--rotate"]}`}
@@ -25,13 +30,13 @@ export default function Home(props) {
         <p className={`${styles.hero__text}`}>the visual and literary arts magazine</p>
       </div>
 
-      <div className={`${styles.collection__block} ${styles.collection__cover}`}>
-        
+      <div className={`${styles.collection__block}`}>
+
         <div className={styles.block__img__container}>
-            <Image className={`${styles.img__cover}`}
-              src="/images/6/liminal-cover-caroline-tjoe.webp" fill={true}
-              sizes='1080px'
-              alt="cover" />
+          <Image className={`${styles.img__cover}`}
+            src="/images/6/liminal-cover-caroline-tjoe.webp" fill={true}
+            sizes='1080px'
+            alt="cover" />
         </div>
         <div className={`${styles.collection__block__text}`}>
           <p className={`text--heading_1 ${styles.collection__date}`}>Spring 2023</p>
@@ -80,6 +85,10 @@ export default function Home(props) {
           nonfiction: props.nonfiction,
           visualarts: props.visualarts
         }} />
+      </div>
+
+      <div className={styles.section__newsletter}>
+          <NewsletterForm homepage />
       </div>
     </Layout>
   )

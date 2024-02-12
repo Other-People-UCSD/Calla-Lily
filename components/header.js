@@ -53,7 +53,7 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
     // If they scrolled down and are past the navbar, 
     // add class .nav-up by rerendering state.
     // This is necessary so you never see what is "behind" the navbar.
-    if (scrollY > lastScrollTop && scrollY > headerRef.current.offsetHeight) {
+    if (scrollY > lastScrollTop && scrollY > headerRef.current?.offsetHeight) {
       setShowHeader(false);
     } else {
       setShowHeader(true);
@@ -103,7 +103,7 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
         className={navStyles.overlay}>
         {(showNav || showSearch) &&
           <div className={styles.overlay__header}>
-            <Link href="/" onClick={closeNav} className={styles.logo}><Logo64 theme={'dark'} /></Link>
+            <Link href="/" onClick={closeNav} className={styles.logo}><OP_Logo theme={'dark'} /></Link>
             <div className={styles.toolbar}>
               <button
                 className={styles.menu__close}
@@ -178,7 +178,7 @@ const SearchIcon = ({ theme }) => {
 }
 
 const OP_Logo = ({ theme }) => {
-  const themeColor = (theme) ? '#231f20' : '#231f20';
+  const themeColor = (theme === 'dark') ? 'white' : '#231f20';
   return <svg id="op_logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
     <title>Other People Logo</title>
     <path fill={themeColor} d="M245.56,430.39q-70.8,0-108.18-44.2T100,272.52q0-69.48,37.38-113.68t108.18-44.2q70.35,0,108,44.2t37.6,113.68q0,69.48-37.6,113.67T245.56,430.39Zm-62.89-82.46q21.12,27.49,62.89,27.49t62.88-27.49q21.12-27.48,21.11-75.41T308.44,197.1q-21.1-27.48-62.88-27.49T182.67,197.1q-21.1,27.48-21.11,75.42T182.67,347.93Z" />

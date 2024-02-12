@@ -9,17 +9,14 @@ export default function About(props) {
   const footerConfig = {
     'showGradient': false,
     'showMore': false,
+    'showNewsletter': false,
   };
 
   const { query, variables, data } = useTina({
     query: props.query,
     variables: props.variables,
-    data: props.data,
+    data: { ...props.data, ...props.dataForms },
   })
-
-  const alumniKeys = ['alumni_editorial', 'alumni_design', 'alumni_pr'];
-  const alumniTitles = ['Editorial', 'Design', 'PR + Events'];
-
 
   function TeamList({ cmsKeys, labels }) {
     if (cmsKeys.length !== labels.length) {
@@ -111,30 +108,23 @@ export default function About(props) {
             <circle cx="400" cy="400" r="400" />
           </svg>
 
-          <h2 className={styles['text--clear-left']}>Team Roles</h2>
+          <h2 className={styles['text--clear-left']}>Our Products</h2>
 
-          <p>EDITORIAL & CONTENT</p>
-          <p>Editors review and edit submissions, then produce the pages of the magazine. Content writers create exclusive prose, interview submittors about their stories, and may write articles of their choice.</p>
-
-          <p>DESIGN & SOCIAL MEDIA</p>
-          <p>Design illustrators create artwork to complement accepted prose. We publish digital and print copies of issues, as well as designing inclusive access to artistic expression through our website.</p>
-
-          <p>EVENT PLANNING</p>
-          <p>Promote the magazine through social media, plan open mic nights, fundraisers, socials, etc. Marketing and event planners help fund the magazine and increase our outreach beyond the campus.</p>
-
-          <p>WEB DEVELOPMENT/UI/UX</p>
-          <p>The website developer/producer is responsible for publishing content to the website and implementing accessible designs to display to the public through frontend programming!</p>
+          <p>Replace this section with 1-2 paragraphs describing what OPM offers as a magaazine to the people.</p>
+          <p>Also add a paragraph about digital because of how different our department is compared to other publications.</p>
         </div>
       </div>
 
       <p className={`${styles.values} ${styles['values--center']}`}>Through a fusion of Language, Art, Image, and Technology.</p>
       <div className={styles.block__team}>
         <div className={styles.content}>
-          <h2 className={`text--heading_1 ${styles.header}`}>Our Team</h2>
+          <h2 id="team" className={`text--heading_1 ${styles.header}`}>Our Team</h2>
 
           <div className={`${styles.block__team__section} ${styles.block__team__editorial}`}>
             <h3 className={`text--heading_2`}>Editorial Team</h3>
-            <p>Editors review and edit submissions, then produce the pages of the magazine. Content writers create exclusive prose, interview submittors about their stories, and may write articles of their choice.</p>
+            {data.forms.editorial && <a href={data.forms.editorial} className={styles.application__link}>[Apply Here!]</a>}
+            <p>Editors review submissions and often workshop with writers to edit accepted submissions for publishing. They may arrange the pages of the magazine to create a pleasant reading experience through the magazine.</p>
+            <p>Content writers go through pitches, workshops with editors, and writers' rooms to publish exclusive prose. They may interview submittors about their stories, and may write creative articles of their choice.</p>
 
             {/* <TeamList cmsKeys={['editor_in_chief']} labels={['Editor in Chief']} /> */}
             <div className={styles.block__team__lists}>
@@ -148,8 +138,11 @@ export default function About(props) {
 
           <div className={`${styles.block__team__section} ${styles.block__team__design}`}>
             <h3 className={`text--heading_2`}>Design Team</h3>
-            <p>Design illustrators create artwork to complement accepted prose and develop the physical and digital magazine publications.</p>
-            <p>The digital team is responsible for publishing content to the website, designing for accessibility and aesthetic, reader retention, and building features through programming!</p>
+            {data.forms.design && <a href={data.forms.design} className={styles.application__link}>[Apply Here!]</a>}
+            {data.forms.website && <a href={data.forms.website} className={styles.application__link}>[Apply to Digital (UI/UX/Dev)!]</a>}
+
+            <p>Design illustrators create artwork to complement accepted prose or to feature onto many facets of our organization's culture. They design a stunning aesthetic for the physical and digital magazine publications.</p>
+            <p>The digital team is responsible for publishing content to the website, designing for accessibility and aesthetic, reader retention, and building features through programming! They also keep internals organized for the other teams in the long run.</p>
 
             {/* <TeamList cmsKeys={['design_directors']} labels={['Design Directors']} /> */}
             <div className={styles.block__team__lists}>
@@ -163,7 +156,9 @@ export default function About(props) {
 
           <div className={`${styles.block__team__section} ${styles.block__team__outreach}`}>
             <h3 className={`text--heading_2`}>Outreach Team</h3>
-            <p>Promote the magazine through social media, plan open mic nights, fundraisers, socials, etc. Marketing and event planners help fund the magazine and increase our outreach beyond the campus.</p>
+            {data.forms.events && <a href={data.forms.events} className={styles.application__link}>[Apply Here!]</a>}
+            <p>Social media members design illustrations that follow what's trending to increase engagement with the community. They also create captivating previews for upcoming events and stories about to be published!</p>
+            <p>Event planners plan open mic nights, fundraisers, socials, etc. and help fund magazine production for our community to enjoy!</p>
 
             <div className={styles.block__team__lists}>
               <TeamList cmsKeys={['outreach_directors', 'publicity_events']} labels={['Outreach Directors', 'PR/Events']} />
@@ -188,25 +183,25 @@ export default function About(props) {
 }
 
 export async function getStaticProps() {
-  let data = {}
-  let query = {}
-  let variables = { relativePath: `../data/team.json` }
+  let data = {};
+  let query = {};
+  let variables = { relativePath: `../data/team.json` };
 
   try {
-    const res = await client.queries.team(variables)
-    query = res.query
-    data = res.data
-    variables = res.variables
+    const res = await client.queries.team(variables);
+    query = res.query;
+    data = res.data;
+    variables = res.variables;
   } catch {
     // swallow errors related to document creation
   }
 
-  let dataForms = {}
-  let variablesForms = { relativePath: `../data/forms.json` }
+  let dataForms = {};
+  let variablesForms = { relativePath: `../data/forms.json` };
 
   try {
-    const res = await client.queries.forms(variablesForms)
-    dataForms = res.data
+    const res = await client.queries.forms(variablesForms);
+    dataForms = res.data;
   } catch {
     // swallow errors related to document creation
   }

@@ -57,9 +57,7 @@
 
 
 .collection__block {
-  // display: flex;
   height: 95vh;
-  align-items: flex-end;
 }
 
 .collection__block__text {
@@ -125,6 +123,7 @@
     margin-left: auto;
     margin-right: auto;
   }
+
   .collection__block__text p {
     font-size: 16px;
   }
@@ -270,6 +269,7 @@
   0% {
     transform: translateX(0%);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -284,7 +284,8 @@
 .flipbook__track {
   display: flex;
   gap: 24px;
-  // overflow: hidden;
+  overflow: hidden;
+  justify-content: center;
 }
 
 .flipbook__frame {
@@ -308,22 +309,60 @@
 
 }
 
+.section__newsletter {
+  clear: both;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 10vh;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 32px;
+  width: 80%;
+  height: 50vh;
+  border-radius: 10px;
+  background-image: none;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  object-fit: scale-down;
+}
+
 @media screen and (max-width: 768px) {
   .hero__img__container {
     left: -50vw;
   }
 
-  .collection__block {
-    flex-direction: column-reverse;
-  }
-
   .flipbook__desktop {
     display: none;
+  }
+
+  .section__newsletter {
+    background-image: url('/images/cover/newsletter-mobile.webp');
   }
 }
 
 @media screen and (min-width: 769px) {
   .flipbook__mobile {
     display: none;
+  }
+
+  .collection__block {
+    display: grid;
+    grid-auto-flow: dense;
+    align-items: flex-end;
+    height: fit-content;
+  }
+  .collection__block__text {
+    grid-column: 1;
+  }
+  .collection__block .block__img__container {
+    grid-column: 2;
+  }
+
+  .section__newsletter {
+    flex-direction: column;
+    height: 200px;
+    background-image: url('/images/cover/newsletter-desktop.webp');
   }
 }
