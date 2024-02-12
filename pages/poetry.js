@@ -6,8 +6,9 @@ import Genre from "../components/genre";
 
 export default function Poetry({ poetryPosts }) {
   const footerConfig = {
-    'showGradient': true,
+    'showGradient': false,
     'showMore': false,
+    'showNewsletter': false,
   };
 
   return (
@@ -31,7 +32,7 @@ export default function Poetry({ poetryPosts }) {
       </div>
 
       <div className={styles.genre__header__row}>
-        <h1 className={`${styles.genre__header__link} ${styles.genre__header__poetry}`}>Poetry</h1>
+        <h1 className={`${styles.genre__header__link} ${styles.genre__header__poetry} ${styles["genre__header--selected"]}`}>Poetry</h1>
         <hr className={styles.genre__header__line} />
       </div>
 

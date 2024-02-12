@@ -298,7 +298,7 @@ function SearchToolbar({ metadata, searchOptions, searchQuery, handleSearchQuery
 
               <fieldset className={`${styles.filter__container__group} ${styles.filter__container__collection}`}>
                 <legend>Collection</legend>
-                {[...metadata?.collections, ...Array.from({ length: 20 }, (_, i) => i + 7)].sort((a, b) => b - a).map((collection) => {
+                {[...metadata?.collections].sort((a, b) => b - a).map((collection) => {
                   return <Chip key={collection} value={collection} group="collections" searchOptions={searchOptions} handleFilterOptions={handleFilterOptions} />
                 })
                 }
@@ -306,7 +306,7 @@ function SearchToolbar({ metadata, searchOptions, searchQuery, handleSearchQuery
 
               <fieldset className={`${styles.filter__container__group} ${styles.filter__container__years}`}>
                 <legend>Content Year</legend>
-                {[...metadata?.years, ...Array.from({ length: 5 }, (_, i) => i + 2024)].sort((a, b) => b - a).map((year) => {
+                {[...metadata?.years].sort((a, b) => b - a).map((year) => {
                   return <Chip key={year} value={year} group="contentYears" searchOptions={searchOptions} handleFilterOptions={handleFilterOptions} />
                 })
                 }

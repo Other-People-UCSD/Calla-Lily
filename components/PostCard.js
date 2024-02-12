@@ -69,28 +69,7 @@ function PostSelectorChild({ selector, handleSelector = { handleSelector } }) {
   )
 }
 
-export function PostCard({ slug, title, contributor, collection, thumbnail }) {
-  // const [preview, setPreview] = useState('');
-
-  // useEffect(() => {
-  //   if (postCache.slug) {
-  //     setPreview(postCache.slug.excerpt);
-  //     return;
-  //   }
-
-  //   (async () => {
-  //     const res = await fetch(`/api/post/${slug}`, {
-  //       method: "get",
-  //       headers: { "opm-content": "preview" }
-  //     });
-  //     const postData = await res.json();
-  //     handleCache
-  //     setPreview(postData.excerpt);
-  //   })();
-  //   return;
-  // }, [slug])
-
-
+export function PostCard({ slug, title, contributor, collection, tags, thumbnail }) {
   return (
     <Link href={`/${slug}`} key={slug} className={styles.card__container}>
       <div className={styles.card__contentbox}>
@@ -100,8 +79,16 @@ export function PostCard({ slug, title, contributor, collection, thumbnail }) {
         ) : (
           <h2 className={styles.card__title}>{title}</h2>
         )}
-        <p className={styles.card__author}>/ {contributor.split(',')[0].replace(/\(.*\)/g, '')}</p>
-        {collection ? <Chip value={collection} /> : <Chip value="Content" />}
+        <p className={styles.card__creator}>
+          {contributor.split(',').map(creator => <span key={creator}>/ {creator}</span>)}
+          </p>
+        <div className={styles.chip__wrapper}>
+          {collection ? <Chip type="collection" value={collection} /> : <Chip type="content" value="Content" />}
+          { tags.map((tag) => {
+            return <Chip key={tag} type="tag" value={tag} />
+          })}
+        </div>
+
         {/* <p className={styles.card__preview}>{preview}</p> */}
       </div>
 
@@ -120,8 +107,8 @@ export function PostCard({ slug, title, contributor, collection, thumbnail }) {
   );
 }
 
-function Chip({ value }) {
-  if (value !== "Content") {
+function Chip({ type, value }) {
+  if (type === "collection") {
     value = `No. ${value}`;
   }
   return <div className={styles.card__chip}>

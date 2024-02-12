@@ -7,8 +7,9 @@ import Link from "next/link";
 
 export default function VisualArts({ artPosts }) {
   const footerConfig = {
-    'showGradient': true,
+    'showGradient': false,
     'showMore': false,
+    'showNewsletter': false,
   };
 
   return (
@@ -27,12 +28,12 @@ export default function VisualArts({ artPosts }) {
 
       <div className={styles.genre__header__row}>
         <Link href="/nonfiction"
-          className={`${styles.genre__header__link} ${styles.genre__header__arts}`}>Nonfiction</Link>
+          className={`${styles.genre__header__link} ${styles.genre__header__nonfiction}`}>Nonfiction</Link>
         <hr className={styles.genre__header__line} />
       </div>
 
       <div className={styles.genre__header__row}>
-        <h1 className={`${styles.genre__header__link} ${styles.genre__header__nonfiction} ${styles.genre__header__selected}`}>Visual Arts</h1>
+        <h1 className={`${styles.genre__header__link} ${styles.genre__header__arts} ${styles.genre__header__selected}`}>Visual Arts</h1>
         <hr className={styles.genre__header__line} />
       </div>
 

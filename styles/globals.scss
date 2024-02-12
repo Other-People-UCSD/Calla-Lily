@@ -201,6 +201,7 @@ html[data-theme="dark"] {
   }
 
   html,
+  html[data-theme="light"],
   html[data-theme="dark"] {
     --background-color: var(--opm-background-black);
     --light-text-color: var(--opm-color-white);
@@ -210,7 +211,7 @@ html[data-theme="dark"] {
   }
 }
 
-@media only screen and (max-width: 728px) {
+@media only screen and (max-width: 768px) {
   h1, 
   .text--heading_1, 
   .text__landing--heading_1 {
@@ -223,6 +224,10 @@ html[data-theme="dark"] {
   }
   .text__landing--heading_1.text__accent {
     top: 15px
+  }
+
+  .main__landing {
+    padding: 16px;
   }
 
 }

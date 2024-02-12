@@ -7,8 +7,9 @@ import Link from "next/link";
 
 export default function Nonfiction({ nonfictionPosts }) {
   const footerConfig = {
-    'showGradient': true,
+    'showGradient': false,
     'showMore': false,
+    'showNewsletter': false,
   };
   
   return (
@@ -37,7 +38,7 @@ export default function Nonfiction({ nonfictionPosts }) {
       </div>
 
       <div className={styles.genre__header__row}>
-        <h1 className={`${styles.genre__header__link} ${styles.genre__header__nonfiction}`}>Nonfiction</h1>
+        <h1 className={`${styles.genre__header__link} ${styles.genre__header__nonfiction} ${styles["genre__header--selected"]}`}>Nonfiction</h1>
         <hr className={styles.genre__header__line} />
       </div>
 

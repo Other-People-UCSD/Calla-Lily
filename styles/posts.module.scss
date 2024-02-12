@@ -39,14 +39,18 @@
 }
 
 .card__title,
-.card__author {
+.card__creator {
   margin: 0;
   padding: 0;
   font-weight: bold;
-
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.card__creator span {
+  display: block;
+  font-weight: 500;
 }
 
 .card__title--small {
@@ -70,6 +74,12 @@
   object-fit: cover;
 }
 
+.chip__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0px 8px;
+}
+
 .card__chip {
   display: inline-block;
   margin-top: 4px;
@@ -87,11 +97,11 @@
   }
 
   .card__container .card__title {
-    font-size: 20px;
+    font-size: 16px;
   }
 
-  .card__container .card__author {
-    font-size: 16px;
+  .card__container .card__creator {
+    font-size: 14px;
   }
 
   .card__thumbnail__frame {
@@ -100,7 +110,7 @@
   }
 
   .card__chip {
-    font-size: 12px;
+    font-size: 10px;
   }
 }
 
@@ -111,6 +121,7 @@
   margin-right: auto;
   width: 80%;
 }
+
 .selector__wrapper {
   display: flex;
   justify-content: space-between;
@@ -142,21 +153,57 @@
   border: none;
 }
 
-.selector__button--poetry {  color: purple; }
-.selector__button--poetry.selector__button--selected { background-color: purple; color: white; }
-.selector__button--fiction {  color: orange; }
-.selector__button--fiction.selector__button--selected { background-color: orange; color: white; }
+.selector__button--poetry {
+  color: purple;
+}
 
-.selector__button--nonfiction {  color: skyblue; }
-.selector__button--nonfiction.selector__button--selected { background-color: skyblue; color: white; }
+.selector__button--poetry.selector__button--selected {
+  background-color: purple;
+  color: white;
+}
 
-.selector__button--visualarts {  color: green; }
-.selector__button--visualarts.selector__button--selected { background-color: green; color: white; }
+.selector__button--fiction {
+  color: orange;
+}
 
-.divider--poetry {  background-color: purple; }
-.divider--fiction {  background-color: orange; }
-.divider--nonfiction {  background-color: skyblue; }
-.divider--visualarts {  background-color: green; }
+.selector__button--fiction.selector__button--selected {
+  background-color: orange;
+  color: white;
+}
+
+.selector__button--nonfiction {
+  color: skyblue;
+}
+
+.selector__button--nonfiction.selector__button--selected {
+  background-color: skyblue;
+  color: white;
+}
+
+.selector__button--visualarts {
+  color: green;
+}
+
+.selector__button--visualarts.selector__button--selected {
+  background-color: green;
+  color: white;
+}
+
+.divider--poetry {
+  background-color: purple;
+}
+
+.divider--fiction {
+  background-color: orange;
+}
+
+.divider--nonfiction {
+  background-color: skyblue;
+}
+
+.divider--visualarts {
+  background-color: green;
+}
 
 .selector__grid__container {
   flex: 1 0 auto;
@@ -230,10 +277,12 @@
   margin-top: 32px;
   margin-bottom: 64px;
 }
+
 .genre__header__row {
   margin-top: 8px;
   // margin-bottom: 8px;
 }
+
 .genre__header__line {
   margin: 0;
   margin-top: -3px;
@@ -262,11 +311,14 @@
   text-decoration: none;
 }
 
-.genre__header__link:horizontal
-
 .genre__header__selected {
+  margin-bottom: 0px;
   background-color: $opm-background-black;
   color: white;
+}
+
+.genre__header--selected {
+  margin-bottom: 0px;
 }
 
 .genre__header__fiction {
@@ -293,32 +345,16 @@
   padding-top: 8px;
   background-color: $opm-background-black;
 }
+
 .genre__nav {
   margin-left: auto;
   margin-right: auto;
   width: fit-content;
 }
+
 .genre__nav button {
   font-size: 18px;
   font-weight: bold;
-}
-
-.post__content {
-  margin-top: $opm-spacing-500;
-  padding-left: $opm-spacing-500;
-  padding-right: $opm-spacing-500;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
-
-  img {
-    width: 100%;
-  }
-}
-
-.post__title {
-  margin-top: $opm-spacing-600;
-  margin-bottom: $opm-spacing-500;
 }
 
 .genre__grid {
@@ -388,18 +424,40 @@
 }
 
 
-.thumb {
-  position: relative;
 
-  img {
-    position: relative !important; // For Next/Image using fill
-    width: 100%;
-    object-fit: contain;
-  }
+// [...slug].js Published Work Pages
+.post__content {
+  margin-top: $opm-spacing-500;
+  padding-left: $opm-spacing-500;
+  padding-right: $opm-spacing-500;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  line-height: 1.8rem;
 }
 
-.meta {
+
+.post__title {
+  margin-top: $opm-spacing-600;
+  margin-bottom: $opm-spacing-500;
+  font-weight: normal;
+  line-height: normal;
+}
+
+.post__content h3 {
+  text-transform: capitalize;
+  line-height: 1.5rem;
+}
+
+
+.post__content .meta {
+  font-family: $opm-font-basier;
+  line-height: 1.5rem;
   opacity: 0.5;
+}
+
+.post__content img {
+  width: 100%;
 }
 
 .gold {
@@ -409,10 +467,11 @@
 .copyright-footer {
   margin-top: $opm-spacing-500;
   opacity: 0.3;
+}
 
-  h4 {
-    line-height: 1.2rem;
-  }
+.copyright-footer h4 {
+  font-family: $opm-font-basier;
+  line-height: 1.2rem;
 }
 
 .post-nav {
@@ -442,9 +501,8 @@
   margin-top: 16px;
 }
 
-@media only screen and (max-width: 728px) {
-  
 
+@media only screen and (max-width: 728px) {
   .post__content {
     padding: $opm-spacing-300;
     margin-left: auto;
@@ -491,7 +549,7 @@
   }
 }
 
-@media only screen and (max-width: 1024px) { 
+@media only screen and (max-width: 1024px) {
   .card__grid__container {
     grid-template-columns: 1fr;
   }
@@ -504,5 +562,9 @@
 
   .genre__post__link:nth-child(3n)::after {
     display: none;
+  }
+
+  .post__content h1 {
+    font-size: 4rem;
   }
 }
