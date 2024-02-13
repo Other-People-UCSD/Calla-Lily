@@ -108,10 +108,16 @@ export default function About(props) {
             <circle cx="400" cy="400" r="400" />
           </svg>
 
-          <h2 className={styles['text--clear-left']}>Our Products</h2>
+          <h2 className={styles['text--clear-left']}>Creative Innovation</h2>
 
           <p>Replace this section with 1-2 paragraphs describing what OPM offers as a magaazine to the people.</p>
-          <p>Also add a paragraph about digital because of how different our department is compared to other publications.</p>
+          <p>
+            Our goal is to present creative work in a way that anyone can enjoy through accessible means. 
+            This requires heavy involvement in the digital publishing process by creating our own native products 
+            to showcase experimentative work. As a result, Other People's digital team operates at the forefront of next-gen techniques,
+            optimizing fast performance and featuring machine learning to recommend additional works you may enjoy.
+            We wish to show you an aesthetic that cannot be achieved by ordinary templates, as everything has been handcrafted for your satisfaction.
+          </p>
         </div>
       </div>
 

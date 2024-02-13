@@ -11,7 +11,7 @@ export default {
 export const Arial = {
   args: {
     familyName: 'Arial',
-    family: tokens.FontArial,
+    family: tokens.OpmFontArial,
     typoFamilyItems: [
       { size: '16px', usage: 'Body', example: 'Lorem ipsum dolor sit amet' },
       { size: '4rem', usage: 'Titles', example: 'SPRING 2023' },
@@ -26,7 +26,7 @@ export const Arial = {
 export const Basier = {
   args: {
     familyName: 'Basier Circle Mono',
-    family: tokens.FontBasier,
+    family: tokens.OpmFontBasier,
     typoFamilyItems: [
       { size: '0.8rem', usage: 'Footnotes', example: '[1] [2] [3]' },
       { size: '0.8rem', usage: 'Subtext (Genre, Copyright)', example: 'Lorem ipsum dolor sit amet' },
@@ -37,7 +37,7 @@ export const Basier = {
 export const Apple = {
   args: {
     familyName: 'Apple System',
-    family: tokens.FontApple,
+    family: tokens.OpmFontApple,
     typoFamilyItems: [
       { size: '16px', usage: 'Post content', example: 'Lorem ipsum dolor sit amet' },
     ],

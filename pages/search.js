@@ -349,8 +349,8 @@ function SearchResults({ searchOptions, searchQuery, searchResults, searchPage, 
       <p>Found {Object.keys(results).length} results.</p>
       <div className={`${styles.results__grid} ${styles.results__header}`}>
         <p>Title</p>
-        <p>Creator(s)</p>
-        <p>Genre</p>
+        <p className={styles.results__header__creator}>Creator(s)</p>
+        <p className={styles.results__header__tag}>Genre</p>
       </div>
       <ul aria-live="polite">
         {
@@ -368,7 +368,7 @@ function SearchResults({ searchOptions, searchQuery, searchResults, searchPage, 
                 <h3 className={styles.results__title}><MatchingText text={title} query={searchQuery} /></h3>
                 <p className={styles.results__contributor}>
                   {contributor.split(',').map((creator) => {
-                    return <span key={creator}><MatchingText text={creator} query={searchQuery} /><br /></span>
+                    return <span key={creator}>/ <MatchingText text={creator.replace(/\(.*\)/,'')} query={searchQuery} /></span>
                   })}
                 </p>
                 <p className={styles.results__tags}>
@@ -380,11 +380,14 @@ function SearchResults({ searchOptions, searchQuery, searchResults, searchPage, 
                   <p className={styles.results__excerpt}>{excerpt}</p>
 
                   {results[key].thumbnail &&
-                    <Image src={results[key].thumbnail} width={200} height={200}
+                  <div className={styles.results__thumbnail}>
+                    <Image src={results[key].thumbnail}
                       placeholder={"blur"} blurDataURL={results[key].thumbnail}
                       quality={20}
-                      className={styles.results__thumbnail}
+                      fill={true}
+                      sizes={"(min-width: 768px) 100px, 200px"}
                       alt={results[key].thumbnail} />
+                      </div>
                   }
                 </div>
               </Link>
