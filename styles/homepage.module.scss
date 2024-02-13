@@ -17,6 +17,7 @@
 }
 
 .hero {
+  position: relative;
   display: flex;
   height: 100vh;
   align-items: center;
@@ -57,6 +58,7 @@
 
 
 .collection__block {
+  position: relative;
   height: 95vh;
 }
 
@@ -199,51 +201,6 @@
 }
 
 
-.svg__poetry {
-  position: absolute;
-  top: -250px;
-  right: -100px;
-  width: 800px;
-  height: 800px;
-  z-index: -1;
-  fill: #33634366;
-  opacity: $opm-opacity-svg;
-}
-
-.svg__visual {
-  position: absolute;
-  top: -200px;
-  left: -350px;
-  width: 900px;
-  height: 900px;
-  z-index: -1;
-  fill: #73CDFF66;
-}
-
-.svg__fiction {
-  position: absolute;
-  bottom: -200px;
-  right: -200px;
-  width: 800px;
-  height: 800px;
-  z-index: -1;
-  fill: #6e1f3f66;
-  opacity: $opm-opacity-svg;
-  /* fill: linear-gradient(180deg, rgba(110, 31, 63, 0.1) 54.69%, rgba(115, 205, 255, 0) 100%);; */
-}
-
-.circle {
-  stroke: black;
-  stroke-width: 5px;
-  fill: transparent;
-}
-
-.black {
-  fill: black;
-}
-
-
-
 .ui3_section__covers {
   display: flex;
 }
@@ -311,6 +268,7 @@
 
 .section__newsletter {
   clear: both;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -365,4 +323,15 @@
     height: 200px;
     background-image: url('/images/cover/newsletter-desktop.webp');
   }
+}
+
+.ui3_section__featured,
+.ui3_section__flipbook,
+.ui3_section__post_selector {
+  position: relative;
+}
+
+.svg--accent {
+  position: absolute;
+  z-index: -10;
 }

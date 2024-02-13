@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import styles from '@/styles/footer.module.scss';
+import { AccentIcon } from '@/pages';
 
 const col1 = [
   {
@@ -105,6 +106,9 @@ export default function Footer({ pageType, footerConfig }) {
         {
           !pageType && config.showMore !== false &&
           <div className={styles.more} >
+            <AccentIcon id="vd-outline" stroke="#FFFEFB" strokeWidth="4px" width="150" height="150"
+              className={styles['svg--accent']} style={{right: "5vw", top:"-80px", transform: "rotate(25deg)"}}/>
+
             <p className={`${styles.more__block__heading} text--heading_2`}>More Information</p>
             <hr />
             <div className={styles.more__grid}>
@@ -199,7 +203,7 @@ function FooterList({ col }) {
   )
 }
 
-export const NewsletterForm = ({homepage}) => {
+export const NewsletterForm = ({ homepage }) => {
   const type = (homepage) ? `${styles.newsletter_homepage}` : `${styles.newsletter_footer}`;
   return <div className={type} id="mc_embed_signup">
     <form action="https://gmail.us4.list-manage.com/subscribe/post?u=4b1b080bf138808842bdfbe2b&amp;id=32695fe3bf" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" noValidate>

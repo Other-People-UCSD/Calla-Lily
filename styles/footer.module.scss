@@ -163,6 +163,7 @@
 }
 
 .more {
+  position: relative;
   text-align: center;
 }
 
@@ -263,4 +264,9 @@
   .gradient { 
     background: $opm-background-black;
   }
+}
+
+.svg--accent {
+  position: absolute;
+  z-index: 1;
 }
