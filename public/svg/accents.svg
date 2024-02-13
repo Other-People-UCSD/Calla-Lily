@@ -1,0 +1,18 @@
+<svg display="none" width="0" height="0" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol viewBox="0 0 100 100" id="circle-fill">
+      <circle cx="50" cy="50" r="50" />
+    </symbol>
+
+    <symbol viewBox="0 0 110 110" fill="none" id="circle-outline">
+      <circle cx="55" cy="55" r="50" />
+    </symbol>
+
+    <!-- Masks are not rendered in the shadow DOM of externally linked SVG through use -->
+    <!-- Cannot define venn diagram with filled center as a SVG sprite -->
+    <symbol viewBox="0 0 89 64" id="vd-outline">
+      <circle id="lcirc" cx="32" cy="32" r="25" stroke="inherit" stroke-width="inherit" fill="transparent" />
+      <circle id="rcirc" cx="57" cy="32" r="25" stroke="inherit" stroke-width="inherit" fill="transparent" />
+    </symbol>
+  </defs>
+</svg>

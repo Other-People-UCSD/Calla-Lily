@@ -20,7 +20,6 @@ export default function IconLibrary() {
           <p>ArrowForwardIcon</p>
           <p>32px</p>
         </div>
-
         <div className={styles.icon__item}>
           <IconButton>
             <FacebookIcon fontSize="large" />
@@ -43,12 +42,61 @@ export default function IconLibrary() {
           <p>32px</p>
         </div>
       </div>
+
+      <h3>Accents</h3>
+      <div className={styles.icon__grid}>
+        <div className={styles.icon__item}>
+          <IconButton>
+            <CircleAccent id={"circle-fill"} fill="black" width="32" height="32" />
+          </IconButton>
+          <p>#circle-fill</p>
+          <p>32px</p>
+        </div>
+        <div className={styles.icon__item}>
+          <IconButton>
+            <CircleAccent id={"circle-fill"} fill="violet" width="100" height="100" />
+          </IconButton>
+          <p>#circle-fill</p>
+          <p>100px</p>
+        </div>
+
+        <div className={styles.icon__item}>
+          <IconButton>
+            <CircleAccent id={"circle-outline"} stroke="black" strokeWidth="1px" width="32" height="32" />
+          </IconButton>
+          <p>#circle-outline</p>
+          <p>32px, stroke 1px</p>
+        </div>
+        <div className={styles.icon__item}>
+          <IconButton>
+            <CircleAccent id={"circle-outline"} stroke="black" strokeWidth="2px" width="100" height="100" />
+          </IconButton>
+          <p>#circle-outline</p>
+          <p>100px, stroke 2px</p>
+        </div>
+
+        <div className={styles.icon__item}>
+          <IconButton>
+            <CircleAccent id={"vd-outline"} stroke="black" fill="black" width="64" height="64" />
+          </IconButton>
+          <p>#vd-outline</p>
+          <p>64px, stroke 1px</p>
+        </div>
+
+        <div className={styles.icon__item}>
+          <IconButton>
+            <CircleAccent id={"vd-outline"} stroke="black" strokeWidth="3px" fill="gold" width="100" height="100" />
+          </IconButton>
+          <p>#vd-outline</p>
+          <p>100px, stroke 3px</p>
+        </div>
+      </div>
     </>
   )
 }
 
 const IconButton = (props) => {
-  
+
   return (
     <button>
       {props.children}
@@ -56,3 +104,8 @@ const IconButton = (props) => {
   );
 }
 
+const CircleAccent = ({ id, className, ...props }) => {
+  return <svg className={className} {...props}>
+    <use href={`/svg/accents.svg#${id}`} />
+  </svg>
+}

@@ -88,8 +88,14 @@ export default function Home(props) {
       </div>
 
       <div className={styles.section__newsletter}>
-          <NewsletterForm homepage />
+        <NewsletterForm homepage />
       </div>
+
+      <Logo64 />
+      <svg>
+        <use href="/svg/accents.svg#vd" stroke="black" fill="transparent" />
+      </svg>
+
     </Layout>
   )
 }
@@ -207,7 +213,7 @@ const Logo128 = () => {
 export const Logo64 = ({ theme }) => {
   const themeColor = theme === 'dark' ? 'white' : 'black';
 
-  return <svg viewBox="0 0 89 64" width="89" height="64" xmlns="http://www.w3.org/2000/svg" className={styles.logo}>
+  return <svg viewBox="0 0 89 64" width="89" height="64" xmlns="http://www.w3.org/2000/svg">
     <circle id="lcirc" cx="32" cy="32" r="25" stroke={themeColor} strokeWidth="3" fill="transparent" />
     <circle id="rcirc" cx="57" cy="32" r="25" stroke={themeColor} strokeWidth="3" fill="transparent" />
 
@@ -215,7 +221,7 @@ export const Logo64 = ({ theme }) => {
       <circle cx="32" cy="32" r="25" fill="white" />
     </mask>
 
-    <circle id="intersect" cx="57" cy="32" r="25" stroke={themeColor} strokeWidth="3" fill={themeColor}
+    <circle id="mask-intersect64" cx="57" cy="32" r="25" stroke={themeColor} strokeWidth="3" fill={themeColor}
       mask="url(#mask-intersect64)" />
   </svg>
 }

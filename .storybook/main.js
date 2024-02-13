@@ -7,7 +7,6 @@ const config = {
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@storybook/addon-onboarding",
     "@storybook/addon-interactions",
     "@storybook/addon-a11y",
     "@storybook/addon-storysource",
@@ -79,6 +78,7 @@ const config = {
   docs: {
     autodocs: "tag",
   },
+  staticDirs: ['../public'],
   // https://github.com/storybookjs/storybook/issues/11639#issuecomment-801724587
   webpackFinal: async (config, { configType }) => {
     config.resolve.modules = [
