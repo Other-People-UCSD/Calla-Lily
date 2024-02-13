@@ -14,8 +14,8 @@
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.15.5",
-    "@mui/material": "^5.15.5",
+    "@mui/icons-material": "^5.15.10",
+    "@mui/material": "^5.15.10",
     "eslint": "8.51.0",
     "eslint-config-next": "13.5.5",
     "gray-matter": "^4.0.3",
@@ -32,12 +32,12 @@
     "tinacms": "^1.5.28"
   },
   "devDependencies": {
-    "@playwright/test": "^1.41.0",
+    "@playwright/test": "^1.41.2",
     "@tinacms/cli": "1.5.26",
     "autoprefixer": "^10.4.17",
     "jsdoc": "^4.0.2",
-    "postcss": "^8.4.33",
-    "sass": "^1.69.7",
+    "postcss": "^8.4.35",
+    "sass": "^1.70.0",
     "tailwindcss": "^3.4.1"
   }
 }
