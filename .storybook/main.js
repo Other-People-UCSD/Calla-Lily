@@ -78,7 +78,6 @@ const config = {
   docs: {
     autodocs: "tag",
   },
-  staticDirs: ['../public'],
   // https://github.com/storybookjs/storybook/issues/11639#issuecomment-801724587
   webpackFinal: async (config, { configType }) => {
     config.resolve.modules = [

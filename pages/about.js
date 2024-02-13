@@ -114,7 +114,7 @@ export default function About(props) {
           <p>
             Our goal is to present creative work in a way that anyone can enjoy through accessible means. 
             This requires heavy involvement in the digital publishing process by creating our own native products 
-            to showcase experimentative work. As a result, Other People's digital team operates at the forefront of next-gen techniques,
+            to showcase experimentative work. As a result, Other People&apos;s digital team operates at the forefront of next-gen techniques,
             optimizing fast performance and featuring machine learning to recommend additional works you may enjoy.
             We wish to show you an aesthetic that cannot be achieved by ordinary templates, as everything has been handcrafted for your satisfaction.
           </p>
