@@ -132,6 +132,6 @@ const IconButton = (props) => {
 
 const CircleAccent = ({ id, className, ...props }) => {
   return <svg className={className} {...props}>
-    <use href={`/svg/accents.svg#${id}`} />
+    <use href={`accents.svg#${id}`} />
   </svg>
 }
