@@ -45,10 +45,10 @@ export default function TypoFamily({ familyName, family, typoFamilyItems }) {
       <p className={styles["family__header"]}>Font Family</p>
       <h2>{familyName}</h2>
       {
-        typoFamilyItems.map((item) => {
+        typoFamilyItems.map((item, idx) => {
           console.log(item)
           console.log(family)
-          return <TypoVariant typography={item} family={family} />
+          return <TypoVariant key={idx} typography={item} family={family} />
         })
       }
     </div>

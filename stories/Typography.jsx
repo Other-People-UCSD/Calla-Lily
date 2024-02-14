@@ -34,7 +34,7 @@ export default function Typography({ typographyList }) {
     <div className={sheetStyles.block}>
       {typographyList.map((typography, idx) => {
         return (
-          <div className={sheetStyles.block__row}>
+          <div key={idx} className={sheetStyles.block__row}>
             <FontSize {...typography}>{typography.size}</FontSize>
             <TypographyObject typography={typography} key={idx} />
           </div>

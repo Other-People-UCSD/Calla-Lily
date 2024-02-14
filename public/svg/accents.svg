@@ -14,5 +14,11 @@
       <circle id="lcirc" cx="32" cy="32" r="25" stroke="inherit" stroke-width="inherit" fill="transparent" />
       <circle id="rcirc" cx="57" cy="32" r="25" stroke="inherit" stroke-width="inherit" fill="transparent" />
     </symbol>
+
+    <symbol viewBox="0 0 21.431 14.817" id="vd-fill">
+      <circle cx="7.4083" cy="7.4083" r="6.58" fill="none" stroke="inherit" stroke-width="inherit"/>
+      <circle cx="14.023" cy="7.4083" r="6.58" fill="none" stroke="inherit" stroke-width="inherit"/>
+      <path d="m10.705 1.7459c-1.2632 0.73713-2.2626 1.9106-2.7944 3.2725-0.57201 1.4466-0.60214 3.0984-0.08021 4.5641 0.47836 1.3668 1.4218 2.5655 2.6428 3.3451 0.08271 0.0451 0.15845 0.11734 0.25024 0.13881 0.21461-0.1078 0.40785-0.25555 0.60396-0.39363 0.5458-0.41846 1.043-0.90682 1.4363-1.473 1.0174-1.4198 1.4251-3.2589 1.1004-4.9754-0.12204-0.66414-0.34727-1.3085-0.66636-1.9036-0.54277-1.0272-1.3699-1.9001-2.3586-2.5088-0.04417-0.019402-0.08479-0.071077-0.13404-0.066119z"/>
+    </symbol>
   </defs>
 </svg>

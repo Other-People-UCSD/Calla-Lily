@@ -74,7 +74,33 @@ export default function IconLibrary() {
           <p>#circle-outline</p>
           <p>100px, stroke 2px</p>
         </div>
+      </div>
+      <div className={styles.icon__grid}>
+      <div className={styles.icon__item}>
+          <IconButton>
+            <CircleAccent id={"vd-fill"} stroke="black" fill="black" strokeWidth="0.2px" width="89" height="64" />
+          </IconButton>
+          <p>#vd-fill</p>
+          <p>89x64, stroke 0.2px</p>
+        </div>
 
+        <div className={styles.icon__item}>
+          <IconButton>
+            <CircleAccent id={"vd-fill"} stroke="green" fill="green" strokeWidth="1px" width="128px" height="120px" />
+          </IconButton>
+          <p>#vd-fill</p>
+          <p>128px, stroke 1px, fill & stroke same-color</p>
+        </div>
+
+        <div className={styles.icon__item}>
+          <IconButton>
+            <CircleAccent id={"vd-fill"} stroke="black" fill="green" strokeWidth="1px" width="128px" height="120px" />
+          </IconButton>
+          <p>#vd-fill</p>
+          <p>128px, stroke 1px, fill green, stroke black</p>
+        </div>
+        
+        
         <div className={styles.icon__item}>
           <IconButton>
             <CircleAccent id={"vd-outline"} stroke="black" fill="black" width="64" height="64" />

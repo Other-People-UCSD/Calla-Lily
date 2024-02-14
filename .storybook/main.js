@@ -1,4 +1,6 @@
 /** @type { import('@storybook/nextjs').StorybookConfig } */
+import path from 'path';
+
 const config = {
   stories: [
     "../stories/**/*.mdx",
@@ -19,9 +21,9 @@ const config = {
           test: /\.css$/,
           sideEffects: true,
           use: [
-            require.resolve("style-loader"),
+            "style-loader",
             {
-              loader: require.resolve("css-loader"),
+              loader: "css-loader",
               options: {
                 // Want to add more CSS Modules options? Read more here: https://github.com/webpack-contrib/css-loader#modules
                 modules: {
@@ -30,9 +32,9 @@ const config = {
                 importLoaders: 1,
               },
             }, {
-              loader: require.resolve("postcss-loader"),
+              loader: "postcss-loader",
               options: {
-                implementation: require.resolve("postcss"),
+                implementation: "postcss",
               },
             },
           ],
@@ -40,9 +42,9 @@ const config = {
           test: /\.s[ac]ss$/,
           sideEffects: true,
           use: [
-            require.resolve("style-loader"),
+            "style-loader",
             {
-              loader: require.resolve("css-loader"),
+              loader: "css-loader",
               options: {
                 // Want to add more CSS Modules options? Read more here: https://github.com/webpack-contrib/css-loader#modules
                 modules: {
@@ -51,17 +53,17 @@ const config = {
                 importLoaders: 3,
               },
             }, {
-              loader: require.resolve("postcss-loader"),
+              loader: "postcss-loader",
               options: {
-                implementation: require.resolve("postcss"),
+                implementation: "postcss",
               },
             },
-            require.resolve("resolve-url-loader"),
+            "resolve-url-loader",
             {
-              loader: require.resolve("sass-loader"),
+              loader: "sass-loader",
               options: {
                 // Want to add more Sass options? Read more here: https://webpack.js.org/loaders/sass-loader/#options
-                implementation: require.resolve("sass"),
+                implementation: "sass",
                 sourceMap: true,
                 sassOptions: {},
               },
@@ -90,12 +92,12 @@ const config = {
     config.resolve.alias = {
       ...config.resolve.alias,
       '@': path.resolve(__dirname, '../'),
-      '/fonts': path.resolve(__dirname, '../public/fonts')
+      '/fonts': path.resolve(__dirname, '../public/fonts'),
+      '/svg': path.resolve(__dirname, '../public/svg')
     };
 
     return config;
-  }
+  },
+  staticDirs: [{from: '../public', to: '/public'}]
 };
 export default config;
-
-const path = require('path');
