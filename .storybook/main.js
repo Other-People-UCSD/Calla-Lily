@@ -98,6 +98,6 @@ const config = {
 
     return config;
   },
-  staticDirs: [{from: '../public', to: '/public'}]
+  staticDirs: [{from: '../public', to: '/static'}]
 };
 export default config;
