@@ -7,6 +7,9 @@
 
 // Genre pages styles
 // [4] Genre
+
+// Published work
+// [5] [...slug].js styles
 // -----------------------
 
 
@@ -251,7 +254,7 @@
   }
 }
 
-// [3] Randomizer
+// [3] Randomizer (Homepage)
 
 .random__grid__container {
   margin-left: auto;
@@ -426,7 +429,7 @@
 
 
 
-// [...slug].js Published Work Pages
+// [5] [...slug].js Published Work Pages
 .post__content {
   margin-top: $opm-spacing-500;
   padding-left: $opm-spacing-500;
@@ -436,7 +439,6 @@
   width: 80%;
   line-height: 1.8rem;
 }
-
 
 .post__title {
   margin-top: $opm-spacing-600;
@@ -475,26 +477,24 @@
   line-height: 1.2rem;
 }
 
-.post-nav {
+.post__nav {
   padding: $opm-spacing-600;
+  padding-bottom: $opm-spacing-300;
   display: flex;
-
-  a {
-    color: var(--light-text-color);
-    text-decoration: none;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
+  justify-content: space-between;
 }
 
-.post-nav div {
-  /* flex-grow, flex-shrink, flex-basis */
+.post__nav a {
+  color: var(--light-text-color);
+  text-decoration: none;
+}
+
+.post__nav a:hover {
+  text-decoration: underline;
+}
+
+.post__nav_next {
   flex: 1 1 0;
-}
-
-.post-nav-next {
   text-align: right;
 }
 
@@ -502,6 +502,14 @@
   margin-top: 16px;
 }
 
+.rec__desc {
+  text-align: center;
+  font-family: $opm-font-apple;
+}
+
+.post__content .card__grid__container {
+  line-height: normal;
+}
 
 @media only screen and (max-width: 728px) {
   .post__content {

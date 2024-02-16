@@ -2,21 +2,21 @@ import { useEffect } from 'react';
 import { useTina } from 'tinacms/dist/react'
 import client from '../tina/__generated__/client'
 import Link from 'next/link';
-import { NextSeo } from 'next-seo';
 import Script from 'next/script';
+import { NextSeo } from 'next-seo';
+import Head from 'next/head';
 import animationStyles from "@/styles/animations.module.scss";
 import postStyles from "@/styles/posts.module.scss";
-import Layout from '@/components/layout';
 import { getSortedPostsData, getPostDataAPI } from '@/lib/posts';
-import ContentWarning from '@/components/ContentWarning';
-import { pageChange } from '@/lib/bgTheme';
 import copyright from '@/lib/copyright';
 import OPMparser from '@/lib/OPMparser';
+import { pageChange } from '@/lib/bgTheme';
+import Layout from '@/components/layout';
+import ContentWarning from '@/components/ContentWarning';
+import { PostCardGrid } from '@/components/PostCard';
+import recommenderData from '@/data/recommender.json';
 import { beginMissedConnections } from '@/public/js/missed-connections';
 import { beginCYOAStory, goto, parseString, resetCYOAProgress } from '@/public/js/cyoa';
-
-import recommenderData from '@/data/recommender.json';
-import Head from 'next/head';
 
 const Page = (props) => {
   const { query, variables, data } = useTina({
@@ -24,9 +24,6 @@ const Page = (props) => {
     variables: props.variables,
     data: props.data,
   });
-
-  // console.log('POST VAR', props.variables);
-  // console.log('POST DATA', variables);
 
   // Add JS files that affect all posts
   useEffect(() => {
@@ -56,16 +53,16 @@ const Page = (props) => {
           images: [{ url: previewImg }],
         }}
       />
-      
+
       <div className={`${animationStyles.fadeInBottom}`}>
         <h1 id="post-title" className={postStyles.post__title}>{data.post.title}</h1>
       </div>
 
       <h3>/ {data.post.contributor}</h3>
       <h4 className={postStyles.meta}>{data.post.tags.join(", ")} &mdash; <MinsRead wordCount={props.fullPostData.manualWC ? props.fullPostData.manualWC : props.fullPostData.wordCount} /></h4>
-      {data.post.collection ? (<h4 className={postStyles.gold}>No. {data.post.collection}</h4>) : null}
+      {data.post.collection && <h4 className={postStyles.gold}>No. {data.post.collection}</h4>}
 
-      {data.post.contentWarning ? <ContentWarning description={data.post.contentWarning} /> : null}
+      {data.post.contentWarning && <ContentWarning description={data.post.contentWarning} />}
 
       <article id="cr-article" className={postStyles["cr-article"]}>
         <OPMparser content={data.post.body.children} depth={0} />
@@ -75,16 +72,12 @@ const Page = (props) => {
         <h4>This work belongs to {data.post.contributor} © <br /> Copy, reproduction, and modification are not permitted without permission</h4>
       </div>
 
-      <div className={postStyles["post-nav"]}>
-        <div className={postStyles["post-nav-prev"]}>
-          {props.fullPostData.prevPost ? (<h4><Link href={props.fullPostData.prevPost}>&lt;prev</Link></h4>) : null}
-        </div>
-        <div className={postStyles["post-nav-next"]}>
-          {props.fullPostData.nextPost ? (<h4><Link href={props.fullPostData.nextPost}>next&gt;</Link></h4>) : null}
-        </div>
+      <div className={postStyles.post__nav}>
+        {props.fullPostData.prevPost && <h4><Link href={props.fullPostData.prevPost}>&lt;prev</Link></h4>}
+        {props.fullPostData.nextPost && <h4 className={postStyles.post__nav_next}><Link href={props.fullPostData.nextPost}>next&gt;</Link></h4>}
       </div>
 
-      <div>{props.recommender}</div>
+      {props.recommendedPostsData && <Recommendations recommenderData={props.recommendedPostsData} />}
 
       <Experimental title={data.post.title} />
     </Layout>
@@ -103,13 +96,26 @@ export const getStaticProps = async (params) => {
   const { data, query, variables } = await getPageData(params.params.slug);
   const allPostsData = getSortedPostsData();
   const fullPostData = await getPostDataAPI({
-    relativePath: variables.relativePath, 
+    relativePath: variables.relativePath,
     allPostsData
   });
 
   // Recommendation Data
   const relativePath = '/' + variables.relativePath.replace(/\.mdx?/, '');
   const recommendedPosts = recommenderData[relativePath] || null;
+  const recommendedPostsData = [];
+
+  if (recommendedPosts) {
+    const keyedPosts = {};
+    allPostsData.map((post) => {
+      const key = `/${post.slug}`;
+      keyedPosts[key] = post;
+    });
+
+    recommendedPosts.slice(0, 4).forEach((recPost) => {
+      recommendedPostsData.push(keyedPosts[recPost])
+    })
+  }
 
   return {
     props: {
@@ -118,7 +124,7 @@ export const getStaticProps = async (params) => {
       query: query,
       fullPostData: fullPostData,
       allPostsData: allPostsData,
-      recommender: recommendedPosts
+      recommendedPostsData: recommendedPostsData
     },
   }
 }
@@ -129,28 +135,9 @@ export const getStaticProps = async (params) => {
  * @returns {Object} Page data
  */
 const getPageData = async (slug) => {
-  // Sorted by frequency to reduce wrong path errors
-  // const years = ['2020', '2022', '2023', '2021'];
-
   let query = {}
   let data = {}
   let variables = {}
-
-  // if (slug.length === 1) {
-  //   for (let i = 0, len = years.length; i < len; i++) {
-  //     variables = { relativePath: `${years[i]}/${slug}.mdx` }
-  //     try {
-  //       const res = await client.queries.post(variables)
-  //       query = res.query
-  //       data = res.data
-  //       variables = res.variables
-  //       break;
-  //     } catch {
-  //       // swallow errors related to document creation
-  //       console.log(variables, "does not exist");
-  //     }
-  //   }
-  // } else {
   variables = { relativePath: `${slug.join('/')}.mdx` }
   try {
     const res = await client.queries.post(variables)
@@ -160,7 +147,6 @@ const getPageData = async (slug) => {
   } catch {
     // swallow errors related to document creation
   }
-  // }
 
   return {
     data: data,
@@ -183,29 +169,35 @@ export const getStaticPaths = async () => {
     postsListData = await client.queries.postConnection({ after: after });
     pageInfo = postsListData.data.postConnection.pageInfo;
     after = pageInfo.endCursor;
-
     const edges = postsListData.data.postConnection.edges;
 
     for (let i = 0, len = edges.length; i < len; i++) {
       const post = edges[i];
-      const route = post.node._sys.relativePath
-        .replace(/\.mdx?/, '').split('/');
-      // console.log(route)
+      const route = post.node._sys.relativePath.replace(/\.mdx?/, '').split('/');
       paths.push({ params: { slug: route, dir: route[0] } });
-      // if (route[0].length === 4) {
-      //   const dir = route.shift();
-      //   // console.log(route)
-      //   paths.push({ params: { slug: route, dir: dir } });
-      // }
+
     }
   }
-  // console.log('Number of dynamic pages:', paths.length);
 
   return {
     paths: paths,
     fallback: false,
   }
 }
+
+/**
+ * Create a grid of recommended posts for the current work.
+ * @param {Array} recommenderData Metadata about each recommended post. 
+ */
+const Recommendations = ({ recommenderData }) => {
+  return (
+    <>
+      <p className={postStyles.rec__desc}>Enjoyed this work? Here are our recommendations!</p>
+      <PostCardGrid entries={recommenderData} limit={6} offset={0} />
+    </>
+  )
+}
+
 
 /**
  * 
@@ -289,9 +281,9 @@ export const Experimental = ({ title }) => {
   }
 }
 /**
- * The estimated reading time calculation
- * @param {Number} wordCount The number of words in the page 
- * @returns {String} The estimated reading time 
+ * The estimated reading time calculation.
+ * @param {Number} wordCount The number of words in the page.
+ * @returns {String} The estimated reading time.
  */
 export const MinsRead = ({ wordCount }) => {
   if (wordCount <= 360) {
