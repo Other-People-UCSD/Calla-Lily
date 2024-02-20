@@ -16,8 +16,8 @@ export default function Nonfiction({ nonfictionPosts }) {
     <Layout landingPage footerConfig={footerConfig} title={"Nonfiction"} className={styles.genre__main}>
 
       <div className={`${animationStyles.fadeInBottom} title__accent ${styles.genre__header__title}`}>
-        <h1 className={`indexStyles.page__title text--heading_1 text__landing--heading_1`}>Nonfiction</h1>
-        <p className={`text--heading_1 text__landing--heading_1 text__accent`} aria-hidden="true">N<span class="text__accent--visible">o</span>nficti<span class="text__accent--visible">o</span>n</p>
+        <h1 className={`text--heading_1 text__landing--heading_1`}>
+          N<span className="text--shadow">o</span>nficti<span className="text--shadow">o</span>n</h1>
       </div>
       <div className={styles.genre__header__row}>
         <Link href="/fiction"

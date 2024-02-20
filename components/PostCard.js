@@ -99,7 +99,7 @@ export function PostCard({ slug, title, contributor, collection, tags, thumbnail
 
             placeholder="blur" blurDataURL={thumbnail}
             className={styles.card__thumbnail}
-            alt={title} />
+            alt="View artwork description in link!" />
         </div>
 
       }

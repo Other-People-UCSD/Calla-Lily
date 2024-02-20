@@ -280,7 +280,6 @@ function SearchToolbar({ metadata, searchOptions, searchQuery, handleSearchQuery
           autoComplete="search"
           className={styles.query__input}
           autoFocus />
-        {/* <button type="submit" className={styles.toolbar__submit}>Search</button> */}
         <div className={styles.filter__dropdown}>
           <button
             type="button"
@@ -336,7 +335,8 @@ function Chip({ value, group, searchOptions, handleFilterOptions }) {
     disabled={hasValidEntries}
     name={group}
     value={value}
-    onClick={() => handleChip(group, value)}>
+    onClick={() => handleChip(group, value)}
+    aria-label={`Toggle ${value}`}>
     {group === "collections" ? `No. ${value}` : value}
   </button>
 }
@@ -346,13 +346,13 @@ function SearchResults({ searchOptions, searchQuery, searchResults, searchPage, 
   const results = searchResults.results;
   return (
     <div className={styles.results__container}>
-      <p>Found {Object.keys(results).length} results.</p>
+      <p aria-live="polite">Found {Object.keys(results).length} results.</p>
       <div className={`${styles.results__grid} ${styles.results__header}`}>
         <p>Title</p>
         <p className={styles.results__header__creator}>Creator(s)</p>
         <p className={styles.results__header__tag}>Genre</p>
       </div>
-      <ul aria-live="polite">
+      <ul>
         {
           Object.keys(results).slice(searchPage * searchOptions.resultsPerPage, (searchPage + 1) * searchOptions.resultsPerPage).map((key) => {
             const title = results[key].title;
@@ -386,7 +386,7 @@ function SearchResults({ searchOptions, searchQuery, searchResults, searchPage, 
                       quality={20}
                       fill={true}
                       sizes={"(min-width: 768px) 100px, 200px"}
-                      alt={results[key].thumbnail} />
+                      alt={"View artwork description in link!"} />
                       </div>
                   }
                 </div>

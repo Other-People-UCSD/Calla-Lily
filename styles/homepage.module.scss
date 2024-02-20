@@ -37,9 +37,14 @@
 .hero__img__container {
   position: absolute;
   left: -150px;
+  z-index: -1;
+}
+
+.hero__img__container svg {
   height: 750px;
   width: 750px;
-  z-index: -1;
+  fill: black;
+  stroke: black;
 }
 
 .animate--rotate {
@@ -311,9 +316,11 @@
     align-items: flex-end;
     height: fit-content;
   }
+
   .collection__block__text {
     grid-column: 1;
   }
+
   .collection__block .block__img__container {
     grid-column: 2;
   }
@@ -334,4 +341,21 @@
 .svg--accent {
   position: absolute;
   z-index: -10;
+}
+
+
+html[data-theme="dark"] .hero__img__container svg {
+  fill: white;
+  stroke: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  .hero__img__container svg {
+    fill: white;
+    stroke: white;
+  }
+
+  .ui3_marquee {
+    color: black;
+  }
 }

@@ -92,13 +92,10 @@
   align-items: center;
   
   text-align: center;
+}
 
-  svg {
-    fill: $opm-color-white;
-    display: block;
-    width: 5rem;
-
-  }
+.footer p {
+  margin: 0;
 }
 
 @media only screen and (max-width: 1024px) {

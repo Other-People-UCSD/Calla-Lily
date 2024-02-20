@@ -120,19 +120,8 @@ h4 {
   position: relative;
 }
 
-.text__accent {
-  position: absolute;
-  top: 20px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  width: 100%;
-  z-index: -1;
-  user-select: none;
-  color: transparent;
-}
-
-.text__accent--visible {
-  color: black;
+.text--shadow {
+  text-shadow: 0px 20px black;
 }
 
 p {
@@ -222,8 +211,9 @@ html[data-theme="dark"] {
   .text--heading_2 {
     font-size: $mobile-font-size-h2;
   }
-  .text__landing--heading_1.text__accent {
-    top: 15px
+  
+  .text__landing--heading_1 .text--shadow{
+    text-shadow: 0px 15px black;
   }
 
   .main__landing {

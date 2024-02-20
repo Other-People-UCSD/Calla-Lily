@@ -3,7 +3,6 @@ import Link from 'next/link';
 import styles from '@/styles/header.module.scss';
 import navStyles from '@/styles/nav.module.scss';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { FooterLogo } from './footer';
 import { SearchProvider } from '@/pages/search';
 
 const delta = 5;
@@ -89,9 +88,9 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
         onScroll={handleScroll}
         className={`${styles.base} ${showHeader ? '' : styles["nav-up"]}`}
       >
-        <Link href="/" className={styles.logo}>O P _</Link>
+        <Link href="/" className={styles.logo} aria-label="Go to Homepage">O P _</Link>
         <div className={styles.toolbar}>
-          <button className={styles.search__wrapper} onClick={openSearch}>
+          <button className={styles.search__wrapper} onClick={openSearch} aria-label="Open Search">
             <svg className={styles.search__icon}><use href="/svg/accents.svg#search-icon" /></svg>
           </button>
           <button className={styles.menu} onClick={openNav} aria-label="Open Menu">Menu</button>
@@ -103,7 +102,7 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
         className={navStyles.overlay}>
         {(showNav || showSearch) &&
           <div className={styles.overlay__header}>
-            <Link href="/" onClick={closeNav} className={styles.logo}>O P _</Link>
+            <Link href="/" onClick={closeNav} className={styles.logo} aria-label="Go to Homepage">O P _</Link>
             <div className={styles.toolbar}>
               <button
                 className={styles.menu__close}
@@ -130,7 +129,7 @@ function MobileNav({ closeNav }) {
       <nav className={navStyles.nav__content}>
         <div className={navStyles.genres}>
           <h3>Genres</h3>
-          <ul className={navStyles.nav__list}>
+          <ul className={navStyles.nav__list} aria-label="Genres">
             <li><Link href="/poetry" onClick={closeNav}>Poetry</Link></li>
             <li><Link href="/fiction" onClick={closeNav}>Fiction</Link></li>
             <li><Link href="/nonfiction" onClick={closeNav}>Nonfiction</Link></li>
@@ -140,10 +139,10 @@ function MobileNav({ closeNav }) {
 
         <div>
           <h3>Info</h3>
-          <ul className={navStyles.nav__list}>
+          <ul className={navStyles.nav__list} aria-list>
             <li><Link href="/about" onClick={closeNav}>About Us</Link></li>
             <li><Link href="/submissions" onClick={closeNav}>Submissions</Link></li>
-            <li><Link href="/uc-magazines" onClick={closeNav}>Community &lt;3</Link></li>
+            <li><Link href="/uc-magazines" onClick={closeNav} aria-label="Community">Community &lt;3</Link></li>
             <li><a href="https://issuu.com/otherpeoplesd" target="_blank" rel="noopener noreferer"
               className={navStyles.external}>Issuu <ArrowForwardIcon fontSize='inherit' /></a></li>
           </ul>
@@ -151,7 +150,7 @@ function MobileNav({ closeNav }) {
       </nav>
       
       <div className={navStyles.footer}>
-        <FooterLogo />
+        <svg className={styles.opm__logo}><use href="/svg/accents.svg#logo-vd-op-text" /></svg>
         <p>{`Other People © ${getYear()}`} <br />ALL RIGHTS RESERVED</p>
       </div>
     </>

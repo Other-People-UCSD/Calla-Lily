@@ -74,6 +74,17 @@
   top: -150px;
 }
 
+.opm__logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 8px;
+  width: 80px;
+  height: 50px;
+  fill: white;
+}
+
+
 @keyframes slideInFromTop {
   0% {
     transform: translateY(-100%);
