@@ -3,7 +3,6 @@ import animationStyles from "@/styles/animations.module.scss";
 import styles from "@/styles/about.module.scss";
 import { useTina } from 'tinacms/dist/react';
 import client from '@/tina/__generated__/client';
-import { getSortedPostsData } from '@/lib/posts';
 
 export default function About(props) {
   const footerConfig = {
@@ -212,15 +211,12 @@ export async function getStaticProps() {
     // swallow errors related to document creation
   }
 
-  const allPostsData = getSortedPostsData();
-
   return {
     props: {
       variables: variables,
       data: data,
       query: query,
       dataForms: dataForms,
-      allPostsData,
     },
   };
 }

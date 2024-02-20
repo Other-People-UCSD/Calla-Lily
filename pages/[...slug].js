@@ -123,7 +123,6 @@ export const getStaticProps = async (params) => {
       data: data,
       query: query,
       fullPostData: fullPostData,
-      allPostsData: allPostsData,
       recommendedPostsData: recommendedPostsData
     },
   }

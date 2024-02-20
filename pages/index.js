@@ -217,52 +217,6 @@ const MagazinesMobile = () => {
   )
 }
 
-
-const Logo256 = () => {
-  return <svg viewBox="0 0 356 256" width="400" height="256" xmlns="http://www.w3.org/2000/svg" className={styles.logo}>
-    <circle id="lcirc" cx="128" cy="128" r="100" stroke="black" strokeWidth="5" fill="transparent" />
-    <circle id="rcirc" cx="228" cy="128" r="100" stroke="black" strokeWidth="5" fill="transparent" />
-
-    <mask id="mask-intersect256" maskMode="luminance">
-      <circle cx="128" cy="128" r="100" fill="white" />
-    </mask>
-
-    <circle id="intersect" cx="228" cy="128" r="100" stroke="black" strokeWidth="5" fill="black"
-      mask="url(#mask-intersect256)" />
-  </svg>
-}
-
-const Logo128 = () => {
-  return <svg viewBox="0 0 178 128" width="178" height="128" xmlns="http://www.w3.org/2000/svg" className={styles.logo}>
-    <circle id="lcirc" cx="64" cy="64" r="50" stroke="black" strokeWidth="5" fill="transparent" />
-    <circle id="rcirc" cx="114" cy="64" r="50" stroke="black" strokeWidth="5" fill="transparent" />
-
-    <mask id="mask-intersect128" mask-mode="luminance">
-      <circle cx="64" cy="64" r="50" fill="white" />
-    </mask>
-
-    <circle id="intersect" cx="114" cy="64" r="50" stroke="black" strokeWidth="5" fill="black"
-      mask="url(#mask-intersect128)" />
-  </svg>
-}
-
-export const Logo64 = ({ theme }) => {
-  const themeColor = theme === 'dark' ? 'white' : 'black';
-
-  return <svg viewBox="0 0 89 64" width="89" height="64" xmlns="http://www.w3.org/2000/svg">
-    <circle id="lcirc" cx="32" cy="32" r="25" stroke={themeColor} strokeWidth="3" fill="transparent" />
-    <circle id="rcirc" cx="57" cy="32" r="25" stroke={themeColor} strokeWidth="3" fill="transparent" />
-
-    <mask id="mask-intersect64" mask-mode="luminance">
-      <circle cx="32" cy="32" r="25" fill="white" />
-    </mask>
-
-    <circle id="mask-intersect64" cx="57" cy="32" r="25" stroke={themeColor} strokeWidth="3" fill={themeColor}
-      mask="url(#mask-intersect64)" />
-  </svg>
-}
-
-
 export const AccentIcon = ({ id, className, ...props }) => {
   return <svg className={className} {...props}>
     <use href={`/svg/accents.svg#${id}`} />

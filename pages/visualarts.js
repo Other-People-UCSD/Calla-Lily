@@ -51,8 +51,7 @@ export async function getStaticProps() {
   const artPosts = getGenrePostsData('Visual Arts', allPostsData);
   return {
     props: {
-      allPostsData,
-      artPosts,
+      artPosts
     }
   }
 }

@@ -46,8 +46,7 @@ export async function getStaticProps() {
   const poetryPosts = getGenrePostsData('Poetry', allPostsData);
   return {
     props: {
-      allPostsData,
-      poetryPosts,
+      poetryPosts
     }
   }
 }

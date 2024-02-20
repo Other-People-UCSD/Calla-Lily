@@ -54,8 +54,7 @@ export async function getStaticProps() {
   const nonfictionPosts = getGenrePostsData('Nonfiction', allPostsData);
   return {
     props: {
-      nonfictionPosts,
-      allPostsData,
+      nonfictionPosts
     }
   }
 }

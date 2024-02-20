@@ -2,7 +2,6 @@ import Layout from "@/components/layout";
 import animationStyles from "@/styles/animations.module.scss";
 import contentStyles from "@/styles/content.module.scss";
 import postStyles from "@/styles/posts.module.scss";
-import { getSortedPostsData } from "@/lib/posts";
 import ucStyles from "@/styles/uc.module.scss";
 import { useState } from "react";
 import client from '../tina/__generated__/client'
@@ -42,8 +41,6 @@ export default function UCMagazines(props) {
 }
 
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
-
   let data = {};
   let query = {};
   let variables = { relativePath: `../data/uc-magazines.json` };
@@ -61,8 +58,7 @@ export async function getStaticProps() {
     props: {
       variables: variables,
       data: data,
-      query: query,
-      allPostsData,
+      query: query
     },
   };
 }

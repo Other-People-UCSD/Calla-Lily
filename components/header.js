@@ -139,7 +139,7 @@ function MobileNav({ closeNav }) {
 
         <div>
           <h3>Info</h3>
-          <ul className={navStyles.nav__list} aria-list>
+          <ul className={navStyles.nav__list} aria-label="info">
             <li><Link href="/about" onClick={closeNav}>About Us</Link></li>
             <li><Link href="/submissions" onClick={closeNav}>Submissions</Link></li>
             <li><Link href="/uc-magazines" onClick={closeNav} aria-label="Community">Community &lt;3</Link></li>

@@ -1,5 +1,4 @@
 import Layout from "@/components/layout";
-import { getSortedPostsData } from "@/lib/posts";
 
 export default function Custom404() {
   return (
@@ -14,13 +13,4 @@ export default function Custom404() {
       </Layout>
     </>
   );
-}
-
-export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
-  return {
-    props: {
-      allPostsData,
-    }
-  }
 }

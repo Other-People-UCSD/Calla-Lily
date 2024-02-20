@@ -52,12 +52,11 @@ export default function Fiction({ fictionPosts }) {
 }
 
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsData()
+  const allPostsData = getSortedPostsData();
   const fictionPosts = getGenrePostsData('Fiction', allPostsData);
   return {
     props: {
-      allPostsData,
-      fictionPosts,
+      fictionPosts
     }
   }
 }

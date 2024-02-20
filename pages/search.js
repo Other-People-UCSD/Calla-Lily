@@ -3,7 +3,6 @@ import { createContext, useContext, useEffect, useState } from "react";
 import styles from "@/styles/searchPage.module.scss";
 import Link from "next/link";
 import Image from "next/image";
-import { getSortedPostsData } from "@/lib/posts";
 
 export default function SearchPage() {
   return (
@@ -12,15 +11,6 @@ export default function SearchPage() {
       <SearchProvider />
     </Layout>
   );
-}
-
-export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
-  return {
-    props: {
-      allPostsData,
-    }
-  }
 }
 
 function debounce(fn, time) {
