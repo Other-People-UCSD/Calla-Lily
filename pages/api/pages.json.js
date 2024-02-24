@@ -9,7 +9,6 @@ export default async function handler(req, res) {
       "/nonfiction": { "slug": "nonfiction" },
       "/poetry": { "slug": "poetry" },
       "/visualarts": { "slug": "visualarts" },
-      "/sitemap.xml": { "slug": "/sitemap.xml" }
     };
 
     res.setHeader('Content-Type', 'application/json');
