@@ -1,5 +1,5 @@
 import Layout from "@/components/layout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "@/styles/searchPage.module.scss";
 import Link from "next/link";
 import Image from "next/image";
@@ -11,11 +11,25 @@ const defaultSearchOptions = {
   'genres': [],
   'collections': [],
   'contentYears': [],
+  'q': ''
 }
 
 export default function SearchPage({ searchData }) {
-  const {metadata, allPostsData} = searchData;
+  const { metadata, allPostsData } = searchData;
   const initSearchPages = Math.ceil(Object.keys(allPostsData).length / defaultSearchOptions.resultsPerPage);
+
+  useEffect(() => {
+    const loadedURL = new URL(window.location.href);
+    const params = new URLSearchParams(loadedURL.search);
+
+    for (const key of params.keys()) {
+      if (key === "q") {
+        defaultSearchOptions[key] = params.get(key);
+        continue;
+      }
+      defaultSearchOptions[key] = params.get(key).split(',');
+    }
+  }, []);
 
   return (
     <Layout landingPage title={"Search"}>
@@ -58,14 +72,21 @@ function debounce(fn, time) {
  * @returns SearchToolbar and SearchResults components
  */
 export function SearchBar({ metadata, allPostsData, initSearchPages }) {
+  const [isInitialURL, setInitialURL] = useState(true);
   const [searchOptions, setSearchOptions] = useState(defaultSearchOptions);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState(defaultSearchOptions.q || '');
   const [searchResults, setSearchResults] = useState({
     numSearchPages: initSearchPages,
     results: allPostsData,
   })
   const [searchPage, setSearchPage] = useState(0);
   const searchFilterKeys = ["title", "contributor", "tags"];
+
+  if (isInitialURL) {
+    filterResults(searchQuery, searchOptions);
+    setInitialURL(false);
+    return;
+  }
 
   /**
    * Filters the entire initial data by user query
@@ -115,20 +136,20 @@ export function SearchBar({ metadata, allPostsData, initSearchPages }) {
         };
       });
 
-      // Number compare Array.<Number>
+      // String compare Array.<String>
       let collectionFilter = false; // recentSearchOptions['collections'].length === 0;
       for (const collection of recentSearchOptions['collections']) {
-        if (collection === data['collection']) {
+        if (collection === data['collection']?.toString()) {
           collectionFilter = true;
           break;
         }
       }
 
-      // Date compare Array.<Number>, convert Number and Number
+      // Date compare Array.<String>, convert Date to String
       let contentFilter = false; // recentSearchOptions['contentYears'].length === 0;
       for (const year of recentSearchOptions['contentYears']) {
         const date = new Date(data.date);
-        if (year === date.getFullYear() && !data.hasOwnProperty('collection')) {
+        if (year === date.getFullYear().toString() && !data.hasOwnProperty('collection')) {
           contentFilter = true;
           break;
         }
@@ -171,6 +192,11 @@ export function SearchBar({ metadata, allPostsData, initSearchPages }) {
    */
   function handleSearchQuery(e) {
     setSearchQuery(e.target.value);
+    const url = new URL(window.location.href);
+    const params = new URLSearchParams(url.search);
+    params.set('q', e.target.value)
+    const newURL = new URL(`${url.origin}${url.pathname}?${params}`);
+    window.history.replaceState({}, '', newURL);
 
     debounce(() => {
       filterResults(e.target.value, searchOptions);
@@ -196,15 +222,26 @@ export function SearchBar({ metadata, allPostsData, initSearchPages }) {
   function handleFilterOptions(group, value) {
     const oldSearchOptionGroup = searchOptions[group];
     let newSearchOptions;
+
+    const url = new URL(window.location.href);
+    const params = new URLSearchParams(url.search);
+    params.set(group, value)
+
     if (oldSearchOptionGroup.includes(value)) {
       const filtered = oldSearchOptionGroup.filter((v) => { return v !== value; });
       newSearchOptions = {
         ...searchOptions,
         [group]: filtered
       };
+      params.set(group, filtered);
     } else {
       newSearchOptions = { ...searchOptions, [group]: [...oldSearchOptionGroup, value] };
+      params.set(group, [...oldSearchOptionGroup, value]);
     }
+
+    const newURL = new URL(`${url.origin}${url.pathname}?${params}`);
+    window.history.replaceState({}, '', newURL);
+
     setSearchOptions(newSearchOptions);
     filterResults(searchQuery, newSearchOptions);
   }
