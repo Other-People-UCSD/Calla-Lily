@@ -121,7 +121,7 @@ h4 {
 }
 
 .text--shadow {
-  text-shadow: 0px 20px black;
+  text-shadow: 0px 20px var(--light-text-color);
 }
 
 p {
@@ -166,6 +166,7 @@ html,
 html[data-theme="light"] {
   --background-color: var(--opm-background-white);
   --light-text-color: var(--opm-color-grey-darkest);
+  --border-color: var(--opm-background-black);
   --button-background: #ffb94f;
   --button-outline: #151515;
 }
@@ -175,6 +176,7 @@ html[data-theme="light"] {
 html[data-theme="dark"] {
   --background-color: var(--opm-background-black);
   --light-text-color: var(--opm-color-white);
+  --border-color: var(--opm-background-white);
   --button-background: #ff9900;
   --button-outline: #ffffff;
 }
@@ -184,16 +186,17 @@ html[data-theme="dark"] {
   html[data-theme="light"] {
     --background-color: var(--opm-background-black);
     --light-text-color: var(--opm-color-grey-darkest);
+    --border-color: var(--opm-background-white);
     --button-background: #ffb94f;
     --button-outline: #151515;
 
   }
 
   html,
-  html[data-theme="light"],
   html[data-theme="dark"] {
     --background-color: var(--opm-background-black);
     --light-text-color: var(--opm-color-white);
+    --border-color: var(--opm-background-white);
     --button-background: #ff9900;
     --button-outline: #ffffff;
 
@@ -213,7 +216,7 @@ html[data-theme="dark"] {
   }
   
   .text__landing--heading_1 .text--shadow{
-    text-shadow: 0px 15px black;
+    text-shadow: 0px 15px inherit;
   }
 
   .main__landing {

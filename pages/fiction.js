@@ -1,9 +1,9 @@
 import Layout from "@/components/layout";
 import animationStyles from "@/styles/animations.module.scss";
 import styles from "@/styles/posts.module.scss";
+import Link from "next/link";
 import Genre from "../components/genre";
 import { getSortedPostsData, getGenrePostsData } from "@/lib/posts";
-import Link from "next/link";
 
 export default function Fiction({ fictionPosts }) {
   const footerConfig = {
@@ -22,7 +22,7 @@ export default function Fiction({ fictionPosts }) {
 
       <div className={styles.genre__header__row}>
         <Link href="/visualarts"
-          className={`${styles.genre__header__link} ${styles.genre__header__arts}`}>Visual Arts</Link>
+          className={`${styles.genre__header__link} ${styles.genre__header__arts}`}>Visual</Link>
         <hr className={styles.genre__header__line} />
       </div>
 
@@ -39,14 +39,11 @@ export default function Fiction({ fictionPosts }) {
       </div>
 
       <div className={styles.genre__header__row}>
-        <h1 className={`${styles.genre__header__link} ${styles.genre__header__fiction} ${styles.genre__header__selected}`}>Fiction</h1>
+        <h1 className={`${styles.genre__header__link} ${styles.genre__header__fiction} ${styles["genre__header--selected"]}`}>Fiction</h1>
         <hr className={styles.genre__header__line} />
       </div>
 
-      <div className={styles.genre__selected__page}>
-        <Genre genre={fictionPosts} />
-
-      </div>
+      <Genre genre={fictionPosts} />
     </Layout>
   );
 }

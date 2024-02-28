@@ -25,7 +25,7 @@
   display: flex;
   position: relative;
   padding: 16px;
-  border-top: 2px solid black;
+  border-top: 2px solid var(--border-color);
   border-radius: 5px;
   text-decoration: none;
   gap: 16px;
@@ -142,7 +142,7 @@
 
 .selector__button {
   padding: 4px 12px;
-  border: 2px solid black;
+  border: 2px solid var(--border-color);
   border-radius: 20px;
   width: fit-content;
   font-weight: bold;
@@ -284,14 +284,13 @@
 
 .genre__header__row {
   margin-top: 8px;
-  // margin-bottom: 8px;
 }
 
 .genre__header__line {
   margin: 0;
   margin-top: -3px;
   border: none;
-  border-bottom: 3px solid black;
+  border-bottom: 3px solid var(--border-color);
 }
 
 .genre__header__link {
@@ -306,19 +305,13 @@
   font-family: $opm-font-helvetica;
   font-size: 24px;
   font-weight: 500;
-  border: 3px solid black;
+  border: 3px solid var(--border-color);
   border-bottom: none;
   border-top-left-radius: 20px 30px;
   border-top-right-radius: 20px 30px;
   box-sizing: border-box;
   background-color: var(--background-color); // Review differnet coloration
   text-decoration: none;
-}
-
-.genre__header__selected {
-  margin-bottom: 0px;
-  background-color: $opm-background-black;
-  color: white;
 }
 
 .genre__header--selected {
@@ -345,11 +338,6 @@
   margin-left: 50%;
 }
 
-.genre__selected__page {
-  padding-top: 8px;
-  background-color: $opm-background-black;
-}
-
 .genre__nav {
   margin-left: auto;
   margin-right: auto;
@@ -368,7 +356,7 @@
   grid-template-columns: 1fr 1fr 1fr;
 
   box-sizing: border-box;
-  border: 2px solid $opm-color-black;
+  border: 2px solid var(--border-color);
   background-color: var(--background-color);
 }
 
@@ -389,7 +377,7 @@
   min-height: 70px;
   text-decoration: none;
   font-weight: 500;
-  border-top: 2px solid black;
+  border-top: 2px solid var(--border-color);
   box-sizing: content-box;
 }
 
@@ -401,10 +389,10 @@
   right: 1px;
   width: 1px;
   height: 80%;
-  background: var(--background-color);
+  background: var(--border-color);
 }
 
-.post__link:hover h2 {
+.genre__post__link:hover h2 {
   text-decoration: underline;
 }
 
@@ -420,13 +408,27 @@
   text-align: right;
 }
 
-.genre__title {
-  padding-left: $opm-spacing-500;
-  margin-top: $opm-spacing-500;
-  font-size: $opm-font-size-h2;
-  opacity: 0.5;
-}
+@media screen and (max-width: 768px) {
+  .genre__header__row {
+    margin-top: 32px;
+  }
 
+  .genre__header__fiction {
+    margin-right: 20%;
+  }
+  
+  .genre__header__nonfiction {
+    margin-left: 5%;
+  }
+  
+  .genre__header__arts {
+    margin-right: 5%;
+  }
+  
+  .genre__header__poetry {
+    margin-left: 20%;
+  }
+}
 
 
 // [5] [...slug].js Published Work Pages
@@ -550,7 +552,7 @@
   }
 
   .genre__post__link:nth-child(3) {
-    border-top: 2px solid black;
+    border-top: 2px solid var(--border-color);
   }
 
   .genre__post__link:nth-child(2n)::after {
