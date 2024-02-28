@@ -4,6 +4,7 @@ import styles from "@/styles/searchPage.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import { getSearchPageData } from "@/lib/posts";
+import { useRouter } from "next/router";
 
 const defaultSearchOptions = {
   'resultsPerPage': 10,
@@ -15,26 +16,40 @@ const defaultSearchOptions = {
 }
 
 export default function SearchPage({ searchData }) {
+  const router = useRouter();
   const { metadata, allPostsData } = searchData;
   const initSearchPages = Math.ceil(Object.keys(allPostsData).length / defaultSearchOptions.resultsPerPage);
 
   useEffect(() => {
-    const loadedURL = new URL(window.location.href);
-    const params = new URLSearchParams(loadedURL.search);
-
-    for (const key of params.keys()) {
-      if (key === "q") {
-        defaultSearchOptions[key] = params.get(key);
-        continue;
+    if (Object.keys(router.query).length !== 0) {
+      console.log('useEffect router', router.query)
+      for (const [key, value] of Object.entries(router.query)) {
+        if (key === "q") {
+          defaultSearchOptions[key] = value;
+          continue;
+        }
+        defaultSearchOptions[key] = value.split(',');
       }
-      defaultSearchOptions[key] = params.get(key).split(',');
+    } else {
+      const loadedURL = new URL(window.location.href);
+      const params = new URLSearchParams(loadedURL.search);
+      console.log('using loaded url', loadedURL.search)
+      for (const key of params.keys()) {
+        if (key === "q") {
+          defaultSearchOptions[key] = params.get(key);
+          continue;
+        }
+        defaultSearchOptions[key] = params.get(key).split(',');
+      }
     }
-  }, []);
+
+    console.log('DEFAULT', defaultSearchOptions);
+  }, [router.query]);
 
   return (
     <Layout landingPage title={"Search"}>
       <h1>Advanced Search</h1>
-      <SearchBar metadata={metadata} allPostsData={allPostsData} initSearchPages={initSearchPages} />
+      <SearchBar metadata={metadata} allPostsData={allPostsData} initSearchPages={initSearchPages} router={router} />
     </Layout>
   );
 }
@@ -71,7 +86,7 @@ function debounce(fn, time) {
  * @param {Number} initSearchPages The number of pages in total
  * @returns SearchToolbar and SearchResults components
  */
-export function SearchBar({ metadata, allPostsData, initSearchPages }) {
+export function SearchBar({ metadata, allPostsData, initSearchPages, router }) {
   const [isInitialURL, setInitialURL] = useState(true);
   const [searchOptions, setSearchOptions] = useState(defaultSearchOptions);
   const [searchQuery, setSearchQuery] = useState(defaultSearchOptions.q || '');
@@ -82,6 +97,8 @@ export function SearchBar({ metadata, allPostsData, initSearchPages }) {
   const [searchPage, setSearchPage] = useState(0);
   const searchFilterKeys = ["title", "contributor", "tags"];
 
+  console.log('initialURL', isInitialURL);
+  console.log('searchBar', searchOptions)
   if (isInitialURL) {
     filterResults(searchQuery, searchOptions);
     setInitialURL(false);
@@ -194,9 +211,9 @@ export function SearchBar({ metadata, allPostsData, initSearchPages }) {
     setSearchQuery(e.target.value);
     const url = new URL(window.location.href);
     const params = new URLSearchParams(url.search);
-    params.set('q', e.target.value)
+    params.set('q', e.target.value);
     const newURL = new URL(`${url.origin}${url.pathname}?${params}`);
-    window.history.replaceState({}, '', newURL);
+    window.history.replaceState(window.location.href, '', newURL);
 
     debounce(() => {
       filterResults(e.target.value, searchOptions);
@@ -240,10 +257,17 @@ export function SearchBar({ metadata, allPostsData, initSearchPages }) {
     }
 
     const newURL = new URL(`${url.origin}${url.pathname}?${params}`);
-    window.history.replaceState({}, '', newURL);
+    window.history.replaceState(window.location.href, '', newURL);
 
     setSearchOptions(newSearchOptions);
     filterResults(searchQuery, newSearchOptions);
+  }
+
+  function updateRouter() {
+    const url = new URL(window.location.href);
+    console.log(router.query)
+    console.log(`${url.pathname}${url.search}`)
+    router.replace(`${url.pathname}${url.search}`, undefined, {});
   }
 
   return (
@@ -264,7 +288,8 @@ export function SearchBar({ metadata, allPostsData, initSearchPages }) {
           searchResults={searchResults}
           searchPage={searchPage}
           handlePageChange={handlePageChange}
-          jumpToPage={jumpToPage} />
+          jumpToPage={jumpToPage}
+          updateRouter={updateRouter} />
       }
     </>
   )
@@ -347,7 +372,7 @@ function Chip({ value, group, searchOptions, handleFilterOptions }) {
   </button>
 }
 
-function SearchResults({ searchOptions, searchQuery, searchResults, searchPage, handlePageChange, jumpToPage }) {
+function SearchResults({ searchOptions, searchQuery, searchResults, searchPage, handlePageChange, jumpToPage, updateRouter }) {
   const results = searchResults.results;
   return (
     <div className={styles.results__container}>
@@ -367,7 +392,8 @@ function SearchResults({ searchOptions, searchQuery, searchResults, searchPage, 
 
             return <li key={key} className={styles.results__item}>
               <Link href={key}
-                className={styles.results__grid}>
+                className={styles.results__grid}
+                onClick={updateRouter}>
                 <h3 className={styles.results__title}><MatchingText text={title} query={searchQuery} /></h3>
                 <p className={styles.results__contributor}>
                   {contributor.split(',').map((creator) => {
