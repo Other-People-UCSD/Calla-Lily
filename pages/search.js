@@ -1,18 +1,44 @@
 import Layout from "@/components/layout";
-import { createContext, useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "@/styles/searchPage.module.scss";
 import Link from "next/link";
 import Image from "next/image";
+import { getSearchPageData } from "@/lib/posts";
 
-export default function SearchPage() {
+const defaultSearchOptions = {
+  'resultsPerPage': 10,
+  'showFilter': false,
+  'genres': [],
+  'collections': [],
+  'contentYears': [],
+}
+
+export default function SearchPage({ searchData }) {
+  const {metadata, allPostsData} = searchData;
+  const initSearchPages = Math.ceil(Object.keys(allPostsData).length / defaultSearchOptions.resultsPerPage);
+
   return (
     <Layout landingPage title={"Search"}>
       <h1>Advanced Search</h1>
-      <SearchProvider />
+      <SearchBar metadata={metadata} allPostsData={allPostsData} initSearchPages={initSearchPages} />
     </Layout>
   );
 }
 
+export async function getStaticProps() {
+  const searchData = await getSearchPageData();
+
+  return {
+    props: {
+      searchData
+    }
+  }
+}
+
+/** 
+ * Simple debounce function to delay operations on user typing query into search input
+ * @returns {Function} The debounced function
+ */
 function debounce(fn, time) {
   let timeoutId;
   return function (...args) {
@@ -24,72 +50,35 @@ function debounce(fn, time) {
   }
 }
 
-const defaultSearchOptions = {
-  'resultsPerPage': 10,
-  'showFilter': false,
-  'genres': [],
-  'collections': [],
-  'contentYears': [],
-}
-
-// For Header Search, pass the closeNav function to set the html overflow to scroll 
-// after a SearchResult link is pressed
-const SearchContext = createContext(null);
-
 /**
- * Only fetch from the API on demand when the user opens the search bar.
- * Do not re-fetch on rerenders by checking if metadata has been set before.
+ * 
+ * @param {Object} metadata Information about the unique set of years and collections
+ * @param {Object} allPostsData The data of all posts to be searched by
+ * @param {Number} initSearchPages The number of pages in total
+ * @returns SearchToolbar and SearchResults components
  */
-export function SearchProvider({ showSearch, closeNav, isHeader, theme }) {
-  const [isLoading, setLoading] = useState(true);
-  const [metadata, setMetadata] = useState(null);
-
-  useEffect(() => {
-    if (showSearch === false || metadata !== null) {
-      return;
-    }
-    (async () => {
-      const res = await fetch(`/api/post-metadata.json`, {
-        method: "get",
-        headers: { "opm-content": 'preview' }
-      });
-      const fetchedMetadata = await res.json();
-      setMetadata(fetchedMetadata);
-      setLoading(false);
-    })();
-  }, [showSearch, metadata]);
-
-  if (showSearch === false) {
-    return null;
-  }
-
-  return (
-    <SearchContext.Provider value={closeNav}>
-      <SearchBar metadata={metadata} isLoading={isLoading} isHeader={isHeader} theme={theme} />
-    </SearchContext.Provider>
-  )
-}
-
-export function SearchBar({ metadata, isLoading, isHeader, theme }) {
+export function SearchBar({ metadata, allPostsData, initSearchPages }) {
   const [searchOptions, setSearchOptions] = useState(defaultSearchOptions);
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState(null)
+  const [searchResults, setSearchResults] = useState({
+    numSearchPages: initSearchPages,
+    results: allPostsData,
+  })
   const [searchPage, setSearchPage] = useState(0);
   const searchFilterKeys = ["title", "contributor", "tags"];
 
-  // /**
-  //  * After initial loading of data into metadata state, display the results
-  //  * @param {Object} Metadata
-  //  */
-  // useEffect(() => {
-  //   filterResults(searchQuery, searchOptions)
-  // });
-
+  /**
+   * Filters the entire initial data by user query
+   * @param {String} recentSearchQuery The user search query (debounced) 
+   * @returns {Object} Filtered data from allPostsData matching user query
+   */
   function filterQuery(recentSearchQuery) {
+    // No query, filter based on all data
     if (recentSearchQuery === undefined || recentSearchQuery === '') {
-      return metadata;
+      return allPostsData;
     }
-    return Object.fromEntries(Object.entries(metadata).filter(([_slug, data]) => {
+
+    return Object.fromEntries(Object.entries(allPostsData).filter(([_slug, data]) => {
       const conditions = searchFilterKeys.map(key => {
         return data[key]?.toString().toLowerCase()
           .includes(recentSearchQuery.toLowerCase())
@@ -100,12 +89,12 @@ export function SearchBar({ metadata, isLoading, isHeader, theme }) {
   }
 
   /**
-   * Filter the matching query using the provided filter options
+   * Filter the filtered user query data using the provided filter options
    * (GENRE) AND (COLLECTION OR CONTENT_YEAR)
    * COLLECTION and CONTENT_YEAR are mutually exclusive groups.
-   * @param {Object} matchingQueryResults 
-   * @param {Array.<Object>} recentSearchOptions 
-   * @returns {Object} Filtered results
+   * @param {Object} matchingQueryResults Filtered data from filterQuery()
+   * @param {Array.<Object>} recentSearchOptions Search filters (debounced)
+   * @returns {Object} Filtered results matching the filtered options
    */
   function filterOptions(matchingQueryResults, recentSearchOptions) {
     return Object.fromEntries(Object.entries(matchingQueryResults).filter(([_slug, data]) => {
@@ -158,15 +147,16 @@ export function SearchBar({ metadata, isLoading, isHeader, theme }) {
     }));
   }
 
+  /**
+   * Filters the data by user inputs to return search results 
+   * @param {String} recentSearchQuery 
+   * @param {Object} recentSearchOptions 
+   */
   function filterResults(recentSearchQuery, recentSearchOptions) {
-    if (metadata === 'undefined' || metadata === null) {
-      return;
-    }
     const matchingQueryResults = filterQuery(recentSearchQuery);
 
     const matchingFilter = filterOptions(matchingQueryResults, recentSearchOptions);
 
-    console.log(matchingFilter)
     const numSearchPages = Math.ceil(Object.keys(matchingFilter).length / searchOptions.resultsPerPage);
     setSearchResults({
       numSearchPages: numSearchPages,
@@ -175,7 +165,10 @@ export function SearchBar({ metadata, isLoading, isHeader, theme }) {
     setSearchPage(0); // Reset to first page on search change because there may not be as many results
   }
 
-  // Must debounce like this to pass in the new value instead of using the old state
+  /**
+   * Must debounce like this to pass in the new value instead of using the old state
+   * @param {HTMLElement} e The input element
+   */
   function handleSearchQuery(e) {
     setSearchQuery(e.target.value);
 
@@ -216,22 +209,8 @@ export function SearchBar({ metadata, isLoading, isHeader, theme }) {
     filterResults(searchQuery, newSearchOptions);
   }
 
-  if (isLoading) {
-    return <div className={`${isHeader ? styles.header : ''} ${theme ? styles[`theme--${theme}`] : ''}`}>
-      <SearchToolbar
-        metadata={metadata}
-        searchOptions={searchOptions}
-        searchQuery={searchQuery}
-        handleSearchQuery={handleSearchQuery}
-        handleFilter={handleFilter}
-        handleFilterOptions={handleFilterOptions}
-      />
-      <p>Loading...</p>
-    </div>
-  }
-
   return (
-    <div className={`${isHeader ? styles.header : ''} ${theme ? styles[`theme--${theme}`] : ''}`}>
+    <>
       <SearchToolbar
         metadata={metadata}
         searchOptions={searchOptions}
@@ -250,7 +229,7 @@ export function SearchBar({ metadata, isLoading, isHeader, theme }) {
           handlePageChange={handlePageChange}
           jumpToPage={jumpToPage} />
       }
-    </div>
+    </>
   )
 }
 
@@ -332,7 +311,6 @@ function Chip({ value, group, searchOptions, handleFilterOptions }) {
 }
 
 function SearchResults({ searchOptions, searchQuery, searchResults, searchPage, handlePageChange, jumpToPage }) {
-  const closeNav = useContext(SearchContext);
   const results = searchResults.results;
   return (
     <div className={styles.results__container}>
@@ -347,18 +325,16 @@ function SearchResults({ searchOptions, searchQuery, searchResults, searchPage, 
           Object.keys(results).slice(searchPage * searchOptions.resultsPerPage, (searchPage + 1) * searchOptions.resultsPerPage).map((key) => {
             const title = results[key].title;
             let contributor = results[key].contributor;
-            // console.log(contributor)
             const excerpt = results[key].excerpt;
             const tags = results[key].tags.join(', ');
 
             return <li key={key} className={styles.results__item}>
               <Link href={key}
-                onClick={closeNav}
                 className={styles.results__grid}>
                 <h3 className={styles.results__title}><MatchingText text={title} query={searchQuery} /></h3>
                 <p className={styles.results__contributor}>
                   {contributor.split(',').map((creator) => {
-                    return <span key={creator}>/ <MatchingText text={creator.replace(/\(.*\)/,'')} query={searchQuery} /></span>
+                    return <span key={creator}>/ <MatchingText text={creator.replace(/\(.*\)/, '')} query={searchQuery} /></span>
                   })}
                 </p>
                 <p className={styles.results__tags}>
@@ -370,14 +346,14 @@ function SearchResults({ searchOptions, searchQuery, searchResults, searchPage, 
                   <p className={styles.results__excerpt}>{excerpt}</p>
 
                   {results[key].thumbnail &&
-                  <div className={styles.results__thumbnail}>
-                    <Image src={results[key].thumbnail}
-                      placeholder={"blur"} blurDataURL={results[key].thumbnail}
-                      quality={20}
-                      fill={true}
-                      sizes={"(min-width: 768px) 100px, 200px"}
-                      alt={"View artwork description in link!"} />
-                      </div>
+                    <div className={styles.results__thumbnail}>
+                      <Image src={results[key].thumbnail}
+                        placeholder={"blur"} blurDataURL={results[key].thumbnail}
+                        quality={20}
+                        fill={true}
+                        sizes={"(min-width: 768px) 100px, 200px"}
+                        alt={"View artwork description in link!"} />
+                    </div>
                   }
                 </div>
               </Link>

@@ -3,7 +3,6 @@ import Link from 'next/link';
 import styles from '@/styles/header.module.scss';
 import navStyles from '@/styles/nav.module.scss';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { SearchProvider } from '@/pages/search';
 
 const delta = 5;
 
@@ -11,22 +10,12 @@ const delta = 5;
  * This is the header with the MobileNav menu nested within it. 
  * @returns 
  */
-export default function HeaderMain({ landingPage, title, announcementData }) {
+export default function HeaderMain() {
   const headerRef = useRef(null);
   const [showNav, setShowNav] = useState(false);
-  const [showSearch, setShowSearch] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollTop, setLastScrollTop] = useState(0);
 
-  /**
-   * Opens the search after clicking the search icon
-   */
-  const openSearch = () => {
-    document.getElementById("mobileNav").style.overflowY = "auto";
-    document.getElementById("mobileNav").style.height = "100%";
-    document.querySelector("html").style.overflowY = "hidden";
-    setShowSearch(true);
-  }
   /**
    * Opens the mobile navigation after clicking Menu
    */
@@ -78,7 +67,6 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
     document.getElementById("mobileNav").style.height = "0%";
     document.querySelector("html").style.overflowY = "initial";
     setShowNav(false);
-    setShowSearch(false);
   }
 
   return (
@@ -90,9 +78,9 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
       >
         <Link href="/" className={styles.logo} aria-label="Go to Homepage">O P _</Link>
         <div className={styles.toolbar}>
-          <button className={styles.search__wrapper} onClick={openSearch} aria-label="Open Search">
-            <svg className={styles.search__icon}><use href="/svg/accents.svg#search-icon" /></svg>
-          </button>
+          <Link href="/search" className={styles.search__wrapper} aria-label="Open Search">
+          <svg className={styles.search__icon}><use href="/svg/accents.svg#search-icon" /></svg>
+          </Link>
           <button className={styles.menu} onClick={openNav} aria-label="Open Menu">Menu</button>
         </div>
 
@@ -100,7 +88,7 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
       <div
         id='mobileNav'
         className={navStyles.overlay}>
-        {(showNav || showSearch) &&
+        {showNav &&
           <div className={styles.overlay__header}>
             <Link href="/" onClick={closeNav} className={styles.logo} aria-label="Go to Homepage">O P _</Link>
             <div className={styles.toolbar}>
@@ -112,7 +100,6 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
           </div>
         }
         {showNav && <MobileNav setShowNav={setShowNav} closeNav={closeNav} />}
-        <SearchProvider showSearch={showSearch} closeNav={closeNav} isHeader={true} theme={"dark"} />
       </div>
     </>
   );
