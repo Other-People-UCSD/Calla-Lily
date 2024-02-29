@@ -35,8 +35,7 @@ test.describe('Post Attributes', () => {
   test('Most recent post has no next', async ({ page }) => {
     // Arrange
     await page.goto('./');
-    await page.getByLabel('Open Menu').click();
-    await page.getByPlaceholder('Search').click();
+    await page.getByLabel('Open Search').click();
     await page.getByPlaceholder('Search').fill(' ');
     // Act
     await page.getByRole('listitem').first().click();
