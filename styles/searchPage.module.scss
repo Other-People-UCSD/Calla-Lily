@@ -23,7 +23,14 @@
   opacity: $opm-opacity-placeholder;
 }
 
-
+.sr--offscreen {
+  position: absolute;
+  top: auto;
+  left: -1000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
 .query__input {
   box-sizing: border-box;
   margin: 0;

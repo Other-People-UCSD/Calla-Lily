@@ -18,38 +18,37 @@ const defaultSearchOptions = {
 export default function SearchPage({ searchData }) {
   const router = useRouter();
   const { metadata, allPostsData } = searchData;
-  const initSearchPages = Math.ceil(Object.keys(allPostsData).length / defaultSearchOptions.resultsPerPage);
+  const [initData, setInitData] = useState(defaultSearchOptions);
+  const initSearchPages = Math.ceil(Object.keys(allPostsData).length / initData.resultsPerPage);
+
+  const handleInitData = (queryParams) => {
+    const copyData = { ...defaultSearchOptions };
+
+    for (const [key, val] of Object.entries(queryParams)) {
+      if (key === 'q') {
+        copyData[key] = val;
+        continue;
+      }
+      copyData[key] = val.split(',');
+    }
+    setInitData(copyData);
+  }
 
   useEffect(() => {
+    // Use Next Router, else if visited by a shared URL parse the entries
     if (Object.keys(router.query).length !== 0) {
-      console.log('useEffect router', router.query)
-      for (const [key, value] of Object.entries(router.query)) {
-        if (key === "q") {
-          defaultSearchOptions[key] = value;
-          continue;
-        }
-        defaultSearchOptions[key] = value.split(',');
-      }
+      handleInitData(router.query, 'router');
     } else {
       const loadedURL = new URL(window.location.href);
       const params = new URLSearchParams(loadedURL.search);
-      console.log('using loaded url', loadedURL.search)
-      for (const key of params.keys()) {
-        if (key === "q") {
-          defaultSearchOptions[key] = params.get(key);
-          continue;
-        }
-        defaultSearchOptions[key] = params.get(key).split(',');
-      }
+      handleInitData(params);
     }
-
-    console.log('DEFAULT', defaultSearchOptions);
   }, [router.query]);
 
   return (
     <Layout landingPage title={"Search"}>
       <h1>Advanced Search</h1>
-      <SearchBar metadata={metadata} allPostsData={allPostsData} initSearchPages={initSearchPages} router={router} />
+      <SearchBar metadata={metadata} allPostsData={allPostsData} initSearchPages={initSearchPages} initData={initData} router={router} />
     </Layout>
   );
 }
@@ -86,19 +85,17 @@ function debounce(fn, time) {
  * @param {Number} initSearchPages The number of pages in total
  * @returns SearchToolbar and SearchResults components
  */
-export function SearchBar({ metadata, allPostsData, initSearchPages, router }) {
+export function SearchBar({ metadata, allPostsData, initSearchPages, initData, router }) {
   const [isInitialURL, setInitialURL] = useState(true);
-  const [searchOptions, setSearchOptions] = useState(defaultSearchOptions);
-  const [searchQuery, setSearchQuery] = useState(defaultSearchOptions.q || '');
+  const [searchOptions, setSearchOptions] = useState(initData);
+  const [searchQuery, setSearchQuery] = useState(initData.q || '');
   const [searchResults, setSearchResults] = useState({
     numSearchPages: initSearchPages,
     results: allPostsData,
-  })
+  });
   const [searchPage, setSearchPage] = useState(0);
   const searchFilterKeys = ["title", "contributor", "tags"];
 
-  console.log('initialURL', isInitialURL);
-  console.log('searchBar', searchOptions)
   if (isInitialURL) {
     filterResults(searchQuery, searchOptions);
     setInitialURL(false);
@@ -297,11 +294,12 @@ export function SearchBar({ metadata, allPostsData, initSearchPages, router }) {
 
 function SearchToolbar({ metadata, searchOptions, searchQuery, handleSearchQuery, handleFilter, handleFilterOptions }) {
   const filterArrowIcon = searchOptions.showFilter ? <span>&#9650;</span> : <span>&#9660;</span>;
-
   return (
     <form action="/search" method="get" role="search">
       <div className={styles.toolbar__main}>
+        <label htmlFor="search-input" className={styles["sr--offscreen"]}>Search Input</label>
         <input
+          id="search-input"
           type="search"
           name="q"
           value={searchQuery}
@@ -345,7 +343,6 @@ function SearchToolbar({ metadata, searchOptions, searchQuery, handleSearchQuery
           }
         </div>
       </div>
-
     </form>
   );
 }
