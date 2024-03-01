@@ -21,6 +21,10 @@ export default function SearchPage({ searchData }) {
   const [initData, setInitData] = useState(defaultSearchOptions);
   const initSearchPages = Math.ceil(Object.keys(allPostsData).length / initData.resultsPerPage);
 
+  /**
+   * Sanitize the query parameters to only load in the valid keys.
+   * @param {ParsedUrlQuery|URLSearchParams} queryParams An object of search query parameters
+   */
   const handleInitData = (queryParams) => {
     const copyData = { ...defaultSearchOptions };
 
@@ -28,9 +32,11 @@ export default function SearchPage({ searchData }) {
       if (key === 'q') {
         copyData[key] = val;
         continue;
+      } else if (['genres', 'collections', 'contentYears'].includes(key)) {
+        copyData[key] = val.split(',');
       }
-      copyData[key] = val.split(',');
     }
+
     setInitData(copyData);
   }
 
@@ -39,6 +45,7 @@ export default function SearchPage({ searchData }) {
     if (Object.keys(router.query).length !== 0) {
       handleInitData(router.query, 'router');
     } else {
+      // Validate the URL to prevent URL XSS injection
       const loadedURL = new URL(window.location.href);
       const params = new URLSearchParams(loadedURL.search);
       handleInitData(params);
@@ -260,11 +267,14 @@ export function SearchBar({ metadata, allPostsData, initSearchPages, initData, r
     filterResults(searchQuery, newSearchOptions);
   }
 
+  /**
+   * Update the Search URL params in the router so back-navigation saves user input state.
+   * Shallow option prevents the page from running getStaticProps and routing to the search 
+   * instead of the search result.
+   */
   function updateRouter() {
     const url = new URL(window.location.href);
-    console.log(router.query)
-    console.log(`${url.pathname}${url.search}`)
-    router.replace(`${url.pathname}${url.search}`, undefined, {});
+    router.replace(`${url.pathname}${url.search}`, undefined, {shallow: true});
   }
 
   return (
