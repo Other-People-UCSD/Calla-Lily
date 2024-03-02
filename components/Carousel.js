@@ -1,99 +1,66 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import carouselStyles from '@/styles/carousel.module.scss';
 import homepageStyles from '@/styles/homepage.module.scss'
 import Image from "next/image";
+import Link from "next/link";
+import { Chip } from "./PostCard";
 
-
-const poetryItems = [
-  {
-    "title": "I Sold My Soul At Sun God",
-    "description": "",
-    "item_link": "",
-    "image_url": "/images/5/temporariness-of-twenty-kyoko-downey.jpg",
-    "image_caption": "",
-  },
-  {
-    "title": "A Day at the Beach",
-    "description": "",
-    "item_link": "",
-    "image_url": "/images/5/a-day-at-the-beach-tammy-ding.jpg",
-    "image_caption": "",
-  },
-  {
-    "title": "to you a reply",
-    "description": "",
-    "item_link": "",
-    "image_url": "/images/5/to-you-a-reply-kevin-phan.jpg",
-    "image_caption": "",
-  },
-];
-
-const visualArtItems = [
-  {
-    "title": "Ascension",
-    "description": "",
-    "item_link": "",
-    "image_url": "/images/5/ascension-alperen-ayan.jpg",
-    "image_caption": "",
-  },
-  {
-    "title": "Invitation",
-    "description": "",
-    "item_link": "",
-    "image_url": "/images/5/invitation-boopala-arul.jpg",
-    "image_caption": "",
-  },
-];
-
-const fictionItems = [
-  {
-    "title": "The Twelve Zodiac Animals Visit",
-    "description": "",
-    "item_link": "",
-    "image_url": "/images/5/zodiac-animals-cover-helen-huang.png",
-    "image_caption": "",
-  },
-  {
-    "title": "Violations in the Guest Visitor Policy",
-    "description": "",
-    "item_link": "",
-    "image_url": "/images/5/violations-guest-visitor-policy-cover-amy-stukenholtz.jpg",
-    "image_caption": "",
-  },
-];
-
-const nonfictionItems = [
-  {
-    "title": "Cognates",
-    "description": "",
-    "item_link": "",
-    "image_url": "/images/5/cognates-kayla-weiss.jpg",
-    "image_caption": "",
-  },
-  {
-    "title": "Porcelain in Silks",
-    "description": "",
-    "item_link": "",
-    "image_url": "/images/5/porcelain-in-silks-guyon-perez.jpg",
-    "image_caption": "",
-  },
-];
-
-
-export default function Carousel({ genre, contentAlign }) {
+export function CarouselMobile({ entries, group, numResults, random }) {
+  const [hasMounted, setMounted] = useState(false);
   const [curItem, setCurItem] = useState(0);
-  
 
-  let items = poetryItems;
-  if (genre === 'poetry') {
-    items = poetryItems;
-  } else if (genre === 'visual') {
-    items = visualArtItems;
-  } else if (genre === 'fiction') {
-    items = fictionItems
-  } else if (genre === 'nonfiction' ) {
-    items = nonfictionItems
+  useEffect(() => {
+    setMounted(true);
+  }, [])
+
+  if (!hasMounted) {
+    return;
   }
+
+  const groupEntries = entries.filter((entry) => {
+    return entry.collection === group;
+  });
+
+  console.log(groupEntries[curItem]);
+
+  return (
+    <div className={carouselStyles.mobile}>
+      <div className={carouselStyles.mobile__track}>
+        {groupEntries.splice(0, numResults).map((item, idx) => {
+          return <Link
+            key={idx}
+            href={item.slug}
+            className={carouselStyles.mobile__item}
+            style={{ color: "black", backgroundImage: `url(${item.thumbnail})` }}>
+            <div className={carouselStyles.mobile__textbox}>
+              <p className={carouselStyles.title}>{item.title}</p>
+              <p className={carouselStyles.creator}>
+                {item.contributor.split(',').map(creator => <span key={creator}>/ {creator}</span>)}
+              </p>
+            </div>
+            <div className={carouselStyles.chip__wrapper}>
+              {item.collection ? <Chip type="collection" value={item.collection} /> : <Chip type="content" value="Content" />}
+              {item.tags.map((tag) => {
+                return <Chip key={tag} type="tag" value={tag} />
+              })}
+            </div>
+          </Link>
+        })}
+      </div>
+      <div className={carouselStyles.mobile__scroll__container}>
+        {[...Array(numResults)].map((_, i) => {
+          return <div key={i} className={carouselStyles.mobile__scroll__dot} />
+        })}
+      </div>
+    </div>
+  )
+
+}
+
+
+export function CarouselGenre({ genre, contentAlign }) {
+  const [curItem, setCurItem] = useState(0);
+  let items = genre;
 
   function prevItem() {
     if (curItem === 0) {
@@ -133,7 +100,7 @@ function Carousel__GenreItem({ item, contentAlign, style }) {
       <div className={homepageStyles.block__img}>
         <div className={homepageStyles.block__img__container}>
           <Image className={`${homepageStyles.img__cover}  ${homepageStyles[`img__cover--${contentAlign}`]}`}
-            src={item.image_url} fill={true} 
+            src={item.image_url} fill={true}
             placeholder={'empty'}
             sizes={"(max-width: 768px) 100vw, 50vw"}
             alt={item.image_url} />

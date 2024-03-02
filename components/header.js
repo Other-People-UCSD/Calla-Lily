@@ -79,7 +79,7 @@ export default function HeaderMain() {
         <Link href="/" className={styles.logo} aria-label="Go to Homepage">O P _</Link>
         <div className={styles.toolbar}>
           <Link href="/search" className={styles.search__wrapper} aria-label="Open Search">
-          <svg className={styles.search__icon}><use href="/svg/accents.svg#search-icon" /></svg>
+            <svg className={styles.search__icon}><use href="/svg/accents.svg#search-icon" /></svg>
           </Link>
           <button className={styles.menu} onClick={openNav} aria-label="Open Menu">Menu</button>
         </div>
@@ -111,6 +111,14 @@ export default function HeaderMain() {
  * @returns 
  */
 function MobileNav({ closeNav }) {
+  /**
+ * Gets the current year in the format YYYY
+ * @returns The current year
+ */
+  function getYear() {
+    return new Date().getFullYear();
+  }
+
   return (
     <>
       <nav className={navStyles.nav__content}>
@@ -135,19 +143,11 @@ function MobileNav({ closeNav }) {
           </ul>
         </div>
       </nav>
-      
+
       <div className={navStyles.footer}>
         <svg className={styles.opm__logo}><use href="/svg/accents.svg#logo-vd-op-text" /></svg>
         <p>{`Other People © ${getYear()}`} <br />ALL RIGHTS RESERVED</p>
       </div>
     </>
   );
-
-  /**
-   * Gets the current year in the format YYYY
-   * @returns The current year
-   */
-  function getYear() {
-    return new Date().getFullYear();
-  }
 }

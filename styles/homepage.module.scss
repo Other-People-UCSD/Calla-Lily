@@ -34,6 +34,16 @@
   font-family: Helvetica, sans-serif;
 }
 
+.hero__text--italic {
+  font-family: $opm-font-monospace;
+  font-style: italic;
+  font-weight: normal;
+}
+
+.hero__text--thin {
+  font-weight: 300;
+}
+
 .hero__img__container {
   position: absolute;
   left: -150px;

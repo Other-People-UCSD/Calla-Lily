@@ -224,22 +224,17 @@ export function SearchBar({ metadata, allPostsData, initSearchPages, initData, r
     }, 200)();
   }
 
-  function handlePageChange(change) {
-    if (searchPage + change < 0 || searchPage + change >= searchResults.numSearchPages) {
-      return;
-    }
-    setSearchPage(searchPage + change);
-  }
-
-  function jumpToPage(pageNum) {
-    setSearchPage(pageNum);
-  }
-
   function handleFilter() {
     const newSearchOptions = { ...searchOptions, 'showFilter': !searchOptions.showFilter };
     setSearchOptions(newSearchOptions)
   }
 
+  /**
+   * When a filter option is pressed, filter the results accordingly
+   * Update URL search parameters
+   * @param {String} group The key for the value 
+   * @param {String} value
+   */
   function handleFilterOptions(group, value) {
     const oldSearchOptionGroup = searchOptions[group];
     let newSearchOptions;
@@ -275,6 +270,30 @@ export function SearchBar({ metadata, allPostsData, initSearchPages, initData, r
   function updateRouter() {
     const url = new URL(window.location.href);
     router.replace(`${url.pathname}${url.search}`, undefined, {shallow: true});
+  }
+
+  /**
+   * Changes the results page display 
+   * @param {Number} change 
+   * @returns if page is invalid
+   */
+  function handlePageChange(change) {
+    if (searchPage + change < 0 || searchPage + change >= searchResults.numSearchPages) {
+      return;
+    }
+    setSearchPage(searchPage + change);
+  }
+
+  /**
+   * Changes the results page display to the specified number
+   * @param {Number} pageNum 
+   * @returns if page is invalid
+   */
+  function jumpToPage(pageNum) {
+    if (pageNum < 0 || pageNum >= searchResults.numSearchPages) {
+      return;
+    }
+    setSearchPage(pageNum);
   }
 
   return (
@@ -448,6 +467,11 @@ function SearchResults({ searchOptions, searchQuery, searchResults, searchPage, 
 
 }
 
+/**
+ * Highlights the matching text from the query by attaching a class modifier.
+ * @param {{Array.<String>|String, String}} obj  
+ * @returns {HTMLSpanElement} Text with span wrappers around matching parts
+ */
 function MatchingText({ text, query }) {
   const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const parts = (query === '') ? [text] : text.split(new RegExp(`(${escapedQuery})`, 'gi'));

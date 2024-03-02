@@ -7,7 +7,6 @@ import { NextSeo } from 'next-seo';
 export default function Layout({ children, post, landingPage, title, announcementData, footerConfig, className }) {
   const siteTitle = title ? (`${title} - Other People`) : (`Other People`);
 
-  // console.log('layour children:', children)
   function Content() {
     if (landingPage) {
       return <main className={`main__landing ${className}`}>{children}</main>;

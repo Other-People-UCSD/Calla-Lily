@@ -57,3 +57,90 @@
   cursor: pointer;
   transform: scale(0.75);
 }
+
+
+
+// CarouselMobile
+
+.mobile {
+  height: 300px;
+}
+
+.mobile__scroll__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 8px;
+  gap: 6px;
+  width: 100vw;
+}
+
+.mobile__scroll__dot {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: grey;
+}
+
+.mobile__track {
+  scroll-snap-type: x mandatory;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  overflow-x: auto;
+}
+
+.mobile__item {
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  position: relative;
+  display: block;
+  justify-content: center;
+  margin-left: 12.5vw;
+  margin-right: 12.5vw;
+  height: 75vw;
+  width: 75vw;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.mobile__textbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 12.5vw;
+  margin-bottom: 12.5vw;
+  height: 50vw;
+  background-color: #ffffff9c;
+}
+
+.mobile__textbox .title,
+.mobile__textbox .creator {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.creator span {
+  display: block;
+  font-weight: 500;
+}
+
+.chip__wrapper {
+  position: absolute;
+  left: 4px;
+  bottom: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0px 8px;
+}
+
+@media screen and (min-width: 769px ) {
+  .mobile {
+    display: none;
+  }
+}

@@ -7,6 +7,7 @@ import { getSortedPostsData, getGenrePostsData } from '@/lib/posts';
 import { PostCardSelector } from '../components/PostCard';
 import { Randomizer } from '@/components/Randomizer';
 import { NewsletterForm } from '@/components/footer';
+import { CarouselMobile } from '@/components/Carousel';
 
 export default function Home(props) {
   const { query, variables, data } = useTina({
@@ -31,7 +32,7 @@ export default function Home(props) {
               <use href="svg/accents.svg#other-people-homepage-circle" />
             </svg>
         </div>
-        <p className={`${styles.hero__text}`}>the visual and literary arts magazine</p>
+        <p className={`${styles.hero__text}`}>the <span className={styles["hero__text--italic"]}>visual</span> and <span className={styles["hero__text--thin"]}>literary</span> arts <span style={{textDecoration: 'underline'}}>magazine</span>.</p>
 
         <AccentIcon id="circle-outline" stroke="#FBDA09" strokeWidth="4px" width="100" height="100" x="200px"
           className={styles['svg--accent']} style={{ left: "40vw", top: "20vh" }} />
@@ -71,6 +72,7 @@ export default function Home(props) {
           </div>
         </div>
         <Randomizer entries={props.allPostsData} group={6} numResults={4} />
+        <CarouselMobile entries={props.allPostsData} group={6} numResults={4} />
 
         <AccentIcon id="circle-fill" fill="#C1665A" width="100" height="100"
           className={styles['svg--accent']} style={{ right: "5vw", top: "150px", }} />

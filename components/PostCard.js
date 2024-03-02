@@ -107,7 +107,7 @@ export function PostCard({ slug, title, contributor, collection, tags, thumbnail
   );
 }
 
-function Chip({ type, value }) {
+export function Chip({ type, value }) {
   if (type === "collection") {
     value = `No. ${value}`;
   }
