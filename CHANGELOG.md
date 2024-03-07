@@ -1,4 +1,14 @@
 # Changelog 
+### v4.6.1 (1/14/24)
+- Increased security configuration against AI web crawlers
+  - Updated `robots.txt` with AI crawler-specific disallows
+  - Added `noai, noimageai` meta tag rules to each published work
+  - Added `X-Robots-Tags: noai, noimageai` to every webpage
+- Fixed Sitemap generation of landing pages and base URL to use the `www` domain
+
+## v4.6.0 (1/11/24)
+- Collection No. 6
+
 ## v4.5.10 (9/26 - 10/24/23)
 - Implemented Playwright E2E testing for parser operations and desktop/mobile navigation properties
 - Changed package manager to pnpm from yarn to resolve issues with peer dependencies and Vercel incompabilities
@@ -15,7 +25,7 @@
 ### v4.5.7.1
 - Announcement bar only shows up on homepage
   - Should not show up on UC Magazines page
-  - Modified the localStorage to save memory by using the same key and checking against the previous value instead of generating new keys
+  - Modified the `localStorage` to save memory by using the same key and checking against the previous value instead of generating new keys
   - If this is changed to show up on other landing pages, must add the tina homepage connection to each used page 
 
 ## v4.5.7 (8/16/23)
@@ -53,7 +63,7 @@
 - Header now changes theme color gradually alongside the body theme
 
 ### v4.5.4.1 (5/8/23)
-- Changed permalinks to /year/title format again
+- Changed permalinks to `/year/title` format again
 
 ## v4.5.4.0 (5/8/23)
 - SEO implemented on pages and posts

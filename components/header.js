@@ -72,12 +72,11 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
   const hideAnnouncement = () => {
     localStorage.setItem('announcement', announcementDate);
     setShowAnnouncement(false);
-    
+
     gtag('event', 'close_announcement', {
       'announcement_date': announcementDate
     });
   }
-
   /**
    * Fire the announcement only once instead of rerendering every scroll
    */
@@ -104,18 +103,20 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
           <button className={navStyles.menu} onClick={openNav} aria-label="Open Menu">Menu</button>
         </div>
         {
-          landingPage && title === 'Home' && 
-          showAnnouncement ? (
+          landingPage && title === 'Home' &&
+            showAnnouncement ? (
             <div className={headerStyles.announcement} id="announcement">
-              { announcementData?.link?.length > 0 ?
-                <Link href={`${announcementData?.link}`}>{announcementData?.description}</Link>
-                :
-                <span>{announcementData?.description}</span>
+              {announcementData && (
+                announcementData.link?.length > 0 ?
+                  <Link href={`${announcementData?.link}`}>{announcementData?.description}</Link>
+                  :
+                  <span>{announcementData?.description}</span>
+              )
               }
-              <button 
-                id="close-notice" 
+              <button
+                id="close-notice"
                 className={headerStyles["close-announcement"]}
-                onClick={hideAnnouncement} 
+                onClick={hideAnnouncement}
                 aria-label="Hide the Announcement"><CloseIcon /></button>
             </div>
           ) : null

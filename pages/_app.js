@@ -26,7 +26,7 @@ export default function App({ Component, pageProps }) {
         openGraph={{
           siteName: 'Other People',
           locale: 'en_US',
-          url: 'https://otherpeoplesd.com/',
+          url: 'https://www.otherpeoplesd.com/',
           type: 'website'
         }}
       />

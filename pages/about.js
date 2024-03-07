@@ -51,7 +51,7 @@ export default function About(props) {
           Our Editorial team reviews submissions individually and votes on their favorite pieces based on quality,
           creativity, craft, and style. The team then convenes to determine the strongest pieces of the selection, the
           number of which is adjusted to fit the maximum length of the magazine publication. For detailed submissions
-          instructions, please see our <a href="https://otherpeoplesd.com/submissions">Submissions</a> page.
+          instructions, please see our <a href="https://www.otherpeoplesd.com/submissions">Submissions</a> page.
         </p>
 
         <h2><strong>OUR MISSION</strong></h2>

@@ -13,6 +13,8 @@ on:
       - '_posts/**'
       - 'pages/**.js'
       - '!pages/api/**'
+  schedule:
+    - cron: '1 1 * * 1'
   workflow_dispatch:
 
 jobs:

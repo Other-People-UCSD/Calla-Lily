@@ -11,7 +11,7 @@ export default function Footer() {
         <FooterLogo />
         <h4>
           {`© ${getYear()} All Rights Reserved`}<br />
-          Version 4.5.4<br />
+          Version 4.6.1<br />
           Calla-Lily</h4>
       </div>
     </footer>

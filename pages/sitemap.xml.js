@@ -1,4 +1,4 @@
-const SITE_URL = 'https://otherpeoplesd.com'
+const SITE_URL = 'https://www.otherpeoplesd.com';
 const EXTERNAL_DATA_URL = `${SITE_URL}/api/post-metadata.json`;
 const EXTERNAL_PAGE_URL = `${SITE_URL}/api/pages.json`;
 
@@ -17,11 +17,11 @@ function generateSiteMap(posts, pages) {
       ${Object.keys(posts)
       .map((path) => {
         return `
-        <url>
+          <url>
             <loc>${`${SITE_URL}${path}`}</loc>
             <lastmod>${posts[path].date}</lastmod>
-        </url>
-      `;
+          </url>
+        `;
       })
       .join('')}
     </urlset>
@@ -34,7 +34,6 @@ export default function SiteMap() {
 
 export async function getServerSideProps({ res }) {
   const request = await fetch(EXTERNAL_DATA_URL);
-  console.log(request)
   const posts = await request.json();
 
   const landing = await fetch(EXTERNAL_PAGE_URL);
