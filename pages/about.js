@@ -101,7 +101,7 @@ export default function About(props) {
               exclusive prose, interview submittors about their
               stories, and may write articles of their choice.</p>
             <p className={"center"}>
-              {forms?.editorial && !forms?.content &&
+              {forms?.editorial &&
                 <a href={forms.editorial}>(Apply Here!)</a>
               }
 
