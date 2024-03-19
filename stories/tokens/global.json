@@ -24,6 +24,19 @@
       "black": { "value": "#303030" },
       "white": { "value": "#FFFFFC"}
     },
+    "chip": {
+      "poetry": { "value": "#9A2A55"},
+      "fiction": { "value": "#DF7D64"},
+      "nonfiction": { "value": "#438DCC"},
+      "visual": { "value": "#558D61"},
+      "content": { "value": "black"},
+      "1": { "value": "black"},
+      "2": { "value": "black"},
+      "3": { "value": "black"},
+      "4": { "value": "black"},
+      "5": { "value": "#438DCC"},
+      "6": { "value": "#81B940"}
+    },
     "font": {
       "arial": { "value": "Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'" },
       "basier": { "value": "basier_circlemonoregular" },

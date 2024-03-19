@@ -1,3 +1,5 @@
+@import '@/stories/_variables.scss';
+
 .base {
   position: relative;
   /* background-color: teal; */
@@ -29,10 +31,11 @@
   height: fit-content;
   min-height: inherit;
   transition: 1500ms ease-in-out;
-  margin: 0; /* override homepage.block */ 
+  margin: 0;
+  /* override homepage.block */
   padding-left: 16px;
   padding-right: 16px;
-} 
+}
 
 .control {
   position: absolute;
@@ -43,6 +46,7 @@
 .control--left {
   right: 0;
 }
+
 .control--right {
   left: 0;
 }
@@ -63,23 +67,45 @@
 // CarouselMobile
 
 .mobile {
-  height: 300px;
+  min-height: 350px;
+}
+
+.mobile :global(.slick-track) {
+  display: flex;
+}
+
+.mobile :global(.slick-slide) > div {
+  margin: 0 24px;
 }
 
 .mobile__scroll__container {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: 8px;
+  margin: 8px 0px;
   gap: 6px;
   width: 100vw;
 }
 
+.mobile__scroll__container li {
+  list-style-type: none;
+  height: 12px;
+  width: 12px;
+}
+
+.mobile__scroll__container li button,
 .mobile__scroll__dot {
-  height: 8px;
-  width: 8px;
+  height: 100%;
+  width: 100%;
   border-radius: 50%;
   background-color: grey;
+  font-size: 0px;
+  // color: transparent;
+}
+
+.mobile__scroll__container li[class="slick-active"] button,
+.mobile__scroll__dot--selected {
+  background-color: black;
 }
 
 .mobile__track {
@@ -95,11 +121,16 @@
   position: relative;
   display: block;
   justify-content: center;
-  margin-left: 12.5vw;
-  margin-right: 12.5vw;
+  margin: 0;
+  padding: 0;
   height: 75vw;
   width: 75vw;
 
+  text-decoration: none;
+}
+
+.mobile__item__bg {
+  height: 100%;
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -108,10 +139,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 12.5vw;
-  margin-bottom: 12.5vw;
-  height: 50vw;
-  background-color: #ffffff9c;
+  height: 100%;
+  background-color: #00000066;
+  color: $opm-color-white;
 }
 
 .mobile__textbox .title,
@@ -123,9 +153,18 @@
   text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
+  text-decoration: underline;
 }
 
-.creator span {
+.mobile__textbox .title {
+  text-decoration: underline;
+}
+
+.mobile__textbox .creator {
+  text-decoration: none;
+}
+
+.mobile__textbox .creator span {
   display: block;
   font-weight: 500;
 }
@@ -139,7 +178,7 @@
   gap: 0px 8px;
 }
 
-@media screen and (min-width: 769px ) {
+@media screen and (min-width: 769px) {
   .mobile {
     display: none;
   }

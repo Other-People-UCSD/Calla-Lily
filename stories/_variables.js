@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Wed, 06 Dec 2023 23:51:08 GMT
+ * Generated on Mon, 18 Mar 2024 02:33:59 GMT
  */
 
 export const OpmColorBlack = "#000000";
@@ -15,6 +15,17 @@ export const OpmColorAccentOrange = "#FFB94F";
 export const OpmColorHighlightRed = "#F4BAB9";
 export const OpmBackgroundBlack = "#303030";
 export const OpmBackgroundWhite = "#FFFFFC";
+export const OpmChip1 = "black";
+export const OpmChip2 = "black";
+export const OpmChip3 = "black";
+export const OpmChip4 = "black";
+export const OpmChip5 = "#438DCC";
+export const OpmChip6 = "#81B940";
+export const OpmChipPoetry = "#9A2A55";
+export const OpmChipFiction = "#DF7D64";
+export const OpmChipNonfiction = "#438DCC";
+export const OpmChipVisual = "#558D61";
+export const OpmChipContent = "black";
 export const OpmFontArial = "Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'";
 export const OpmFontBasier = "basier_circlemonoregular";
 export const OpmFontApple = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'";
