@@ -456,7 +456,8 @@ function SearchResults({ searchOptions, searchQuery, searchResults, searchPage, 
         {
           searchResults.numSearchPages > 1 &&
           [...Array(searchResults.numSearchPages).keys()].map((pageNum) => {
-            return <button key={pageNum} onClick={() => jumpToPage(pageNum)}>{pageNum + 1}</button>
+            return <button key={pageNum} onClick={() => jumpToPage(pageNum)}
+            className={`${searchPage === pageNum ? styles['nav--selected'] : ''}`}>{pageNum + 1}</button>
           })
         }
         {searchResults.numSearchPages !== 0 && searchPage !== searchResults.numSearchPages - 1 && <button onClick={() => handlePageChange(1)}>&gt;</button>}

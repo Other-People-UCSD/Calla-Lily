@@ -48,3 +48,18 @@
     opacity: 1;
   }
 }
+
+.slide--horizontal {
+  animation-name: slideHorizontal;
+  animation-duration: 800ms;
+}
+
+@keyframes slideHorizontal {
+  from {
+    transform: translateX(0px);
+  }
+  
+  to {
+    transform: translateX(26px);
+  }
+}

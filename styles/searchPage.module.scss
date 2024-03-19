@@ -36,7 +36,7 @@
   margin: 0;
   padding-bottom: $opm-spacing-300;
   width: 100%;
-  // color: $opm-color-white;
+  color: var(--light-text-color);
   font-size: $opm-font-size-h1;
   font-weight: normal;
   background-color: inherit;
@@ -251,7 +251,10 @@
 
 .nav button {
   font-size: 20px;
+}
 
+.nav--selected {
+  color: #C75468;
 }
 
 .view_more {

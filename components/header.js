@@ -3,6 +3,7 @@ import Link from 'next/link';
 import styles from '@/styles/header.module.scss';
 import navStyles from '@/styles/nav.module.scss';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ThemeToggle from './ThemeToggle';
 
 const delta = 5;
 
@@ -78,6 +79,7 @@ export default function HeaderMain() {
       >
         <Link href="/" className={styles.logo} aria-label="Go to Homepage">O P _</Link>
         <div className={styles.toolbar}>
+          <ThemeToggle />
           <Link href="/search" className={styles.search__wrapper} aria-label="Open Search">
             <svg className={styles.search__icon}><use href="/svg/accents.svg#search-icon" /></svg>
           </Link>

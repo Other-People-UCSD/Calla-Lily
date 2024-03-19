@@ -29,12 +29,12 @@
 .toolbar button {
   background-color: initial;
   color: unset;
-  border: unset;
   cursor: pointer;
 }
 
 .search__wrapper {
   display: inline-block;
+  margin-left: 16px;
   margin-right: 16px;
 }
 
@@ -122,5 +122,85 @@ html[data-theme="dark"] .search__icon {
 @media (prefers-color-scheme: dark) {
   .search__icon {
     stroke: white;
+  }
+}
+
+.theme__btn {
+  position: relative;
+  display: inline-flex;
+  height: 30px;
+  width: 60px;
+  // padding: 7px;
+  // background-color: grey;
+  border: 1px solid #ABA7A7;
+  border-radius: 45px;
+}
+
+.theme__btn__wrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.theme__star {
+  position: absolute;
+  // left: 6px;
+  left: 0px;
+  height: 20px;
+  width: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  stroke: white;
+  animation-duration: 800ms;
+}
+
+.theme__sun {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  // right: 6px;
+  right: 0px;
+  height: 20px;
+  width: 20px;
+  animation-duration: 800ms;
+}
+
+.theme__logo {
+  position: absolute;
+  top: calc(50% - 10px);
+  left: 6px;
+  z-index: 1;
+  height: 20px;
+  width: 20px;
+  stroke: black;
+  fill: black;
+  transition: transform 800ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+  stroke, fill 400ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.theme__logo--dark {
+  transform: translateX(26px);
+  stroke: white;
+  fill: white;
+}
+
+
+html[data-theme="light"] .theme__star {
+  display: none;
+}
+
+ @media (prefers-color-scheme: light) {
+  html[data-theme="light"] .theme__star {
+    display: none;
+  }
+}
+
+html[data-theme="dark"] .theme__sun {
+  display: none;
+}
+
+@media (prefers-color-scheme:dark) {
+  html[data-theme="dark"] .theme__sun {
+    display: none;
   }
 }

@@ -25,10 +25,6 @@ export default function Home(props) {
     <Layout homepage footerConfig={footerConfig} className={`${styles.main}`}>
       <div className={styles.hero}>
         <div className={`${styles.hero__img__container}`}>
-          {/* <Image className={`${styles.hero__img__cover} ${styles["animate--rotate"]}`}
-            src="opm-text-circle.svg" fill={true}
-            alt="circle" /> */}
-
             <svg className={`${styles["animate--rotate"]}`}>
               <use href="svg/accents.svg#other-people-homepage-circle" />
             </svg>
