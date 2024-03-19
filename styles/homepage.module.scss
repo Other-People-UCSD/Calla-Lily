@@ -153,7 +153,7 @@
 
 
 
-
+// Sections
 
 .headline {
   color: purple;
@@ -234,6 +234,8 @@
   animation: slide 20s linear infinite;
   overflow: hidden;
   font-family: $opm-font-monospace;
+  font-style: italic;
+  color: white;
   white-space: nowrap;
 }
 
@@ -248,7 +250,7 @@
 }
 
 
-
+// Flipbook
 .flipbook__container {
   width: 100%;
 }
@@ -266,6 +268,7 @@
   height: 450px;
   box-sizing: border-box;
   border: 3px solid black;
+  box-shadow: 2px 2px 4px #00000044;
 }
 
 .flipbook__grid {
@@ -281,6 +284,7 @@
 
 }
 
+// Newsletter
 .section__newsletter {
   clear: both;
   position: relative;
@@ -346,6 +350,41 @@
 .ui3_section__flipbook,
 .ui3_section__post_selector {
   position: relative;
+}
+
+.ui3_section__featured .ui3_marquee {
+  background-color: #C75468;
+}
+
+.ui3_section__flipbook .ui3_marquee {
+  background-color: #61976C;
+}
+
+.ui3_section__post_selector .ui3_marquee {
+  background-color: #8C6CB5;
+}
+
+.ui3_section__featured {
+  // height: 100vh;
+  min-height: 400px;
+  // max-height: 100vh;
+}
+
+.featured__btn_link {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  padding: 8px 24px;
+  width: fit-content;
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+  background-color: #F8B67F;
+  border-radius: 20px;
+  border: 2px solid #222;
+  border-width: 2px 4px 4px 2px;
 }
 
 .svg--accent {

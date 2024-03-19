@@ -4,6 +4,56 @@ import homepageStyles from '@/styles/homepage.module.scss'
 import Image from "next/image";
 import Link from "next/link";
 import { Chip } from "./PostCard";
+import { default as SlickSlider } from "react-slick";
+
+export function CarouselSlickMobile({ entries, group, numResults, random }) {
+  const groupEntries = entries.filter((entry) => {
+    return entry.collection === group;
+  });
+
+  const settings = {
+    arrows: false,
+    dots: true,
+    infinite: true,
+    slidesToShow: 1,
+    className: `${carouselStyles.mobile}`,
+    appendDots: dots => {
+      return <div className={carouselStyles.mobile__scroll__dot}>
+        {dots}
+      </div>
+    },
+    dotsClass: `${carouselStyles.mobile__scroll__container}`,
+  }
+
+  return (
+    <SlickSlider {...settings} >
+      {groupEntries.splice(0, numResults).map((item, idx) => {
+        return <Link
+          key={idx}
+          href={item.slug}
+          className={carouselStyles.mobile__item}>
+          <div className={carouselStyles.mobile__item__bg}
+            style={{ backgroundImage: `url(${item.thumbnail})` }}>
+            <div className={carouselStyles.mobile__textbox}>
+              <p className={carouselStyles.title}>{item.title}</p>
+              <p className={carouselStyles.creator}>
+                {item.contributor.split(',').map(creator => <span key={creator}>/ {creator}</span>)}
+              </p>
+            </div>
+          </div>
+          <div className={carouselStyles.chip__wrapper}>
+            {item.collection ? <Chip type="collection" value={item.collection} /> : <Chip type="content" value="Content" />}
+            {item.tags.map((tag) => {
+              return <Chip key={tag} type="tag" value={tag} />
+            })}
+          </div>
+
+        </Link>
+      })}
+    </SlickSlider>
+  )
+}
+
 
 export function CarouselMobile({ entries, group, numResults, random }) {
   const [hasMounted, setMounted] = useState(false);

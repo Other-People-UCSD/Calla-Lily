@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { PostCard } from "./PostCard";
+import { LargePostCard, PostCard } from "./PostCard";
 import styles from "@/styles/posts.module.scss";
 
 /**
@@ -8,7 +8,7 @@ import styles from "@/styles/posts.module.scss";
  * @param {Number} group
  * @returns 
  */
-export function Randomizer({entries, group, numResults}) {
+export function Randomizer({ entries, group, numResults }) {
   const [hasMounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -35,11 +35,35 @@ export function Randomizer({entries, group, numResults}) {
     iters -= 1;
   }
 
+  if (numResults === 3) {
+    return <CardsB1_S2 entries={randomEntries} />
+  }
+
   return (
     <div className={styles.random__grid__container}>
-      { randomEntries.map((props, idx) => {
-          return <PostCard key={idx} {...props} />
+      {randomEntries.map((props, idx) => {
+        return <PostCard key={idx} {...props} />
       })}
     </div>
   )
+}
+
+/**
+ * One big card with two smaller cards on the second row.
+ * @param {Array} entries 
+ */
+function CardsB1_S2({ entries }) {
+
+  return (
+    <>
+      <LargePostCard {...entries[0]} className={styles.random__desktop} />
+
+      <div className={styles.random__grid__container}>
+        {entries.slice(1).map((props, idx) => {
+          return <PostCard key={idx} {...props} />
+        })}
+      </div>
+    </>
+  )
+
 }

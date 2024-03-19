@@ -7,7 +7,8 @@ import { getSortedPostsData, getGenrePostsData } from '@/lib/posts';
 import { PostCardSelector } from '../components/PostCard';
 import { Randomizer } from '@/components/Randomizer';
 import { NewsletterForm } from '@/components/footer';
-import { CarouselMobile } from '@/components/Carousel';
+import { CarouselSlickMobile } from '@/components/Carousel';
+import Link from 'next/link';
 
 export default function Home(props) {
   const { query, variables, data } = useTina({
@@ -32,7 +33,7 @@ export default function Home(props) {
               <use href="svg/accents.svg#other-people-homepage-circle" />
             </svg>
         </div>
-        <p className={`${styles.hero__text}`}>the <span className={styles["hero__text--italic"]}>visual</span> and <span className={styles["hero__text--thin"]}>literary</span> arts <span style={{textDecoration: 'underline'}}>magazine</span>.</p>
+        <p className={`${styles.hero__text}`}>the <span className={styles["hero__text--italic"]}>visual</span> and <span className={styles["hero__text--thin"]}>literary</span> arts <span style={{ textDecoration: 'underline' }}>magazine</span>.</p>
 
         <AccentIcon id="circle-outline" stroke="#FBDA09" strokeWidth="4px" width="100" height="100" x="200px"
           className={styles['svg--accent']} style={{ left: "40vw", top: "20vh" }} />
@@ -71,8 +72,9 @@ export default function Home(props) {
             <span>LIMINAL IS OUT!</span>
           </div>
         </div>
-        <Randomizer entries={props.allPostsData} group={6} numResults={4} />
-        <CarouselMobile entries={props.allPostsData} group={6} numResults={4} />
+        <Randomizer entries={props.allPostsData} group={6} numResults={3} />
+        <CarouselSlickMobile entries={props.allPostsData} group={6} numResults={4} />
+        <Link href="/search?collections=6" className={styles.featured__btn_link}>Keep Browsing</Link>
 
         <AccentIcon id="circle-fill" fill="#C1665A" width="100" height="100"
           className={styles['svg--accent']} style={{ right: "5vw", top: "150px", }} />
@@ -119,20 +121,18 @@ export default function Home(props) {
         }} />
 
         <AccentIcon id="circle-outline" stroke="#FEAACE" strokeWidth="4px" width="100" height="100"
-          className={styles['svg--accent']} style={{left: "5vw", top: "10vh" }}/>
+          className={styles['svg--accent']} style={{ left: "5vw", top: "10vh" }} />
         <AccentIcon id="circle-outline" stroke="#438DCC" strokeWidth="4px" width="100" height="100"
-          className={styles['svg--accent']} style={{left: "40vw", bottom:"-10vh" }}/>
+          className={styles['svg--accent']} style={{ left: "40vw", bottom: "-10vh" }} />
         <AccentIcon id="circle-fill" fill="#6E1F3F1A" width="500" height="500"
-          className={styles['svg--accent']} style={{right: "1vw", bottom: "-10vh" }}/>
+          className={styles['svg--accent']} style={{ right: "1vw", bottom: "-10vh" }} />
         <AccentIcon id="circle-fill" fill="#AAD396" width="100" height="100"
-          className={styles['svg--accent']} style={{left: "-2vw", bottom: "-10vh" }}/>
+          className={styles['svg--accent']} style={{ left: "-2vw", bottom: "-10vh" }} />
 
       </div>
 
       <div className={styles.section__newsletter}>
         <NewsletterForm homepage />
-        <AccentIcon id="vd-outline" stroke="#8464DF" strokeWidth="4px" width="150" height="150"
-          className={styles['svg--accent']} style={{left: "30vw", bottom: "-100px", transform: "rotate(-45deg)"}}/>
       </div>
     </Layout>
   )

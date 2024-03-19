@@ -81,10 +81,10 @@ export function PostCard({ slug, title, contributor, collection, tags, thumbnail
         )}
         <p className={styles.card__creator}>
           {contributor.split(',').map(creator => <span key={creator}>/ {creator}</span>)}
-          </p>
+        </p>
         <div className={styles.chip__wrapper}>
           {collection ? <Chip type="collection" value={collection} /> : <Chip type="content" value="Content" />}
-          { tags.map((tag) => {
+          {tags.map((tag) => {
             return <Chip key={tag} type="tag" value={tag} />
           })}
         </div>
@@ -101,17 +101,73 @@ export function PostCard({ slug, title, contributor, collection, tags, thumbnail
             className={styles.card__thumbnail}
             alt="View artwork description in link!" />
         </div>
-
       }
     </Link>
   );
 }
 
+export function LargePostCard({ slug, title, contributor, collection, tags, thumbnail, className }) {
+  return (
+    <Link href={`/${slug}`} key={slug} className={`${styles.card__container} ${styles['card__container--large']} ${className}`}>
+      <div className={styles.card__contentbox}>
+        {(title.length > 30) ? (
+          <h2 className={`${styles.card__title} ${styles["card__title--small"]}`}>{title}</h2>
+        ) : (
+          <h2 className={styles.card__title}>{title}</h2>
+        )}
+        <p className={styles.card__creator}>
+          {contributor.split(',').map(creator => <span key={creator}>/ {creator}</span>)}
+        </p>
+        <div className={styles.chip__wrapper}>
+          {collection ? <Chip type="collection" value={collection} /> : <Chip type="content" value="Content" />}
+          {tags.map((tag) => {
+            return <Chip key={tag} type="tag" value={tag} />
+          })}
+        </div>
+        {/* <p className={styles.card__preview}>{preview}</p> */}
+      </div>
+      {thumbnail &&
+        <div className={styles.card__thumbnail__frame}>
+          <Image src={thumbnail}
+            fill={true} sizes="100px"
+
+            placeholder="blur" blurDataURL={thumbnail}
+            className={styles.card__thumbnail}
+            alt="View artwork description in link!" />
+        </div>
+      }
+    </Link>
+  )
+}
+
 export function Chip({ type, value }) {
+  const coloredClass = getDefinedChipColor(value);
+
   if (type === "collection") {
     value = `No. ${value}`;
   }
-  return <div className={styles.card__chip}>
+
+  return <div className={`${styles.card__chip} ${coloredClass}`}>
     {value}
   </div>
+}
+
+/**
+ * 
+ * @param {String} value 
+ * @returns 
+ */
+const getDefinedChipColor = (value) => {
+  let str = value.toString().toLowerCase();
+  const isMultiWord = str.split(' ').length > 1;
+
+  if (isMultiWord) {
+    if (str.includes('poetry')) {
+      str = 'poetry';
+    } else if (str.includes('visual')) {
+      str = 'visual';
+    }
+  }
+  
+  return `${styles[`card__chip--${str}`]}`;
 }

@@ -26,13 +26,15 @@
   position: relative;
   padding: 16px;
   border-top: 2px solid var(--border-color);
-  border-radius: 5px;
+  border-radius: 10px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
   text-decoration: none;
   gap: 16px;
   height: 182px;
   max-height: 182px;
   box-sizing: border-box;
-  box-shadow: inset 1px 1px 1px 1px grey, 2px 2px 1px 0px grey;
+  box-shadow: inset 1px 1px 1px 1px #00000040, 2px 2px 1px 0px #00000040;
   background-color: var(--background-color);
   overflow: hidden;
 }
@@ -94,6 +96,40 @@
   color: $opm-color-white;
 }
 
+.card__chip--poetry {
+  background-color: $opm-chip-poetry;
+}
+
+.card__chip--fiction {
+  background-color: $opm-chip-fiction;
+}
+.card__chip--nonfiction {
+  background-color: $opm-chip-nonfiction;
+}
+.card__chip--visual {
+  background-color: $opm-chip-visual;
+}
+.card__chip--content {
+  background-color: $opm-chip-content;
+}
+.card__chip--1 {
+  background-color: $opm-chip-1;
+}
+.card__chip--2 {
+  background-color: $opm-chip-2;
+}
+.card__chip--3 {
+  background-color: $opm-chip-3;
+}
+.card__chip--4 {
+  background-color: $opm-chip-4;
+}
+.card__chip--5 {
+  background-color: $opm-chip-5;
+}
+.card__chip--6 {
+  background-color: $opm-chip-6;
+}
 @media screen and (max-width: 768px) {
   .card__container {
     padding: 12px;
@@ -117,6 +153,27 @@
     font-size: 10px;
   }
 }
+
+// [1B] Large Post Card
+
+.card__container--large {
+  flex-direction: row-reverse;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  padding: 64px;
+  height: 350px;
+  max-height: 350px;
+  max-width: 80vw;
+}
+
+.card__container--large .card__thumbnail__frame {
+  width: 275px;
+  height: 275px;
+}
+
+
 
 
 // [2] Post Card Selector
@@ -151,62 +208,62 @@
 
 
 .selector__divider {
-  flex: 0 0 8px;
+  flex: 0 0 5px;
   margin: 0;
   background-color: black;
   border: none;
 }
 
 .selector__button--poetry {
-  color: purple;
+  color: $opm-chip-poetry;
 }
 
 .selector__button--poetry.selector__button--selected {
-  background-color: purple;
+  background-color: $opm-chip-poetry;
   color: white;
 }
 
 .selector__button--fiction {
-  color: orange;
+  color: $opm-chip-fiction;
 }
 
 .selector__button--fiction.selector__button--selected {
-  background-color: orange;
+  background-color: $opm-chip-fiction;
   color: white;
 }
 
 .selector__button--nonfiction {
-  color: skyblue;
+  color: $opm-chip-nonfiction;
 }
 
 .selector__button--nonfiction.selector__button--selected {
-  background-color: skyblue;
+  background-color: $opm-chip-nonfiction;
   color: white;
 }
 
 .selector__button--visualarts {
-  color: green;
+  color: $opm-chip-visual;
 }
 
 .selector__button--visualarts.selector__button--selected {
-  background-color: green;
+  background-color: $opm-chip-visual;
   color: white;
 }
 
 .divider--poetry {
-  background-color: purple;
+  background-color: $opm-chip-poetry;
 }
 
 .divider--fiction {
-  background-color: orange;
+  background-color: $opm-chip-fiction;
 }
 
 .divider--nonfiction {
-  background-color: skyblue;
+  background-color: $opm-chip-nonfiction;
 }
 
 .divider--visualarts {
-  background-color: green;
+  background-color: $opm-chip-visual;
 }
 
 .selector__grid__container {
@@ -254,6 +311,16 @@
   }
 }
 
+@media screen and (min-width: 769px) {
+  .selector__grid__container .card__container {
+    border-top: none;
+    border-left: 2px inset var(--border-color);
+    border-radius: 10px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+}
+
 // [3] Randomizer (Homepage)
 
 .random__grid__container {
@@ -262,15 +329,15 @@
   width: 80%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(49%, 1fr));
-  gap: 8px;
-
+  gap: 16px;
 }
 
 @media screen and (max-width: 768px) {
+
+  .random__desktop,
   .random__grid__container {
     display: none;
   }
-  
 }
 
 
@@ -356,6 +423,9 @@
   font-weight: bold;
 }
 
+.genre__nav--selected {
+  color: #C75468;
+}
 .genre__grid {
   margin: 32px;
   position: relative;
@@ -380,39 +450,67 @@
 
 .genre__post__link {
   position: relative;
-  padding: 32px;
-  min-height: 70px;
+  display: flex;
+  padding: 16px 20px;
+  min-height: 100px;
   text-decoration: none;
   font-weight: 500;
-  border-top: 2px solid var(--border-color);
+  // border-top: 2px solid var(--border-color);
+  box-shadow: 0px 1px 0px 0px var(--border-color);
   box-sizing: content-box;
+}
+
+.genre__post__contentbox {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .genre__post__link::after {
   content: "";
   display: block;
   position: absolute;
-  top: 10%;
-  right: 1px;
+  top: 0;
   width: 1px;
-  height: 80%;
-  background: var(--border-color);
+  height: 100%;
+  // background: var(--border-color);
+  box-shadow: -8px 0px 0px 0px var(--border-color), 
+  8px 0px 0px 0px var(--border-color);
+}
+
+.genre__post__link::after {
+  right: 8px;
 }
 
 .genre__post__link:hover h2 {
   text-decoration: underline;
 }
 
-.title--small {
-  font-size: 1.1rem;
+.genre__post__title {
+  font-size: 20px;
+  text-transform: initial;
 }
 
-.genre__post__author {
+.title--small {
+  font-size: 16px;
+}
+
+.genre__post__creator {
+  margin: 0px;
+  font-size: 14px;
+}
+
+.genre__post__creator span {
+  display: block;
+}
+
+.genre__post__link .chip__wrapper {
   position: absolute;
-  bottom: 0;
-  right: 0;
-  margin: 8px;
-  text-align: right;
+  left: 8px;
+  bottom: 8px;
+}
+
+.genre__post__link .chip__wrapper .card__chip {
+  padding: 2px 8px;
 }
 
 @media screen and (max-width: 768px) {
@@ -423,17 +521,46 @@
   .genre__header__fiction {
     margin-right: 20%;
   }
-  
+
   .genre__header__nonfiction {
     margin-left: 5%;
   }
-  
+
   .genre__header__arts {
     margin-right: 5%;
   }
-  
+
   .genre__header__poetry {
     margin-left: 20%;
+  }
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 729px) {
+  .genre__post__link h2 {
+    font-size: 1rem;
+  }
+
+  .genre__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .genre__post__link:nth-child(2n)::after {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .card__grid__container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .genre__post__link:nth-child(3n)::after {
+    display: none;
+  }
+
+  .post__content h1 {
+    font-size: 4rem;
   }
 }
 
@@ -542,47 +669,5 @@
 
   .genre__post__link::after {
     display: none;
-  }
-}
-
-@media only screen and (max-width: 1024px) and (min-width: 729px) {
-  .genre__post__link h2 {
-    font-size: 1rem;
-  }
-
-  .genre__grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .genre__post__link:nth-child(-n+2) {
-    border-top: none;
-  }
-
-  .genre__post__link:nth-child(3) {
-    border-top: 2px solid var(--border-color);
-  }
-
-  .genre__post__link:nth-child(2n)::after {
-    display: none;
-  }
-}
-
-@media only screen and (max-width: 1024px) {
-  .card__grid__container {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media only screen and (min-width: 1025px) {
-  .genre__post__link:nth-child(-n+3) {
-    border-top: none;
-  }
-
-  .genre__post__link:nth-child(3n)::after {
-    display: none;
-  }
-
-  .post__content h1 {
-    font-size: 4rem;
   }
 }
