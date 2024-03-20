@@ -244,7 +244,7 @@ export function SearchBar({ metadata, allPostsData, initSearchPages, initData, r
     params.set(group, value)
 
     if (oldSearchOptionGroup.includes(value)) {
-      const filtered = oldSearchOptionGroup.filter((v) => { return v !== value; });
+      const filtered = oldSearchOptionGroup.filter((v) => { return v !== value && v !== ''; });
       newSearchOptions = {
         ...searchOptions,
         [group]: filtered
@@ -253,6 +253,10 @@ export function SearchBar({ metadata, allPostsData, initSearchPages, initData, r
     } else {
       newSearchOptions = { ...searchOptions, [group]: [...oldSearchOptionGroup, value] };
       params.set(group, [...oldSearchOptionGroup, value]);
+    }
+
+    if (params.get(group) === '') {
+      params.delete(group);
     }
 
     const newURL = new URL(`${url.origin}${url.pathname}?${params}`);
@@ -269,7 +273,7 @@ export function SearchBar({ metadata, allPostsData, initSearchPages, initData, r
    */
   function updateRouter() {
     const url = new URL(window.location.href);
-    router.replace(`${url.pathname}${url.search}`, undefined, {shallow: true});
+    router.replace(`${url.pathname}${url.search}`, undefined, { shallow: true });
   }
 
   /**
@@ -457,7 +461,7 @@ function SearchResults({ searchOptions, searchQuery, searchResults, searchPage, 
           searchResults.numSearchPages > 1 &&
           [...Array(searchResults.numSearchPages).keys()].map((pageNum) => {
             return <button key={pageNum} onClick={() => jumpToPage(pageNum)}
-            className={`${searchPage === pageNum ? styles['nav--selected'] : ''}`}>{pageNum + 1}</button>
+              className={`${searchPage === pageNum ? styles['nav--selected'] : ''}`}>{pageNum + 1}</button>
           })
         }
         {searchResults.numSearchPages !== 0 && searchPage !== searchResults.numSearchPages - 1 && <button onClick={() => handlePageChange(1)}>&gt;</button>}
