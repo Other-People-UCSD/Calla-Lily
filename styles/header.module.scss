@@ -151,6 +151,7 @@ html[data-theme="dark"] .search__icon {
   top: 50%;
   transform: translateY(-50%);
   stroke: white;
+  fill: var(--background-color);
   animation-duration: 800ms;
 }
 

@@ -70,11 +70,9 @@ export default function UCMagazines(props) {
           as a student-led magazine to help students find their way to the creative voices across our UC system!
         </p>
 
-        <p>All initial descriptions have been pulled directly from their about pages.</p>
-        <p><strong>To update or add your own information please email us at otherpeopleucsd@gmail.com!</strong></p>
+        <p>All initial descriptions have been pulled directly from their about pages. To update or add your own information please email us at otherpeopleucsd@gmail.com!</p>
 
-        <p><strong>Last Updated: {lastmod}</strong></p>
-        <p><strong>*Magazine activity is not updated yet</strong></p>
+        <p><strong>Last Updated: {lastmod}</strong> *Magazine activity is not up-to-date</p>
 
         <UCCardsDropdown
           magazines={data.ucmagazines.magazines}
@@ -234,35 +232,34 @@ const UCCardsDropdown = ({ magazines, router, initData }) => {
 
   return (
     <>
-      <div className={ucStyles.search__container}>
-        <div className={ucStyles.search__bar}>
-          <label id="searchBar" type="text" className={ucStyles.search__label}>Search</label>
-          <input htmlFor="searchBar" placeholder='Search...' onChange={handleSearchQuery} className={ucStyles.search__input} />
-        </div>
-        <div className={ucStyles.multiselect__container}>
-          <div className={ucStyles.multiselect__toolbar} onClick={displayDropdown}>
-            {searchOptions.colleges.length > 0 ?
-              [...searchOptions.colleges].map((college) => {
-                const collegeTitle = college.toUpperCase();
-                return <li key={college}
-                  className={ucStyles["filter__item--selected"]}
-                  onClick={(e) => handleFilterChange(e, college)}>
-                  {collegeTitle}
-                </li>
-              })
-              :
-              <div className={ucStyles.placeholder}>Filter by College {filterArrowIcon}</div>
+      <form action="uc-magazines" method="get" role="search">
+        <div className={ucStyles.toolbar__main}>
+          <label htmlFor="community-search-input" className={ucStyles.search__label}>Search</label>
+          <input
+            id="community-search-input"
+            type="search"
+            name="q"
+            placeholder="Search..."
+            aria-placeholder="Search for a publication"
+            onChange={handleSearchQuery}
+            className={ucStyles.search__input}
+            autoFocus />
+          <div className={ucStyles.filter__dropdown}>
+            <button type="button"
+              onClick={displayDropdown}
+              className={ucStyles.filter__button}>
+              Filter by College {filterArrowIcon}
+            </button>
+            {searchOptions.showFilter &&
+              <div className={ucStyles.filter__container}>
+                {searchFilterKeys.map((college) => {
+                  return <ChipCollege key={college} college={college} searchOptions={searchOptions} handleFilterChange={handleFilterChange} />
+                })}
+              </div>
             }
           </div>
-          {searchOptions.showFilter &&
-            <div className={ucStyles.multiselect__dropdown}>
-              {searchFilterKeys.map((college) => {
-                return <ChipCollege key={college} college={college} searchOptions={searchOptions} handleFilterChange={handleFilterChange} />
-              })}
-            </div>
-          }
         </div>
-      </div>
+      </form>
 
       <ul className={ucStyles.result__list}
         aria-live="polite">
@@ -301,7 +298,7 @@ const UCCardsDropdown = ({ magazines, router, initData }) => {
 function ChipCollege({ college, searchOptions, handleFilterChange }) {
   const collegeTitle = college.toUpperCase();
 
-  const classes = `${ucStyles.filter__item} ${(searchOptions['colleges']?.includes(college) && ucStyles['chip--selected'])}`;
+  const classes = `${ucStyles.chip} ${(searchOptions['colleges']?.includes(college) && ucStyles['chip--selected'])}`;
 
   return <button type="button"
     className={classes}
