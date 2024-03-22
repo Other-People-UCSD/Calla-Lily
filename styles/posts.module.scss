@@ -10,6 +10,7 @@
 
 // Published work
 // [5] [...slug].js styles
+// [CW] Content Warning styles
 // -----------------------
 
 
@@ -415,6 +416,8 @@
 .genre__nav {
   margin-left: auto;
   margin-right: auto;
+  margin-top: 24px;
+  margin-bottom: 24px;
   width: fit-content;
 }
 
@@ -670,4 +673,54 @@
   .genre__post__link::after {
     display: none;
   }
+}
+
+// [CW] Content Warning component
+.cw {
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--background-color);
+  z-index: 8;
+}
+
+.cw__contentbox {
+  margin: 200px auto;
+  width: 80%;
+  height: auto;
+  text-align: center;
+}
+
+.cw__btn__container {
+  display: grid;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  grid-template-columns: 1fr 1fr;
+  text-transform: uppercase;
+  font-size: larger;
+  column-gap: 25px;
+}
+
+.cw__btn {
+  padding: 8px 16px;
+  border: 2px solid var(--button-outline);
+  border-radius: 25px;
+  background-color: var(--background-color);
+  color: var(--light-text-color);
+  text-transform: uppercase;
+}
+
+.cw__cancel {
+  background-color: var(--background-color);
+  color: var(--light-text-color);
+}
+
+.cw__enter {
+  background-color: var(--button-background);
+  color: var(--light-text-color);
 }
