@@ -4,13 +4,13 @@ import Link from "next/link";
 import styles from "@/styles/posts.module.scss";
 import Image from "next/image";
 
-export function PostCardGrid({ entries, limit, offset }) {
+export function PostCardGrid({ postEntries, limit, offset }) {
   limit = limit || 6;
   offset = offset || 0;
 
   return (
     <div className={styles.card__grid__container}>
-      {entries.slice(offset, offset + limit).map((props, idx) => {
+      {postEntries.slice(offset, offset + limit).map((props, idx) => {
         return <PostCard key={idx} {...props} />
       })
       }
@@ -19,17 +19,14 @@ export function PostCardGrid({ entries, limit, offset }) {
 }
 
 
-export function PostCardSelector({ entries }) {
-  const [selector, setSelector] = useState({ 'genre': 'poetry', 'entries': entries.poetry });
-
+export function PostCardSelector({ postEntries }) {
+  const [selector, setSelector] = useState({ 'genre': 'poetry', 'entries': postEntries.poetry });
 
   function handleSelector(genre_str) {
-    setSelector({ 'genre': genre_str, 'entries': entries[genre_str] });
+    setSelector({ 'genre': genre_str, 'entries': postEntries[genre_str] });
   }
 
-
   return <PostSelectorChild selector={selector} handleSelector={handleSelector} />
-
 }
 
 function PostSelectorChild({ selector, handleSelector = { handleSelector } }) {
@@ -147,15 +144,13 @@ export function Chip({ type, value }) {
     value = `No. ${value}`;
   }
 
-  return <div className={`${styles.card__chip} ${coloredClass}`}>
-    {value}
-  </div>
+  return <div className={`${styles.card__chip} ${coloredClass}`}>{value}</div>
 }
 
 /**
  * 
  * @param {String} value 
- * @returns 
+ * @returns Class name for the chip's color
  */
 const getDefinedChipColor = (value) => {
   let str = value.toString().toLowerCase();

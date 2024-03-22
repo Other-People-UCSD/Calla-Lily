@@ -8,7 +8,7 @@ import styles from "@/styles/posts.module.scss";
  * @param {Number} group
  * @returns 
  */
-export function Randomizer({ entries, group, numResults }) {
+export function Randomizer({ postEntries, group, numResults }) {
   const [hasMounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export function Randomizer({ entries, group, numResults }) {
     return;
   }
 
-  const groupEntries = entries.filter((entry) => {
+  const groupEntries = postEntries.filter((entry) => {
     return entry.collection === group;
   });
 
@@ -36,7 +36,7 @@ export function Randomizer({ entries, group, numResults }) {
   }
 
   if (numResults === 3) {
-    return <CardsB1_S2 entries={randomEntries} />
+    return <CardsB1_S2 postEntries={randomEntries} />
   }
 
   return (
@@ -52,14 +52,14 @@ export function Randomizer({ entries, group, numResults }) {
  * One big card with two smaller cards on the second row.
  * @param {Array} entries 
  */
-function CardsB1_S2({ entries }) {
+function CardsB1_S2({ postEntries }) {
 
   return (
     <>
-      <LargePostCard {...entries[0]} className={styles.random__desktop} />
+      <LargePostCard {...postEntries[0]} className={styles.random__desktop} />
 
       <div className={styles.random__grid__container}>
-        {entries.slice(1).map((props, idx) => {
+        {postEntries.slice(1).map((props, idx) => {
           return <PostCard key={idx} {...props} />
         })}
       </div>

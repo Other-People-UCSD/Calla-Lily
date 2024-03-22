@@ -27,7 +27,6 @@ export default function Genre({ genre, limit, offset }) {
   }
 
   function jumpToPage(pageNum) {
-
     document.querySelector('html').scrollIntoView({ behavior: 'smooth' });
     setPage(pageNum);
   }

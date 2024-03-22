@@ -1,5 +1,11 @@
 @import '@/stories/_variables.scss';
 
+.main__content {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1080px;
+}
+
 .toolbar__main {
   position: relative;
   display: flex;

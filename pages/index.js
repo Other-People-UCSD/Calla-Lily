@@ -68,8 +68,8 @@ export default function Home(props) {
             <span>LIMINAL IS OUT!</span>
           </div>
         </div>
-        <Randomizer entries={props.allPostsData} group={6} numResults={3} />
-        <CarouselSlickMobile entries={props.allPostsData} group={6} numResults={4} />
+        <Randomizer postEntries={props.allPostsData} group={6} numResults={3} />
+        <CarouselSlickMobile postEntries={props.allPostsData} group={6} numResults={4} />
         <Link href="/search?collections=6" className={styles.featured__btn_link}>Keep Browsing</Link>
 
         <AccentIcon id="circle-fill" fill="#C1665A" width="100" height="100"
@@ -109,7 +109,7 @@ export default function Home(props) {
             <span>Discover {props.allPostsData.length} publications!</span>
           </div>
         </div>
-        <PostCardSelector entries={{
+        <PostCardSelector postEntries={{
           poetry: props.poetry,
           fiction: props.fiction,
           nonfiction: props.nonfiction,

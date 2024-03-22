@@ -2,11 +2,15 @@ import { useEffect, useState } from "react";
 import styles from '@/styles/header.module.scss';
 import animationStyles from '@/styles/animations.module.scss';
 
+/**
+ * Header.js
+ * Changes the page theme based on user preference and persist through local storage. 
+ * @returns Toggle Switch component
+ */
 export default function ThemeToggle() {
   const [isDarkTheme, setCurrentTheme] = useState(false);
 
   useEffect(() => {
-    console.log('trigger!', window.localStorage.getItem('data-theme'))
     if (window?.localStorage?.getItem('data-theme') === 'dark' ||
       window?.matchMedia('(prefers-color-scheme: dark)').matches ||
       document?.documentElement?.getAttribute('data-theme') === 'dark') {
@@ -47,4 +51,21 @@ export default function ThemeToggle() {
       </button>
     </>
   );
+}
+
+/**
+ * [...slug].js
+ * Executes every time a post is loaded.
+ * If the user's preference is dark-mode, then don't forcibly change the theme.
+ * If the user's preference is light-mode or indeterminate 
+ * and a work should be viewed in dark-theme, change the theme.
+ */
+export function pageChange(theme) {
+  const isAlreadyDark = (window?.matchMedia('(prefers-color-scheme: dark)').matches ||
+      document?.documentElement?.getAttribute('data-theme') === 'dark');
+  if (theme === 'dark' && !isAlreadyDark) {
+      document?.documentElement?.setAttribute('data-theme', 'dark');
+  } else if (!isAlreadyDark) {
+      document?.documentElement?.setAttribute('data-theme', 'light');
+  }
 }

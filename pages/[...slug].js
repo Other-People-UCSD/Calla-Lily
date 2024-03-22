@@ -10,8 +10,8 @@ import postStyles from "@/styles/posts.module.scss";
 import { getSortedPostsData, getPostDataAPI } from '@/lib/posts';
 import copyright from '@/lib/copyright';
 import OPMparser from '@/lib/OPMparser';
-import { pageChange } from '@/lib/bgTheme';
 import Layout from '@/components/layout';
+import { pageChange } from '@/components/ThemeToggle';
 import ContentWarning from '@/components/ContentWarning';
 import { PostCardGrid } from '@/components/PostCard';
 import recommenderData from '@/data/recommender.json';
@@ -192,7 +192,7 @@ const Recommendations = ({ recommenderData }) => {
   return (
     <>
       <p className={postStyles.rec__desc}>Enjoyed this work? Here are our recommendations!</p>
-      <PostCardGrid entries={recommenderData} limit={6} offset={0} />
+      <PostCardGrid postEntries={recommenderData} limit={6} offset={0} />
     </>
   )
 }
@@ -231,7 +231,6 @@ export const Experimental = ({ title }) => {
           document.getElementById('cr-article')?.classList.add('monospace');
           document.getElementById('mc_embed_signup').innerHTML = '';
           document.getElementById('mc-begin')?.addEventListener('click', beginMissedConnections);
-
         }}
       />
     case "You Have Created an Imaginary Friend":
@@ -247,27 +246,28 @@ export const Experimental = ({ title }) => {
             const storyRef = document.getElementById('story-ref');
             if (!storyRef) {
               alert('Error! The story-ref block is not defined!');
+              throw new Error('Error! The story-ref block is not defined!');
             }
 
             const title = parseString(storyRef.innerText);
             const storyReference = "/js/" + title + ".json";
 
-            if (document.getElementById('output-text').children.length === 0 || document.getElementById('9.0') === null) {
+            if (document.getElementById('output-text')?.children.length === 0 || document.getElementById('9.0') === null) {
               beginCYOAStory(storyReference);
             }
 
-            document.getElementById('resetCYOA').addEventListener('click', () => {
+            document.getElementById('resetCYOA')?.addEventListener('click', () => {
               resetCYOAProgress();
             });
 
             const shortcut = () => {
               document.getElementById('output-text').innerHTML = '';
-              goto(1, parseInt(document.getElementById('shortcut').value));
+              goto(1, parseInt(document.getElementById('shortcut')?.value));
             }
 
-            document.getElementById('shortcut').addEventListener("keydown", (e) => {
+            document.getElementById('shortcut')?.addEventListener("keydown", (e) => {
               if (e.code === "Enter") {
-                shortcut()
+                shortcut();
               }
             });
           } catch {
