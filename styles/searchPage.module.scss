@@ -90,20 +90,23 @@
   display: none;
 }
 
-.filter__container {
-  display: flex;
+.filter__wrapper {
   position: absolute;
   right: 0;
-  padding: 8px;
   height: fit-content;
   width: fit-content;
   width: 600px;
-  gap: 20px;
+  padding: 8px 16px;
   border: 1px solid var(--border-color);
   border-radius: 20px;
   border-top-right-radius: 0px;
   background-color: var(--background-color);
   z-index: 1;
+}
+
+.filter__container {
+  display: flex;
+  gap: 20px;
 }
 
 .filter__container__group {
@@ -143,7 +146,24 @@
   background-color: #F4BAB9;
 }
 
+.chip--genres.chip--selected {
+  background-color: #F4BAB9;
+}
 
+.chip--collections.chip--selected {
+  background-color: #B9E6F4;
+}
+
+.chip--contentYears.chip--selected {
+  background-color: #B9F4D1;
+}
+
+.filter__clear_btn {
+ float: right; 
+ margin-top: 16px;
+ font-weight: bold;
+ color: #AC504E;
+}
 
 .results {
   margin-top: $opm-spacing-500;

@@ -226,9 +226,23 @@ export function SearchBar({ metadata, allPostsData, initSearchPages, initData, r
 
   function handleFilter() {
     const newSearchOptions = { ...searchOptions, 'showFilter': !searchOptions.showFilter };
-    setSearchOptions(newSearchOptions)
+    setSearchOptions(newSearchOptions);
   }
 
+  function handleClearFilter() {
+    const newSearchOptions = { ...searchOptions, 'genres': [], 'collections': [], 'contentYears': [] };
+
+    const url = new URL(window.location.href);
+    const params = new URLSearchParams(url.search);
+    params.delete('genres');
+    params.delete('collections');
+    params.delete('contentYears');
+    const newURL = new URL(`${url.origin}${url.pathname}?${params}`);
+    window.history.replaceState(window.location.href, '', newURL);
+
+    setSearchOptions(newSearchOptions);
+    filterResults(searchQuery, newSearchOptions);
+  }
   /**
    * When a filter option is pressed, filter the results accordingly
    * Update URL search parameters
@@ -309,6 +323,7 @@ export function SearchBar({ metadata, allPostsData, initSearchPages, initData, r
         handleSearchQuery={handleSearchQuery}
         handleFilter={handleFilter}
         handleFilterOptions={handleFilterOptions}
+        handleClearFilter={handleClearFilter}
       />
 
       {searchResults &&
@@ -325,7 +340,8 @@ export function SearchBar({ metadata, allPostsData, initSearchPages, initData, r
   )
 }
 
-function SearchToolbar({ metadata, searchOptions, searchQuery, handleSearchQuery, handleFilter, handleFilterOptions }) {
+function SearchToolbar({ metadata, searchOptions, searchQuery, handleSearchQuery, handleFilter, handleFilterOptions, handleClearFilter }) {
+  const numActiveFilters = searchOptions['genres']?.length + searchOptions['collections']?.length + searchOptions['contentYears']?.length;
   const filterArrowIcon = searchOptions.showFilter ? <span>&#9650;</span> : <span>&#9660;</span>;
   return (
     <form action="/search" method="get" role="search">
@@ -346,32 +362,39 @@ function SearchToolbar({ metadata, searchOptions, searchQuery, handleSearchQuery
           <button
             type="button"
             onClick={handleFilter}
-            className={styles.filter__button}>Filter {filterArrowIcon}</button>
+            className={styles.filter__button}>Filter {numActiveFilters > 0 && <span className={styles.filter__num_active}>({numActiveFilters})</span>} {filterArrowIcon}</button>
 
           {searchOptions.showFilter && metadata &&
-            <div className={styles.filter__container}>
-              <fieldset className={`${styles.filter__container__group} ${styles.filter__container__genre}`}>
-                <legend>Genre</legend>
-                {["Poetry", "Visual Arts", "Fiction", "Nonfiction"].map((genre) => {
-                  return <Chip key={genre} value={genre} group="genres" searchOptions={searchOptions} handleFilterOptions={handleFilterOptions} />
-                })}
-              </fieldset>
+            <div className={styles.filter__wrapper}>
+              <div className={styles.filter__container}>
+                <fieldset className={`${styles.filter__container__group} ${styles.filter__container__genre}`}>
+                  <legend>Genre</legend>
+                  {["Poetry", "Visual Arts", "Fiction", "Nonfiction"].map((genre) => {
+                    return <Chip key={genre} value={genre} group="genres" searchOptions={searchOptions} handleFilterOptions={handleFilterOptions} />
+                  })}
+                </fieldset>
 
-              <fieldset className={`${styles.filter__container__group} ${styles.filter__container__collection}`}>
-                <legend>Collection</legend>
-                {[...metadata?.collections].sort((a, b) => b - a).map((collection) => {
-                  return <Chip key={collection} value={collection} group="collections" searchOptions={searchOptions} handleFilterOptions={handleFilterOptions} />
-                })
-                }
-              </fieldset>
+                <fieldset className={`${styles.filter__container__group} ${styles.filter__container__collection}`}>
+                  <legend>Collection</legend>
+                  {[...metadata?.collections].sort((a, b) => b - a).map((collection) => {
+                    return <Chip key={collection} value={collection} group="collections" searchOptions={searchOptions} handleFilterOptions={handleFilterOptions} />
+                  })
+                  }
+                </fieldset>
 
-              <fieldset className={`${styles.filter__container__group} ${styles.filter__container__years}`}>
-                <legend>Content Year</legend>
-                {[...metadata?.years].sort((a, b) => b - a).map((year) => {
-                  return <Chip key={year} value={year} group="contentYears" searchOptions={searchOptions} handleFilterOptions={handleFilterOptions} />
-                })
-                }
-              </fieldset>
+                <fieldset className={`${styles.filter__container__group} ${styles.filter__container__years}`}>
+                  <legend>Content Year</legend>
+                  {[...metadata?.years].sort((a, b) => b - a).map((year) => {
+                    return <Chip key={year} value={year} group="contentYears" searchOptions={searchOptions} handleFilterOptions={handleFilterOptions} />
+                  })
+                  }
+                </fieldset>
+              </div>
+              <button type="button"
+                className={styles.filter__clear_btn}
+                onClick={handleClearFilter}>
+                Clear All
+              </button>
             </div>
           }
         </div>
@@ -389,7 +412,7 @@ function Chip({ value, group, searchOptions, handleFilterOptions }) {
   // If no results disable chip
   const hasValidEntries = !true;
 
-  const classes = `${styles.chip} ${(searchOptions[group]?.includes(value)) && styles['chip--selected']}`;
+  const classes = `${styles.chip} ${styles[`chip--${group}`]} ${(searchOptions[group]?.includes(value)) && styles['chip--selected']}`;
 
   return <button type="button"
     className={classes}

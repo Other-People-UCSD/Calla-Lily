@@ -109,13 +109,10 @@
 }
 
 .block__alumni {
-  margin-top: 100px;
   padding-top: 200px;
   padding-left: $opm-spacing-600;
   padding-right: $opm-spacing-600;
   color: $opm-color-white;
-
-
   background: -moz-linear-gradient(0deg, rgba(48, 48, 48, 1) 85%, rgba(255, 255, 252, 1) 100%);
   background: -webkit-linear-gradient(0deg, rgba(48, 48, 48, 1) 85%, rgba(255, 255, 252, 1) 100%);
   background: linear-gradient(0deg, rgba(48, 48, 48, 1) 85%, rgba(255, 255, 252, 1) 100%);
@@ -178,6 +175,13 @@
   height: 500px;
   z-index: -1;
   fill: #F8D80866;
+}
+
+html[data-theme="dark"] {
+  .block__alumni { 
+    background: $opm-background-black;
+    padding-top: 0;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
