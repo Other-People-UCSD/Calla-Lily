@@ -56,8 +56,8 @@ export default function Genre({ genre, limit, offset }) {
               {thumbnail &&
                 <div className={styles.card__thumbnail__frame}>
                   <Image src={thumbnail}
-                    fill={true} sizes="100px"
-
+                    fill={true} sizes="(max-width: 768px) 50px, 150px"
+                    quality={60}
                     placeholder="blur" blurDataURL={thumbnail}
                     className={styles.card__thumbnail}
                     alt="View artwork description in link!" />

@@ -25,9 +25,9 @@ export default function Home(props) {
     <Layout homepage footerConfig={footerConfig} className={`${styles.main}`}>
       <div className={styles.hero}>
         <div className={`${styles.hero__img__container}`}>
-            <svg className={`${styles["animate--rotate"]}`}>
-              <use href="svg/accents.svg#other-people-homepage-circle" />
-            </svg>
+          <svg className={`${styles["animate--rotate"]}`}>
+            <use href="svg/accents.svg#other-people-homepage-circle" />
+          </svg>
         </div>
         <p className={`${styles.hero__text}`}>the <span className={styles["hero__text--italic"]}>visual</span> and <span className={styles["hero__text--thin"]}>literary</span> arts <span style={{ textDecoration: 'underline' }}>magazine</span>.</p>
 
@@ -128,6 +128,19 @@ export default function Home(props) {
       </div>
 
       <div className={styles.section__newsletter}>
+        <div className={styles.newsletter__previews}>
+          <Image
+            src="/news_2.webp"
+            width={300} height={300}
+            className={styles.newsletter_2}
+          />
+          <Image
+            src="/news_3.webp"
+            width={300} height={300}
+            className={styles.newsletter_3}
+          />
+
+        </div>
         <NewsletterForm homepage />
       </div>
     </Layout>

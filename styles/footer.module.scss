@@ -94,7 +94,8 @@
 }
 
 .newsletter_homepage {
-  float: right;
+  margin: 32px;
+  width: 400px;
   color: white;
 }
 
@@ -117,6 +118,20 @@
 
 .newsletter_homepage .newsletter__submit {
   flex: 0 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+  .newsletter_homepage {
+    margin: 4px;
+    width: 80vw;
+  }
+
+  .newsletter_homepage .newsletter__label {
+    font-size: 1rem;
+  }
+  .newsletter_homepage .newsletter__inputbox {
+    font-size: 0.8rem;
+  }
 }
 
 

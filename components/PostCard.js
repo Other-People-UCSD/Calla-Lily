@@ -92,7 +92,7 @@ export function PostCard({ slug, title, contributor, collection, tags, thumbnail
       {thumbnail &&
         <div className={styles.card__thumbnail__frame}>
           <Image src={thumbnail}
-            fill={true} sizes="100px"
+            fill={true} sizes="(max-width: 768px) 50px, 150px"
 
             placeholder="blur" blurDataURL={thumbnail}
             className={styles.card__thumbnail}
