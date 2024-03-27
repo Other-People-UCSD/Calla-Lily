@@ -1,5 +1,9 @@
 @import '@/stories/_variables.scss';
 
+// [1] Header component
+// [2] ThemeToggle component
+
+// [1] Header component
 .base {
   position: fixed;
   top: 0;
@@ -23,7 +27,7 @@
 .toolbar {
   margin-left: auto;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .toolbar button {
@@ -35,13 +39,14 @@
 .search__wrapper {
   display: inline-block;
   margin-left: 16px;
-  margin-right: 16px;
+  margin-right: 10px;
+  padding: 0px 4px;
 }
 
 .search__icon {
   stroke: black;
-  width: 30px;
-  height: 30px;
+  width: 22px;
+  height: 24px;
 }
 
 .logo,
@@ -101,7 +106,7 @@
   }
 
   .logo {
-    height: 32px;
+    height: 28px;
   }
 
   .menu,
@@ -125,13 +130,12 @@ html[data-theme="dark"] .search__icon {
   }
 }
 
+// [2] ThemeToggle component
 .theme__btn {
   position: relative;
   display: inline-flex;
-  height: 30px;
+  height: 26px;
   width: 60px;
-  // padding: 7px;
-  // background-color: grey;
   border: 1px solid #ABA7A7;
   border-radius: 45px;
 }
@@ -144,7 +148,6 @@ html[data-theme="dark"] .search__icon {
 
 .theme__star {
   position: absolute;
-  // left: 6px;
   left: 0px;
   height: 20px;
   width: 20px;
@@ -159,7 +162,6 @@ html[data-theme="dark"] .search__icon {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  // right: 6px;
   right: 0px;
   height: 20px;
   width: 20px;
