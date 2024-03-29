@@ -66,7 +66,7 @@ function PostSelectorChild({ selector, handleSelector = { handleSelector } }) {
   )
 }
 
-export function PostCard({ slug, title, contributor, collection, tags, thumbnail }) {
+export function PostCard({ slug, title, contributor, collection, tags, thumbnail, excerpt }) {
   return (
     <Link href={`/${slug}`} key={slug} className={styles.card__container}>
       <div className={styles.card__contentbox}>
@@ -86,7 +86,7 @@ export function PostCard({ slug, title, contributor, collection, tags, thumbnail
           })}
         </div>
 
-        {/* <p className={styles.card__preview}>{preview}</p> */}
+        {excerpt && <p className={styles.card__excerpt}>{excerpt}</p>}
       </div>
 
       {thumbnail &&
@@ -103,7 +103,7 @@ export function PostCard({ slug, title, contributor, collection, tags, thumbnail
   );
 }
 
-export function LargePostCard({ slug, title, contributor, collection, tags, thumbnail, className }) {
+export function LargePostCard({ slug, title, contributor, collection, tags, thumbnail, className, excerpt }) {
   return (
     <Link href={`/${slug}`} key={slug} className={`${styles.card__container} ${styles['card__container--large']} ${className}`}>
       <div className={styles.card__contentbox}>
@@ -121,7 +121,8 @@ export function LargePostCard({ slug, title, contributor, collection, tags, thum
             return <Chip key={tag} type="tag" value={tag} />
           })}
         </div>
-        {/* <p className={styles.card__preview}>{preview}</p> */}
+
+        {excerpt && <p className={styles.card__excerpt}>{excerpt}</p>}
       </div>
       {thumbnail &&
         <div className={styles.card__thumbnail__frame}>
@@ -163,6 +164,6 @@ const getDefinedChipColor = (value) => {
       str = 'visual';
     }
   }
-  
+
   return `${styles[`card__chip--${str}`]}`;
 }

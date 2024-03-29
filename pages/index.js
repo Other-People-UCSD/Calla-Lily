@@ -3,7 +3,7 @@ import styles from '@/styles/homepage.module.scss';
 import Layout from '@/components/layout';
 import client from '../tina/__generated__/client';
 import { useTina } from 'tinacms/dist/react';
-import { getSortedPostsData, getGenrePostsData } from '@/lib/posts';
+import { getSortedPostsData, getGenrePostsData, getGroupedPostsData } from '@/lib/posts';
 import { PostCardSelector } from '../components/PostCard';
 import { Randomizer } from '@/components/Randomizer';
 import { NewsletterForm } from '@/components/footer';
@@ -68,8 +68,8 @@ export default function Home(props) {
             <span>LIMINAL IS OUT!</span>
           </div>
         </div>
-        <Randomizer postEntries={props.allPostsData} group={6} numResults={3} />
-        <CarouselSlickMobile postEntries={props.allPostsData} group={6} numResults={4} />
+        <Randomizer postEntries={props.featuredPosts} group={6} numResults={3} />
+        <CarouselSlickMobile postEntries={props.featuredPosts} group={6} numResults={4} />
         <Link href="/search?collections=6" className={styles.featured__btn_link}>Keep Browsing</Link>
 
         <AccentIcon id="circle-fill" fill="#C1665A" width="100" height="100"
@@ -104,9 +104,9 @@ export default function Home(props) {
         <div className={styles.ui3_headline}>
           <div className={styles.ui3_marquee}>
             <span>Our latest posts...</span>
-            <span>Discover {props.allPostsData.length} publications!</span>
+            <span>Discover {props.numPosts} publications!</span>
             <span>Our latest posts...</span>
-            <span>Discover {props.allPostsData.length} publications!</span>
+            <span>Discover {props.numPosts} publications!</span>
           </div>
         </div>
         <PostCardSelector postEntries={{
@@ -150,11 +150,13 @@ export default function Home(props) {
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
+  const numPosts = allPostsData.length;
   const poetry = getGenrePostsData('Poetry', allPostsData);
   const fiction = getGenrePostsData('Fiction', allPostsData);
   const nonfiction = getGenrePostsData('Nonfiction', allPostsData);
   const visualarts = getGenrePostsData('Visual Arts', allPostsData);
-
+  const featuredPosts = await getGroupedPostsData({ group: 'collection', value: '6', input: allPostsData});
+  
   let data = {}
   let query = {}
   let variables = { relativePath: `../data/homepage.json` }
@@ -173,11 +175,12 @@ export async function getStaticProps() {
       variables: variables,
       data: data,
       query: query,
-      allPostsData,
+      numPosts,
       poetry,
       fiction,
       nonfiction,
       visualarts,
+      featuredPosts
     },
   };
 }

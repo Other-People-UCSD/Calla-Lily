@@ -4,10 +4,16 @@ import Link from "next/link";
 import { Chip } from "./PostCard";
 import { default as SlickSlider } from "react-slick";
 
-export function CarouselSlickMobile({ postEntries, group, numResults, random }) {
-  const groupEntries = postEntries.filter((entry) => {
-    return entry.collection === group;
-  });
+export function CarouselSlickMobile({ postEntries, group, numResults }) {
+  const [hasMounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!hasMounted) {
+    return;
+  }
 
   const settings = {
     arrows: false,
@@ -25,7 +31,7 @@ export function CarouselSlickMobile({ postEntries, group, numResults, random }) 
 
   return (
     <SlickSlider {...settings} >
-      {groupEntries.splice(0, numResults).map((item, idx) => {
+      {postEntries.splice(0, numResults).map((item, idx) => {
         return <Link
           key={idx}
           href={item.slug}

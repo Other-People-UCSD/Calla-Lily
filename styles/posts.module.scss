@@ -45,6 +45,15 @@
   min-width: 0;
 }
 
+.card__contentbox::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(transparent 150px, var(--background-color));
+}
+
 .card__title,
 .card__creator {
   margin: 0;
@@ -64,8 +73,9 @@
   font-size: 20px;
 }
 
-.card__preview {
+.card__excerpt {
   font-family: $opm-font-basier;
+  font-size: 0.8rem;
 }
 
 .card__thumbnail__frame {
@@ -174,8 +184,13 @@
   height: 275px;
 }
 
+.card__container--large .card__excerpt {
+  font-size: 1rem;
+}
 
-
+.card__container--large .card__contentbox::after {
+  display: none;
+}
 
 // [2] Post Card Selector
 .selector__container {
