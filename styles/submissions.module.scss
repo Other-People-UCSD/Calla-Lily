@@ -1,5 +1,8 @@
+@import '@/stories/_variables.scss';
+
 .main {
   font-weight: 500;
+  padding: 0px $opm-spacing-600;
 }
 
 .status,

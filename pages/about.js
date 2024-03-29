@@ -115,7 +115,7 @@ export default function About(props) {
             Each collection has been selected from hundreds of works, and the submission bins continue to overflow with your creations.
             Our capacity to showcase influential works increases as we want our readers to experience the same emotions
             that the creators put into these fragments of fiction or reality. With every cycle of talent that passes through our organization,
-            we have come to learn from each other's imagination and knowledge, polishing the ideas creators want to convey.
+            we have come to learn from each other&apos;s imagination and knowledge, polishing the ideas creators want to convey.
             Other People Magazine truly inspires young writers, artists, and performers to let their creativity cultivate.
           </p>
         </div>
