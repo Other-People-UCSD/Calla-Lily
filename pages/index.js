@@ -133,11 +133,13 @@ export default function Home(props) {
             src="/news_2.webp"
             width={300} height={300}
             className={styles.newsletter_2}
+            alt="A preview of our digital newsletter."
           />
           <Image
             src="/news_3.webp"
             width={300} height={300}
             className={styles.newsletter_3}
+            alt="Another preview of our digital newsletter."
           />
 
         </div>

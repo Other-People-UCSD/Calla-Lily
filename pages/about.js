@@ -7,8 +7,8 @@ import client from '@/tina/__generated__/client';
 export default function About(props) {
   const footerConfig = {
     'showGradient': false,
-    'showMore': false,
-    'showNewsletter': false,
+    'showMore': true,
+    'showNewsletter': true,
   };
 
   const { query, variables, data } = useTina({
@@ -42,7 +42,7 @@ export default function About(props) {
         <div className={`${animationStyles.fadeInBottom} title__accent`}>
           <h1 className={`text--heading_1 text__landing--heading_1`} aria-label="Other People">
             <span className="text--shadow">O</span>(THE)R PE<span className="text--shadow">O</span>PLE
-            </h1>
+          </h1>
         </div>
 
         <p className={`${styles.values} ${styles['values--right']}`}>A place to explore the timeless human experience;</p>
@@ -55,17 +55,12 @@ export default function About(props) {
           <h2 className={`text--heading_1`}>About Us</h2>
           <p>Other People Literary Magazine at UC San Diego is the first student-run literary magazine and club.</p>
           <p>
-            We publish biannually in the Fall and Spring and accept works of fiction, poetry, creative nonfiction,
-            art,
-            and photography. We wish to present the dynamic range of artistic capability inherent in UCSD students,
-            to
+            We publish biannually in the Fall and Spring and accept works of fiction, poetry, creative nonfiction, art,
+            and photography. We wish to present the dynamic range of artistic capability inherent in UCSD students, to
             create an inclusive platform to share creative works, and to encourage literary and artistic exploration
-            among all students. We seek to embrace our core principle of showcasing “O(the)r People,” or celebrating
-            at
-            once our diversity, our individual uniqueness, our shared experiences, and our collective journey
-            through
-            this world. Our hope is that Other People Magazine will become a permanent organization at the
-            University of
+            among all students. We seek to embrace our core principle of showcasing “O(the)r People,” or celebrating at
+            once our diversity, our individual uniqueness, our shared experiences, and our collective journey through
+            this world. Our hope is that Other People Magazine will become a permanent organization at the University of
             California, San Diego, and will remain an enduring outlet for student creativity.
           </p>
         </div>
@@ -109,13 +104,19 @@ export default function About(props) {
 
           <h2 className={styles['text--clear-left']}>Creative Innovation</h2>
 
-          <p>Replace this section with 1-2 paragraphs describing what OPM offers as a magaazine to the people.</p>
           <p>
-            Our goal is to present creative work in a way that anyone can enjoy through accessible means. 
-            This requires heavy involvement in the digital publishing process by creating our own native products 
+            Our digital goal is to present creative work in a way that anyone can enjoy through accessible means.
+            This requires heavy involvement in the digital publishing process by creating our own native products
             to showcase experimentative work. As a result, Other People&apos;s digital team operates at the forefront of next-gen techniques,
             optimizing fast performance and featuring machine learning to recommend additional works you may enjoy.
-            We wish to show you an aesthetic that cannot be achieved by ordinary templates, as everything has been handcrafted for your satisfaction.
+            We wish to show you an aesthetic that cannot be achieved by ordinary templates, as everything has been handcrafted with passion.
+          </p>
+          <p>
+            Each collection has been selected from hundreds of works, and the submission bins continue to overflow with your creations.
+            Our capacity to showcase influential works increases as we want our readers to experience the same emotions
+            that the creators put into these fragments of fiction or reality. With every cycle of talent that passes through our organization,
+            we have come to learn from each other's imagination and knowledge, polishing the ideas creators want to convey.
+            Other People Magazine truly inspires young writers, artists, and performers to let their creativity cultivate.
           </p>
         </div>
       </div>
