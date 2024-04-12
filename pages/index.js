@@ -26,16 +26,16 @@ export default function Home(props) {
       <div className={styles.hero}>
         <div className={`${styles.hero__img__container}`}>
           <svg className={`${styles["animate--rotate"]}`}>
-            <use href="svg/accents.svg#other-people-homepage-circle" />
+            <use href="svg/sprites.svg#other-people-homepage-circle" />
           </svg>
         </div>
         <p className={`${styles.hero__text}`}>the <span className={styles["hero__text--italic"]}>visual</span> and <span className={styles["hero__text--thin"]}>literary</span> arts <span style={{ textDecoration: 'underline' }}>magazine</span>.</p>
 
-        <AccentIcon id="circle-outline" stroke="#FBDA09" strokeWidth="4px" width="100" height="100" x="200px"
+        <SpriteIcon id="circle-outline" stroke="#FBDA09" strokeWidth="4px" width="100" height="100" x="200px"
           className={styles['svg--accent']} style={{ left: "40vw", top: "20vh" }} />
-        <AccentIcon id="circle-fill" fill="#FEAACE" width="100" height="100"
+        <SpriteIcon id="circle-fill" fill="#FEAACE" width="100" height="100"
           className={styles['svg--accent']} style={{ left: "30vw", bottom: "100px" }} />
-        <AccentIcon id="vd-outline" stroke="#DF7D64" strokeWidth="4px" width="150" height="150"
+        <SpriteIcon id="vd-outline" stroke="#DF7D64" strokeWidth="4px" width="150" height="150"
           className={styles['svg--accent']} style={{ right: "10vw", bottom: "20vh", transform: "rotate(-20deg)" }} />
       </div>
 
@@ -53,9 +53,9 @@ export default function Home(props) {
           <p className={`text--heading_1 ${styles.collection__title}`}>LIMINAL</p>
         </div>
 
-        <AccentIcon id="circle-fill" fill="#E7EFFB" width="300" height="300"
+        <SpriteIcon id="circle-fill" fill="#E7EFFB" width="300" height="300"
           className={styles['svg--accent']} style={{ left: "0", top: "0" }} />
-        <AccentIcon id="circle-fill" fill="#3363431A" width="600" height="600"
+        <SpriteIcon id="circle-fill" fill="#3363431A" width="600" height="600"
           className={styles['svg--accent']} style={{ right: "-10vw", bottom: "-40vh" }} />
       </div>
 
@@ -72,13 +72,13 @@ export default function Home(props) {
         <CarouselSlickMobile postEntries={props.featuredPosts} group={6} numResults={4} />
         <Link href="/search?collections=6" className={styles.featured__btn_link}>Keep Browsing</Link>
 
-        <AccentIcon id="circle-fill" fill="#C1665A" width="100" height="100"
+        <SpriteIcon id="circle-fill" fill="#C1665A" width="100" height="100"
           className={styles['svg--accent']} style={{ right: "5vw", top: "150px", }} />
-        <AccentIcon id="circle-outline" stroke="#5DA04C" strokeWidth="4px" width="100" height="100"
+        <SpriteIcon id="circle-outline" stroke="#5DA04C" strokeWidth="4px" width="100" height="100"
           className={styles['svg--accent']} style={{ left: "10vh", bottom: "150px", }} />
-        <AccentIcon id="circle-fill" fill="#9FC9E126" width="600" height="600"
+        <SpriteIcon id="circle-fill" fill="#9FC9E126" width="600" height="600"
           className={styles['svg--accent']} style={{ right: "-20vw", bottom: "-25vh", }} />
-        <AccentIcon id="circle-fill" fill="#9FC9E126" width="600" height="600"
+        <SpriteIcon id="circle-fill" fill="#9FC9E126" width="600" height="600"
           className={styles['svg--accent']} style={{ right: "5vw", bottom: "-50vh" }} />
       </div>
 
@@ -92,11 +92,11 @@ export default function Home(props) {
         <MagazinesDesktop />
         <MagazinesMobile />
 
-        <AccentIcon id="circle-fill" fill="#E6D6FFAB" width="400" height="400"
+        <SpriteIcon id="circle-fill" fill="#E6D6FFAB" width="400" height="400"
           className={styles['svg--accent']} style={{ left: "0vw", top: "0vh" }} />
-        <AccentIcon id="circle-fill" fill="#E4507C" width="100" height="100"
+        <SpriteIcon id="circle-fill" fill="#E4507C" width="100" height="100"
           className={styles['svg--accent']} style={{ right: "20vw", top: "5vh" }} />
-        <AccentIcon id="vd-outline" stroke="#64DF8E" strokeWidth="4px" width="150" height="150"
+        <SpriteIcon id="vd-outline" stroke="#64DF8E" strokeWidth="4px" width="150" height="150"
           className={styles['svg--accent']} style={{ right: "10vw", bottom: "5vh", transform: "rotate(20deg)" }} />
       </div>
 
@@ -116,13 +116,13 @@ export default function Home(props) {
           visualarts: props.visualarts
         }} />
 
-        <AccentIcon id="circle-outline" stroke="#FEAACE" strokeWidth="4px" width="100" height="100"
+        <SpriteIcon id="circle-outline" stroke="#FEAACE" strokeWidth="4px" width="100" height="100"
           className={styles['svg--accent']} style={{ left: "5vw", top: "10vh" }} />
-        <AccentIcon id="circle-outline" stroke="#438DCC" strokeWidth="4px" width="100" height="100"
+        <SpriteIcon id="circle-outline" stroke="#438DCC" strokeWidth="4px" width="100" height="100"
           className={styles['svg--accent']} style={{ left: "40vw", bottom: "-10vh" }} />
-        <AccentIcon id="circle-fill" fill="#6E1F3F1A" width="500" height="500"
+        <SpriteIcon id="circle-fill" fill="#6E1F3F1A" width="500" height="500"
           className={styles['svg--accent']} style={{ right: "1vw", bottom: "-10vh" }} />
-        <AccentIcon id="circle-fill" fill="#AAD396" width="100" height="100"
+        <SpriteIcon id="circle-fill" fill="#AAD396" width="100" height="100"
           className={styles['svg--accent']} style={{ left: "-2vw", bottom: "-10vh" }} />
 
       </div>
@@ -233,8 +233,8 @@ const MagazinesMobile = () => {
   )
 }
 
-export const AccentIcon = ({ id, className, ...props }) => {
+export const SpriteIcon = ({ id, className, ...props }) => {
   return <svg className={className} {...props}>
-    <use href={`/svg/accents.svg#${id}`} />
+    <use href={`/svg/sprites.svg#${id}`} />
   </svg>
 }

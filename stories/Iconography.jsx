@@ -43,18 +43,18 @@ export default function IconLibrary() {
         </div>
       </div>
 
-      <h3>Accents</h3>
+      <h3>Sprites</h3>
       <div className={styles.icon__grid}>
         <div className={styles.icon__item}>
           <IconButton>
-            <CircleAccent id={"circle-fill"} fill="black" width="32" height="32" />
+            <CircleSprite id={"circle-fill"} fill="black" width="32" height="32" />
           </IconButton>
           <p>#circle-fill</p>
           <p>32px</p>
         </div>
         <div className={styles.icon__item}>
           <IconButton>
-            <CircleAccent id={"circle-fill"} fill="violet" width="100" height="100" />
+            <CircleSprite id={"circle-fill"} fill="violet" width="100" height="100" />
           </IconButton>
           <p>#circle-fill</p>
           <p>100px</p>
@@ -62,14 +62,14 @@ export default function IconLibrary() {
 
         <div className={styles.icon__item}>
           <IconButton>
-            <CircleAccent id={"circle-outline"} stroke="black" strokeWidth="1px" width="32" height="32" />
+            <CircleSprite id={"circle-outline"} stroke="black" strokeWidth="1px" width="32" height="32" />
           </IconButton>
           <p>#circle-outline</p>
           <p>32px, stroke 1px</p>
         </div>
         <div className={styles.icon__item}>
           <IconButton>
-            <CircleAccent id={"circle-outline"} stroke="black" strokeWidth="2px" width="100" height="100" />
+            <CircleSprite id={"circle-outline"} stroke="black" strokeWidth="2px" width="100" height="100" />
           </IconButton>
           <p>#circle-outline</p>
           <p>100px, stroke 2px</p>
@@ -78,7 +78,7 @@ export default function IconLibrary() {
       <div className={styles.icon__grid}>
       <div className={styles.icon__item}>
           <IconButton>
-            <CircleAccent id={"vd-fill"} stroke="black" fill="black" strokeWidth="0.2px" width="89" height="64" />
+            <CircleSprite id={"vd-fill"} stroke="black" fill="black" strokeWidth="0.2px" width="89" height="64" />
           </IconButton>
           <p>#vd-fill</p>
           <p>89x64, stroke 0.2px</p>
@@ -86,7 +86,7 @@ export default function IconLibrary() {
 
         <div className={styles.icon__item}>
           <IconButton>
-            <CircleAccent id={"vd-fill"} stroke="green" fill="green" strokeWidth="1px" width="128px" height="120px" />
+            <CircleSprite id={"vd-fill"} stroke="green" fill="green" strokeWidth="1px" width="128px" height="120px" />
           </IconButton>
           <p>#vd-fill</p>
           <p>128px, stroke 1px, fill & stroke same-color</p>
@@ -94,7 +94,7 @@ export default function IconLibrary() {
 
         <div className={styles.icon__item}>
           <IconButton>
-            <CircleAccent id={"vd-fill"} stroke="black" fill="green" strokeWidth="1px" width="128px" height="120px" />
+            <CircleSprite id={"vd-fill"} stroke="black" fill="green" strokeWidth="1px" width="128px" height="120px" />
           </IconButton>
           <p>#vd-fill</p>
           <p>128px, stroke 1px, fill green, stroke black</p>
@@ -103,7 +103,7 @@ export default function IconLibrary() {
         
         <div className={styles.icon__item}>
           <IconButton>
-            <CircleAccent id={"vd-outline"} stroke="black" fill="black" width="64" height="64" />
+            <CircleSprite id={"vd-outline"} stroke="black" fill="black" width="64" height="64" />
           </IconButton>
           <p>#vd-outline</p>
           <p>64px, stroke 1px</p>
@@ -111,7 +111,7 @@ export default function IconLibrary() {
 
         <div className={styles.icon__item}>
           <IconButton>
-            <CircleAccent id={"vd-outline"} stroke="black" strokeWidth="3px" fill="gold" width="100" height="100" />
+            <CircleSprite id={"vd-outline"} stroke="black" strokeWidth="3px" fill="gold" width="100" height="100" />
           </IconButton>
           <p>#vd-outline</p>
           <p>100px, stroke 3px</p>
@@ -130,8 +130,8 @@ const IconButton = (props) => {
   );
 }
 
-const CircleAccent = ({ id, className, ...props }) => {
+const CircleSprite = ({ id, className, ...props }) => {
   return <svg className={className} {...props}>
-    <use href={`accents.svg#${id}`} />
+    <use href={`sprites.svg#${id}`} />
   </svg>
 }

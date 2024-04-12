@@ -81,7 +81,7 @@ export default function HeaderMain() {
         <div className={styles.toolbar}>
           <ThemeToggle />
           <Link href="/search" className={styles.search__wrapper} aria-label="Open Search">
-            <svg className={styles.search__icon}><use href="/svg/accents.svg#search-icon" /></svg>
+            <svg className={styles.search__icon}><use href="/svg/sprites.svg#search-icon" /></svg>
           </Link>
           <button className={styles.menu} onClick={openNav} aria-label="Open Menu">Menu</button>
         </div>
@@ -147,7 +147,7 @@ function MobileNav({ closeNav }) {
       </nav>
 
       <div className={navStyles.footer}>
-        <svg className={styles.opm__logo}><use href="/svg/accents.svg#logo-vd-op-text" /></svg>
+        <svg className={styles.opm__logo}><use href="/svg/sprites.svg#logo-vd-op-text" /></svg>
         <p>{`Other People © ${getYear()}`} <br />ALL RIGHTS RESERVED</p>
       </div>
     </>

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styles from '@/styles/footer.module.scss';
-import { AccentIcon } from '@/pages';
+import { SpriteIcon } from '@/pages';
 import formData from '@/data/forms.json';
 
 const col1 = [
@@ -109,7 +109,7 @@ export default function Footer({ pageType, footerConfig }) {
         {
           !pageType && config.showMore !== false &&
           <div className={styles.more} >
-            <AccentIcon id="vd-fill" fill="#FFFEFB" stroke="#FFFEFB" strokeWidth="1px" width="150" height="150"
+            <SpriteIcon id="vd-fill" fill="#FFFEFB" stroke="#FFFEFB" strokeWidth="1px" width="150" height="150"
               className={styles['svg--accent']} style={{ right: "5vw", top: "-80px" }} />
 
             <p className={`${styles.more__block__heading} text--heading_2`}>More Information</p>

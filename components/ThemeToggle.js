@@ -37,15 +37,15 @@ export default function ThemeToggle() {
     <>
       <button onClick={handleTheme} className={`${styles.theme__btn}`}>
         <svg className={`${styles.theme__logo} ${slideClass}`}>
-          <use href={`/svg/accents.svg#vd-fill`} />
+          <use href={`/svg/sprites.svg#vd-fill`} />
         </svg>
         <div className={styles.theme__btn__wrapper}>
 
           <svg className={`${styles.theme__star} ${animationStyles.fadeIn}`}>
-            <use href={`/svg/accents.svg#theme-stars`} />
+            <use href={`/svg/sprites.svg#theme-stars`} />
           </svg>
           <svg className={`${styles.theme__sun} ${animationStyles.fadeIn}`}>
-            <use href={`/svg/accents.svg#theme-sun`} />
+            <use href={`/svg/sprites.svg#theme-sun`} />
           </svg>
         </div>
       </button>
