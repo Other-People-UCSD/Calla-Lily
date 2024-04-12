@@ -30,12 +30,12 @@
       "nonfiction": { "value": "#438DCC"},
       "visual": { "value": "#558D61"},
       "content": { "value": "black"},
-      "1": { "value": "black"},
-      "2": { "value": "black"},
-      "3": { "value": "black"},
-      "4": { "value": "black"},
-      "5": { "value": "#438DCC"},
-      "6": { "value": "#81B940"}
+      "1": { "value": "#F5CFE0"},
+      "2": { "value": "#5F7F2A"},
+      "3": { "value": "#FDC436"},
+      "4": { "value": "#7450DC"},
+      "5": { "value": "#256A90"},
+      "6": { "value": "#C1345E"}
     },
     "font": {
       "arial": { "value": "Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'" },
