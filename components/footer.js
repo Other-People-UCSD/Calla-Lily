@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import styles from '@/styles/footer.module.scss';
 import { AccentIcon } from '@/pages';
+import formData from '@/data/forms.json';
 
 const col1 = [
   {
@@ -109,7 +110,7 @@ export default function Footer({ pageType, footerConfig }) {
           !pageType && config.showMore !== false &&
           <div className={styles.more} >
             <AccentIcon id="vd-fill" fill="#FFFEFB" stroke="#FFFEFB" strokeWidth="1px" width="150" height="150"
-              className={styles['svg--accent']} style={{right: "5vw", top:"-80px" }}/>
+              className={styles['svg--accent']} style={{ right: "5vw", top: "-80px" }} />
 
             <p className={`${styles.more__block__heading} text--heading_2`}>More Information</p>
             <hr />
@@ -124,22 +125,42 @@ export default function Footer({ pageType, footerConfig }) {
                 <p className={`${styles.more__block__heading} text--heading_2`}>Team Applications</p>
                 <p></p>
                 <ul className={styles.team__app__list}>
-                  <li>
-                    <p>Editorial & Content</p>
-                    <a href="">[Apply Here!]</a>
-                  </li>
-                  <li>
-                    <p>Design & Social Media</p>
-                    <a href="">[Apply Here!]</a>
-                  </li>
-                  <li>
-                    <p>Event Planning</p>
-                    <a href="">[Apply Here!]</a>
-                  </li>
-                  <li>
-                    <p>Web Dev/UI/UX</p>
-                    <a href="">[Apply Here!]</a>
-                  </li>
+                  {formData.app_editorial &&
+                    <li>
+                      <p>Editorial</p>
+                      <a href={formData.app_editorial}>[Apply Here!]</a>
+                    </li>
+                  }
+                  {formData.app_content &&
+                    <li>
+                      <p>Content</p>
+                      <a href={formData.app_content}>[Apply Here!]</a>
+                    </li>
+                  }
+                  {formData.app_design &&
+                    <li>
+                      <p>Design</p>
+                      <a href={formData.app_design}>[Apply Here!]</a>
+                    </li>
+                  }
+                  {formData.app_website &&
+                    <li>
+                      <p>Web Dev/UI/UX</p>
+                      <a href={formData.app_website}>[Apply Here!]</a>
+                    </li>
+                  }
+                  {formData.app_social_media &&
+                    <li>
+                      <p>Social Media</p>
+                      <a href={formData.app_social_media}>[Apply Here!]</a>
+                    </li>
+                  }
+                  {formData.app_event_planning &&
+                    <li>
+                      <p>Event Planning</p>
+                      <a href={formData.app_event_planning}>[Apply Here!]</a>
+                    </li>
+                  }
                 </ul>
               </div>
             </div>

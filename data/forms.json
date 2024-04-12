@@ -1,10 +1,12 @@
 {
-  "written": "",
-  "visual": "",
-  "subsClosedText": "Our submissions are now closed for the rest of the school year. We will continue to update this page with open calls for submissions from other orgs at UCSD!\n",
-  "editorial": "https://docs.google.com/forms/d/e/1FAIpQLScHkhvOBMkg5uehcbTlp_K2gyMGf8PChZaFWrtBxgCGgGCgFw/viewform?usp=sf_link",
-  "content": "",
-  "design": "https://forms.gle/US6EPxiy5JHHFpGA8",
-  "events": "https://docs.google.com/forms/d/e/1FAIpQLSfuAfbBDcM3PEjzWb08a_TJP2Au-FtarKKHKUeLfy0fTkbT3A/viewform?usp=sf_link",
-  "website": "https://docs.google.com/forms/d/e/1FAIpQLSfMolDd9ypQFG6jCyU37oTUY4DAd_2Im1Iky9i-YC2p0n8hIQ/viewform?usp=sf_link"
+  "submissions_written": "",
+  "submissions_visual": "",
+  "submissions_digital": "",
+  "subsClosedText": "Our submissions are now closed for the rest of the school year.",
+  "app_editorial": "https://docs.google.com/forms/d/e/1FAIpQLScHkhvOBMkg5uehcbTlp_K2gyMGf8PChZaFWrtBxgCGgGCgFw/viewform?usp=sf_link",
+  "app_content": "",
+  "app_design": "https://forms.gle/US6EPxiy5JHHFpGA8",
+  "app_website": "https://docs.google.com/forms/d/e/1FAIpQLSfMolDd9ypQFG6jCyU37oTUY4DAd_2Im1Iky9i-YC2p0n8hIQ/viewform?usp=sf_link",
+  "app_social_media": "",
+  "app_event_planning": "https://docs.google.com/forms/d/e/1FAIpQLSfuAfbBDcM3PEjzWb08a_TJP2Au-FtarKKHKUeLfy0fTkbT3A/viewform?usp=sf_link"
 }

@@ -213,14 +213,19 @@ export const schema = {
       },
       fields: [
         {
-          name: "written",
+          name: "submissions_written",
           label: "Written Submission Form",
           type: "string",
         },
         {
-          name: "visual",
+          name: "submissions_visual",
           label: "Visual Arts Submission Form",
           type: "string",
+        },
+        {
+          name: "submissions_digital",
+          label: "Digital-only Submission Form",
+          type: "string"
         },
         {
           name: "subsClosedText",
@@ -228,48 +233,33 @@ export const schema = {
           type: "rich-text",
         },
         {
-          name: "otherSubs",
-          label: "Other Submission Forms",
-          type: "object",
-          list: true,
-          fields: [
-            {
-              name: "description",
-              label: "Description",
-              type: "string",
-              required: true,
-            },
-            {
-              name: "link",
-              label: "Link",
-              type: "string",
-              required: true,
-            },
-          ],
-        },
-        {
-          name: "editorial",
+          name: "app_editorial",
           label: "Editorial Application Form",
           type: "string",
         },
         {
-          name: "content",
+          name: "app_content",
           label: "Content Writing Application Form",
           type: "string",
         },
         {
-          name: "design",
+          name: "app_design",
           label: "Design Application Form",
           type: "string",
         },
         {
-          name: "events",
-          label: "Event Planning Application Form",
+          name: "app_website",
+          label: "Website Application Form",
           type: "string",
         },
         {
-          name: "website",
-          label: "Website Application Form",
+          name: "app_social_media",
+          label: "Social Media Application Form",
+          type: "string",
+        },
+        {
+          name: "app_event_planning",
+          label: "Event Planning Application Form",
           type: "string",
         },
       ],
@@ -309,7 +299,7 @@ export const schema = {
               label: "Description",
               type: "string",
               description: "<80 chars or resize editor to check how it looks on mobile devices.",
-            },{
+            }, {
               name: "date",
               label: "Date (MUST CHANGE FOR EVERY ANNOUNCEMENT)",
               type: "datetime",
