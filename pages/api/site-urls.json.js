@@ -1,4 +1,4 @@
-const SITE_URL = 'https://www.otherpeoplesd.com';
+const SITE_URL = 'https://calla-lily-git-mockups-other-people.vercel.app';
 const EXTERNAL_DATA_URL = `${SITE_URL}/api/post-metadata.json`;
 const EXTERNAL_PAGE_URL = `${SITE_URL}/api/pages.json`;
 

@@ -31,7 +31,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const res = await fetch(`https://www.otherpeoplesd.com/api/site-urls.json`, {
+            const res = await fetch(`https://calla-lily-git-mockups-other-people.vercel.app/api/site-urls.json`, {
               headers: {
                 'Content-Type': 'application/json'
               }
