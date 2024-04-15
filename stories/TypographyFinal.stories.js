@@ -43,3 +43,23 @@ export const Apple = {
     ],
   }
 }
+
+export const Helvetica = {
+  args: {
+    familyName: 'Helvetica',
+    family: tokens.OpmFontHelvetica,
+    typoFamilyItems: [
+      { size: '16px', usage: 'Post content', example: 'Lorem ipsum dolor sit amet' },
+    ],
+  }
+}
+
+export const B612Mono = {
+  args: {
+    familyName: 'B612Mono',
+    family: tokens.OpmFontMonospace,
+    typoFamilyItems: [
+      { size: '16px', usage: 'Post content', example: 'Lorem ipsum dolor sit amet' },
+    ],
+  }
+}

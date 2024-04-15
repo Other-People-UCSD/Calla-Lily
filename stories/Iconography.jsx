@@ -15,30 +15,67 @@ export default function IconLibrary() {
       <div className={styles.icon__grid}>
         <div className={styles.icon__item}>
           <IconButton>
+            <CircleSprite id={"logo-vd-op-text"} width="128" height="128" />
+          </IconButton>
+          <p>sprites#logo-vd-op-text</p>
+          <p>128px</p>
+        </div>
+      </div>
+
+      <div className={styles.icon__grid}>
+        <div className={styles.icon__item}>
+          <IconButton>
             <ArrowForwardIcon fontSize="large" />
           </IconButton>
-          <p>ArrowForwardIcon</p>
+          <p>MUI import: ArrowForwardIcon</p>
           <p>32px</p>
         </div>
         <div className={styles.icon__item}>
           <IconButton>
             <FacebookIcon fontSize="large" />
           </IconButton>
-          <p>FacebookIcon</p>
+          <p>MUI import: FacebookIcon</p>
           <p>32px</p>
         </div>
         <div className={styles.icon__item}>
           <IconButton>
             <InstagramIcon fontSize="large" />
           </IconButton>
-          <p>InstagramIcon</p>
+          <p>MUI import: InstagramIcon</p>
           <p>32px</p>
         </div>
         <div className={styles.icon__item}>
           <IconButton>
             <MailOutlineIcon fontSize="large" />
           </IconButton>
-          <p>MailOutlineIcon</p>
+          <p>MUI import: MailOutlineIcon</p>
+          <p>32px</p>
+        </div>
+      </div>
+
+
+      <div className={styles.icon__grid}>
+        <div className={styles.icon__item}>
+          <IconButton>
+            <CircleSprite id={"search-icon"} stroke="black" width="32" height="32" />
+          </IconButton>
+          <p>sprites#search-icon</p>
+          <p>32px</p>
+        </div>
+
+        <div className={styles.icon__item}>
+          <IconButton>
+            <CircleSprite id={"theme-sun"} width="32" height="32" />
+          </IconButton>
+          <p>sprites#theme-sun</p>
+          <p>32px</p>
+        </div>
+
+        <div className={`${styles.icon__item} ${styles['icon__item--dark']}`}>
+          <IconButton>
+            <CircleSprite id={"theme-stars"} fill="white" width="32" height="32" />
+          </IconButton>
+          <p>sprites#theme-stars</p>
           <p>32px</p>
         </div>
       </div>
@@ -76,7 +113,7 @@ export default function IconLibrary() {
         </div>
       </div>
       <div className={styles.icon__grid}>
-      <div className={styles.icon__item}>
+        <div className={styles.icon__item}>
           <IconButton>
             <CircleSprite id={"vd-fill"} stroke="black" fill="black" strokeWidth="0.2px" width="89" height="64" />
           </IconButton>
@@ -99,8 +136,8 @@ export default function IconLibrary() {
           <p>#vd-fill</p>
           <p>128px, stroke 1px, fill green, stroke black</p>
         </div>
-        
-        
+
+
         <div className={styles.icon__item}>
           <IconButton>
             <CircleSprite id={"vd-outline"} stroke="black" fill="black" width="64" height="64" />
@@ -109,12 +146,15 @@ export default function IconLibrary() {
           <p>64px, stroke 1px</p>
         </div>
 
+      </div>
+
+      <div className={styles.icon__grid}>
         <div className={styles.icon__item}>
           <IconButton>
-            <CircleSprite id={"vd-outline"} stroke="black" strokeWidth="3px" fill="gold" width="100" height="100" />
+            <CircleSprite id={"other-people-homepage-circle"} stroke="black" fill="black" width="300" height="300" />
           </IconButton>
-          <p>#vd-outline</p>
-          <p>100px, stroke 3px</p>
+          <p>#other-people-homepage-circle</p>
+          <p>300px, stroke initial</p>
         </div>
       </div>
     </>
