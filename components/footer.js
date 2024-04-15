@@ -194,7 +194,7 @@ export default function Footer({ pageType, footerConfig }) {
           </div>
         </div>
         <div className={styles.base__copyright}>
-          <svg className={styles.opm__logo}><use href="/svg/accents.svg#logo-vd-op-text" /></svg>
+          <svg className={styles.opm__logo}><use href="/svg/sprites.svg#logo-vd-op-text" /></svg>
           <p className={styles.base__copyright__text}>
             {`© ${getYear()} All Rights Reserved`}<br />
             Version 4.5.9<br />
