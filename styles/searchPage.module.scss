@@ -7,9 +7,7 @@
 .toolbar__main {
   display: flex;
   position: relative;
-  // background-color: $opm-background-black;
   border-bottom: 5px solid var(--border-color);
-
 }
 
 .filter__dropdown {
@@ -19,7 +17,6 @@
 .filter__button {
   height: 100%;
   font-size: $opm-font-size-h3;
-  // color: $opm-color-white;
   opacity: $opm-opacity-placeholder;
 }
 
@@ -165,6 +162,21 @@
  color: #AC504E;
 }
 
+// Filter dark theme
+.theme--dark .query__input {
+  color: white;
+}
+
+.theme--dark button {
+  background-color: $opm-background-black;
+  color: white;
+  cursor: pointer;
+}
+
+.theme--dark .filter__container {
+  background-color: $opm-background-black;
+}
+
 .results {
   margin-top: $opm-spacing-500;
   padding-left: 0;
@@ -284,17 +296,8 @@
   width: 100%;
 }
 
-.header {
-  padding: 32px;
-}
-
-
 
 @media only screen and (max-width: 768px) {
-  .header {
-    padding: 16px;
-  }
-
   .query__input {
     font-size: 1.5rem;
   }
@@ -342,19 +345,4 @@
     height: 100px;
     max-width: 150px;
   }
-}
-
-.theme--dark .query__input {
-  color: white;
-}
-
-.theme--dark button {
-  background-color: $opm-background-black;
-  color: white;
-  cursor: pointer;
-}
-
-.theme--dark .filter__container {
-  background-color: $opm-background-black;
-
 }

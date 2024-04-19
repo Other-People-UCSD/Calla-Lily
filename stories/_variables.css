@@ -1,10 +1,10 @@
 /**
  * Do not edit directly
- * Generated on Wed, 06 Dec 2023 22:19:56 GMT
+ * Generated on Fri, 19 Apr 2024 04:08:45 GMT
  */
 
 :root {
-  --opm-color-black: #000000;
+  --opm-color-black: #303030;
   --opm-color-white: #FFFFFF;
   --opm-color-grey-label: #8A8A8A;
   --opm-color-grey-light: #E5E5E5;
@@ -16,6 +16,17 @@
   --opm-color-highlight-red: #F4BAB9;
   --opm-background-black: #303030;
   --opm-background-white: #FFFFFC;
+  --opm-chip-1: #F5CFE0;
+  --opm-chip-2: #5F7F2A;
+  --opm-chip-3: #FDC436;
+  --opm-chip-4: #7450DC;
+  --opm-chip-5: #256A90;
+  --opm-chip-6: #C1345E;
+  --opm-chip-poetry: #9A2A55;
+  --opm-chip-fiction: #DF7D64;
+  --opm-chip-nonfiction: #438DCC;
+  --opm-chip-visual: #558D61;
+  --opm-chip-content: #676767;
   --opm-font-arial: Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   --opm-font-basier: basier_circlemonoregular;
   --opm-font-apple: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
@@ -24,8 +35,8 @@
   --opm-font-weight-normal: normal;
   --opm-font-weight-semibold: 500;
   --opm-font-weight-bold: bold;
-  --opm-font-size-h1: 4rem;
-  --opm-font-size-h2: 2rem;
+  --opm-font-size-h1: 2rem;
+  --opm-font-size-h2: 1.5rem;
   --opm-font-size-h3: 1.25rem;
   --opm-font-size-h4: 1.25rem;
   --opm-font-size-h5: 1.25rem;
@@ -33,9 +44,12 @@
   --opm-font-size-body: 16px;
   --opm-font-size-subtext: 0.9rem;
   --opm-font-size-small: 14px;
+  --opm-font-size-largest: 4rem;
+  --opm-font-size-large: 3rem;
   --opm-opacity-animation-fade: 0.3;
   --opm-opacity-placeholder: 0.5;
   --opm-opacity-subtext: 0.8;
+  --opm-opacity-svg: 0.4;
   --opm-spacing-0: 0px;
   --opm-spacing-50: 2px;
   --opm-spacing-75: 4px;

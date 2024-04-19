@@ -52,8 +52,8 @@
 .hero__img__container svg {
   height: 750px;
   width: 750px;
-  fill: black;
-  stroke: black;
+  fill: $opm-color-black;
+  stroke: $opm-color-black;
 }
 
 .animate--rotate {
@@ -266,8 +266,8 @@
   width: 300px;
   height: 450px;
   box-sizing: border-box;
-  border: 3px solid black;
-  box-shadow: 2px 2px 4px #00000044;
+  border: 3px solid $opm-color-black;
+  box-shadow: 2px 2px 4px #30303044;
 }
 
 .flipbook__grid {
@@ -434,6 +434,6 @@ html[data-theme="dark"] .hero__img__container svg {
   }
 
   .ui3_marquee {
-    color: black;
+    color: $opm-color-black;
   }
 }

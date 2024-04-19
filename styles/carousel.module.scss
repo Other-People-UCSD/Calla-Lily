@@ -2,7 +2,6 @@
 
 .base {
   position: relative;
-  /* background-color: teal; */
 }
 
 .base__genre {
@@ -19,8 +18,6 @@
   min-height: 40vw;
   max-height: 1080px;
   box-sizing: border-box;
-  /* border: 1px solid black; */
-  /* background-color: #eeeeeeaa; */
   overflow-x: hidden;
   overflow-y: clip;
 }
@@ -65,7 +62,6 @@
 
 
 // CarouselMobile
-
 .mobile {
   min-height: 350px;
 }
@@ -105,7 +101,7 @@
 
 .mobile__scroll__container li[class="slick-active"] button,
 .mobile__scroll__dot--selected {
-  background-color: black;
+  background-color: $opm-background-black;
 }
 
 .mobile__track {
@@ -140,7 +136,7 @@
   flex-direction: column;
   justify-content: center;
   height: 100%;
-  background-color: #00000066;
+  background-color: #30303066;
   color: $opm-color-white;
 }
 

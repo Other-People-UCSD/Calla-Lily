@@ -5,9 +5,9 @@
   padding-top: 200px;
   padding-bottom: 64px;
   font-family: $opm-font-monospace;
-  color: white;
+  color: $opm-color-white;
   font-size: $opm-font-size-small;
-  background: #303030;
+  background: $opm-background-black;
 }
 
 .base p {
@@ -15,7 +15,7 @@
 }
 
 .base a {
-  color: white;
+  color: $opm-color-white;
 }
 
 .gradient {
@@ -65,7 +65,7 @@
   margin-right: auto;
   width: 60%;
   max-width: 600px;
-  // border: 2px solid white;
+  // border: 2px solid $opm-color-white;
   // border-radius: 4px;
 }
 
@@ -73,14 +73,14 @@
   flex-grow: 1;
   padding-left: 16px;
   background-color: inherit;
-  border: 2px solid white;
+  border: 2px solid $opm-color-white;
   border-radius: 3px;
-  color: white;
+  color: $opm-color-white;
   font-size: inherit;
 }
 
 .newsletter__input__email::placeholder {
-  color: white;
+  color: $opm-color-white;
 }
 
 .newsletter__submit {
@@ -89,14 +89,14 @@
   background-color: $opm-color-white;
   border-style: solid;
   border-radius: 5px;
-  border-color: white;
-  box-shadow: 2px 2px black;
+  border-color: $opm-color-white;
+  box-shadow: 2px 2px $opm-color-black;
 }
 
 .newsletter_homepage {
   margin: 32px;
   width: 400px;
-  color: white;
+  color: $opm-color-white;
 }
 
 .newsletter_homepage hr {
@@ -139,7 +139,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   padding: 16px 32px;
-  border-top: 2px solid white;
+  border-top: 2px solid $opm-color-white;
 }
 
 .nav__header {
@@ -168,7 +168,7 @@
   margin-bottom: 8px;
   width: 80px;
   height: 50px;
-  fill: white;
+  fill: $opm-color-white;
 }
 
 .base__copyright__text {
@@ -201,7 +201,7 @@
 .more__block {
   padding: 16px 32px;
   text-align: center;
-  border-right: 3px solid white;
+  border-right: 3px solid $opm-color-white;
 }
 
 .more__block:last-child {
@@ -279,7 +279,7 @@ html[data-theme="dark"] .gradient {
 
   .more__block {
     border-right: none;
-    border-bottom: 6px solid white;
+    border-bottom: 6px solid $opm-color-white;
   }
 
   .more__block:last-child {

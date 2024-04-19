@@ -29,7 +29,8 @@ export default function Home(props) {
             <use href="svg/sprites.svg#other-people-homepage-circle" />
           </svg>
         </div>
-        <p className={`${styles.hero__text}`}>the <span className={styles["hero__text--italic"]}>visual</span> and <span className={styles["hero__text--thin"]}>literary</span> arts <span style={{ textDecoration: 'underline' }}>magazine</span>.</p>
+        <p className={`${styles.hero__text}`}>the <span className={styles["hero__text--italic"]}>visual</span> and <span className={styles["hero__text--thin"]}>literary</span> <br />
+          arts <span style={{ textDecoration: 'underline' }}>magazine</span>.</p>
 
         <SpriteIcon id="circle-outline" stroke="#FBDA09" strokeWidth="4px" width="100" height="100" x="200px"
           className={styles['svg--accent']} style={{ left: "40vw", top: "20vh" }} />
@@ -157,8 +158,8 @@ export async function getStaticProps() {
   const fiction = getGenrePostsData('Fiction', allPostsData);
   const nonfiction = getGenrePostsData('Nonfiction', allPostsData);
   const visualarts = getGenrePostsData('Visual Arts', allPostsData);
-  const featuredPosts = await getGroupedPostsData({ group: 'collection', value: '6', input: allPostsData});
-  
+  const featuredPosts = await getGroupedPostsData({ group: 'collection', value: '6', input: allPostsData });
+
   let data = {}
   let query = {}
   let variables = { relativePath: `../data/homepage.json` }

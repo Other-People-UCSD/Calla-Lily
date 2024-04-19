@@ -1,7 +1,7 @@
 {
   "opm": {
     "color": {
-      "black": { "value": "#000000" },
+      "black": { "value": "#303030" },
       "white": { "value": "#FFFFFF" },
       "grey": {
         "label": { "value": "#8A8A8A" },
@@ -29,7 +29,7 @@
       "fiction": { "value": "#DF7D64"},
       "nonfiction": { "value": "#438DCC"},
       "visual": { "value": "#558D61"},
-      "content": { "value": "black"},
+      "content": { "value": "#676767"},
       "1": { "value": "#F5CFE0"},
       "2": { "value": "#5F7F2A"},
       "3": { "value": "#FDC436"},
