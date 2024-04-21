@@ -145,7 +145,7 @@ export function Chip({ type, value }) {
     value = `No. ${value}`;
   }
 
-  return <div className={`${styles.card__chip} ${coloredClass}`}>{value}</div>
+  return <div title={value} className={`${styles.card__chip} ${coloredClass}`}>{value}</div>
 }
 
 /**

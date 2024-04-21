@@ -252,10 +252,12 @@
 // Flipbook
 .flipbook__container {
   width: 100%;
+  // min-width: fit-content;
 }
 
 .flipbook__track {
   display: flex;
+  flex-wrap: wrap;
   gap: 24px;
   overflow: hidden;
   justify-content: center;
@@ -277,11 +279,6 @@
   gap: 24px;
 }
 
-.flipbook__grid .flipbook__frame {
-  width: 40vw;
-  height: 30vh;
-
-}
 
 // Newsletter
 .section__newsletter {
@@ -311,9 +308,15 @@
   width: 100%;
 }
 
+.newsletter_1 {
+  position: absolute;
+  left: 0px;
+  bottom: -20px;
+}
+
 .newsletter_2 {
   position: absolute;
-  left: 50px;
+  left: 30%;
   z-index: 2;
 }
 
@@ -335,8 +338,13 @@
     background-image: url('/images/cover/newsletter-mobile.webp');
   }
 
+  .newsletter_1 {
+    left: 0px;
+    top: 30%;
+  }
+
   .newsletter_2 {
-    left: 20px;
+    left: 10%;
     bottom: 50px;
   }
   
