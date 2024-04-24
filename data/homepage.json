@@ -8,12 +8,8 @@
   "featured_piece_name": "Liminal (Cover)",
   "featured_link": "https://discord.gg/ZT3Mx78Ar7",
   "featured_alt": "(Digital Art by Caroline Tjoe) The cover for Collection No. 6, Liminal!",
+  "featured_contributor": "Caroline Tjoe",
   "term": "Spring 2023",
   "collection": 6,
-  "theme": "LIMINAL",
-  "featured_contributor": "Caroline Tjoe",
-  "poetryLimit": 9,
-  "fictionLimit": 9,
-  "nonfictionLimit": 9,
-  "visartsLimit": 9
+  "theme": "LIMINAL"
 }

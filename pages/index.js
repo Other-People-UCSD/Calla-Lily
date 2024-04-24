@@ -21,6 +21,7 @@ export default function Home(props) {
     'showNewsletter': false,
   }
 
+  console.log(data)
   return (
     <Layout homepage footerConfig={footerConfig} className={`${styles.main}`}>
       <div className={styles.hero}>
@@ -45,13 +46,14 @@ export default function Home(props) {
           <Image className={`${styles.img__cover}`}
             src="/images/6/liminal-cover-caroline-tjoe.webp" fill={true}
             sizes='1080px'
-            alt="cover" />
+            alt={data.homepage.featured_alt} />
+            <p className={styles.block__img__caption}>{data.homepage.featured_piece_name} by {data.homepage.featured_contributor}</p>
         </div>
         <div className={`${styles.collection__block__text}`}>
-          <p className={`text--heading_1 ${styles.collection__date}`}>Spring 2023</p>
+          <p className={`text--heading_1 ${styles.collection__date}`}>{data.homepage.term}</p>
           <hr className={styles.collection__block__hr} />
-          <p className={`text--heading_1 ${styles.collection__number}`}>Collection No. 6</p>
-          <p className={`text--heading_1 ${styles.collection__title}`}>LIMINAL</p>
+          <p className={`text--heading_1 ${styles.collection__number}`}>Collection No. {data.homepage.collection}</p>
+          <p className={`text--heading_1 ${styles.collection__title}`}>{data.homepage.theme}</p>
         </div>
 
         <SpriteIcon id="circle-fill" fill="#E7EFFB" width="300" height="300"

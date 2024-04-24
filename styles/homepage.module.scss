@@ -118,7 +118,15 @@
 
 .block__img__caption {
   position: absolute;
-  bottom: -20px;
+  bottom: -35px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-family: $opm-font-monospace;
   z-index: 1;
 }
 
@@ -147,6 +155,7 @@
   .block__img__container {
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 32px;
   }
 }
 

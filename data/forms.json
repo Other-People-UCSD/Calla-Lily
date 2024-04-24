@@ -2,11 +2,82 @@
   "submissions_written": "",
   "submissions_visual": "",
   "submissions_digital": "",
-  "subsClosedText": "Our submissions are now closed for the rest of the school year.",
+  "subsClosedText": "Our submissions are now closed for the rest of the school year.\n",
   "app_editorial": "https://docs.google.com/forms/d/e/1FAIpQLScHkhvOBMkg5uehcbTlp_K2gyMGf8PChZaFWrtBxgCGgGCgFw/viewform?usp=sf_link",
   "app_content": "",
   "app_design": "https://forms.gle/US6EPxiy5JHHFpGA8",
   "app_website": "https://docs.google.com/forms/d/e/1FAIpQLSfMolDd9ypQFG6jCyU37oTUY4DAd_2Im1Iky9i-YC2p0n8hIQ/viewform?usp=sf_link",
   "app_social_media": "",
-  "app_event_planning": "https://docs.google.com/forms/d/e/1FAIpQLSfuAfbBDcM3PEjzWb08a_TJP2Au-FtarKKHKUeLfy0fTkbT3A/viewform?usp=sf_link"
+  "app_event_planning": "https://docs.google.com/forms/d/e/1FAIpQLSfuAfbBDcM3PEjzWb08a_TJP2Au-FtarKKHKUeLfy0fTkbT3A/viewform?usp=sf_link",
+  "footer__c1": [
+    {
+      "name": "Issuu ->",
+      "url": "https://issuu.com/otherpeoplesd",
+      "outbound": true,
+      "aria_label": "Issuu"
+    }
+  ],
+  "footer__c2": [
+    {
+      "name": "Poetry",
+      "url": "/poetry"
+    },
+    {
+      "name": "Fiction",
+      "url": "/fiction"
+    },
+    {
+      "name": "Nonfiction",
+      "url": "/nonfiction"
+    },
+    {
+      "name": "Visual Arts",
+      "url": "/visualarts"
+    },
+    {
+      "name": "Search",
+      "url": "/search"
+    }
+  ],
+  "footer__c3": [
+    {
+      "name": "About",
+      "url": "/about"
+    },
+    {
+      "name": "Team Applications",
+      "url": "/about#team"
+    },
+    {
+      "name": "Submissions",
+      "url": "/submissions"
+    },
+    {
+      "name": "Community <3",
+      "url": "/uc-magazines",
+      "aria_label": "Community"
+    }
+  ],
+  "footer__c4": [
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/otherpeoplesd/",
+      "outbound": true
+    },
+    {
+      "name": "Facebook",
+      "url": "https://www.facebook.com/otherpeoplesd/",
+      "outbound": true
+    },
+    {
+      "name": "Discord",
+      "url": "https://discord.gg/ZT3Mx78Ar7",
+      "outbound": true
+    },
+    {
+      "name": "Email",
+      "url": "mailto:otherpeopleucsd@gmail.com",
+      "outbound": false
+    }
+  ]
 }

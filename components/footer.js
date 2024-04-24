@@ -3,89 +3,6 @@ import styles from '@/styles/footer.module.scss';
 import { SpriteIcon } from '@/pages';
 import formData from '@/data/forms.json';
 
-const col1 = [
-  {
-    "name": "Issuu ->",
-    "link": "https://issuu.com/otherpeoplesd",
-    "outbound": true,
-    "label": "Issuu"
-  }];
-
-const col2 = [
-  {
-    "name": "Poetry",
-    "link": "/poetry",
-    "outbound": false
-  },
-  {
-    "name": "Fiction",
-    "link": "/fiction",
-    "outbound": false
-  },
-  {
-    "name": "Nonfiction",
-    "link": "/nonfiction",
-    "outbound": false
-  },
-  {
-    "name": "Visual Arts",
-    "link": "/visualarts",
-    "outbound": false
-  },
-  {
-    "name": "Search",
-    "link": "/search",
-    "outbound": false
-  },
-]
-
-const col3 = [
-  {
-    "name": "About",
-    "link": "/about",
-    "outbound": false
-  },
-  {
-    "name": "Team Applications",
-    "link": "/about#team",
-    "outbound": false
-  },
-  {
-    "name": "Submissions",
-    "link": "/submissions",
-    "outbound": false
-  },
-  {
-    "name": "Community <3",
-    "link": "/uc-magazines",
-    "outbound": false,
-    "label": "Community"
-  },
-]
-
-const col4 = [
-  {
-    "name": "Instagram",
-    "link": "/",
-    "outbound": true
-  },
-  {
-    "name": "Facebook",
-    "link": "/",
-    "outbound": true
-  },
-  {
-    "name": "Discord",
-    "link": "/",
-    "outbound": true
-  },
-  {
-    "name": "Email",
-    "link": "/",
-    "outbound": false
-  },
-]
-
 const defaultConfig = {
   'showGradient': true,
   'showMore': true,
@@ -175,22 +92,22 @@ export default function Footer({ pageType, footerConfig }) {
         <div className={styles.nav}>
           <div className={styles.nav__column}>
             <p className={styles.nav__header}>Our Prints</p>
-            <FooterList col={col1} />
+            <FooterList col={formData.footer__c1} />
           </div>
 
           <div className={styles.nav__column}>
             <p className={styles.nav__header}>Explore Content</p>
-            <FooterList col={col2} />
+            <FooterList col={formData.footer__c2} />
           </div>
 
           <div className={styles.nav__column}>
             <p className={styles.nav__header}>Other Resources</p>
-            <FooterList col={col3} />
+            <FooterList col={formData.footer__c3} />
           </div>
 
           <div className={styles.nav__column}>
             <p className={styles.nav__header}>Follow Us!</p>
-            <FooterList col={col4} />
+            <FooterList col={formData.footer__c4} />
           </div>
         </div>
         <div className={styles.base__copyright}>
@@ -214,9 +131,9 @@ function FooterList({ col }) {
           return <li key={idx} className={styles.nav__list__item}>
             {
               item.outbound ? (
-                <a href={item.link} target="_blank" rel="noreferer noopener" aria-label={item.label}>{item.name}</a>
+                <a href={item.url} target="_blank" rel="noreferer noopener" aria-label={item.aria_label}>{item.name}</a>
               ) : (
-                <Link href={item.link} aria-label={item.label}>{item.name}</Link>
+                <Link href={item.url} aria-label={item.aria_label}>{item.name}</Link>
               )
             }
           </li>

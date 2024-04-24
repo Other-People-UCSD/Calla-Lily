@@ -5,6 +5,31 @@ const slugify = (values) => {
     .join('-')}`
 }
 
+const footerFields = [
+  {
+    name: "name",
+    label: "Name",
+    type: "string",
+    required: true,
+  },
+  {
+    name: "url",
+    label: "URL",
+    type: "string",
+    required: true,
+  },
+  {
+    name: "outbound",
+    label: "Outbound Link?",
+    type: "boolean",
+  },
+  {
+    name: "aria_label",
+    label: "Aria Label",
+    type: "string",
+  },
+]
+
 export const schema = {
   collections: [
     {
@@ -262,6 +287,54 @@ export const schema = {
           label: "Event Planning Application Form",
           type: "string",
         },
+        {
+          name: "footer__c1",
+          label: "Footer Col 1",
+          type: "object",
+          list: true,
+          ui: {
+            itemProps: (item) => {
+              return { label: `${item?.name}` }
+            },
+          },
+          fields: footerFields,
+        },
+        {
+          name: "footer__c2",
+          label: "Footer Col 2",
+          type: "object",
+          list: true,
+          ui: {
+            itemProps: (item) => {
+              return { label: `${item?.name}` }
+            },
+          },
+          fields: footerFields,
+        },
+        {
+          name: "footer__c3",
+          label: "Footer Col 3",
+          type: "object",
+          list: true,
+          ui: {
+            itemProps: (item) => {
+              return { label: `${item?.name}` }
+            },
+          },
+          fields: footerFields,
+        },
+        {
+          name: "footer__c4",
+          label: "Footer Col 4",
+          type: "object",
+          list: true,
+          ui: {
+            itemProps: (item) => {
+              return { label: `${item?.name}` }
+            },
+          },
+          fields: footerFields,
+        },
       ],
     },
     {
@@ -353,42 +426,6 @@ export const schema = {
           label: "Theme",
           type: "string",
           required: true,
-        },
-        {
-          name: "poetryLimit",
-          label: "Poetry in this Collection",
-          type: "number",
-          required: true,
-          ui: {
-            description: "This is the number of poems in this collection or including new poems to populate the homepage below the cover."
-          }
-        },
-        {
-          name: "fictionLimit",
-          label: "Fiction in this Collection",
-          type: "number",
-          required: true,
-          ui: {
-            description: "See above"
-          }
-        },
-        {
-          name: "nonfictionLimit",
-          label: "Nonfiction in this Collection",
-          type: "number",
-          required: true,
-          ui: {
-            description: "See above"
-          }
-        },
-        {
-          name: "visartsLimit",
-          label: "Visual Arts in this Collection",
-          type: "number",
-          required: true,
-          ui: {
-            description: "See above"
-          }
         },
       ],
     },
