@@ -85,7 +85,6 @@ export default function HeaderMain() {
           </Link>
           <button className={styles.menu} onClick={openNav} aria-label="Open Menu">Menu</button>
         </div>
-
       </header>
       <div
         id='mobileNav'

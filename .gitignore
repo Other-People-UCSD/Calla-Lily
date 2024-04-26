@@ -5,6 +5,7 @@
 # dependencies
 /node_modules
 /public/storybook
+/storybook-static
 
 # testing
 /coverage
