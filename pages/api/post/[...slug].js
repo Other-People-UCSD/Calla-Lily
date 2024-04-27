@@ -6,8 +6,7 @@ export default async function handler(req, res) {
 
     const postData = await getPostDataAPI({
       relativePath: `${slug.join('/')}.mdx`, 
-      allPostsData: undefined, 
-      headerType: req.headers['opm-content']
+      allPostsData: undefined
     });
 
     res.setHeader('Content-Type', 'application/json');

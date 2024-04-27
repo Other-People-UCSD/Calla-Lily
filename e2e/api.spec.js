@@ -37,9 +37,9 @@ test('api/site-urls includes pages and posts', async ({ request }) => {
   const data = await res.json();
   // Assert
   await expect(data).toHaveProperty('urls');
-  await expect(data.urls).toContain('https://www.otherpeoplesd.com/submissions');
-  await expect(data.urls).toContain('https://www.otherpeoplesd.com/1/skin-vilar');
-  await expect(data.urls).toContain('https://www.otherpeoplesd.com/2023/hole');
+  await expect(data.urls).toContain('https://calla-lily-git-main-other-people.vercel.app/submissions');
+  await expect(data.urls).toContain('https://calla-lily-git-main-other-people.vercel.app/1/skin-vilar');
+  await expect(data.urls).toContain('https://calla-lily-git-main-other-people.vercel.app/2023/hole');
 });
 
 
