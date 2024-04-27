@@ -237,7 +237,7 @@
 
 .selector__button--poetry.selector__button--selected {
   background-color: $opm-chip-poetry;
-  color: white;
+  color: $opm-color-white;
 }
 
 .selector__button--fiction {
@@ -246,7 +246,7 @@
 
 .selector__button--fiction.selector__button--selected {
   background-color: $opm-chip-fiction;
-  color: white;
+  color: $opm-color-white;
 }
 
 .selector__button--nonfiction {
@@ -255,7 +255,7 @@
 
 .selector__button--nonfiction.selector__button--selected {
   background-color: $opm-chip-nonfiction;
-  color: white;
+  color: $opm-color-white;
 }
 
 .selector__button--visualarts {
@@ -264,7 +264,7 @@
 
 .selector__button--visualarts.selector__button--selected {
   background-color: $opm-chip-visual;
-  color: white;
+  color: $opm-color-white;
 }
 
 .divider--poetry {

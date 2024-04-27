@@ -4,14 +4,14 @@ import Link from "next/link";
 import styles from "@/styles/posts.module.scss";
 import Image from "next/image";
 
-export function PostCardGrid({ postEntries, limit, offset }) {
+export function PostCardGrid({ postEntries, limit, offset, handleClick }) {
   limit = limit || 6;
   offset = offset || 0;
 
   return (
     <div className={styles.card__grid__container}>
       {postEntries.slice(offset, offset + limit).map((props, idx) => {
-        return <PostCard key={idx} {...props} />
+        return <PostCard key={idx} {...props} handleClick={handleClick} />
       })
       }
     </div>
@@ -66,9 +66,11 @@ function PostSelectorChild({ selector, handleSelector = { handleSelector } }) {
   )
 }
 
-export function PostCard({ slug, title, contributor, collection, tags, thumbnail, excerpt }) {
+export function PostCard({ slug, title, contributor, collection, tags, thumbnail, excerpt, handleClick }) {
   return (
-    <Link href={`/${slug}`} key={slug} className={styles.card__container}>
+    <Link href={`/${slug}`} key={slug} 
+    className={styles.card__container}
+    onClick={handleClick}>
       <div className={styles.card__contentbox}>
 
         {(title.length > 30) ? (

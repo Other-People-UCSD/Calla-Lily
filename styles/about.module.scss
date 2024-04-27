@@ -36,7 +36,7 @@
   border-radius: 50%;
   font-size: $opm-font-size-h2;
   font-style: italic;
-  color: white;
+  color: $opm-color-white;
   background-color: $opm-color-grey-dark;
   shape-outside: circle(50%)
 }
@@ -188,6 +188,14 @@ html[data-theme="dark"] {
   .block__alumni { 
     background: $opm-background-black;
     padding-top: 0;
+  }
+
+  html[data-theme="light"] .block__alumni {
+    padding-top: 200px;
+    background: -moz-linear-gradient(0deg, rgba(48, 48, 48, 1) 85%, rgba(255, 255, 252, 1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(48, 48, 48, 1) 85%, rgba(255, 255, 252, 1) 100%);
+    background: linear-gradient(0deg, rgba(48, 48, 48, 1) 85%, rgba(255, 255, 252, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#303030", endColorstr="#fffffc", GradientType=1);
   }
 }
 

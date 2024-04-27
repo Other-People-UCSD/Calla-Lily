@@ -164,12 +164,12 @@
 
 // Filter dark theme
 .theme--dark .query__input {
-  color: white;
+  color: $opm-color-white;
 }
 
 .theme--dark button {
   background-color: $opm-background-black;
-  color: white;
+  color: $opm-color-white;
   cursor: pointer;
 }
 

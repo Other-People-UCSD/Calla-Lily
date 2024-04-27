@@ -21,7 +21,6 @@ export default function Home(props) {
     'showNewsletter': false,
   }
 
-  console.log(data)
   return (
     <Layout homepage footerConfig={footerConfig} className={`${styles.main}`}>
       <div className={styles.hero}>

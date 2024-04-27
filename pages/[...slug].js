@@ -189,10 +189,19 @@ export const getStaticPaths = async () => {
  * @param {Array} recommenderData Metadata about each recommended post. 
  */
 const Recommendations = ({ recommenderData }) => {
+  function handleClick(e) {
+    const link = e.target.parentElement;
+    const toPath = link.getAttribute('href');
+    gtag('event', 'click_recommendation', {
+      'from': window.location.pathname,
+      'to': toPath
+    });
+  }
+
   return (
     <>
       <p className={postStyles.rec__desc}>Enjoyed this work? Here are our recommendations!</p>
-      <PostCardGrid postEntries={recommenderData} limit={6} offset={0} />
+      <PostCardGrid postEntries={recommenderData} limit={6} offset={0} handleClick={handleClick} />
     </>
   )
 }

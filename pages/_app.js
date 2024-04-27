@@ -14,6 +14,16 @@ export default function App({ Component, pageProps }) {
       <Head>
         <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1" />
       </Head>
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-CR21DPVQJ3" strategy="afterInteractive" />
+      <Script id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          if (document.location.hostname.includes('otherpeoplesd.com')) {
+            gtag('config', 'G-CR21DPVQJ3');
+          }`}
+      </Script>
       <DefaultSeo
         openGraph={{
           siteName: 'Other People',

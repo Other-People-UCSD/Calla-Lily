@@ -185,12 +185,11 @@ html[data-theme="dark"] {
 @media (prefers-color-scheme: dark) {
   // If a page is intentionally meant to be viewed light
   html[data-theme="light"] {
-    --background-color: var(--opm-background-black);
+    --background-color: var(--opm-background-white);
     --light-text-color: var(--opm-color-grey-darkest);
-    --border-color: var(--opm-background-white);
+    --border-color: var(--opm-background-black);
     --button-background: #ffb94f;
     --button-outline: #151515;
-
   }
 
   html,
@@ -200,7 +199,6 @@ html[data-theme="dark"] {
     --border-color: var(--opm-background-white);
     --button-background: #ff9900;
     --button-outline: #ffffff;
-
   }
 }
 

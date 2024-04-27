@@ -243,7 +243,7 @@
   overflow: hidden;
   font-family: $opm-font-monospace;
   font-style: italic;
-  color: white;
+  color: $opm-color-white;
   white-space: nowrap;
 }
 
@@ -426,7 +426,7 @@
   width: fit-content;
   text-decoration: none;
   font-weight: bold;
-  color: white;
+  color: $opm-color-white;
   background-color: #F8B67F;
   border-radius: 20px;
   border: 2px solid #222;
@@ -440,17 +440,26 @@
 
 
 html[data-theme="dark"] .hero__img__container svg {
-  fill: white;
-  stroke: white;
+  fill: $opm-color-white;
+  stroke: $opm-color-white;
 }
 
 @media (prefers-color-scheme: dark) {
   .hero__img__container svg {
-    fill: white;
-    stroke: white;
+    fill: $opm-color-white;
+    stroke: $opm-color-white;
   }
 
   .ui3_marquee {
     color: $opm-color-black;
+  }
+
+  html[data-theme="light"] .hero__img__container svg {
+    fill: $opm-color-black;
+    stroke: $opm-color-black;
+  }
+
+  html[data-theme="light"] .ui3_marquee {
+    color: $opm-color-white;
   }
 }
