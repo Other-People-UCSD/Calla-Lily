@@ -449,9 +449,7 @@ function SearchResults({ searchOptions, searchQuery, searchResults, searchPage, 
                 onClick={updateRouter}>
                 <h3 className={styles.results__title}><MatchingText text={title} query={searchQuery} /></h3>
                 <p className={styles.results__contributor}>
-                  {contributor.split(',').map((creator) => {
-                    return <span key={creator}>/ <MatchingText text={creator.replace(/\(.*\)/, '')} query={searchQuery} /></span>
-                  })}
+                  {contributor.split(',').map((creator) => iconifySearchCreator(creator, results[key].tags, searchQuery))}
                 </p>
                 <p className={styles.results__tags}>
                   {tags.split(',').map((tag) => {
@@ -515,4 +513,50 @@ function MatchingText({ text, query }) {
       })}
     </>
   )
+}
+
+function iconifySearchCreator(creator, tags, searchQuery) {
+  let name = creator;
+  let role = '';
+  const roleIdx = creator.indexOf('(');
+  if (roleIdx !== -1) {
+    name = creator.slice(0, roleIdx).trim();
+    role = creator.slice(roleIdx + 1, -1).toLowerCase();
+
+    // For interviews: Keep the parentheses
+    if (role === 'interviewer' || role === 'interviewee') {
+      return <span key={name}>
+        <svg><use href={`svg/sprites.svg#creator-writer`} /></svg>
+        <MatchingText text={creator.replace(/\(.*\)/, '')} query={searchQuery} />
+      </span>
+    }
+
+    // Invalid role
+    if (!['writer', 'illustrator', 'developer'].includes(role)) {
+      return <span key={name}>/ <MatchingText text={name.replace(/\(.*\)/, '')} query={searchQuery} /></span>
+    }
+
+    return <span key={name}>
+      <svg><use href={`svg/sprites.svg#creator-${role}`} /></svg>
+      <MatchingText text={name.replace(/\(.*\)/, '')} query={searchQuery} />
+    </span>
+  } else {
+    switch (true) {
+      case tags.includes('Visual Arts'):
+        return <span key={name}>
+          <svg><use href={`svg/sprites.svg#creator-illustrator`} /></svg>
+          <MatchingText text={name.replace(/\(.*\)/, '')} query={searchQuery} />
+        </span>
+      case tags.filter((tag) => {
+          const lowerTag = tag.toLowerCase();
+          return lowerTag.indexOf('fiction') !== -1 || lowerTag.indexOf('poetry') !== -1
+        }).length !== 0:
+        return <span key={name}>
+          <svg><use href={`svg/sprites.svg#creator-writer`} /></svg>
+          <MatchingText text={name.replace(/\(.*\)/, '')} query={searchQuery} />
+        </span>
+      default:
+        return <span key={name}>/ <MatchingText text={name.replace(/\(.*\)/, '')} query={searchQuery} /></span>
+    }
+  }
 }

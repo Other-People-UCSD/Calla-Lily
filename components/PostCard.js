@@ -68,9 +68,9 @@ function PostSelectorChild({ selector, handleSelector = { handleSelector } }) {
 
 export function PostCard({ slug, title, contributor, collection, tags, thumbnail, excerpt, handleClick }) {
   return (
-    <Link href={`/${slug}`} key={slug} 
-    className={styles.card__container}
-    onClick={handleClick}>
+    <Link href={`/${slug}`} key={slug}
+      className={styles.card__container}
+      onClick={handleClick}>
       <div className={styles.card__contentbox}>
 
         {(title.length > 30) ? (
@@ -79,7 +79,7 @@ export function PostCard({ slug, title, contributor, collection, tags, thumbnail
           <h2 className={styles.card__title}>{title}</h2>
         )}
         <p className={styles.card__creator}>
-          {contributor.split(',').map(creator => <span key={creator}>/ {creator}</span>)}
+          {contributor.split(',').map((creator) => iconifyCreator(creator, tags))}
         </p>
         <div className={styles.chip__wrapper}>
           {collection ? <Chip type="collection" value={collection} /> : <Chip type="content" value="Content" />}
@@ -115,7 +115,7 @@ export function LargePostCard({ slug, title, contributor, collection, tags, thum
           <h2 className={styles.card__title}>{title}</h2>
         )}
         <p className={styles.card__creator}>
-          {contributor.split(',').map(creator => <span key={creator}>/ {creator}</span>)}
+          {contributor.split(',').map(creator => iconifyCreator(creator, tags))}
         </p>
         <div className={styles.chip__wrapper}>
           {collection ? <Chip type="collection" value={collection} /> : <Chip type="content" value="Content" />}
@@ -168,4 +168,50 @@ const getDefinedChipColor = (value) => {
   }
 
   return `${styles[`card__chip--${str}`]}`;
+}
+
+export function iconifyCreator(creator, tags) {
+  let name = creator;
+  let role = '';
+  const roleIdx = creator.indexOf('(');
+  if (roleIdx !== -1) {
+    name = creator.slice(0, roleIdx).trim();
+    role = creator.slice(roleIdx + 1, -1).toLowerCase();
+
+    // For interviews: Keep the parentheses
+    if (role === 'interviewer' || role === 'interviewee') {
+      return <span key={name}>
+        <svg><use href={`svg/sprites.svg#creator-writer`} /></svg>
+        {creator}
+      </span>
+    }
+
+    // Invalid role
+    if (!['writer', 'illustrator', 'developer'].includes(role)) {
+      return <span key={name}>/ {name}</span>
+    }
+
+    return <span key={name}>
+      <svg><use href={`svg/sprites.svg#creator-${role}`} /></svg>
+      {name}
+    </span>
+  } else {
+    switch (true) {
+      case tags.includes('Visual Arts'):
+        return <span key={name}>
+          <svg><use href={`svg/sprites.svg#creator-illustrator`} /></svg>
+          {name}
+        </span>
+      case tags.filter((tag) => {
+        const lowerTag = tag.toLowerCase();
+        return lowerTag.indexOf('fiction') !== -1 || lowerTag.indexOf('poetry') !== -1
+      }).length !== 0:
+        return <span key={name}>
+          <svg><use href={`svg/sprites.svg#creator-writer`} /></svg>
+          {name}
+        </span>
+      default:
+        return <span key={name}>/ {name}</span>
+    }
+  }
 }

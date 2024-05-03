@@ -28,6 +28,7 @@
   height: 1px;
   overflow: hidden;
 }
+
 .query__input {
   box-sizing: border-box;
   margin: 0;
@@ -156,10 +157,10 @@
 }
 
 .filter__clear_btn {
- float: right; 
- margin-top: 16px;
- font-weight: bold;
- color: #AC504E;
+  float: right;
+  margin-top: 16px;
+  font-weight: bold;
+  color: #AC504E;
 }
 
 // Filter dark theme
@@ -241,6 +242,14 @@
   display: block;
 }
 
+.results__contributor svg {
+  width: 12px;
+  height: 12px;
+  margin-right: 4px;
+  stroke: var(--light-text-color);
+  fill: var(--background-color);
+}
+
 .results__tags {
   grid-area: tags;
   font-size: 20px;
@@ -307,21 +316,22 @@
     flex-direction: column;
 
   }
-  
+
   .results__grid {
     grid-template-columns: 3fr 2fr;
-    grid-template-areas: 
-    "title contributor"
-    "excerpt excerpt";
+    grid-template-areas:
+      "title contributor"
+      "excerpt excerpt";
   }
 
   .results__header__creator {
     text-align: right;
   }
+
   .results__header__tag {
     display: none;
   }
-  
+
   .results__contentrow {
     flex-direction: column;
   }
@@ -334,7 +344,7 @@
   .results__contributor {
     text-align: right;
   }
-  
+
   .results__tags {
     display: none;
   }

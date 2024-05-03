@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "@/styles/posts.module.scss";
 import Image from "next/image";
-import { Chip } from "./PostCard";
+import { Chip, iconifyCreator } from "./PostCard";
 
 export default function Genre({ genre, limit, offset }) {
   const [page, setPage] = useState(0);
@@ -44,7 +44,7 @@ export default function Genre({ genre, limit, offset }) {
                   <h2 className={styles.genre__post__title}>{title}</h2>
                 )}
                 <p className={styles.genre__post__creator}>
-                  {contributor.split(',').map(creator => <span key={creator}>/ {creator}</span>)}
+                  {contributor.split(',').map(creator => iconifyCreator(creator, tags))}
                 </p>
                 <div className={styles.chip__wrapper}>
                   {collection ? <Chip type="collection" value={collection} /> : <Chip type="content" value="Content" />}
