@@ -5,6 +5,7 @@ import teamStyles from "@/styles/team.module.scss";
 import { useTina } from 'tinacms/dist/react';
 import client from '@/tina/__generated__/client';
 import { getSortedPostsData } from '@/lib/posts';
+import { useEffect } from 'react';
 
 export default function About(props) {
   const { query, variables, data } = useTina({
@@ -17,6 +18,22 @@ export default function About(props) {
 
   const teamKeys = ['editor_in_chief', 'editorial', 'design_team', 'publicity_events'];
   const teamTitles = ['Editor in Chief', 'Editorial', 'Design', 'PR + Events'];
+
+  useEffect(() => {
+    const teamDiv = document.getElementById('teamDiv');
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        gtag('event', 'team_viewed', {
+          'value': 'true',
+          'time': new Date()
+        });
+      }
+    }, {
+      root: null,
+      threshold: 0.1
+    })
+    observer.observe(teamDiv)
+  });
 
   // console.log(data)
   return (
@@ -153,7 +170,7 @@ export default function About(props) {
         </ul>
       </div>
 
-      <div className={teamStyles.team_module}>
+      <div id="teamDiv" className={teamStyles.team_module}>
         <div className={`${animationStyles.cssanimation} ${animationStyles.sequence} ${animationStyles.fadeInBottom}`}>
           <h2>OUR TEAM</h2>
         </div>
