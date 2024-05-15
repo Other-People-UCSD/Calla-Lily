@@ -21,6 +21,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: Calla-Lily
+          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Checkout Recommendation repo
         uses: actions/checkout@v4
@@ -29,7 +30,7 @@ jobs:
           path: recommender
 
       - name: Setup Python Environment
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with: 
           python-version: '3.10'
           cache: 'pip'
@@ -41,7 +42,7 @@ jobs:
           pip install -r recommender/requirements.txt
 
       - name: Run Recommendation Model script
-        run: python recommender/recommendation-v1.0.py
+        run: python recommender/recommendation-v1.1.py
 
 # The workflow environment looks like this
 # .
@@ -55,7 +56,6 @@ jobs:
         id: date
         run: |
           date="$(date +'%Y-%m-%d')"
-          echo "::set-output name=date::$date"
           echo "date=$date" >> $GITHUB_OUTPUT
 
 # First command sends the output to website
@@ -78,7 +78,7 @@ jobs:
           git push
 
       - name: Upload Recommendation Results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: recommendation-results-${{ steps.date.outputs.date }}
           path: recommender-${{ steps.date.outputs.date }}.json
