@@ -42,7 +42,7 @@ jobs:
           pip install -r recommender/requirements.txt
 
       - name: Run Recommendation Model script
-        run: python recommender/recommendation-v1.0.py
+        run: python recommender/recommendation-v1.1.py
 
 # The workflow environment looks like this
 # .
