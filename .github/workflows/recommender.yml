@@ -56,7 +56,6 @@ jobs:
         id: date
         run: |
           date="$(date +'%Y-%m-%d')"
-          echo "::set-output name=date::$date"
           echo "date=$date" >> $GITHUB_OUTPUT
 
 # First command sends the output to website
