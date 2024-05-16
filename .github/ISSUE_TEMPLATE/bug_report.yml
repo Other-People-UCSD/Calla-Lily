@@ -1,0 +1,86 @@
+name: :bug: Bug Report
+description: File a bug report for Other People's publication website.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Validation
+      description: Before submitting this issue, please confirm the following.
+      options:
+        - label: Follow our [Code of Conduct](https://github.com/Other-People-UCSD/Calla-Lily/blob/main/CODE_OF_CONDUCT.md).
+          required: true
+        - label: Read the [docs](https://docs-other-people.vercel.app/).
+        required: true
+        - label: Check that there isn't [already an issue](https://github.com/Other-People-UCSD/Calla-Lily/issues) that reports the same bug.
+          required: true
+
+  - type: textarea
+    attributes:
+      label: To Reproduce
+      description: A step-by-step description of how to reproduce the issue. Screenshots can be provided in the issue body below. If using code blocks, make sure that syntax highlighting is correct and double check that the rendered preview is not broken.
+      placeholder: |
+        1. Start the application in development (pnpm dev)
+        2. Click X
+        3. Y will happen
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Current vs. Expected behavior
+      description: A clear and concise description of what the bug is, and what you expected to happen.
+      placeholder: 'Following the steps from the previous section, I expected A to happen, but I observed B instead'
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Your Environment Information
+      description: Include as many relevant details about the environment you expereienced the bug in.
+      value: |
+        - Project version/SHA hash used:
+        - Operating system and version (e.g. Windows 10, Ubuntu 20.04.2 LTS):
+        - Environment name and version (e.g. Node 20.0.0, pnpm 9.0.0):
+        - Browsers with issue (Chrome, Edge, Safari, Firefox): 
+    validations:
+      required: true
+
+  - type: dropdown
+    attributes:
+      label: Which stage(s) are affected? (Select all that apply)
+      multiple: true
+      options:
+        - 'pnpm dev (local)'
+        - 'pnpm build (local)'
+        - 'pnpm start (local)'
+        - 'Continuous Integration'
+        - 'Vercel (Deployment)'
+
+  - type: dropdown
+    attributes:
+      label: Which area(s) are affected? (Select all that apply)
+      multiple: true
+      options:
+        - 'Unsure'
+        - 'Next.js'
+        - 'TinaCMS integration'
+        - 'Storybook (Design System)'
+        - 'Recommendation System'
+        - 'Routing'
+        - 'API Endpoints'
+        - 'Content parsing (MDX, HTML)'
+        - 'Published Work'
+        - 'Performance'
+        - 'Accessibility'
+
+  - type: textarea
+    attributes:
+      label: Relevant log output
+      description: Please copy and paste any relevant log output without sensitive information. This will be automatically formatted into code, so no need for backticks.
+      render: shell
