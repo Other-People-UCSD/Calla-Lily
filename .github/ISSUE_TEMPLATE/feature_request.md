@@ -1,20 +1,31 @@
----
-name: Feature request
-about: Suggest an idea for this project
-title: ''
-labels: ''
-assignees: ''
+name: :sparkles: Feature design / RFC
+description: Submit a detailed feature request with a concrete proposal, including an exhaustive UX / UI design
+labels: ["feature"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        - We expect you to submit a feature request including a real design (API / UI...), not just a basic idea.
+        - The design does not have to be perfect, we'll discuss it and fix it if needed.
 
----
+  - type: textarea
+    attributes:
+      label: Description
+      description: A clear and concise description of what the feature is.
+    validations:
+      required: true
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+  - type: textarea
+    attributes:
+      label: Motivation
+      description: Please outline the motivation for the proposal and why it should be implemented. Has this been requested by a lot of users?
+    validations:
+      required: true
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+  - type: textarea
+    attributes:
+      label: Feature design
+      description: |
+        Please describe how users will interact with this feature, and what it will look like.
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
-
-**Additional context**
-Add any other context or screenshots about the feature request here.
+        Please explain potential methods of implementation and what their effects on the application would be. For visual elements, please send us some screenshots/mockups of what it should look like.
