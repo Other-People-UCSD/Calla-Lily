@@ -17,6 +17,7 @@ import { beginCYOAStory, goto, parseString, resetCYOAProgress } from '@/public/j
 
 import recommenderData from '@/data/recommender.json';
 import Head from 'next/head';
+import { PostCardGrid } from '@/components/genre';
 
 const Page = (props) => {
   const { query, variables, data } = useTina({
@@ -84,6 +85,8 @@ const Page = (props) => {
         </div>
       </div>
 
+      {props.recommendedPostsData && <Recommendations recommenderData={props.recommendedPostsData} />}
+
       <Experimental title={data.post.title} />
     </Layout>
   );
@@ -105,6 +108,19 @@ export const getStaticProps = async (params) => {
   // Recommendation Data
   const relativePath = '/' + variables.relativePath.replace(/\.mdx?/, '');
   const recommendedPosts = recommenderData[relativePath] || null;
+  const recommendedPostsData = [];
+
+  if (recommendedPosts) {
+    const keyedPosts = {};
+    allPostsData.map((post) => {
+      const key = `/${post.slug}`;
+      keyedPosts[key] = post;
+    });
+
+    recommendedPosts.slice(0, 6).forEach((recPost) => {
+      recommendedPostsData.push(keyedPosts[recPost])
+    })
+  }
 
   return {
     props: {
@@ -113,7 +129,7 @@ export const getStaticProps = async (params) => {
       query: query,
       fullPostData: fullPostData,
       allPostsData: allPostsData,
-      recommender: recommendedPosts
+      recommendedPostsData: recommendedPostsData
     },
   }
 }
@@ -200,6 +216,28 @@ export const getStaticPaths = async () => {
     paths: paths,
     fallback: false,
   }
+}
+
+/**
+ * Create a grid of recommended posts for the current work.
+ * @param {Array} recommenderData Metadata about each recommended post. 
+ */
+const Recommendations = ({ recommenderData }) => {
+  function handleClick(e) {
+    const link = e.target.parentElement;
+    const toPath = link.getAttribute('href');
+    gtag('event', 'click_recommendation', {
+      'from': window.location.pathname,
+      'to': toPath
+    });
+  }
+
+  return (
+    <>
+      <p className={postStyles.rec__desc}>Enjoyed this work? Here are our recommendations!</p>
+      <PostCardGrid postEntries={recommenderData} limit={6} offset={0} handleClick={handleClick} />
+    </>
+  )
 }
 
 /**

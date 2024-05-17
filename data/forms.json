@@ -1,10 +1,84 @@
 {
-  "written": "",
-  "visual": "",
-  "subsClosedText": "Our submissions are now closed for the rest of the school year. We will continue to update this page with open calls for submissions from other orgs at UCSD!\n",
-  "editorial": "https://docs.google.com/forms/d/e/1FAIpQLSeD00vzibY23OSsL4Ev4lTMvJc2ctmFeElqJDE-yRkO27A2aA/viewform",
-  "content": "https://docs.google.com/forms/d/e/1FAIpQLSeD00vzibY23OSsL4Ev4lTMvJc2ctmFeElqJDE-yRkO27A2aA/viewform",
-  "design": "https://forms.gle/QJFHjfaAz4sWYGzK6",
-  "events": "https://docs.google.com/forms/d/e/1FAIpQLSfuAfbBDcM3PEjzWb08a_TJP2Au-FtarKKHKUeLfy0fTkbT3A/viewform?usp=sf_link",
-  "website": "https://docs.google.com/forms/d/e/1FAIpQLSfMolDd9ypQFG6jCyU37oTUY4DAd_2Im1Iky9i-YC2p0n8hIQ/viewform?usp=sf_link"
+  "submissions_written": "",
+  "submissions_visual": "",
+  "submissions_digital": "",
+  "subsClosedText": "Our submissions are now closed for the rest of the school year.\n",
+  "app_editorial": "",
+  "app_content": "",
+  "app_design": "https://forms.gle/QJFHjfaAz4sWYGzK6",
+  "app_website": "https://docs.google.com/forms/d/e/1FAIpQLSfMolDd9ypQFG6jCyU37oTUY4DAd_2Im1Iky9i-YC2p0n8hIQ/viewform?usp=sf_link",
+  "app_social_media": "",
+  "app_event_planning": "https://docs.google.com/forms/d/e/1FAIpQLSfuAfbBDcM3PEjzWb08a_TJP2Au-FtarKKHKUeLfy0fTkbT3A/viewform?usp=sf_link",
+  "footer__c1": [
+    {
+      "name": "Issuu ->",
+      "url": "https://issuu.com/otherpeoplesd",
+      "outbound": true,
+      "aria_label": "Issuu"
+    }
+  ],
+  "footer__c2": [
+    {
+      "name": "Poetry",
+      "url": "/poetry"
+    },
+    {
+      "name": "Fiction",
+      "url": "/fiction"
+    },
+    {
+      "name": "Nonfiction",
+      "url": "/nonfiction"
+    },
+    {
+      "name": "Visual Arts",
+      "url": "/visualarts"
+    }
+  ],
+  "footer__c3": [
+    {
+      "name": "About",
+      "url": "/about"
+    },
+    {
+      "name": "Team Applications",
+      "url": "/about#team"
+    },
+    {
+      "name": "Submissions",
+      "url": "/submissions"
+    },
+    {
+      "name": "Community <3",
+      "url": "/uc-magazines",
+      "aria_label": "Community"
+    }
+  ],
+  "footer__c4": [
+    {
+      "name": "Newsletter",
+      "url": "https://gmail.us4.list-manage.com/subscribe/post?u=4b1b080bf138808842bdfbe2b&amp;id=32695fe3bf",
+      "outbound": true
+    },
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/otherpeoplesd/",
+      "outbound": true
+    },
+    {
+      "name": "Facebook",
+      "url": "https://www.facebook.com/otherpeoplesd/",
+      "outbound": true
+    },
+    {
+      "name": "Discord",
+      "url": "https://discord.gg/ZT3Mx78Ar7",
+      "outbound": true
+    },
+    {
+      "name": "Email",
+      "url": "mailto:otherpeopleucsd@gmail.com",
+      "outbound": false
+    }
+  ]
 }
