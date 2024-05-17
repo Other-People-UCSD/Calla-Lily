@@ -59,9 +59,9 @@ export function PostCard({ slug, title, contributor, collection, tags, thumbnail
       onClick={handleClick}>
       <div className={postStyles["post-info"]}>
         {(title.length > 30) ? (
-          <h2 className={postStyles["small-title"]}>{title}</h2>
+          <p className={`${postStyles.h2} ${postStyles["small-title"]}`}>{title}</p>
         ) : (
-          <h2>{title}</h2>
+          <p className={postStyles.h2}>{title}</p>
         )}
         <div className={postStyles.thumb}>
           {thumbnail ? (
@@ -74,9 +74,9 @@ export function PostCard({ slug, title, contributor, collection, tags, thumbnail
           ) : (null)}
         </div>
         <div className={postStyles["card-info"]}>
-          <h3> / <span>{contributor.split(', ').map((author) => (<span key={author}>{author} <br /></span>))}</span></h3>
-          <h4>{tags.map((tag) => (<span key={tag}>{tag}<br /></span>))}</h4>
-          {collection ? (<h4 style={{ color: "rgb(255, 153, 0)" }}>No. {collection}</h4>) : (null)}
+          <p className={postStyles.h3}> / <span>{contributor.split(', ').map((author) => (<span key={author}>{author} <br /></span>))}</span></p>
+          <p className={postStyles.h4}>{tags.map((tag) => (<span key={tag}>{tag}<br /></span>))}</p>
+          {collection ? (<p className={postStyles.h4} style={{ color: "rgb(255, 153, 0)" }}>No. {collection}</p>) : (null)}
         </div>
       </div>
     </Link>
