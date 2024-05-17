@@ -195,3 +195,23 @@ h3.post-title {
     grid-template-columns: 1fr 1fr;
   }
 }
+
+
+
+// Alpha Features
+.rec__desc {
+  text-align: center;
+}
+
+.card__grid__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  column-gap: 24px;
+  row-gap: 24px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .card__grid__container {
+    grid-template-columns: 1fr;
+  }
+}
