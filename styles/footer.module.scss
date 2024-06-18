@@ -96,7 +96,7 @@
 .newsletter_homepage {
   margin: 32px;
   width: 400px;
-  color: $opm-color-white;
+  // color: $opm-color-white;
 }
 
 .newsletter_homepage hr {
@@ -114,10 +114,17 @@
 
 .newsletter_homepage .newsletter__input__email {
   flex: 1 0 auto;
+  border: 2px solid $opm-color-black;
+  color: $opm-color-black;
+}
+
+.newsletter_homepage .newsletter__input__email::placeholder {
+  color: $opm-color-black;
 }
 
 .newsletter_homepage .newsletter__submit {
   flex: 0 0 auto;
+  border-color: $opm-color-black;
 }
 
 @media screen and (max-width: 768px) {

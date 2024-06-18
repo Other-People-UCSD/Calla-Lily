@@ -29,8 +29,7 @@ export default function Home(props) {
             <use href="svg/sprites.svg#other-people-homepage-circle" />
           </svg>
         </div>
-        <p className={`${styles.hero__text}`}>the <span className={styles["hero__text--italic"]}>visual</span> and <span className={styles["hero__text--thin"]}>literary</span> <br />
-          arts <span style={{ textDecoration: 'underline' }}>magazine</span>.</p>
+        <p className={`${styles.hero__text}`}>We are Other People Magazine.</p>
       </div>
 
       <div className={`${styles.collection__block}`}>
@@ -48,41 +47,8 @@ export default function Home(props) {
           <p className={`text--heading_1 ${styles.collection__title}`}>{data.homepage.theme}</p>
         </div>
       </div>
-
-      <div className={styles.ui3_section__featured}>
-        <div className={`${styles.ui3_headline}`}>
-          <div className={styles.ui3_marquee}>
-            <span>COLLECTION 6 IS OUT!</span>
-            <span>LIMINAL IS OUT!</span>
-            <span>COLLECTION 6 IS OUT!</span>
-            <span>LIMINAL IS OUT!</span>
-          </div>
-        </div>
-        <Randomizer postEntries={props.featuredPosts} group={6} numResults={3} />
-        <CarouselSlickMobile postEntries={props.featuredPosts} group={6} numResults={4} />
-        <Link href="/search?collections=6" className={styles.featured__btn_link}>Keep Browsing</Link>
-      </div>
-
-      <div className={styles.ui3_section__flipbook}>
-        <div className={`${styles.ui3_headline}`}>
-          <div className={styles.ui3_marquee}>
-            <span>View Issues on Issuu...</span>
-            <span>View Issues on Issuu...</span>
-          </div>
-        </div>
-        <MagazinesDesktop />
-        <MagazinesMobile />
-      </div>
-
+      
       <div className={styles.ui3_section__post_selector}>
-        <div className={styles.ui3_headline}>
-          <div className={styles.ui3_marquee}>
-            <span>Our latest posts...</span>
-            <span>Discover {props.numPosts} publications!</span>
-            <span>Our latest posts...</span>
-            <span>Discover {props.numPosts} publications!</span>
-          </div>
-        </div>
         <PostCardSelector postEntries={{
           poetry: props.poetry,
           fiction: props.fiction,
