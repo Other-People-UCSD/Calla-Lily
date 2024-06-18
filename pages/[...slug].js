@@ -13,7 +13,7 @@ import OPMparser from '@/lib/OPMparser';
 import Layout from '@/components/layout';
 import { pageChange } from '@/components/ThemeToggle';
 import ContentWarning from '@/components/ContentWarning';
-import { PostCardGrid } from '@/components/PostCard';
+import { Chip, PostCardGrid, iconifyCreator } from '@/components/PostCard';
 import recommenderData from '@/data/recommender.json';
 import { beginMissedConnections } from '@/public/js/missed-connections';
 import { beginCYOAStory, goto, parseString, resetCYOAProgress } from '@/public/js/cyoa';
@@ -58,9 +58,17 @@ const Page = (props) => {
         <h1 id="post-title" className={postStyles.post__title}>{data.post.title}</h1>
       </div>
 
-      <h3>/ {data.post.contributor}</h3>
-      <h4 className={postStyles.meta}>{data.post.tags.join(", ")} &mdash; <MinsRead wordCount={props.fullPostData.manualWC ? props.fullPostData.manualWC : props.fullPostData.wordCount} /></h4>
-      {data.post.collection && <h4 className={postStyles.gold}>No. {data.post.collection}</h4>}
+      <h2 className={postStyles.card__creator}>
+        {data.post.contributor.split(',').map((creator) => iconifyCreator(creator, data.post.tags))}
+      </h2>
+
+      <div className={postStyles.chip__wrapper}>
+        {data.post.collection ? <Chip type="collection" value={data.post.collection} /> : <Chip type="content" value="Content" />}
+        {data.post.tags.map((tag) => {
+          return <Chip key={tag} type="tag" value={tag} />
+        })} 
+        &mdash; <MinsRead wordCount={props.fullPostData.manualWC ? props.fullPostData.manualWC : props.fullPostData.wordCount} />
+      </div>
 
       {data.post.contentWarning && <ContentWarning description={data.post.contentWarning} />}
 
@@ -69,7 +77,8 @@ const Page = (props) => {
       </article>
 
       <div className={postStyles["copyright-footer"]}>
-        <h4>This work belongs to {data.post.contributor} © <br /> Copy, reproduction, and modification are not permitted without permission</h4>
+        <h4><span>This work belongs to</span> {data.post.contributor} © <br /> 
+        <span>Copy, reproduction, and modification are not permitted without permission</span></h4>
       </div>
 
       <div className={postStyles.post__nav}>

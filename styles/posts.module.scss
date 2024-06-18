@@ -612,21 +612,29 @@
 
 .post__title {
   margin-top: $opm-spacing-600;
-  margin-bottom: $opm-spacing-500;
+  margin-bottom: 0px;
   font-weight: normal;
   line-height: normal;
 }
 
-.post__content h3 {
-  text-transform: capitalize;
-  line-height: 1.5rem;
+.post__content .chip__wrapper {
+  display: flex;
+  align-items: baseline;
+  font-family: $opm-font-monospace;
+  font-size: 12px;
 }
 
+.post__content .card__chip {
+  line-height: normal;
+}
 
-.post__content .meta {
-  font-family: $opm-font-basier;
-  line-height: 1.5rem;
-  opacity: 0.5;
+.post__content .card__creator {
+  font-size: 20px;
+}
+
+.post__content .card__creator svg {
+  width: 16px;
+  height: 16px;
 }
 
 .post__content img {
@@ -639,6 +647,9 @@
 
 .copyright-footer {
   margin-top: $opm-spacing-500;
+}
+
+.copyright-footer span {
   opacity: 0.3;
 }
 

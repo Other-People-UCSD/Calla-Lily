@@ -181,8 +181,8 @@ export function iconifyCreator(creator, tags) {
     // For interviews: Keep the parentheses
     if (role === 'interviewer' || role === 'interviewee') {
       return <span key={name}>
-        <svg><use href={`svg/sprites.svg#creator-writer`} /></svg>
-        {creator}
+        <svg><use href={`/svg/sprites.svg#creator-writer`} /></svg>
+        {creator.trim()}
       </span>
     }
 
@@ -192,14 +192,15 @@ export function iconifyCreator(creator, tags) {
     }
 
     return <span key={name}>
-      <svg><use href={`svg/sprites.svg#creator-${role}`} /></svg>
+      <svg><use href={`/svg/sprites.svg#creator-${role}`} /></svg>
       {name}
     </span>
   } else {
+    name = creator.trim();
     switch (true) {
       case tags.includes('Visual Arts'):
         return <span key={name}>
-          <svg><use href={`svg/sprites.svg#creator-illustrator`} /></svg>
+          <svg><use href={`/svg/sprites.svg#creator-illustrator`} /></svg>
           {name}
         </span>
       case tags.filter((tag) => {
@@ -207,7 +208,7 @@ export function iconifyCreator(creator, tags) {
         return lowerTag.indexOf('fiction') !== -1 || lowerTag.indexOf('poetry') !== -1
       }).length !== 0:
         return <span key={name}>
-          <svg><use href={`svg/sprites.svg#creator-writer`} /></svg>
+          <svg><use href={`/svg/sprites.svg#creator-writer`} /></svg>
           {name}
         </span>
       default:
