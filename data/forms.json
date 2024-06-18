@@ -11,7 +11,7 @@
   "app_event_planning": "https://docs.google.com/forms/d/e/1FAIpQLSfuAfbBDcM3PEjzWb08a_TJP2Au-FtarKKHKUeLfy0fTkbT3A/viewform?usp=sf_link",
   "footer__c1": [
     {
-      "name": "Issuu ->",
+      "name": "Issuu",
       "url": "https://issuu.com/otherpeoplesd",
       "outbound": true,
       "aria_label": "Issuu"

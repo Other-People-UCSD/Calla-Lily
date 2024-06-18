@@ -18,7 +18,7 @@ export default function Home(props) {
   });
 
   const footerConfig = {
-    'showNewsletter': false,
+    'showMore': true,
   }
 
   return (

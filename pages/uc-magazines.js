@@ -60,7 +60,7 @@ export default function UCMagazines(props) {
   return (
     <Layout landingPage title={"UC Magazines"} className={ucStyles.main__content}>
       <div className={`${animationStyles.fadeInBottom}`}>
-        <h1 id="top" style={{ fontSize: 2 + 'rem' }}>List of UC Creative Magazines & Journals</h1>
+        <h1 style={{ fontSize: '2rem' }}>List of UC Creative Magazines & Journals</h1>
       </div>
 
       <p>The University of California system has dozens of magazines and journals highlighting the creative
@@ -275,14 +275,12 @@ const UCCardsDropdown = ({ magazines, router, initData }) => {
               <p className={ucStyles.result__title}>
                 {url ? <a href={url} target='_blank' rel='noopener' onClick={updateRouter}>{title}</a> : title}
               </p>
-              <span>{college.toUpperCase()} | {est && <><span className={`${postStyles.est} ${postStyles.gold}`}>Est. {est}</span> | </>} {active ? <strong>Active</strong> : 'Inactive'}</span>
+              <p>{college.toUpperCase()} | {est && <><span className={`${postStyles.est} ${postStyles.gold}`}>Est. {est}</span> | </>} {active ? <strong>Active</strong> : 'Inactive'}</p>
               <div className={ucStyles.result__description} dangerouslySetInnerHTML={{ __html: description }} />
             </li>
           })
         }
       </ul>
-
-      <p className={ucStyles.backToTop}><a href="#top">Back to top</a></p>
     </>
   );
 }

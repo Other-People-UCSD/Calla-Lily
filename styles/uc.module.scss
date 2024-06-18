@@ -12,7 +12,7 @@
   display: flex;
   margin-top: 32px;
   margin-bottom: 60px;
-  border-bottom: 5px solid var(--border-color);
+  border-bottom: 2px solid var(--border-color);
 }
 
 .search__label {
@@ -127,21 +127,9 @@
 }
 
 .result__item {
-  border-bottom: 2px solid $opm-color-grey-darkest;
+  border-bottom: 1px solid $opm-color-grey-darkest;
   padding-bottom: $opm-spacing-500;
-  margin-bottom: $opm-spacing-300;
-}
-
-.result__title {
-  margin: 0;
-}
-
-.result__description {
-  margin: 0;
-}
-
-.backToTop {
-  text-align: center;
+  margin-bottom: $opm-spacing-500;
 }
 
 @media screen and (max-width: 1028px) {

@@ -7,8 +7,6 @@ import client from '@/tina/__generated__/client';
 export default function About(props) {
   const footerConfig = {
     'showGradient': false,
-    'showMore': true,
-    'showNewsletter': true,
   };
 
   const { query, variables, data } = useTina({
@@ -40,15 +38,20 @@ export default function About(props) {
     <Layout landingPage title={"About"} footerConfig={footerConfig} className={styles.main}>
       <div className={styles.content}>
         <div className={`${animationStyles.fadeInBottom} title__accent`}>
-          <h1 className={`text--heading_1 text__landing--heading_1`} aria-label="Other People">
+          <h1 className={`text__landing--heading_1`} aria-label="Other People">
             <span className="text--shadow">O</span>(THE)R PE<span className="text--shadow">O</span>PLE
           </h1>
         </div>
 
-        <p className={`${styles.values} ${styles['values--right']}`}>A place to explore the timeless human experience;</p>
+        <div className={styles.values}>
+          A place to explore the timeless human experience;<br />
+          A place to revere the joys and struggles of our journeys through life;<br />
+          A place to celebrate the uniqueness of the human spirit;<br />
+          Through a fusion of Language, Art, Image, and Technology.
+        </div>
 
         <div className={styles.block__about}>
-          <h2 className={`text--heading_1`}>About Us</h2>
+          <h2>About Us</h2>
           <p>Other People Literary Magazine at UC San Diego is the first student-run literary magazine and club.</p>
           <p>
             We publish biannually in the Fall and Spring and accept works of fiction, poetry, creative nonfiction, art,
@@ -61,11 +64,8 @@ export default function About(props) {
           </p>
         </div>
 
-
         <div className={styles.block__story}>
-          <h2 className={`text--heading_1`}>Our Story</h2>
-          <p className={styles.values}>A place to revere the joys and struggles of our journeys through life;</p>
-
+          <h2>Our Story</h2>
           <p>
             Other People Magazine began as a dream shared by a group of writing and art enthusiasts. The magazine&apos;s
             founders all had the same wish—for UCSD to have a place where literary and artistic creativity could
@@ -92,9 +92,8 @@ export default function About(props) {
           </p>
         </div>
 
-        <p className={`${styles.values} ${styles['values--right']}`}>A place to celebrate the uniqueness of the human spirit;</p>
         <div className={styles.block__roles}>
-          <h2 className={styles['text--clear-left']}>Creative Innovation</h2>
+          <h2>Innovation</h2>
 
           <p>
             Our digital goal is to present creative work in a way that anyone can enjoy through accessible means.
@@ -113,7 +112,6 @@ export default function About(props) {
         </div>
       </div>
 
-      <p className={`${styles.values} ${styles['values--center']}`}>Through a fusion of Language, Art, Image, and Technology.</p>
       <div className={styles.block__team}>
         <div className={styles.content}>
           <h2 id="team" className={`text--heading_1 ${styles.header}`}>Our Team</h2>

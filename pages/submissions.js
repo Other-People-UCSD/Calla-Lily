@@ -16,18 +16,10 @@ export default function Submissions(props) {
   return (
     <Layout landingPage title={"Submissions"} className={styles.main} footerConfig={{ 'showMore': false }}>
       <div className={`${animationStyles.fadeInBottom} title__accent`}>
-        <h1 className={`text--heading_1 text__landing--heading_1`} aria-label="Submissions">
+        <h1 className={`text__landing--heading_1`} aria-label="Submissions">
           Submissi<span className="text--shadow">o</span>ns
         </h1>
       </div>
-      <p className={styles.status}>
-        {status ? (
-          "Currently accepting submissions"
-        ) : (
-          "Currently closed"
-        )
-        }
-      </p>
 
       <div className={styles.forms}>
         {status ? (
@@ -58,7 +50,8 @@ export default function Submissions(props) {
           <li>Poetry</li>
           <li>Art (traditional or digital, short comics, photography, graphic text, etc).</li>
           <li>We encourage you to submit spoken word, performance, experimental, cross-genre, and other forms of work!</li>
-          <li>If you have a question about what we accept, please email us at otherpeopleucsd@gmail.com.<sup>[1]</sup></li>
+          <li>If you have a question about what we accept, please email us at otherpeopleucsd@gmail.com.</li>
+          <li>We do not consider previously published work.</li>
         </ul>
 
         <h2>How we want it:</h2>
@@ -89,9 +82,6 @@ export default function Submissions(props) {
           <p className={styles.answer}>End of Spring Quarter - Early Fall Quarter</p>
           <p className={styles.answer}>Late Fall Quarter - End of Winter Quarter</p>
         </ul>
-
-        <p className={styles.footnote}>[1A] We do not consider previously published work.</p>
-        <p className={styles.footnote}>[1B] Currently, we do not have the funds to pay our contributors.</p>
       </div>
 
     </Layout>

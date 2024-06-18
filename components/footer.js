@@ -4,8 +4,8 @@ import formData from '@/data/forms.json';
 
 const defaultConfig = {
   'showGradient': true,
-  'showMore': true,
-  'showNewsletter': true,
+  'showMore': false,
+  'showNewsletter': false,
 }
 
 export default function Footer({ pageType, footerConfig }) {
