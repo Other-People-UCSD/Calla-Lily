@@ -31,13 +31,6 @@ export default function Home(props) {
         </div>
         <p className={`${styles.hero__text}`}>the <span className={styles["hero__text--italic"]}>visual</span> and <span className={styles["hero__text--thin"]}>literary</span> <br />
           arts <span style={{ textDecoration: 'underline' }}>magazine</span>.</p>
-
-        <SpriteIcon id="circle-outline" stroke="#FBDA09" strokeWidth="4px" width="100" height="100" x="200px"
-          className={styles['svg--accent']} style={{ left: "40vw", top: "20vh" }} />
-        <SpriteIcon id="circle-fill" fill="#FEAACE" width="100" height="100"
-          className={styles['svg--accent']} style={{ left: "30vw", bottom: "100px" }} />
-        <SpriteIcon id="vd-outline" stroke="#DF7D64" strokeWidth="4px" width="150" height="150"
-          className={styles['svg--accent']} style={{ right: "10vw", bottom: "20vh", transform: "rotate(-20deg)" }} />
       </div>
 
       <div className={`${styles.collection__block}`}>
@@ -54,11 +47,6 @@ export default function Home(props) {
           <p className={`text--heading_1 ${styles.collection__number}`}>Collection No. {data.homepage.collection}</p>
           <p className={`text--heading_1 ${styles.collection__title}`}>{data.homepage.theme}</p>
         </div>
-
-        <SpriteIcon id="circle-fill" fill="#E7EFFB" width="300" height="300"
-          className={styles['svg--accent']} style={{ left: "0", top: "0" }} />
-        <SpriteIcon id="circle-fill" fill="#3363431A" width="600" height="600"
-          className={styles['svg--accent']} style={{ right: "-10vw", bottom: "-40vh" }} />
       </div>
 
       <div className={styles.ui3_section__featured}>
@@ -73,15 +61,6 @@ export default function Home(props) {
         <Randomizer postEntries={props.featuredPosts} group={6} numResults={3} />
         <CarouselSlickMobile postEntries={props.featuredPosts} group={6} numResults={4} />
         <Link href="/search?collections=6" className={styles.featured__btn_link}>Keep Browsing</Link>
-
-        <SpriteIcon id="circle-fill" fill="#C1665A" width="100" height="100"
-          className={styles['svg--accent']} style={{ right: "5vw", top: "150px", }} />
-        <SpriteIcon id="circle-outline" stroke="#5DA04C" strokeWidth="4px" width="100" height="100"
-          className={styles['svg--accent']} style={{ left: "10vh", bottom: "150px", }} />
-        <SpriteIcon id="circle-fill" fill="#9FC9E126" width="600" height="600"
-          className={styles['svg--accent']} style={{ right: "-20vw", bottom: "-25vh", }} />
-        <SpriteIcon id="circle-fill" fill="#9FC9E126" width="600" height="600"
-          className={styles['svg--accent']} style={{ right: "5vw", bottom: "-50vh" }} />
       </div>
 
       <div className={styles.ui3_section__flipbook}>
@@ -93,13 +72,6 @@ export default function Home(props) {
         </div>
         <MagazinesDesktop />
         <MagazinesMobile />
-
-        <SpriteIcon id="circle-fill" fill="#E6D6FFAB" width="400" height="400"
-          className={styles['svg--accent']} style={{ left: "0vw", top: "0vh" }} />
-        <SpriteIcon id="circle-fill" fill="#E4507C" width="100" height="100"
-          className={styles['svg--accent']} style={{ right: "20vw", top: "5vh" }} />
-        <SpriteIcon id="vd-outline" stroke="#64DF8E" strokeWidth="4px" width="150" height="150"
-          className={styles['svg--accent']} style={{ right: "10vw", bottom: "5vh", transform: "rotate(20deg)" }} />
       </div>
 
       <div className={styles.ui3_section__post_selector}>
@@ -117,16 +89,6 @@ export default function Home(props) {
           nonfiction: props.nonfiction,
           visualarts: props.visualarts
         }} />
-
-        <SpriteIcon id="circle-outline" stroke="#FEAACE" strokeWidth="4px" width="100" height="100"
-          className={styles['svg--accent']} style={{ left: "5vw", top: "10vh" }} />
-        <SpriteIcon id="circle-outline" stroke="#438DCC" strokeWidth="4px" width="100" height="100"
-          className={styles['svg--accent']} style={{ left: "40vw", bottom: "-10vh" }} />
-        <SpriteIcon id="circle-fill" fill="#6E1F3F1A" width="500" height="500"
-          className={styles['svg--accent']} style={{ right: "1vw", bottom: "-10vh" }} />
-        <SpriteIcon id="circle-fill" fill="#AAD396" width="100" height="100"
-          className={styles['svg--accent']} style={{ left: "-2vw", bottom: "-10vh" }} />
-
       </div>
 
       <div className={styles.section__newsletter}>

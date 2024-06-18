@@ -48,10 +48,6 @@ export default function About(props) {
         <p className={`${styles.values} ${styles['values--right']}`}>A place to explore the timeless human experience;</p>
 
         <div className={styles.block__about}>
-          <svg className={styles.svg__about}>
-            <circle cx="300" cy="300" r="300" />
-          </svg>
-
           <h2 className={`text--heading_1`}>About Us</h2>
           <p>Other People Literary Magazine at UC San Diego is the first student-run literary magazine and club.</p>
           <p>
@@ -98,10 +94,6 @@ export default function About(props) {
 
         <p className={`${styles.values} ${styles['values--right']}`}>A place to celebrate the uniqueness of the human spirit;</p>
         <div className={styles.block__roles}>
-          <svg className={styles.svg__roles}>
-            <circle cx="400" cy="400" r="400" />
-          </svg>
-
           <h2 className={styles['text--clear-left']}>Creative Innovation</h2>
 
           <p>
@@ -138,10 +130,6 @@ export default function About(props) {
             <div className={styles.block__team__lists}>
               <TeamList cmsKeys={['editor_in_chief', 'editorial', 'content']} labels={['Editor in Chief', 'Editors', 'Content Writers']} />
             </div>
-
-            <svg className={styles.svg__editorial__bottom}>
-              <circle cx="250" cy="250" r="250" />
-            </svg>
           </div>
 
           <div className={`${styles.block__team__section} ${styles.block__team__design}`}>
@@ -156,10 +144,6 @@ export default function About(props) {
             <div className={styles.block__team__lists}>
               <TeamList cmsKeys={['design_directors', 'design', 'digital']} labels={['Design Directors', 'Designers', 'Digital Team']} />
             </div>
-
-            <svg className={styles.svg__design__bottom}>
-              <circle cx="200" cy="200" r="200" />
-            </svg>
           </div>
 
           <div className={`${styles.block__team__section} ${styles.block__team__outreach}`}>

@@ -45,9 +45,6 @@ export default function Submissions(props) {
       </div>
 
       <hr />
-      <svg className={styles.svg__guidelines}>
-        <circle cx="300" cy="300" r="300" />
-      </svg>
 
       <div className={styles.guidelines}>
 
@@ -95,11 +92,6 @@ export default function Submissions(props) {
 
         <p className={styles.footnote}>[1A] We do not consider previously published work.</p>
         <p className={styles.footnote}>[1B] Currently, we do not have the funds to pay our contributors.</p>
-
-        <svg className={styles.svg__guidelines__bottom}>
-          <circle cx="200" cy="300" r="250" />
-          <circle cx="400" cy="500" r="250" />
-        </svg>
       </div>
 
     </Layout>
