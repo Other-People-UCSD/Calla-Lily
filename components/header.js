@@ -79,11 +79,18 @@ export default function HeaderMain() {
       >
         <Link href="/" className={styles.logo} aria-label="Go to Homepage">O P _</Link>
         <div className={styles.toolbar}>
-          <ThemeToggle />
+          <ul className={styles.toolbar__linklist}>
+            <li><button onClick={openNav} aria-label="Open Menu">Browse</button></li>
+            <li><Link href="/about" onClick={closeNav}>About</Link></li>
+            <li><Link href="/submissions" onClick={closeNav}>Submissions</Link></li>
+            <li><Link href="/uc-magazines" onClick={closeNav} aria-label="Community">Community</Link></li>
+          </ul>
           <Link href="/search" className={styles.search__wrapper} aria-label="Open Search">
             <svg className={styles.search__icon}><use href="/svg/sprites.svg#search-icon" /></svg>
           </Link>
-          <button className={styles.menu} onClick={openNav} aria-label="Open Menu">Menu</button>
+          <ThemeToggle />
+
+          {/* <button className={styles.menu} onClick={openNav} aria-label="Open Menu">Menu</button> */}
         </div>
       </header>
       <div

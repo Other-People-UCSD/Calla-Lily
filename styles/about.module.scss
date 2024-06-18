@@ -28,7 +28,7 @@
 .values {
   margin-left: auto;
   margin-right: auto;
-  width: fit-content;
+  min-width: 300px;
   text-align: center;
   font-size: $opm-font-size-h2;
   font-style: italic;

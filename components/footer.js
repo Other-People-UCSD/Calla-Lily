@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import styles from '@/styles/footer.module.scss';
 import formData from '@/data/forms.json';
+import ThemeToggle from './ThemeToggle';
 
 const defaultConfig = {
   'showGradient': true,
@@ -89,6 +90,7 @@ export default function Footer({ pageType, footerConfig }) {
           <div className={styles.nav__column}>
             <p className={styles.nav__header}>Our Prints</p>
             <FooterList col={formData.footer__c1} />
+            <ThemeToggle />
           </div>
 
           <div className={styles.nav__column}>
