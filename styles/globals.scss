@@ -32,15 +32,13 @@ html, body {
 
 body {
   margin: auto;
-
+  padding: 0;
+  padding-top: 60px;
   background: var(--background-color);
   color: var(--light-text-color);
   font-family: $opm-font-arial;
   font-weight: 100;
   font-size: $opm-font-size-body;
-
-  padding: 0;
-  padding-top: 110px;
 
   transition: background-color 0.8s ease-in-out;
 

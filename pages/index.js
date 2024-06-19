@@ -6,6 +6,7 @@ import { useTina } from 'tinacms/dist/react';
 import { getSortedPostsData, getGenrePostsData } from '@/lib/posts';
 import { PostCardSelector } from '../components/PostCard';
 import { NewsletterForm } from '@/components/footer';
+import { CarouselSlickMobile } from '@/components/Carousel';
 import Link from 'next/link';
 import OPMparser from '@/lib/OPMparser';
 
@@ -22,36 +23,54 @@ export default function Home(props) {
 
   return (
     <Layout homepage footerConfig={footerConfig} className={`${styles.main}`}>
-      <div className={styles.hero}>
+      <div className={`${styles.hero} ${styles["hero--desktop"]}`}>
+        <div className={styles.hero__imgbox}>
+          <p className={`${styles.hero__textbox}`}>This is <br />
+            <strong>Other People Magazine</strong>.</p>
+          <div className={`${styles.hero__img_placeholder} ${styles.hero__img_placeholder1}`} />
+          <div className={`${styles.hero__img_placeholder} ${styles.hero__img_placeholder2}`} />
+        </div>
+      </div>
+
+      <div className={`${styles.hero} ${styles["hero--mobile"]}`}>
+        <div className={`${styles.hero__textbox}`}>
+          <p className={styles["hero__text--h1"]}>Other People</p>
+          <hr />
+          <p className={styles["hero__text--subtitle"]}>a literary and visual arts magazine</p></div>
         <div className={styles.hero__imgbox}>
           <div className={`${styles.hero__img_placeholder} ${styles.hero__img_placeholder1}`} />
           <div className={`${styles.hero__img_placeholder} ${styles.hero__img_placeholder2}`} />
-          <p className={`${styles.hero__text}`}>We are <br />
-          <strong>Other People Magazine</strong>.</p>
         </div>
       </div>
 
-      <div className={styles.hero_mag__container}>
+      <div className={`${styles.hero_mag__container} ${styles["hero_mag--desktop"]}`}>
         <div className={styles.hero_mag__track}>
-          <div className={styles.hero_mag__cover_frame}>
-            <div className={styles.block__img__container}>
-              <Image className={`${styles.img__cover}`}
-                src={data.homepage.hero_items[0].image_cover} fill={true}
-                sizes='1080px'
-                alt={data.homepage.hero_items[0].image_alt} />
-              <p className={styles.block__img__caption}>{data.homepage.hero_items[0].image_caption}</p>
-            </div>
-          </div>
-          <div className={styles.hero_mag__contentbox}>
-            <div className={styles.hero_mag__content__title}>Collection No. {data.homepage.hero_items[0].collection_num} | <strong>{data.homepage.hero_items[0].collection_theme}</strong></div>
-
-            <div className={styles.hero_mag__editorsnote}>
-              <OPMparser content={data.homepage.hero_items[0].editors_note_text} depth={0} />
-              <Link href={data.homepage.hero_items[0].editors_note_link}>Read More</Link>
-            </div>
-          </div>
+          {data.homepage.hero_items.map((item, i) => {
+            return (
+              <div key={i} className={styles.hero_mag__slide__item}>
+                <div className={styles.hero_mag__cover_frame}>
+                  <div className={styles.block__img__container}>
+                    <Image className={`${styles.img__cover}`}
+                      src={item.image_cover} fill={true}
+                      sizes='1080px'
+                      alt={item.image_alt} />
+                    <p className={styles.block__img__caption}>{item.image_caption}</p>
+                  </div>
+                </div>
+                <div className={styles.hero_mag__contentbox}>
+                  <div className={styles.hero_mag__content__title}>Collection No. {item.collection_num} | <strong>{item.collection_theme}</strong></div>
+                  <div className={styles.hero_mag__editorsnote}>
+                    <OPMparser content={item.editors_note_text} depth={0} />
+                    <Link href={item.editors_note_link}>Read More</Link>
+                  </div>
+                </div>
+              </div>
+            )
+          })}
         </div>
       </div>
+
+      <CarouselSlickMobile collectionEntries={data.homepage.hero_items}/>
 
       <div className={styles.uib_section__post_selector}>
         <PostCardSelector postEntries={{
