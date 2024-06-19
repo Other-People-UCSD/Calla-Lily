@@ -4,12 +4,29 @@
     "description": "Our publication will have a new look soon!",
     "date": "2024-02-23T07:00:00.000Z"
   },
-  "image": "/images/6/liminal-cover-caroline-tjoe.webp",
-  "featured_piece_name": "Liminal (Cover)",
-  "featured_link": "https://discord.gg/ZT3Mx78Ar7",
-  "featured_alt": "(Digital Art by Caroline Tjoe) The cover for Collection No. 6, Liminal!",
-  "featured_contributor": "Caroline Tjoe",
-  "term": "Spring 2023",
-  "collection": 6,
-  "theme": "LIMINAL"
+  "hero_items": [
+    {
+      "image_cover": "/images/6/liminal-cover-caroline-tjoe.webp",
+      "image_alt_text": "(Digital Art by Caroline Tjoe) The cover for Collection No. 6, Liminal!",
+      "image_caption": "Liminal (Cover) by Caroline Tjoe",
+      "collection_num": 6,
+      "collection_theme": "Liminal",
+      "editors_note_text": "Liminality encapsulates the in-between states of our everyday life, as we traverse periods of space and time to transition into something new. In this issue, artists explore their college years, a passage between childhood and adulthood; relationships, a blurring of boundaries between human beings; grief, a journey to accept the threshold between life and death; and so much more. In our arrangement, our creators’ works parallel each other as they move from the concrete and familiar to the bizarre and abstract, and back again. They challenge the nebulous nature of life, experimenting with blurriness to produce their own versions of clarity.\n\nWith this new issue, let us celebrate the “in-betweens” of new adulthood, delving into the liminal period of growing up. Let us make sense of the world that challenges definition, and its false sense of linearity. And let us brave the times that speak only of the unknown, wringing meaning from the stories we cradle in our memories.\n",
+      "editors_note_link": "/6/editors-note"
+    },
+    {
+      "image_cover": "/images/cover/refraction-cover-caroline-tjoe.webp",
+      "image_alt_text": "",
+      "image_caption": "",
+      "collection_num": 4,
+      "collection_theme": "Refraction",
+      "editors_note_text": "",
+      "editors_note_link": ""
+    },
+    {
+      "collection_num": 5,
+      "collection_theme": "Eclipse",
+      "editors_note_text": ""
+    }
+  ]
 }

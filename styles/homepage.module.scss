@@ -1,119 +1,71 @@
 @import '@/stories/_variables.scss';
 
-.text--h1 {
-  font-size: 2rem;
-  text-transform: uppercase;
-}
-
-.text--h2 {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
 .main {
   z-index: 2;
   max-width: unset;
 }
 
 .hero {
-  position: relative;
-  display: flex;
   height: 100vh;
-  align-items: center;
-  flex-direction: row-reverse;
+}
+
+.hero__imgbox {
+  display: grid;
+  grid-template-columns: repeat(20, 5vh);
+  grid-template-rows: repeat(16, 5vh);
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+
+.hero__img_placeholder {
+  width: 60vh;
+  height: 60vh;
+  border: 1px solid #30303044;
+  border-radius: 50%;
+  box-shadow: 4px 4px 25px 5px #30303033;
+  background-size: contain;
+  background-position: center center;
+}
+
+.hero__img_placeholder1 {
+  grid-area: 2 / 4 / -12 / -12 ;
+  // background-image: url("/images/cover/collection-1-cover.webp");
+}
+
+.hero__img_placeholder2 {
+  grid-area: 6 / 8 / 10 / 10;
+  // background-image: url("/images/cover/self-identity-cover-kristy-lee.webp");
 }
 
 .hero__text {
-  text-align: right;
-  max-width: 700px;
-  padding-right: 64px;
-  flex: 1 0 0;
-  font-size: 3rem;
-  font-weight: bold;
-  font-family: Helvetica, sans-serif;
+  margin: 0;
+  grid-area:  16 / 1 / -1 / -3 ;
+  font-size: $opm-font-size-h1;
+
 }
 
-.hero__text--italic {
-  font-family: $opm-font-monospace;
-  font-style: italic;
-  font-weight: normal;
+.hero_mag__container {
+  border: 1px solid black;
 }
 
-.hero__text--thin {
-  font-weight: 300;
-}
-
-.hero__img__container {
-  position: absolute;
-  left: -50px;
-  z-index: -1;
-}
-
-.hero__img__container svg {
-  height: 750px;
-  width: 750px;
-  fill: $opm-color-black;
-  stroke: $opm-color-black;
-}
-
-.animate--rotate {
-  animation: rotate 30s linear infinite;
-}
-
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-
-.collection__block {
-  position: relative;
-  height: 95vh;
-}
-
-.collection__block__text {
-  flex: 1 1 auto;
-  text-align: right;
-}
-
-.collection__block__text p {
-  margin: 8px 0;
-}
-
-.collection__date {
-  font-weight: 400;
-}
-
-.collection__number {
-  font-weight: 400;
-}
-
-.collection__title {
-  font-weight: 600;
-}
-
-
-.collection__block__hr {
+.hero_mag__track {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   margin-left: auto;
-  margin-right: 0;
-  margin-top: 16px;
-  margin-bottom: 16px;
-  width: 100px;
-  border-width: 3px;
-  border-style: solid;
+  margin-right: auto;
+  max-width: 1080px;
+  height: 60vh;
+  border: 1px solid black;
+}
+
+.hero_mag__cover_frame {
+  padding: 32px;
 }
 
 .block__img__container {
-  // flex: 0 1 fit-content;
   position: relative;
-  min-width: 40vw;
-  max-width: 80vw;
-  height: 75vh;
+  height: 50vh;
 }
 
 .block__img__caption {
@@ -130,27 +82,26 @@
   z-index: 1;
 }
 
+.hero_mag__contentbox {
+  border: 1px solid black;
+
+}
+
+.hero_mag__content__title {
+  padding: 32px;
+  font-size: $opm-font-size-h2;
+  border: 1px solid black;
+}
+
+.hero_mag__editorsnote {
+  padding: 32px;
+}
+
 .img__cover {
   object-fit: contain;
 }
 
 @media screen and (max-width: 768px) {
-  .collection__block {
-    font-size: 16px;
-  }
-
-  .collection__block__text {
-    text-align: center;
-  }
-
-  .collection__block__hr {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .collection__block__text p {
-    font-size: 16px;
-  }
 
   .block__img__container {
     margin-left: auto;
@@ -223,29 +174,6 @@
   background-color: #eee;
 }
 
-
-.ui3_section__covers {
-  display: flex;
-}
-
-.ui3_headline {
-  max-width: 100%;
-  margin: 32px 0;
-  background-color: pink;
-}
-
-.ui3_marquee {
-  display: flex;
-  justify-content: space-around;
-  padding: 8px;
-  min-width: 200vw;
-  animation: slide 20s linear infinite;
-  overflow: hidden;
-  font-family: $opm-font-monospace;
-  font-style: italic;
-  color: $opm-color-white;
-  white-space: nowrap;
-}
 
 @keyframes slide {
   0% {
@@ -334,6 +262,7 @@
   right: 0px;
   bottom: -50px;
 }
+
 @media screen and (max-width: 768px) {
   .hero__img__container {
     left: -50vw;
@@ -352,7 +281,7 @@
     left: 10%;
     bottom: 50px;
   }
-  
+
   .newsletter_3 {
     right: 10px;
     top: -40px;
@@ -365,50 +294,11 @@
     display: none;
   }
 
-  .collection__block {
-    display: grid;
-    grid-auto-flow: dense;
-    align-items: flex-end;
-    height: fit-content;
-  }
-
-  .collection__block__text {
-    grid-column: 1;
-  }
-
-  .collection__block .block__img__container {
-    grid-column: 2;
-  }
-
   .section__newsletter {
     grid-template-columns: 1fr 1fr;
     justify-items: end;
     height: 300px;
   }
-}
-
-.ui3_section__featured,
-.ui3_section__flipbook,
-.ui3_section__post_selector {
-  position: relative;
-}
-
-.ui3_section__featured .ui3_marquee {
-  background-color: #C75468;
-}
-
-.ui3_section__flipbook .ui3_marquee {
-  background-color: #61976C;
-}
-
-.ui3_section__post_selector .ui3_marquee {
-  background-color: #8C6CB5;
-}
-
-.ui3_section__featured {
-  // height: 100vh;
-  min-height: 400px;
-  // max-height: 100vh;
 }
 
 .featured__btn_link {
@@ -445,16 +335,10 @@ html[data-theme="dark"] .hero__img__container svg {
     stroke: $opm-color-white;
   }
 
-  .ui3_marquee {
-    color: $opm-color-black;
-  }
 
   html[data-theme="light"] .hero__img__container svg {
     fill: $opm-color-black;
     stroke: $opm-color-black;
   }
 
-  html[data-theme="light"] .ui3_marquee {
-    color: $opm-color-white;
-  }
 }

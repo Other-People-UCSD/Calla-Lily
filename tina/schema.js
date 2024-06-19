@@ -381,51 +381,53 @@ export const schema = {
           ],
         },
         {
-          name: "image",
-          label: "Featured Image",
-          type: "image",
+          name: "hero_items",
+          label: "Featured Covers + Editors Notes",
+          type: "object",
+          list: true,
           required: true,
-        },
-        {
-          name: "featured_alt",
-          label: "Featured Image Alt Text",
-          type: "string",
-          required: true,
-        },
-        {
-          name: "featured_piece_name",
-          label: "Featured Image Name",
-          type: "string",
-          required: true,
-        },
-        {
-          name: "featured_contributor",
-          label: "Featured Image Contributor",
-          type: "string",
-          required: true,
-        },
-        {
-          name: "featured_link",
-          label: "Featured Image Link",
-          type: "string",
-        },
-        {
-          name: "term",
-          label: "Term",
-          type: "string",
-          required: true,
-        },
-        {
-          name: "collection",
-          label: "Collection No.",
-          type: "number",
-          required: true,
-        },
-        {
-          name: "theme",
-          label: "Theme",
-          type: "string",
-          required: true,
+          ui: {
+            itemProps: (item) => {
+              return { label: `${item?.collection_num} | ${item?.collection_theme}` }
+            },
+          },
+          fields: [
+            {
+              name:"image_cover",
+              label: "Collection Cover",
+              type: "image",
+            },
+            {
+              name:"image_alt_text",
+              label: "Cover's alternative text",
+              type: "string",
+            },
+            {
+              name:"image_caption",
+              label: "Cover's Caption",
+              type: "string",
+            },
+            {
+              name:"collection_num",
+              label: "Collection Number",
+              type: "number",
+            },
+            {
+              name:"collection_theme",
+              label: "Collection Theme",
+              type: "string",
+            },
+            {
+              name:"editors_note_text",
+              label: "Partial text of editors note",
+              type: "rich-text",
+            },
+            {
+              name:"editors_note_link",
+              label: "Link to editors note page",
+              type: "string",
+            },
+          ]
         },
       ],
     },

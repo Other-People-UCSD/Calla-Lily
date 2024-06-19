@@ -205,6 +205,8 @@
   margin-left: auto;
   margin-right: auto;
   width: 80%;
+  margin-top: 200px;
+  margin-bottom: 200px;
 }
 
 .selector__wrapper {
@@ -218,7 +220,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 
 .selector__button {
@@ -228,14 +230,6 @@
   width: fit-content;
   font-weight: bold;
   box-shadow: 1px 1px;
-}
-
-
-.selector__divider {
-  flex: 0 0 5px;
-  margin: 0;
-  background-color: $opm-background-black;
-  border: none;
 }
 
 .selector__button--poetry {
@@ -293,9 +287,15 @@
 .selector__grid__container {
   flex: 1 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-columns: repeat(auto-fill, minmax(49%, 1fr));
-  gap: 16px 20px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.selector__grid__container .card__container {
+  flex-direction: column;
+  height: 300px;
+  max-height: 300px;
+  width: 25vw;
+  max-width: 25vw;
 }
 
 .selector__explore {
@@ -303,6 +303,7 @@
   float: right;
   font-weight: 500;
   text-decoration: none;
+  font-style: italic;
 }
 
 .selector__explore span {

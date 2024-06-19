@@ -34,18 +34,23 @@ function PostSelectorChild({ selector, handleSelector = { handleSelector } }) {
     'poetry': 'Poetry',
     'fiction': 'Fiction',
     'nonfiction': 'Nonfiction',
-    'visualarts': 'Visual Arts'
+    'visualarts': 'Visual'
   }
 
   return (
     <div className={styles.selector__container}>
       <div className={styles.selector__wrapper}>
+        <div className={styles.selector__grid__container}>
+          {selector.entries.slice(0, 3).map((props, idx) => {
+            return <PostCard key={idx} {...props} />
+          })
+          }
+        </div>
+
         <div className={styles.selector__controls}>
           {Object.entries(selectorControlObj).map(([genre_str, label]) => {
             const btnClassGenre = `${styles[`selector__button--${genre_str}`]}`;
-
             const isSelected = `${(genre_str === selector.genre) ? styles['selector__button--selected'] : ''}`;
-
             return <button
               key={label}
               className={`${styles.selector__button}  ${btnClassGenre} ${isSelected}`}
@@ -53,15 +58,8 @@ function PostSelectorChild({ selector, handleSelector = { handleSelector } }) {
           })
           }
         </div>
-        <hr className={`${styles.selector__divider} ${styles[`divider--${selector.genre}`]}`} />
-        <div className={styles.selector__grid__container}>
-          {selector.entries.slice(0, 6).map((props, idx) => {
-            return <PostCard key={idx} {...props} />
-          })
-          }
-        </div>
       </div>
-      <Link href={selector.genre} className={styles.selector__explore}><span>Explore the rest</span> -&gt;</Link>
+      <Link href={selector.genre} className={styles.selector__explore}><span>Explore More</span></Link>
     </div>
   )
 }
