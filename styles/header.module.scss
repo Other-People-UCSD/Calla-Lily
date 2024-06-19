@@ -15,7 +15,8 @@
   padding: $opm-spacing-300 $opm-spacing-600;
   z-index: $opm-zindex-header;
   width: 100%;
-  background-color: var(--background-color);
+  // background-color: var(--background-color);
+  background-color: pink;
   animation: 1s ease-out 0s 1 slideInFromTop;
   transition: top 0.3s ease-in-out, background-color 0.8s ease-in-out;
 }

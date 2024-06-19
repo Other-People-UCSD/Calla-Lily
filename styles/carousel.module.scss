@@ -1,66 +1,8 @@
 @import '@/stories/_variables.scss';
 
-.base {
-  position: relative;
-}
-
-.base__genre {
-  margin-top: 24px;
-  margin-bottom: 64px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
-}
-
-.viewer {
-  display: flex;
-  height: auto;
-  min-height: 40vw;
-  max-height: 1080px;
-  box-sizing: border-box;
-  overflow-x: hidden;
-  overflow-y: clip;
-}
-
-.item {
-  flex-shrink: 0;
-  width: 100%;
-  height: fit-content;
-  min-height: inherit;
-  transition: 1500ms ease-in-out;
-  margin: 0;
-  /* override homepage.block */
-  padding-left: 16px;
-  padding-right: 16px;
-}
-
-.control {
-  position: absolute;
-  width: fit-content;
-  bottom: 0;
-}
-
-.control--left {
-  right: 0;
-}
-
-.control--right {
-  left: 0;
-}
-
-.control__prev,
-.control__next {
-  margin-left: 8px;
-  margin-right: 8px;
-  background-color: initial;
-  color: unset;
-  border: unset;
-  cursor: pointer;
-  transform: scale(0.75);
-}
-
 // CarouselMobile
 .mobile {
+  margin-top: 64px;
   min-height: 350px;
 }
 
@@ -69,7 +11,11 @@
 }
 
 .mobile :global(.slick-slide) > div {
-  margin: 0 24px;
+  margin: 0 16px;
+}
+
+.mobile :global(.slick-slide)[aria-hidden="true"] {
+  filter: brightness(75%);
 }
 
 .mobile__scroll__container {
@@ -109,66 +55,44 @@
   overflow-x: auto;
 }
 
+
+// .mobile__item {
+//   scroll-snap-align: center;
+//   scroll-snap-stop: always;
+//   position: relative;
+//   display: block;
+//   justify-content: center;
+//   margin: 0;
+//   padding: 0;
+//   height: 75vw;
+//   width: 75vw;
+//   text-decoration: none;
+// }
+
 .mobile__item {
   scroll-snap-align: center;
   scroll-snap-stop: always;
-  position: relative;
-  display: block;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-  height: 75vw;
+  height: 100vw;
   width: 75vw;
-  text-decoration: none;
+}
+
+.mobile__item__wrapper {
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+  overflow: hidden;
+}
+
+.mobile__item__content__title {
+  text-align: center;
+  flex: 0 1 auto;
 }
 
 .mobile__item__bg {
+  flex: 1 0 auto;
   height: 100%;
   background-size: cover;
   background-repeat: no-repeat;
-}
-
-.mobile__textbox {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
-  background-color: #30303066;
-  color: $opm-color-white;
-}
-
-.mobile__textbox .title,
-.mobile__textbox .creator {
-  margin: 0;
-  padding: 0;
-  font-weight: bold;
-  overflow: hidden;
-  text-align: center;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  text-decoration: underline;
-}
-
-.mobile__textbox .title {
-  text-decoration: underline;
-}
-
-.mobile__textbox .creator {
-  text-decoration: none;
-}
-
-.mobile__textbox .creator span {
-  display: block;
-  font-weight: 500;
-}
-
-.chip__wrapper {
-  position: absolute;
-  left: 4px;
-  bottom: 4px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0px 8px;
 }
 
 @media screen and (min-width: 769px) {
