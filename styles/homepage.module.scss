@@ -10,7 +10,7 @@
 }
 
 .hero__imgbox {
-  margin: 0;
+  margin: 0 auto;
   position: relative;
   width: 100vw;
   height: 200px;
@@ -18,8 +18,8 @@
 
 .hero__img_placeholder {
   position: absolute;
-  width: 200px;
-  height: 200px;
+  width: min(50vw, 200px);
+  height: min(50vw, 200px);
   border: 1px solid #30303044;
   border-radius: 50%;
   box-shadow: 4px 4px 25px 5px #30303033;
@@ -31,6 +31,11 @@
 @media screen and (max-width: 768px) {
   .hero--desktop {
     display: none;
+  }
+
+  .hero__imgbox {
+    width: 400px;
+    max-width: 400px;
   }
 
   .hero__textbox {

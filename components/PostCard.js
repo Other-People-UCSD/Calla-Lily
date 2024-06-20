@@ -40,7 +40,7 @@ function PostSelectorChild({ selector, handleSelector = { handleSelector } }) {
   return (
     <div className={styles.selector__container}>
       <div className={styles.selector__wrapper}>
-      <div className={styles.selector__controls}>
+        <div className={styles.selector__controls}>
           {Object.entries(selectorControlObj).map(([genre_str, label]) => {
             const btnClassGenre = `${styles[`selector__button--${genre_str}`]}`;
             const isSelected = `${(genre_str === selector.genre) ? styles['selector__button--selected'] : ''}`;
@@ -51,7 +51,7 @@ function PostSelectorChild({ selector, handleSelector = { handleSelector } }) {
           })
           }
         </div>
-        
+
         <div className={styles.selector__grid__container}>
           {selector.entries.slice(0, 3).map((props, idx) => {
             return <PostCard key={idx} {...props} />
@@ -59,7 +59,11 @@ function PostSelectorChild({ selector, handleSelector = { handleSelector } }) {
           }
         </div>
       </div>
-      <Link href={selector.genre} className={styles.selector__explore}><span>Explore More</span></Link>
+      <Link href={selector.genre} className={styles.selector__explore}>
+      <span>Explore More</span>
+      <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20.9493 8.48834C21.3398 8.09781 21.3398 7.46464 20.9493 7.07413L14.5852 0.71032C14.1946 0.319806 13.5615 0.319821 13.1709 0.710355C12.7804 1.10089 12.7804 1.73405 13.171 2.12457L18.828 7.78128L13.1713 13.4383C12.7807 13.8288 12.7808 14.462 13.1713 14.8525C13.5618 15.243 14.195 15.243 14.5855 14.8525L20.9493 8.48834ZM0.242304 8.78174L20.2422 8.78125L20.2422 6.78125L0.242255 6.78174L0.242304 8.78174Z" fill="#303030" fill-opacity="0.75" />
+      </svg></Link>
     </div>
   )
 }
