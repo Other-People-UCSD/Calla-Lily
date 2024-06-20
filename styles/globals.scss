@@ -21,6 +21,22 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "gothic_a1";
+  src: url("/fonts/gothic_a1/GothicA1-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "gothic_a1_bold";
+  src: url("/fonts/gothic_a1/GothicA1-Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 .hidden {
   display: none;
 }

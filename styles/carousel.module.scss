@@ -38,14 +38,14 @@
   height: 100%;
   width: 100%;
   border-radius: 50%;
-  background-color: grey;
+  background-color: #FFFBF8;
   font-size: 0px;
-  // color: transparent;
+  box-shadow: 0px 1px 5px 0px #303030;
 }
 
 .mobile__scroll__container li[class="slick-active"] button,
 .mobile__scroll__dot--selected {
-  background-color: $opm-background-black;
+  background-color: #585858;
 }
 
 .mobile__track {
@@ -56,24 +56,14 @@
 }
 
 
-// .mobile__item {
-//   scroll-snap-align: center;
-//   scroll-snap-stop: always;
-//   position: relative;
-//   display: block;
-//   justify-content: center;
-//   margin: 0;
-//   padding: 0;
-//   height: 75vw;
-//   width: 75vw;
-//   text-decoration: none;
-// }
-
 .mobile__item {
   scroll-snap-align: center;
   scroll-snap-stop: always;
+  margin: 0;
+  padding: 0;
   height: 100vw;
   width: 75vw;
+  text-decoration: none;
 }
 
 .mobile__item__wrapper {
@@ -91,6 +81,7 @@
 .mobile__item__bg {
   flex: 1 0 auto;
   height: 100%;
+  border: 1px solid $opm-background-black;
   background-size: cover;
   background-repeat: no-repeat;
 }

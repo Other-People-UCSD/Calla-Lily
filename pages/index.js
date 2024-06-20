@@ -70,16 +70,14 @@ export default function Home(props) {
         </div>
       </div>
 
-      <CarouselSlickMobile collectionEntries={data.homepage.hero_items}/>
+      <CarouselSlickMobile collectionEntries={data.homepage.hero_items} />
 
-      <div className={styles.uib_section__post_selector}>
-        <PostCardSelector postEntries={{
-          poetry: props.poetry,
-          fiction: props.fiction,
-          nonfiction: props.nonfiction,
-          visualarts: props.visualarts
-        }} />
-      </div>
+      <PostCardSelector postEntries={{
+        poetry: props.poetry,
+        fiction: props.fiction,
+        nonfiction: props.nonfiction,
+        visualarts: props.visualarts
+      }} />
 
       <div className={styles.section__newsletter}>
         <div className={styles.newsletter__previews}>

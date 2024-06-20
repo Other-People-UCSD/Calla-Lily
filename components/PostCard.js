@@ -40,14 +40,7 @@ function PostSelectorChild({ selector, handleSelector = { handleSelector } }) {
   return (
     <div className={styles.selector__container}>
       <div className={styles.selector__wrapper}>
-        <div className={styles.selector__grid__container}>
-          {selector.entries.slice(0, 3).map((props, idx) => {
-            return <PostCard key={idx} {...props} />
-          })
-          }
-        </div>
-
-        <div className={styles.selector__controls}>
+      <div className={styles.selector__controls}>
           {Object.entries(selectorControlObj).map(([genre_str, label]) => {
             const btnClassGenre = `${styles[`selector__button--${genre_str}`]}`;
             const isSelected = `${(genre_str === selector.genre) ? styles['selector__button--selected'] : ''}`;
@@ -55,6 +48,13 @@ function PostSelectorChild({ selector, handleSelector = { handleSelector } }) {
               key={label}
               className={`${styles.selector__button}  ${btnClassGenre} ${isSelected}`}
               onClick={() => handleSelector(genre_str)}>{label}</button>
+          })
+          }
+        </div>
+        
+        <div className={styles.selector__grid__container}>
+          {selector.entries.slice(0, 3).map((props, idx) => {
+            return <PostCard key={idx} {...props} />
           })
           }
         </div>
@@ -92,7 +92,7 @@ export function PostCard({ slug, title, contributor, collection, tags, thumbnail
       {thumbnail &&
         <div className={styles.card__thumbnail__frame}>
           <Image src={thumbnail}
-            fill={true} sizes="(max-width: 768px) 50px, 150px"
+            fill={true} sizes="(max-width: 768px) 300px, 300px"
 
             placeholder="blur" blurDataURL={thumbnail}
             className={styles.card__thumbnail}

@@ -52,7 +52,8 @@
     font-size: 24px;
     font-weight: bold;
     text-transform: uppercase;
-    line-height: 16px;
+    line-height: 12px;
+    font-family: $opm-font-gothic_bold;
   }
 
   .hero__img_placeholder1 {
@@ -192,107 +193,6 @@
 
 // Sections
 
-.headline {
-  color: purple;
-  width: 80%;
-  margin-top: 64px;
-  cursor: pointer;
-  text-decoration: underline;
-}
-
-.headline__text {
-  text-transform: uppercase;
-  margin-left: 64px;
-  margin-right: 64px;
-  width: fit-content;
-  font-size: 32px;
-}
-
-.headline__text--right {
-  float: right;
-}
-
-.genre__container {
-  position: relative;
-}
-
-.genre__container--right .headline {
-  text-align: right;
-  margin-left: auto;
-}
-
-.genre__hr {
-  border-style: solid;
-  border-width: 3px;
-  color: purple;
-  width: 80%;
-}
-
-.genre__hr--right {
-  margin-left: auto;
-}
-
-.genre__content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
-}
-
-.genre__content__overlay {
-  position: relative;
-  margin-top: -240px;
-  width: 100vw;
-  height: 250px;
-  background: linear-gradient(rgba(255, 255, 255, 0), rgb(255, 255, 255));
-
-}
-
-.carousel {
-  height: 600px;
-  background-color: #eee;
-}
-
-
-@keyframes slide {
-  0% {
-    transform: translateX(0%);
-  }
-
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-
-// Flipbook
-.flipbook__container {
-  width: 100%;
-  // min-width: fit-content;
-}
-
-.flipbook__track {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-  overflow: hidden;
-  justify-content: center;
-}
-
-.flipbook__frame {
-  position: relative;
-  width: 300px;
-  height: 450px;
-  box-sizing: border-box;
-  border: 3px solid $opm-color-black;
-  box-shadow: 2px 2px 4px #30303044;
-}
-
-.flipbook__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-items: center;
-  gap: 24px;
-}
 
 
 // Newsletter

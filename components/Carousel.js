@@ -45,30 +45,6 @@ export function CarouselSlickMobile({ collectionEntries = [], numResults }) {
           </div>
         </Link>
       })}
-
-      {/* {collectionEntries.splice(0, numResults).map((item, idx) => {
-        return <Link
-          key={idx}
-          href={item.slug}
-          className={carouselStyles.mobile__item}>
-          <div className={carouselStyles.mobile__item__bg}
-            style={{ backgroundImage: `url(${item.thumbnail})` }}>
-            <div className={carouselStyles.mobile__textbox}>
-              <p className={carouselStyles.title}>{item.title}</p>
-              <p className={carouselStyles.creator}>
-                {item.contributor.split(',').map(creator => <span key={creator}>/ {creator}</span>)}
-              </p>
-            </div>
-          </div>
-          <div className={carouselStyles.chip__wrapper}>
-            {item.collection ? <Chip type="collection" value={item.collection} /> : <Chip type="content" value="Content" />}
-            {item.tags.map((tag) => {
-              return <Chip key={tag} type="tag" value={tag} />
-            })}
-          </div>
-
-        </Link>
-      })} */}
     </SlickSlider>
   )
 }
