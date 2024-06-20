@@ -1,6 +1,135 @@
 @import '@/stories/_variables.scss';
 
-// CarouselMobile
+// Carousel (Shared classes)
+.hero_mag__container {
+  border: 1px solid black;
+}
+
+.hero_mag__track {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1080px;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.hero_mag__slide__item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 60vh;
+  max-height: 600px;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+.hero_mag__cover_frame {
+  padding: 32px;
+}
+
+.block__img__container {
+  position: relative;
+  height: 50vh;
+  max-height: 500px;
+}
+
+.block__img__caption {
+  position: absolute;
+  bottom: -35px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-family: $opm-font-monospace;
+  z-index: 1;
+}
+
+.hero_mag__contentbox {
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+  max-height: inherit;
+  border-left: 1px solid black;
+}
+
+.hero_mag__content__title {
+  flex: 0 0 auto;
+  padding: 32px;
+  font-size: $opm-font-size-h2;
+  border-bottom: 1px solid black;
+}
+
+.hero_mag__editorsnote {
+  flex: 1 1 auto;
+  padding: 16px 32px;
+  overflow-y: auto;
+}
+
+.img__cover {
+  object-fit: contain;
+}
+
+
+// CarouselSlickDesktop
+
+.desktop__container {
+  margin: 0 auto;
+  margin-top: 64px;
+  width: 100vw;
+  border: 1px solid black;
+
+}
+.desktop__wrapper {
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+  max-width: 1080px;
+}
+
+.desktop {
+  min-height: 350px;
+}
+
+.desktop :global(.slick-track) {
+  display: flex;
+}
+
+.desktop :global(.slick-slide) > div {
+  margin: 0 64px;
+}
+
+.btn__prev {
+  position: absolute;
+  left: 0;
+  top: 20px;
+  z-index: 10;
+}
+
+.btn__next {
+  position: absolute;
+  right: 0;
+  top: 20px;
+  z-index: 10;
+}
+
+.desktop__wrapper>button>svg {
+  height: 32px;
+  width: 32px;
+  padding: 8px;
+  border: 1px solid #30303080;
+  border-radius: 50%;
+  box-shadow: 0px 0px 3px 0px #303030;
+  background-color: var(--background-color);
+}
+
+@media screen and (max-width: 768px) {
+  .desktop {
+    display: none;
+  }
+}
+
+// CarouselSlickMobile
 .mobile {
   margin-top: 64px;
   min-height: 350px;

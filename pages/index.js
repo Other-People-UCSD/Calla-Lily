@@ -6,9 +6,7 @@ import { useTina } from 'tinacms/dist/react';
 import { getSortedPostsData, getGenrePostsData } from '@/lib/posts';
 import { PostCardSelector } from '../components/PostCard';
 import { NewsletterForm } from '@/components/footer';
-import { CarouselSlickMobile } from '@/components/Carousel';
-import Link from 'next/link';
-import OPMparser from '@/lib/OPMparser';
+import { CarouselSlickDesktop, CarouselSlickMobile } from '@/components/Carousel';
 
 export default function Home(props) {
   const { query, variables, data } = useTina({
@@ -43,33 +41,7 @@ export default function Home(props) {
         </div>
       </div>
 
-      <div className={`${styles.hero_mag__container} ${styles["hero_mag--desktop"]}`}>
-        <div className={styles.hero_mag__track}>
-          {data.homepage.hero_items.map((item, i) => {
-            return (
-              <div key={i} className={styles.hero_mag__slide__item}>
-                <div className={styles.hero_mag__cover_frame}>
-                  <div className={styles.block__img__container}>
-                    <Image className={`${styles.img__cover}`}
-                      src={item.image_cover} fill={true}
-                      sizes='1080px'
-                      alt={item.image_alt} />
-                    <p className={styles.block__img__caption}>{item.image_caption}</p>
-                  </div>
-                </div>
-                <div className={styles.hero_mag__contentbox}>
-                  <div className={styles.hero_mag__content__title}>Collection No. {item.collection_num} | <strong>{item.collection_theme}</strong></div>
-                  <div className={styles.hero_mag__editorsnote}>
-                    <OPMparser content={item.editors_note_text} depth={0} />
-                    <Link href={item.editors_note_link}>Read More</Link>
-                  </div>
-                </div>
-              </div>
-            )
-          })}
-        </div>
-      </div>
-
+      <CarouselSlickDesktop collectionEntries={data.homepage.hero_items} />
       <CarouselSlickMobile collectionEntries={data.homepage.hero_items} />
 
       <PostCardSelector postEntries={{
@@ -141,10 +113,4 @@ export async function getStaticProps() {
       visualarts,
     },
   };
-}
-
-export const SpriteIcon = ({ id, className, ...props }) => {
-  return <svg className={className} {...props}>
-    <use href={`/svg/sprites.svg#${id}`} />
-  </svg>
 }
