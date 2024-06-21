@@ -57,8 +57,8 @@ export function CarouselSlickDesktop({ collectionEntries = [] }) {
         <SlickSlider ref={desktopRef} {...settings} >
           {collectionEntries.map((item, idx) => {
             return <div key={idx}>
-              <div className={styles.hero_mag__slide__item}>
-                <div className={styles.hero_mag__cover_frame}>
+              <div className={styles.desktop__slide__item}>
+                <div className={styles.desktop__cover_frame}>
                   <div className={styles.block__img__container}>
                     <Image className={`${styles.img__cover}`}
                       src={item.image_cover} fill={true}
@@ -67,9 +67,9 @@ export function CarouselSlickDesktop({ collectionEntries = [] }) {
                     <p className={styles.block__img__caption}>{item.image_caption}</p>
                   </div>
                 </div>
-                <div className={styles.hero_mag__contentbox}>
-                  <div className={styles.hero_mag__content__title}>Collection No. {item.collection_num} | <strong>{item.collection_theme}</strong></div>
-                  <div className={styles.hero_mag__editorsnote}>
+                <div className={styles.desktop__contentbox}>
+                  <div className={styles.desktop__content__title}>Collection No. {item.collection_num} | <strong>{item.collection_theme}</strong></div>
+                  <div className={styles.desktop__editorsnote}>
                     <OPMparser content={item.editors_note_text} depth={0} />
                     <Link href={item.editors_note_link}>Read More</Link>
                   </div>

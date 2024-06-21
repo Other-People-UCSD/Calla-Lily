@@ -37,32 +37,34 @@ export default function Genre({ genre, limit, offset }) {
         {genre.slice(offset, offset + limit)
           .map(({ slug, title, contributor, collection, tags, thumbnail }) => (
             <Link href={`/${slug}`} key={slug} className={styles.genre__post__link}>
-              <div className={styles.genre__post__contentbox}>
-                {(title.length > 30) ? (
-                  <h2 className={styles["title--small"]}>{title}</h2>
-                ) : (
-                  <h2 className={styles.genre__post__title}>{title}</h2>
-                )}
-                <p className={styles.genre__post__creator}>
-                  {contributor.split(',').map(creator => iconifyCreator(creator, tags))}
-                </p>
-                <div className={styles.chip__wrapper}>
-                  {collection ? <Chip type="collection" value={collection} /> : <Chip type="content" value="Content" />}
-                  {tags.map((tag) => {
-                    return <Chip key={tag} type="tag" value={tag} />
-                  })}
+              <div className={styles.genre__post__wrapper}>
+                <div className={styles.genre__post__contentbox}>
+                  {(title.length > 30) ? (
+                    <h2 className={styles["title--small"]}>{title}</h2>
+                  ) : (
+                    <h2 className={styles.genre__post__title}>{title}</h2>
+                  )}
+                  <p className={styles.genre__post__creator}>
+                    {contributor.split(',').map(creator => iconifyCreator(creator, tags))}
+                  </p>
+                  <div className={styles.chip__wrapper}>
+                    {collection ? <Chip type="collection" value={collection} /> : <Chip type="content" value="Content" />}
+                    {tags.map((tag) => {
+                      return <Chip key={tag} type="tag" value={tag} />
+                    })}
+                  </div>
                 </div>
+                {thumbnail &&
+                  <div className={styles.card__thumbnail__frame}>
+                    <Image src={thumbnail}
+                      fill={true} sizes="(max-width: 768px) 50px, 150px"
+                      quality={60}
+                      placeholder="blur" blurDataURL={thumbnail}
+                      className={styles.card__thumbnail}
+                      alt="View artwork description in link!" />
+                  </div>
+                }
               </div>
-              {thumbnail &&
-                <div className={styles.card__thumbnail__frame}>
-                  <Image src={thumbnail}
-                    fill={true} sizes="(max-width: 768px) 50px, 150px"
-                    quality={60}
-                    placeholder="blur" blurDataURL={thumbnail}
-                    className={styles.card__thumbnail}
-                    alt="View artwork description in link!" />
-                </div>
-              }
             </Link>
           ))}
       </div>
@@ -78,7 +80,6 @@ export default function Genre({ genre, limit, offset }) {
         }
         {page !== numPages - 1 && <button onClick={() => handlePageChange(1)}>&gt;</button>}
       </div>
-
     </>
   );
 }

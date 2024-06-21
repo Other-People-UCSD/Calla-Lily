@@ -1,29 +1,6 @@
 @import '@/stories/_variables.scss';
 
 // Carousel (Shared classes)
-.hero_mag__container {
-  border: 1px solid black;
-}
-
-.hero_mag__track {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1080px;
-  height: 100vh;
-  overflow-y: scroll;
-}
-
-.hero_mag__slide__item {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  height: 60vh;
-  max-height: 600px;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-}
-.hero_mag__cover_frame {
-  padding: 32px;
-}
 
 .block__img__container {
   position: relative;
@@ -45,31 +22,9 @@
   z-index: 1;
 }
 
-.hero_mag__contentbox {
-  display: flex;
-  flex-direction: column;
-  height: inherit;
-  max-height: inherit;
-  border-left: 1px solid black;
-}
-
-.hero_mag__content__title {
-  flex: 0 0 auto;
-  padding: 32px;
-  font-size: $opm-font-size-h2;
-  border-bottom: 1px solid black;
-}
-
-.hero_mag__editorsnote {
-  flex: 1 1 auto;
-  padding: 16px 32px;
-  overflow-y: auto;
-}
-
 .img__cover {
   object-fit: contain;
 }
-
 
 // CarouselSlickDesktop
 
@@ -103,14 +58,14 @@
   position: absolute;
   left: 0;
   top: 20px;
-  z-index: 10;
+  z-index: 1;
 }
 
 .btn__next {
   position: absolute;
   right: 0;
   top: 20px;
-  z-index: 10;
+  z-index: 1;
 }
 
 .desktop__wrapper>button>svg {
@@ -122,6 +77,41 @@
   box-shadow: 0px 0px 3px 0px #303030;
   background-color: var(--background-color);
 }
+
+.desktop__slide__item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 60vh;
+  max-height: 600px;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.desktop__cover_frame {
+  padding: 32px;
+}
+
+.desktop__contentbox {
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+  max-height: inherit;
+  border-left: 1px solid black;
+}
+
+.desktop__content__title {
+  flex: 0 0 auto;
+  padding: 32px;
+  font-size: $opm-font-size-h2;
+  border-bottom: 1px solid black;
+}
+
+.desktop__editorsnote {
+  flex: 1 1 auto;
+  padding: 16px 32px;
+  overflow-y: auto;
+}
+
 
 @media screen and (max-width: 768px) {
   .desktop {
@@ -183,7 +173,6 @@
   grid-template-columns: repeat(4, 1fr);
   overflow-x: auto;
 }
-
 
 .mobile__item {
   scroll-snap-align: center;
