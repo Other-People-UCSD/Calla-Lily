@@ -117,8 +117,9 @@
 
 .newsletter_homepage .newsletter__submit {
   flex: 0 0 auto;
+  color: var(--light-text-color);
   border-color: var(--light-text-color);
-  box-shadow: 2px 2px 5px 0px #303030;
+  box-shadow: 2px 2px 5px 0px var(--light-text-color);
 }
 
 @media screen and (max-width: 768px) {

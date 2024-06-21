@@ -35,6 +35,7 @@
   border: 1px solid black;
 
 }
+
 .desktop__wrapper {
   position: relative;
   overflow: hidden;
@@ -50,7 +51,7 @@
   display: flex;
 }
 
-.desktop :global(.slick-slide) > div {
+.desktop :global(.slick-slide)>div {
   margin: 0 64px;
 }
 
@@ -68,13 +69,18 @@
   z-index: 1;
 }
 
+.btn__prev>svg,
+.btn__next>svg {
+  fill: var(--light-text-color);
+}
+
 .desktop__wrapper>button>svg {
   height: 32px;
   width: 32px;
   padding: 8px;
-  border: 1px solid #30303080;
+  border: 1px solid var(--light-text-color);
   border-radius: 50%;
-  box-shadow: 0px 0px 3px 0px #303030;
+  box-shadow: 0px 0px 3px 0px var(--light-text-color);
   background-color: var(--background-color);
 }
 
@@ -129,7 +135,7 @@
   display: flex;
 }
 
-.mobile :global(.slick-slide) > div {
+.mobile :global(.slick-slide)>div {
   margin: 0 16px;
 }
 

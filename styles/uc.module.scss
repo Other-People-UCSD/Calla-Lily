@@ -127,7 +127,7 @@
 }
 
 .result__item {
-  border-bottom: 1px solid $opm-color-grey-darkest;
+  border-bottom: 1px solid var(--border-color);
   padding-bottom: $opm-spacing-500;
   margin-bottom: $opm-spacing-500;
 }

@@ -20,9 +20,9 @@
   position: absolute;
   width: min(50vw, 200px);
   height: min(50vw, 200px);
-  border: 1px solid #30303044;
+  border: 1px solid color-mix(in srgb, var(--light-text-color) 26.7%, transparent);
   border-radius: 50%;
-  box-shadow: 4px 4px 25px 5px #30303033;
+  box-shadow: 4px 4px 25px 5px color-mix(in srgb, var(--light-text-color) 20%, transparent);
   background-size: contain;
   background-position: center center;
 }
@@ -124,8 +124,8 @@
   margin-top: 10vh;
   height: max(60vh, 500px);
   width: 100vw;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  border-top: 1px solid var(--light-text-color);
+  border-bottom: 1px solid var(--light-text-color);
 }
 
 .newsletter__wrapper {
