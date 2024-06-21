@@ -33,6 +33,7 @@
   padding: 0px 32px;
 }
 
+
 .newsletter_footer {
   margin-top: 48px;
   margin-bottom: 48px;
@@ -65,42 +66,34 @@
   margin-right: auto;
   width: 60%;
   max-width: 600px;
-  // border: 2px solid $opm-color-white;
-  // border-radius: 4px;
 }
 
 .newsletter__input__email {
   flex-grow: 1;
   padding-left: 16px;
   background-color: inherit;
-  border: 2px solid $opm-color-white;
-  border-radius: 3px;
-  color: $opm-color-white;
   font-size: inherit;
+  font-family: $opm-font-monospace;
 }
 
-.newsletter__input__email::placeholder {
-  color: $opm-color-white;
-}
+// .newsletter__input__email::placeholder {
+//   color: $opm-color-white;
+// }
 
 .newsletter__submit {
   padding: 8px 16px;
   font-size: inherit;
-  background-color: $opm-color-white;
-  border-style: solid;
+  font-family: $opm-font-monospace;
+  background-color: var(--background-color);
+  border: 1px solid var(--light-text-color);
   border-radius: 5px;
-  border-color: $opm-color-white;
-  box-shadow: 2px 2px $opm-color-black;
+  border-color: var(--background-color);
+  cursor: pointer;
 }
 
 .newsletter_homepage {
   margin: 32px;
   width: 400px;
-  // color: $opm-color-white;
-}
-
-.newsletter_homepage hr {
-  display: none;
 }
 
 .newsletter_homepage .newsletter__inputbox {
@@ -114,30 +107,31 @@
 
 .newsletter_homepage .newsletter__input__email {
   flex: 1 0 auto;
-  border: 2px solid $opm-color-black;
-  color: $opm-color-black;
+  border: 1px solid var(--light-text-color);
+  color: var(--light-text-color);
 }
 
 .newsletter_homepage .newsletter__input__email::placeholder {
-  color: $opm-color-black;
+  color: var(--light-text-color);
 }
 
 .newsletter_homepage .newsletter__submit {
   flex: 0 0 auto;
-  border-color: $opm-color-black;
+  border-color: var(--light-text-color);
+  box-shadow: 2px 2px 5px 0px #303030;
 }
 
 @media screen and (max-width: 768px) {
   .newsletter_homepage {
-    margin: 4px;
-    width: 80vw;
+    margin: 24px;
+    width: 80%;
   }
 
   .newsletter_homepage .newsletter__label {
-    font-size: 1rem;
+    font-size: 20px;
   }
   .newsletter_homepage .newsletter__inputbox {
-    font-size: 0.8rem;
+    font-size: 14px;
   }
 }
 

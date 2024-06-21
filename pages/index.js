@@ -52,6 +52,8 @@ export default function Home(props) {
       }} />
 
       <div className={styles.section__newsletter}>
+        <div className={styles.newsletter__wrapper}>
+
         <div className={styles.newsletter__previews}>
           <Image
             src="/news_1.webp"
@@ -74,6 +76,7 @@ export default function Home(props) {
 
         </div>
         <NewsletterForm homepage />
+        </div>
       </div>
     </Layout>
   )

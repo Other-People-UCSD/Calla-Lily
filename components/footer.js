@@ -81,11 +81,6 @@ export default function Footer({ pageType, footerConfig }) {
           </div>
         }
 
-        {
-          !pageType && config.showNewsletter !== false &&
-          <NewsletterForm />
-        }
-
         <div className={styles.nav}>
           <div className={styles.nav__column}>
             <p className={styles.nav__header}>Our Prints</p>
@@ -147,11 +142,9 @@ export const NewsletterForm = ({ homepage }) => {
     <form action="https://gmail.us4.list-manage.com/subscribe/post?u=4b1b080bf138808842bdfbe2b&amp;id=32695fe3bf" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" noValidate>
       <div id="mc_embed_signup_scroll">
         <label htmlFor="mce-EMAIL"
-          className={`${styles.newsletter__label} text--heading_2`}>
+          className={`${styles.newsletter__label}`}>
           Sign Up For Our Newsletter!
         </label>
-
-        <hr />
 
         <div className={styles.newsletter__inputbox}>
           <input
@@ -159,7 +152,7 @@ export const NewsletterForm = ({ homepage }) => {
             defaultValue=""
             name="EMAIL"
             id="mce-EMAIL"
-            placeholder="EMAIL"
+            placeholder="EMAIL..."
             required
             className={styles.newsletter__input__email} />
 
