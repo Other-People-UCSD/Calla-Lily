@@ -132,6 +132,12 @@
   margin-bottom: $opm-spacing-500;
 }
 
+@media screen and (max-width: 768px) {
+  .main__content {
+    padding: 0 16px;
+  }
+}
+
 @media screen and (max-width: 1028px) {
   .search__container {
     flex-direction: row;

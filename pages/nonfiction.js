@@ -15,8 +15,7 @@ export default function Nonfiction({ nonfictionPosts }) {
   return (
     <Layout landingPage footerConfig={footerConfig} title={"Nonfiction"} className={styles.genre__main}>
       <div className={`${animationStyles.fadeInBottom} title__accent ${styles.genre__header__title}`}>
-        <h1 className={`text--heading_1 text__landing--heading_1`}>
-          N<span className="text--shadow">o</span>nficti<span className="text--shadow">o</span>n</h1>
+        <h1 className={`text--heading_1 text__landing--heading_1`}>Nonfiction</h1>
       </div>
 
       <div className={styles.genre__header__row}>

@@ -38,9 +38,7 @@ export default function About(props) {
     <Layout landingPage title={"About"} footerConfig={footerConfig} className={styles.main}>
       <div className={styles.content}>
         <div className={`${animationStyles.fadeInBottom} title__accent`}>
-          <h1 className={`text__landing--heading_1`} aria-label="Other People">
-            <span className="text--shadow">O</span>(THE)R PE<span className="text--shadow">O</span>PLE
-          </h1>
+          <h1 className={`text__landing--heading_1`} aria-label="Other People">O(THE)R PEOPLE</h1>
         </div>
 
         <div className={styles.values}>

@@ -8,11 +8,14 @@
 
 .content {
   position: relative;
-  ;
   margin-left: auto;
   margin-right: auto;
   padding: 0px $opm-spacing-600;
   max-width: 1080px;
+}
+
+.content h1 {
+  text-align: center;
 }
 
 .application__link {

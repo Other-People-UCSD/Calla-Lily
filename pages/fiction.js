@@ -15,9 +15,7 @@ export default function Fiction({ fictionPosts }) {
   return (
     <Layout landingPage footerConfig={footerConfig} title={"Fiction"} className={styles.genre__main}>
       <div className={`${animationStyles.fadeInBottom} title__accent ${styles.genre__header__title}`}>
-        <h1 className={`text--heading_1 text__landing--heading_1`} aria-label="Fiction">
-          Ficti<span className="text--shadow">o</span>n
-        </h1>
+        <h1 className={`text--heading_1 text__landing--heading_1`} aria-label="Fiction">Fiction</h1>
       </div>
 
       <div className={styles.genre__header__row}>

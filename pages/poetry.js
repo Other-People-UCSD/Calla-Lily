@@ -15,8 +15,7 @@ export default function Poetry({ poetryPosts }) {
   return (
     <Layout landingPage footerConfig={footerConfig} title={"Poetry"} className={styles.genre__main}>
       <div className={`${animationStyles.fadeInBottom} title__accent ${styles.genre__header__title}`}>
-        <h1 className={`text--heading_1 text__landing--heading_1`}>
-          P<span className="text--shadow">o</span>etry</h1>
+        <h1 className={`text--heading_1 text__landing--heading_1`}>Poetry</h1>
       </div>
 
       <div className={styles.genre__header__row}>

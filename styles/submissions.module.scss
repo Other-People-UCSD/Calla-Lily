@@ -35,14 +35,17 @@
 .chip__wrapper {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
   list-style: none;
+}
+
+.chip__wrapper li {
+  margin: 4px;
 }
 
 .text__chip {
   display: inline-block;
   margin-top: 4px;
-  padding: 4px 12px;
+  padding: 4px 8px;
   border-radius: 20px;
   background-color: #676767;
 }
@@ -54,4 +57,10 @@
 
 .faq__list .list__subitem {
   list-style-type: ">   ";
+}
+
+@media screen and (max-width: 768px) {
+  .main {
+    padding: 0 16px;
+  }
 }

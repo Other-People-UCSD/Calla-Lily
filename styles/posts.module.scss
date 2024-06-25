@@ -368,6 +368,8 @@
 .genre__header__title {
   margin-top: 32px;
   margin-bottom: 64px;
+  font-size: 4rem;
+  text-align: center;
 }
 
 .genre__header__row {
@@ -389,10 +391,9 @@
   padding-right: 16px;
   padding-bottom: 0;
   width: fit-content;
-  text-transform: uppercase;
-  font-family: $opm-font-helvetica;
-  font-size: 24px;
-  font-weight: 500;
+  // text-transform: uppercase;
+  font-family: $opm-font-monospace;
+  font-size: 20px;
   border: 3px solid var(--border-color);
   border-bottom: none;
   border-top-left-radius: 20px 30px;
@@ -572,6 +573,10 @@
 
   .genre__header__row {
     margin-top: 32px;
+  }
+
+  .genre__header__link {
+    font-size: 16px;
   }
 
   .genre__header__fiction {

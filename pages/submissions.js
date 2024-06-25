@@ -16,9 +16,7 @@ export default function Submissions(props) {
   return (
     <Layout landingPage title={"Submissions"} className={styles.main} footerConfig={{ 'showMore': false }}>
       <div className={`${animationStyles.fadeInBottom} title__accent`}>
-        <h1 className={`text__landing--heading_1`} aria-label="Submissions">
-          Submissi<span className="text--shadow">o</span>ns
-        </h1>
+        <h1 className={`text__landing--heading_1`} aria-label="Submissions">Submissions</h1>
       </div>
 
       <div className={styles.forms}>
