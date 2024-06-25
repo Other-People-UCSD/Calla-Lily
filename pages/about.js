@@ -117,7 +117,7 @@ export default function About(props) {
           <h2 id="team" className={`text--heading_1 ${styles.header}`}>Our Team</h2>
 
           <div className={`${styles.block__team__section} ${styles.block__team__editorial}`}>
-            <h3 className={`text--heading_2`}>Editorial Team</h3>
+            <h3 className={`text--heading_2 ${styles.team__header} ${styles["team__header--editorial"]}`}>Editorial Team</h3>
             {data.forms.app_editorial && <a href={data.forms.app_editorial} className={styles.application__link}>[Apply to Editorial!]</a>}
             {data.forms.app_content && <a href={data.forms.app_content} className={styles.application__link}>[Apply to Content!]</a>}
 
@@ -131,7 +131,7 @@ export default function About(props) {
           </div>
 
           <div className={`${styles.block__team__section} ${styles.block__team__design}`}>
-            <h3 className={`text--heading_2`}>Design Team</h3>
+            <h3 className={`text--heading_2 ${styles.team__header} ${styles["team__header--design"]}`}>Design Team</h3>
             {data.forms.app_design && <a href={data.forms.app_design} className={styles.application__link}>[Apply to Design!]</a>}
             {data.forms.app_website && <a href={data.forms.app_website} className={styles.application__link}>[Apply to Digital (UI/UX/Dev)!]</a>}
 
@@ -145,7 +145,7 @@ export default function About(props) {
           </div>
 
           <div className={`${styles.block__team__section} ${styles.block__team__outreach}`}>
-            <h3 className={`text--heading_2`}>Outreach Team</h3>
+            <h3 className={`text--heading_2 ${styles.team__header} ${styles["team__header--outreach"]}`}>Outreach Team</h3>
             {data.forms.app_social_media && <a href={data.forms.app_social_media} className={styles.application__link}>[Apply to Social Media!]</a>}
             {data.forms.app_event_planning && <a href={data.forms.app_event_planning} className={styles.application__link}>[Apply to Event Planning!]</a>}
             <p>Social media members design illustrations that follow what&apos;s trending to increase engagement with the community. They also create captivating previews for upcoming events and stories about to be published!</p>

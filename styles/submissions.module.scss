@@ -27,27 +27,31 @@
 .list__subitem {
   margin-left: 40px;
 }
-.answer {
-  display: list-item;
-  margin-left: 40px;
+
+.guidelines .chip__wrapper {
+  padding-left: 0px;
 }
 
-.svg__guidelines {
-  position: absolute;
-  top: 100px;
-  right: -200px;
-  width: 600px;
-  height: 600px;
-  z-index: -10;
-  fill: #b4f29b66;
+.chip__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  list-style: none;
 }
 
-.svg__guidelines__bottom {
-  position: absolute;
-  bottom: -200px;
-  left: -100px;
-  width: 800px;
-  height: 800px;
-  z-index: -10;
-  fill: #f9c1c166;
+.text__chip {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background-color: #676767;
+}
+
+.guidelines .faq__list{
+  padding-left: 0px;
+  list-style-type: none;
+}
+
+.faq__list .list__subitem {
+  list-style-type: ">   ";
 }

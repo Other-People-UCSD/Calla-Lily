@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Wed, 19 Jun 2024 23:50:45 GMT
+ * Generated on Fri, 21 Jun 2024 17:58:29 GMT
  */
 
 export const OpmColorBlack = "#303030";
@@ -14,7 +14,7 @@ export const OpmColorBlueDark = "#64D2FF";
 export const OpmColorAccentOrange = "#FFB94F";
 export const OpmColorHighlightRed = "#F4BAB9";
 export const OpmBackgroundBlack = "#303030";
-export const OpmBackgroundWhite = "#FFFFFC";
+export const OpmBackgroundWhite = "#FFFBF8";
 export const OpmChip1 = "#F5CFE0";
 export const OpmChip2 = "#5F7F2A";
 export const OpmChip3 = "#FDC436";

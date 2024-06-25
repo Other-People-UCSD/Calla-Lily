@@ -22,7 +22,7 @@
     },
     "background": {
       "black": { "value": "#303030" },
-      "white": { "value": "#FFFFFC"}
+      "white": { "value": "#FFFBF8"}
     },
     "chip": {
       "poetry": { "value": "#9A2A55"},
