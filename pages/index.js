@@ -3,7 +3,7 @@ import styles from '@/styles/homepage.module.scss';
 import Layout from '@/components/layout';
 import client from '../tina/__generated__/client';
 import { useTina } from 'tinacms/dist/react';
-import { getSortedPostsData, getGenrePostsData } from '@/lib/posts';
+import { getSortedPostsData, getGenrePostsData, getPostDataAPI } from '@/lib/posts';
 import { PostCardSelector } from '../components/PostCard';
 import { NewsletterForm } from '@/components/footer';
 import { CarouselSlickDesktop, CarouselSlickMobile } from '@/components/Carousel';
@@ -54,28 +54,28 @@ export default function Home(props) {
       <div className={styles.section__newsletter}>
         <div className={styles.newsletter__wrapper}>
 
-        <div className={styles.newsletter__previews}>
-          <Image
-            src="/news_1.webp"
-            width={300} height={150}
-            className={styles.newsletter_1}
-            alt="A preview of our digital newsletter."
-          />
-          <Image
-            src="/news_2.webp"
-            width={300} height={300}
-            className={styles.newsletter_2}
-            alt="A preview of our digital newsletter."
-          />
-          <Image
-            src="/news_3.webp"
-            width={300} height={300}
-            className={styles.newsletter_3}
-            alt="Another preview of our digital newsletter."
-          />
+          <div className={styles.newsletter__previews}>
+            <Image
+              src="/news_1.webp"
+              width={300} height={150}
+              className={styles.newsletter_1}
+              alt="A preview of our digital newsletter."
+            />
+            <Image
+              src="/news_2.webp"
+              width={300} height={300}
+              className={styles.newsletter_2}
+              alt="A preview of our digital newsletter."
+            />
+            <Image
+              src="/news_3.webp"
+              width={300} height={300}
+              className={styles.newsletter_3}
+              alt="Another preview of our digital newsletter."
+            />
 
-        </div>
-        <NewsletterForm homepage />
+          </div>
+          <NewsletterForm homepage />
         </div>
       </div>
     </Layout>
@@ -86,10 +86,23 @@ export default function Home(props) {
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
   const numPosts = allPostsData.length;
-  const poetry = getGenrePostsData('Poetry', allPostsData);
-  const fiction = getGenrePostsData('Fiction', allPostsData);
-  const nonfiction = getGenrePostsData('Nonfiction', allPostsData);
-  const visualarts = getGenrePostsData('Visual Arts', allPostsData);
+  const poetry = await Promise.all(
+    getGenrePostsData('Poetry', allPostsData).slice(0, 3)
+      .map(async (post) => {
+        return await getPostDataAPI({ relativePath: post.slug + '.mdx', headerType: 'preview' });
+      }));
+  const fiction = await Promise.all(
+    getGenrePostsData('Fiction', allPostsData).slice(0, 3).map(async (post) => {
+      return await getPostDataAPI({ relativePath: post.slug + '.mdx', headerType: 'preview' });
+    }));
+  const nonfiction = await Promise.all(
+    getGenrePostsData('Nonfiction', allPostsData).slice(0, 3).map(async (post) => {
+      return await getPostDataAPI({ relativePath: post.slug + '.mdx', headerType: 'preview' });
+    }));
+  const visualarts = await Promise.all(
+    getGenrePostsData('Visual Arts', allPostsData).slice(0, 3).map(async (post) => {
+      return await getPostDataAPI({ relativePath: post.slug + '.mdx', headerType: 'preview' });
+    }));
 
   let data = {}
   let query = {}
