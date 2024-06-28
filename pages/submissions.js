@@ -15,28 +15,29 @@ export default function Submissions(props) {
 
   return (
     <Layout landingPage title={"Submissions"} className={styles.main} footerConfig={{ 'showMore': false }}>
-      <div className={`${animationStyles.fadeInBottom} title__accent`}>
-        <h1 className={`text__landing--heading_1`} aria-label="Submissions">Submissions</h1>
+      <div className={styles.main__content}>
+        <div className={`${animationStyles.fadeInBottom} title__accent`}>
+          <h1 className={`text__landing--heading_1 ${styles.h1}`} aria-label="Submissions">Submissions</h1>
+        </div>
+        <div className={styles.forms}>
+          {status ? (
+            <>
+              {data.forms.submissions_written ? (<p><a href={data.forms.submissions_written}>Written Submissions</a></p>) : null}
+              {data.forms.submissions_visual ? (<p><a href={data.forms.submissions_visual}>Visual Submissions</a></p>) : null}
+            </>
+          ) : (
+            <TinaMarkdown content={data.forms.subsClosedText} />
+          )
+          }
+
+          <p>(Updates on our submission status are found on our socials and <a href="https://discord.gg/ZT3Mx78Ar7" rel="noreferer noopener">discord</a>)</p>      </div>
+
       </div>
-
-      <div className={styles.forms}>
-        {status ? (
-          <>
-            {data.forms.submissions_written ? (<p><a href={data.forms.submissions_written}>Written Submissions</a></p>) : null}
-            {data.forms.submissions_visual ? (<p><a href={data.forms.submissions_visual}>Visual Submissions</a></p>) : null}
-          </>
-        ) : (
-          <TinaMarkdown content={data.forms.subsClosedText} />
-        )
-        }
-
-        <p>(Updates on our submission status are found on our socials and <a href="https://discord.gg/ZT3Mx78Ar7" rel="noreferer noopener">discord</a>)</p>      </div>
-
       <hr />
 
-      <div className={styles.guidelines}>
+      <div className={`${styles.guidelines} ${styles.main__content}`}>
 
-        <h2>Reading Period:</h2>
+        <h2 style={{marginTop: 0}}>Reading Period:</h2>
 
         <p>Magazine submissions are selected based on quality, originality, creativity, and the creator’s intent!</p>
         <p>The editorial and design teams will be reviewing and sending out acceptances on a rolling basis.</p>

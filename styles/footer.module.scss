@@ -1,8 +1,19 @@
 @import '@/stories/_variables.scss';
 
+.spacer {
+  margin-left: auto;
+  margin-right: auto;
+  height: 64px;
+  max-width: 1080px;
+  padding: 0px 32px;
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+}
+
 .base {
   position: relative;
-  padding: 64px 0;
+  padding: 0;
+  // padding-top: 64px;
   font-family: $opm-font-monospace;
   color: var(--light-text-color);
   font-size: $opm-font-size-small;
@@ -19,8 +30,10 @@
 .base__content {
   margin-left: auto;
   margin-right: auto;
-  max-width: 1440px;
+  max-width: 1080px;
   padding: 0px 32px;
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
 }
 
 
@@ -134,7 +147,8 @@
   margin-left: auto;
   margin-right: auto;
   padding: 16px 32px;
-  border-top: 1px solid var(--border-color);
+  // border-left: 1px solid var(--border-color);
+  // border-right: 1px solid var(--border-color);
 }
 
 .nav__header {
@@ -152,7 +166,8 @@
 
 
 .base__copyright {
-  margin-top: 64px;
+  padding-top: 64px;
+  padding-bottom: 64px;
   text-align: center;
 }
 
@@ -175,10 +190,10 @@
   line-height: initial;
 }
 
-.more {
-  position: relative;
-  text-align: center;
-}
+// .more {
+//   position: relative;
+//   text-align: center;
+// }
 
 
 .more__grid {
@@ -196,13 +211,14 @@
   // border-right: 3px solid var(--border-color);
 }
 
-.more__block:last-child {
-  border-right: none;
-}
+// .more__block:last-child {
+//   border-right: none;
+// }
 
 .base .more__block__heading {
-  margin-bottom: 16px;
+  padding-bottom: 16px;
   font-size: 1.5rem;
+  text-align: center;
 }
 
 .team__app__list {

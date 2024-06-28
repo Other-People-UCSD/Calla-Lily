@@ -1,13 +1,27 @@
 @import '@/stories/_variables.scss';
 
 .main {
-  font-weight: 500;
-  padding: 0px $opm-spacing-600;
-  // border-top: 1px solid black;
+  padding: 0px;
+}
+
+.main__content {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1080px;
+  padding: 0 32px 32px 32px;
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+}
+
+.h1 {
+  margin-top: 0;
+  padding-top: 24px;
+  font-size: 2rem;
 }
 
 .guidelines {
   position: relative;
+  padding-top: 32px;
   font-weight: 500;
 }
 

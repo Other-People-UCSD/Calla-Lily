@@ -21,12 +21,17 @@ export default function Footer({ pageType, footerConfig }) {
 
   return (
     <footer className={`${styles.base} ${gradient}`}>
-      <div className={styles.base__content}>
-
-        {
-          !pageType && config.showMore !== false &&
-          <div className={styles.more} >
+      <hr />
+      <div className={styles.spacer} />
+      {
+        !pageType && config.showMore !== false &&
+        <>
+          <div className={styles.base__content}>
             <p className={`${styles.more__block__heading} text--heading_2`}>More Information</p>
+          </div>
+          <hr />
+          <div className={styles.base__content}>
+
             <div className={styles.more__grid}>
               <div className={styles.more__block}>
                 <p className={`${styles.more__block__heading} text--heading_2`}>Submissions Info</p>
@@ -82,8 +87,12 @@ export default function Footer({ pageType, footerConfig }) {
               </div>
             </div>
           </div>
-        }
 
+        </>
+      }
+
+      <hr />
+      <div className={styles.base__content}>
         <div className={styles.nav}>
           <div className={styles.nav__column}>
             <p className={styles.nav__header}>Explore Content</p>

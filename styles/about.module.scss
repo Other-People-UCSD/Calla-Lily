@@ -10,12 +10,16 @@
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  padding: 0px $opm-spacing-600;
+  padding: 0 32px 32px 32px;
   max-width: 1080px;
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
 }
 
 .content h1 {
   text-align: center;
+  margin-top: 0;
+  padding-top: 24px;
 }
 
 .application__link {
@@ -41,11 +45,7 @@
 .block__about,
 .block__story,
 .block__roles {
-  margin-top: $opm-spacing-600;
-}
-
-.block__team {
-  margin-top: 100px;
+  padding-top: 32px;
 }
 
 .block__team .content {
@@ -69,8 +69,9 @@
 
 .block__team .header,
 .block__alumni .header {
-  margin-top: $opm-spacing-500;
-  margin-bottom: $opm-spacing-500;
+  margin-top: 0;
+  padding-top: 32px;
+  margin-bottom: 32px;
   text-align: center;
 }
 
@@ -111,14 +112,14 @@
 }
 
 .block__alumni {
-  padding-top: 200px;
+  // padding-top: 200px;
   padding-left: $opm-spacing-600;
   padding-right: $opm-spacing-600;
-  color: $opm-color-white;
-  background: -moz-linear-gradient(0deg, rgba(48, 48, 48, 1) 85%, rgba(255, 255, 252, 1) 100%);
-  background: -webkit-linear-gradient(0deg, rgba(48, 48, 48, 1) 85%, rgba(255, 255, 252, 1) 100%);
-  background: linear-gradient(0deg, rgba(48, 48, 48, 1) 85%, rgba(255, 255, 252, 1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#303030", endColorstr="#fffffc", GradientType=1);
+  // color: $opm-color-white;
+  // background: -moz-linear-gradient(0deg, rgba(48, 48, 48, 1) 85%, rgba(255, 255, 252, 1) 100%);
+  // background: -webkit-linear-gradient(0deg, rgba(48, 48, 48, 1) 85%, rgba(255, 255, 252, 1) 100%);
+  // background: linear-gradient(0deg, rgba(48, 48, 48, 1) 85%, rgba(255, 255, 252, 1) 100%);
+  // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#303030", endColorstr="#fffffc", GradientType=1);
 }
 
 .team__list,

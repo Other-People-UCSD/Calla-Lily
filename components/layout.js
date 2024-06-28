@@ -9,9 +9,15 @@ export default function Layout({ children, post, landingPage, title, announcemen
 
   function Content() {
     if (landingPage) {
-      return <main className={`main__landing ${className}`}>{children}</main>;
+      return <>
+        <hr style={{ marginTop: "64px" }} />
+        <main className={`main__landing ${className}`}>{children}</main>
+      </>
     } else if (post) {
-      return <main className={`${postStyles.post__content} ${className}`}>{children}</main>;
+      return <>
+        <hr style={{ marginTop: "64px" }} />
+        <main className={`${postStyles.post__content} ${className}`}>{children}</main>
+      </>
     } else {
       return <main className={`${className}`}>{children}</main>
     }

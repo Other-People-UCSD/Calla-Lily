@@ -48,6 +48,10 @@ export default function About(props) {
           Through a fusion of Language, Art, Image, and Technology.
         </div>
 
+      </div>
+      <hr />
+      <div className={styles.content}>
+
         <div className={styles.block__about}>
           <h2>About Us</h2>
           <p>Other People Literary Magazine at UC San Diego is the first student-run literary magazine and club.</p>
@@ -110,6 +114,8 @@ export default function About(props) {
         </div>
       </div>
 
+<hr />
+
       <div className={styles.block__team}>
         <div className={styles.content}>
           <h2 id="team" className={`text--heading_1 ${styles.header}`}>Our Team</h2>
@@ -156,6 +162,7 @@ export default function About(props) {
         </div>
       </div>
 
+<hr />
       <div className={styles.block__alumni}>
         <div className={styles.content}>
           <h2 className={`text--heading_1 ${styles.header}`}>Alumni</h2>

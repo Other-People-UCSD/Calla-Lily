@@ -58,24 +58,30 @@ export default function UCMagazines(props) {
   const lastmod = new Date(data.ucmagazines.lastmod).toLocaleDateString();
 
   return (
-    <Layout landingPage title={"UC Magazines"} className={ucStyles.main__content}>
-      <div className={`${animationStyles.fadeInBottom}`}>
-        <h1 style={{ fontSize: '2rem' }}>List of UC Creative Magazines & Journals</h1>
+    <Layout landingPage title={"UC Magazines"} className={ucStyles.base} >
+      <div className={ucStyles.main__content}>
+        <div className={`${animationStyles.fadeInBottom}`}>
+          <h1 className={ucStyles.h1}>List of UC Creative Magazines & Journals</h1>
+        </div>
+
+        <p>The University of California system has dozens of magazines and journals highlighting the creative
+          minds of their students. Yet none of the UC websites contain a collective listing of these magazines, so it is our duty
+          as a student-led magazine to help students find their way to the creative voices across our UC system!
+        </p>
+
+        <p>All initial descriptions have been pulled directly from their about pages. To update or add your own information please email us at otherpeopleucsd@gmail.com!</p>
+
+        <p><strong>Last Updated: {lastmod}</strong> *Magazine activity is not up-to-date</p>
+      </div>
+      <hr />
+      <div className={ucStyles.main__content}>
+
+        <UCCardsDropdown
+          magazines={data.ucmagazines.magazines}
+          router={router}
+          initData={initData} />
       </div>
 
-      <p>The University of California system has dozens of magazines and journals highlighting the creative
-        minds of their students. Yet none of the UC websites contain a collective listing of these magazines, so it is our duty
-        as a student-led magazine to help students find their way to the creative voices across our UC system!
-      </p>
-
-      <p>All initial descriptions have been pulled directly from their about pages. To update or add your own information please email us at otherpeopleucsd@gmail.com!</p>
-
-      <p><strong>Last Updated: {lastmod}</strong> *Magazine activity is not up-to-date</p>
-
-      <UCCardsDropdown
-        magazines={data.ucmagazines.magazines}
-        router={router}
-        initData={initData} />
     </Layout>
   );
 }
