@@ -1,17 +1,36 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 /**
  * Pass page props context deeply to search component.
- * Each page must have the function getStaticProps 
- * and call getSortedPostsData for the search to work on that page.
+ * This context handles changes in theme and passes props deeply to ThemeToggle.
  */
 const AppContext = createContext(null);
 
 export const AppWrapper = ({ children }) => {
-  let sharedState = {
-    allPostsData: children.props.allPostsData,
-    recommender: children.props.recommender
+  const [isDarkTheme, setCurrentTheme] = useState(false);
+
+  function handleTheme(setValue) {
+    if (setValue !== null && setValue !== undefined) {
+      setCurrentTheme(setValue);
+      return;
+    }
+
+    const curTheme = isDarkTheme;
+    if (curTheme) {
+      document?.documentElement?.setAttribute('data-theme', 'light');
+      window?.localStorage?.setItem('data-theme', 'light');
+    } else {
+      document?.documentElement?.setAttribute('data-theme', 'dark');
+      window?.localStorage?.setItem('data-theme', 'dark');
+    }
+    setCurrentTheme(!isDarkTheme);
   }
+
+  const sharedState = {
+    isDarkTheme: isDarkTheme,
+    handleTheme: handleTheme
+  }
+
   return (
     <AppContext.Provider value={sharedState}>
       {children}
