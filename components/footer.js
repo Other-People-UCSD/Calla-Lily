@@ -4,7 +4,7 @@ import formData from '@/data/forms.json';
 import ThemeToggle from './ThemeToggle';
 
 const defaultConfig = {
-  'showGradient': true,
+  'showGradient': false,
   'showMore': false,
   'showNewsletter': false,
 }
@@ -27,17 +27,20 @@ export default function Footer({ pageType, footerConfig }) {
           !pageType && config.showMore !== false &&
           <div className={styles.more} >
             <p className={`${styles.more__block__heading} text--heading_2`}>More Information</p>
-            <hr />
             <div className={styles.more__grid}>
               <div className={styles.more__block}>
                 <p className={`${styles.more__block__heading} text--heading_2`}>Submissions Info</p>
-                <p>Our Editorial team reviews submissions individually and votes on their favorite pieces based on quality, creativity, craft, and style. The team then convenes to determine the strongest pieces of the selection, the number of which is adjusted to fit the maximum length of the magazine publication.</p>
-                <p>For detailed submissions instructions, please see our Submissions page.</p>
+                <p>Our team reviews submissions individually based on quality, creativity, craft, and style, then convenes to determine the strongest pieces of the selection.</p>
+                <p>For detailed submissions instructions, please see our <Link href="/submissions" >Submissions</Link> page.</p>
+                {(formData.submissions_written || formData.submissions_visual) ?
+                  <Link href="/submissions" >Submisssions are currently <strong>open</strong>.</Link>
+                  :
+                  <p>Submissions are currently <strong>closed</strong>.</p>
+                }
               </div>
 
               <div className={styles.more__block}>
                 <p className={`${styles.more__block__heading} text--heading_2`}>Team Applications</p>
-                <p></p>
                 <ul className={styles.team__app__list}>
                   {formData.app_editorial &&
                     <li>
@@ -83,12 +86,6 @@ export default function Footer({ pageType, footerConfig }) {
 
         <div className={styles.nav}>
           <div className={styles.nav__column}>
-            <p className={styles.nav__header}>Our Prints</p>
-            <FooterList col={formData.footer__c1} />
-            <ThemeToggle />
-          </div>
-
-          <div className={styles.nav__column}>
             <p className={styles.nav__header}>Explore Content</p>
             <FooterList col={formData.footer__c2} />
           </div>
@@ -101,6 +98,10 @@ export default function Footer({ pageType, footerConfig }) {
           <div className={styles.nav__column}>
             <p className={styles.nav__header}>Follow Us!</p>
             <FooterList col={formData.footer__c4} />
+          </div>
+          <div className={styles.nav__column}>
+            <p className={styles.nav__header}>Accessibility</p>
+            <ThemeToggle />
           </div>
         </div>
         <div className={styles.base__copyright}>

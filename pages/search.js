@@ -15,6 +15,10 @@ const defaultSearchOptions = {
   'q': ''
 }
 
+const footerConfig = {
+  'showMore': true
+}
+
 export default function SearchPage({ searchData }) {
   const router = useRouter();
   const { metadata, allPostsData } = searchData;
@@ -53,7 +57,7 @@ export default function SearchPage({ searchData }) {
   }, [router.query]);
 
   return (
-    <Layout landingPage title={"Search"}>
+    <Layout landingPage title={"Search"} footerConfig={footerConfig}>
       <h1>Advanced Search</h1>
       <SearchBar metadata={metadata} allPostsData={allPostsData} initSearchPages={initSearchPages} initData={initData} router={router} />
     </Layout>

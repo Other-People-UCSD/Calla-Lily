@@ -2,12 +2,10 @@
 
 .base {
   position: relative;
-  padding-top: 200px;
-  padding-bottom: 64px;
+  padding: 64px 0;
   font-family: $opm-font-monospace;
-  color: $opm-color-white;
+  color: var(--light-text-color);
   font-size: $opm-font-size-small;
-  background: $opm-background-black;
 }
 
 .base p {
@@ -15,15 +13,7 @@
 }
 
 .base a {
-  color: $opm-color-white;
-}
-
-.gradient {
-  margin-top: 100px;
-  background: -moz-linear-gradient(0deg, rgba(48, 48, 48, 1) 85%, rgba(255, 255, 252, 1) 100%);
-  background: -webkit-linear-gradient(0deg, rgba(48, 48, 48, 1) 85%, rgba(255, 255, 252, 1) 100%);
-  background: linear-gradient(0deg, rgba(48, 48, 48, 1) 85%, rgba(255, 255, 252, 1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#303030", endColorstr="#fffffc", GradientType=1);
+  color: var(--light-text-color);
 }
 
 .base__content {
@@ -140,8 +130,11 @@
 .nav {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  margin-left: auto;
+  margin-right: auto;
   padding: 16px 32px;
-  border-top: 2px solid $opm-color-white;
+  border-top: 1px solid var(--border-color);
 }
 
 .nav__header {
@@ -159,7 +152,7 @@
 
 
 .base__copyright {
-  margin-top: 20px;
+  margin-top: 64px;
   text-align: center;
 }
 
@@ -170,7 +163,7 @@
   margin-bottom: 8px;
   width: 80px;
   height: 50px;
-  fill: $opm-color-white;
+  fill: var(--light-text-color);
 }
 
 .base__copyright__text {
@@ -187,23 +180,20 @@
   text-align: center;
 }
 
-.more hr {
-  margin-top: 4px;
-  margin-bottom: 16px;
-  border-style: solid;
-  border-width: 2px;
-  max-width: 60%;
-}
 
 .more__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1080px;
 }
 
 .more__block {
   padding: 16px 32px;
   text-align: center;
-  border-right: 3px solid $opm-color-white;
+  // border-top: 1px solid var(--border-color);
+  // border-right: 3px solid var(--border-color);
 }
 
 .more__block:last-child {
@@ -229,48 +219,8 @@
   margin: 0;
 }
 
-
-.svg--accent {
-  position: absolute;
-  z-index: 1;
-  transform: rotate(25deg);
-}
-
-
-// THEME
-
-html[data-theme="dark"] .base {
-  padding-top: 0;
-}
-
-html[data-theme="dark"] .gradient {
-  background: $opm-background-black;
-}
-
-@media (prefers-color-scheme: dark) {
-  .base {
-    padding-top: 0;
-  }
-
-  .gradient {
-    background: $opm-background-black;
-  }
-
-  html[data-theme="light"] .base {
-    padding-top: 200px;
-  }
-
-  html[data-theme="light"] .gradient {
-    background: -moz-linear-gradient(0deg, rgba(48, 48, 48, 1) 85%, rgba(255, 255, 252, 1) 100%);
-    background: -webkit-linear-gradient(0deg, rgba(48, 48, 48, 1) 85%, rgba(255, 255, 252, 1) 100%);
-    background: linear-gradient(0deg, rgba(48, 48, 48, 1) 85%, rgba(255, 255, 252, 1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#303030", endColorstr="#fffffc", GradientType=1);
-  }
-}
-
 // RESPONSIVE
 @media screen and (max-width: 768px) {
-
   .base,
   .base p {
     font-size: 12px;
@@ -288,11 +238,6 @@ html[data-theme="dark"] .gradient {
 
   .more__grid {
     grid-template-columns: 1fr;
-  }
-
-  .more__block {
-    border-right: none;
-    border-bottom: 6px solid $opm-color-white;
   }
 
   .more__block:last-child {
@@ -315,9 +260,6 @@ html[data-theme="dark"] .gradient {
 
   .nav {
     grid-template-columns: 1fr 1fr;
-  }
-
-  .svg--accent {
-    transform: rotate(25deg) scale(0.5) translate(50px, -50px);
+    justify-items: start;
   }
 }
