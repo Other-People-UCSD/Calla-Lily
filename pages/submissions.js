@@ -38,7 +38,7 @@ export default function Submissions(props) {
             { data.forms.visual ? (<p><a href={data.forms.visual}>Visual Submissions</a></p>) : null }
           </>
           ) : (
-            <TinaMarkdown content={data.forms.design} />
+            <TinaMarkdown content={data.forms.app_design} />
           )
         }
         
