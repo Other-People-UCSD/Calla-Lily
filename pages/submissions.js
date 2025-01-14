@@ -13,7 +13,7 @@ export default function Submissions(props) {
     variables: props.variables,
     data: props.data,
   })
-  const status = data.forms["written"] || data.forms["visual"];
+  const status = data.forms["submissions_written"] || data.forms["submissions_visual"];
 
   return (
     <Layout landingPage title={"Submissions"}>
@@ -34,8 +34,8 @@ export default function Submissions(props) {
 
         { status ? (
           <>
-            { data.forms.written ? (<p><a href={data.forms.written}>Written Submissions</a></p>) : null}
-            { data.forms.visual ? (<p><a href={data.forms.visual}>Visual Submissions</a></p>) : null }
+            { data.forms.submissions_written ? (<p><a href={data.forms.written}>Written Submissions</a></p>) : null}
+            { data.forms.submissions_visual ? (<p><a href={data.forms.visual}>Visual Submissions</a></p>) : null }
           </>
           ) : (
             <TinaMarkdown content={data.forms.subsClosedText} />
