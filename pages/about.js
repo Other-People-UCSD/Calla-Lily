@@ -110,7 +110,7 @@ export default function About(props) {
       </div>
 
       <div className={contentStyles["application-grid-wrapper"]}>
-        <h2>TEAM ROLES</h2>
+        <h2 id="team">TEAM ROLES</h2>
         <ul className={contentStyles["application-grid"]}>
           <li>
             <h3>Editorial & Content</h3>
@@ -118,17 +118,8 @@ export default function About(props) {
               exclusive prose, interview submittors about their
               stories, and may write articles of their choice.</p>
             <p className={"center"}>
-              {forms?.editorial &&
-                <a href={forms.editorial}>(Apply Here!)</a>
-              }
-
-              {forms?.content && !forms?.editorial &&
-                <a href={forms.content}>(Apply Here!)</a>
-              }
-
-              {!forms?.editorial && !forms?.content &&
-                <>(Applications Closed)</>
-              }
+              {forms?.app_editorial && <a href={forms.app_editorial}>(Apply to Editorial!)</a>}
+              {forms?.app_content && <a href={forms.app_content}>(Apply to Content!)</a>}
             </p>
           </li>
           <li>
@@ -136,11 +127,8 @@ export default function About(props) {
             <p>Design illustrators create artwork to complement accepted prose. We publish digital and print copies of
               issues, as well as designing inclusive access to artistic expression through our website.</p>
             <p className={"center"}>
-              {forms?.design ?
-                <a href={forms.design}>(Apply Here!)</a>
-                :
-                <>(Applications Closed)</>
-              }
+              {forms?.app_design && <a href={forms.app_design}>(Apply to Design!)</a>}
+              {forms?.app_social_media && <a href={forms.app_social_media}>(Apply to Social Media!)</a>}
             </p>
           </li>
           <li>
@@ -148,11 +136,7 @@ export default function About(props) {
             <p>Promote the magazine through social media, plan open mic nights, fundraisers, socials, etc. Marketing and
               event planners help fund the magazine and increase our outreach beyond the campus.</p>
             <p className={"center"}>
-              {forms?.events ?
-                <a href={forms.events}>(Apply Here!)</a>
-                :
-                <>(Applications Closed)</>
-              }
+              {forms?.app_event_planning && <a href={forms.app_event_planning}>(Apply to Event Planning!)</a>}
             </p>
           </li>
           <li>
@@ -160,11 +144,7 @@ export default function About(props) {
             <p>The website developer/producer is responsible for publishing content to the website and implementing
               accessible designs to display to the public through frontend programming!</p>
             <p className={"center"}>
-              {forms?.website ?
-                <a href={forms.website}>(Apply Here!)</a>
-                :
-                <>(Applications Closed)</>
-              }
+              {forms?.app_website && <a href={forms.app_website}>(Apply to Website!)</a>}
             </p>
           </li>
         </ul>

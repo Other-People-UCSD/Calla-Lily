@@ -7,7 +7,6 @@ export default function Search({ setShowNav }) {
   const [searchQuery, setSearchQuery] = useState('');
   const context = useAppContext();
   const allPostsData = context.allPostsData;
-  const recommender = context.recommender;
 
   const getSearchQuery = (e) => {
     setSearchQuery(e.target.value);
@@ -29,14 +28,10 @@ export default function Search({ setShowNav }) {
           aria-placeholder="Type here to search"
           // autoFocus={true}
           onChange={getSearchQuery} />
-        {searchQuery === '' && recommender &&
-          <p>Enjoyed this work? Here are our recommendations!</p>
-        }
         <SearchResults
           setShowNav={setShowNav}
           searchQuery={searchQuery}
           allPostsData={allPostsData}
-          recommender={recommender}
         />
       </div>
     </div>
@@ -44,8 +39,8 @@ export default function Search({ setShowNav }) {
   );
 }
 
-const SearchResults = ({ setShowNav, searchQuery, allPostsData, recommender }) => {
-  if (searchQuery === '' && !recommender) {
+const SearchResults = ({ searchQuery, allPostsData }) => {
+  if (searchQuery === '') {
     return;
   }
 
@@ -55,56 +50,21 @@ const SearchResults = ({ setShowNav, searchQuery, allPostsData, recommender }) =
     "date", "contributor", "tags"
   ]
 
-  let postsQuery = [];
-  let results = [];
-
-  if (searchQuery === '' && recommender) {
-    const keyedPosts = [];
-    allPostsData.map((post, idx) => {
-      const key = `/${post.slug}`;
-      keyedPosts[key] = `${idx}`;
+  const postsQuery = Object.keys(allPostsData).filter(id => {
+    const postData = allPostsData[id];
+    const conditions = searchKeys.map(key => {
+      return postData[key] ? (
+        postData[key].toString().toLowerCase()
+          .includes(searchQuery.toLowerCase())
+      ) : (
+        false
+      );
     });
 
-    postsQuery = recommender.map((slug) => {
-      return keyedPosts[slug];
-    });
-  } else {
-    postsQuery = Object.keys(allPostsData).filter(id => {
-      const postData = allPostsData[id];
-      const conditions = searchKeys.map(key => {
-        return postData[key] ? (
-          postData[key].toString().toLowerCase()
-            .includes(searchQuery.toLowerCase())
-        ) : (
-          false
-        );
-      });
+    return conditions.includes(true);
+  });
 
-      return conditions.includes(true);
-    });
-  }
-
-  results = postsQuery.slice(0, displayLimit);
-
-
-  function handleClick(e) {
-    if (searchQuery === '' && recommender) {
-      const link = e.target.parentElement;
-      const toPath = link.getAttribute('href');
-
-      gtag('event', 'click_recommendation', {
-        'from': window.location.pathname,
-        'to': toPath
-      });
-    }
-
-    closeNav();
-  }
-
-  function closeNav() {
-    document.getElementById("myNav").style.height = "0%";
-    setShowNav(false);
-  }
+  const results = postsQuery.slice(0, displayLimit);
 
   return (
     <ul id="results-container">
@@ -112,11 +72,9 @@ const SearchResults = ({ setShowNav, searchQuery, allPostsData, recommender }) =
         results.length > 0 ? (
           results.map((key) => {
             const post = allPostsData[key];
-            // console.log(key);
             return (
               <li key={key}>
-                <Link href={`/${post.slug}`}
-                  onClick={handleClick}>
+                <Link href={`/${post.slug}`}>
                   <h2>{post.title}</h2>
                   <h3>{post.contributor}</h3>
                   <h4>{post.tags.join(", ")}</h4>
