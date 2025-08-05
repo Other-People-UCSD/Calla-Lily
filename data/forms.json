@@ -1,4 +1,14 @@
 {
+publishing
+  "written": "",
+  "visual": "https://forms.gle/8yS1ezLYWt4y8Bkk6",
+  "subsClosedText": "Our submissions are now closed for the rest of the school year. We will continue to update this page with open calls for submissions from other orgs at UCSD!\n",
+  "editorial": "https://docs.google.com/forms/d/e/1FAIpQLSeD00vzibY23OSsL4Ev4lTMvJc2ctmFeElqJDE-yRkO27A2aA/viewform",
+  "content": "https://docs.google.com/forms/d/e/1FAIpQLSeD00vzibY23OSsL4Ev4lTMvJc2ctmFeElqJDE-yRkO27A2aA/viewform",
+  "design": "https://docs.google.com/forms/d/e/1FAIpQLSeLx8LRNDnZKCvvlbZ01yy2NJjYyZ5ugQJZFAjeu2LFomfS2Q/formResponse?pli=1",
+  "events": "https://docs.google.com/forms/d/e/1FAIpQLSfuAfbBDcM3PEjzWb08a_TJP2Au-FtarKKHKUeLfy0fTkbT3A/viewform?usp=sf_link",
+  "website": "https://docs.google.com/forms/d/e/1FAIpQLSfMolDd9ypQFG6jCyU37oTUY4DAd_2Im1Iky9i-YC2p0n8hIQ/viewform?usp=sf_link"
+=======
   "submissions_written": "",
   "submissions_visual": "https://forms.gle/8yS1ezLYWt4y8Bkk6",
   "submissions_digital": "",
@@ -81,4 +91,5 @@
       "outbound": false
     }
   ]
+main
 }
