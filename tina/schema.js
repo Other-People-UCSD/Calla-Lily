@@ -3,7 +3,32 @@ const slugify = (values) => {
     .toLowerCase()
     .split(' ')
     .join('-')}`
-}
+};
+
+const footerFields = [
+  {
+    name: "name",
+    label: "Name",
+    type: "string",
+    required: true,
+  },
+  {
+    name: "url",
+    label: "URL",
+    type: "string",
+    required: true,
+  },
+  {
+    name: "outbound",
+    label: "Outbound Link?",
+    type: "boolean",
+  },
+  {
+    name: "aria_label",
+    label: "Aria Label",
+    type: "string",
+  },
+];
 
 export const schema = {
   collections: [
@@ -171,14 +196,19 @@ export const schema = {
       },
       fields: [
         {
-          name: "written",
+          name: "submissions_written",
           label: "Written Submission Form",
           type: "string",
         },
         {
-          name: "visual",
+          name: "submissions_visual",
           label: "Visual Arts Submission Form",
           type: "string",
+        },
+        {
+          name: "submissions_digital",
+          label: "Digital-only Submission Form",
+          type: "string"
         },
         {
           name: "subsClosedText",
@@ -186,49 +216,82 @@ export const schema = {
           type: "rich-text",
         },
         {
-          name: "otherSubs",
-          label: "Other Submission Forms",
-          type: "object",
-          list: true,
-          fields: [
-            {
-              name: "description",
-              label: "Description",
-              type: "string",
-              required: true,
-            },
-            {
-              name: "link",
-              label: "Link",
-              type: "string",
-              required: true,
-            },
-          ],
-        },
-        {
-          name: "editorial",
+          name: "app_editorial",
           label: "Editorial Application Form",
           type: "string",
         },
         {
-          name: "content",
+          name: "app_content",
           label: "Content Writing Application Form",
           type: "string",
         },
         {
-          name: "design",
+          name: "app_design",
           label: "Design Application Form",
           type: "string",
         },
         {
-          name: "events",
+          name: "app_website",
+          label: "Website Application Form",
+          type: "string",
+        },
+        {
+          name: "app_social_media",
+          label: "Social Media Application Form",
+          type: "string",
+        },
+        {
+          name: "app_event_planning",
           label: "Event Planning Application Form",
           type: "string",
         },
         {
-          name: "website",
-          label: "Website Application Form",
-          type: "string",
+          name: "footer__c1",
+          label: "Footer Col 1",
+          type: "object",
+          list: true,
+          ui: {
+            itemProps: (item) => {
+              return { label: `${item?.name}` }
+            },
+          },
+          fields: footerFields,
+        },
+        {
+          name: "footer__c2",
+          label: "Footer Col 2",
+          type: "object",
+          list: true,
+          ui: {
+            itemProps: (item) => {
+              return { label: `${item?.name}` }
+            },
+          },
+          fields: footerFields,
+        },
+        {
+          name: "footer__c3",
+          label: "Footer Col 3",
+          type: "object",
+          list: true,
+          ui: {
+            itemProps: (item) => {
+              return { label: `${item?.name}` }
+            },
+          },
+          fields: footerFields,
+        },
+        {
+          name: "footer__c4",
+          label: "Footer Col 4",
+          type: "object",
+          list: true,
+          ui: {
+            itemProps: (item) => {
+              return { label: `${item?.name}` }
+            },
+          },
+          fields: footerFields,
         },
       ],
     },
