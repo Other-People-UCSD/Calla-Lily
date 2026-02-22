@@ -9,7 +9,8 @@ const nextConfig = {
         port: '',
         pathname: '**'
       }
-    ]
+    ],
+    qualities: [25, 75],
   },
   async headers() {
     return [
