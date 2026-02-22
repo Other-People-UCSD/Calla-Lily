@@ -2,7 +2,7 @@ import Head from 'next/head';
 import HeaderMain from './header';
 import Footer from './footer';
 import contentStyles from '@/styles/content.module.scss';
-import { NextSeo } from 'next-seo';
+import { CreativeWorkJsonLd } from 'next-seo';
 
 export default function Layout({ children, post, landingPage, title, announcementData }) {
   const siteTitle = title ? (`${title} - Other People`) : (`Other People`);
@@ -22,11 +22,11 @@ export default function Layout({ children, post, landingPage, title, announcemen
     const favicon = 'https://www.otherpeoplesd.com/favicons/favicon-32x32.png';
     return (
       <>
-        <NextSeo
+        <CreativeWorkJsonLd
           title={siteTitle}
-          description='Othe People Literary Magazine is UC San Diego’s first student-run literary magazine and club. 
+          description='Other People Literary Magazine is UC San Diego’s first student-run literary magazine and club. 
         We wish to present the dynamic range of artistic capability inherent in UCSD students, to create an 
-        inclusive platform to share creative woks, and to encourage literary and artistic exploration 
+        inclusive platform to share creative works, and to encourage literary and artistic exploration 
         among all students. We seek to embrace our core principle of showcasing “O(the)r People,” or celebrating 
         at once our diversity, our individual uniqueness, our shared experiences, and our collective journey through this world.'
           openGraph={{

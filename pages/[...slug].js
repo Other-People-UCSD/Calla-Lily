@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useTina } from 'tinacms/dist/react'
 import client from '../tina/__generated__/client'
 import Link from 'next/link';
-import { NextSeo } from 'next-seo';
+import { CreativeWorkJsonLd } from 'next-seo';
 import Script from 'next/script';
 import animationStyles from "@/styles/animations.module.scss";
 import postStyles from "@/styles/posts.module.scss";
@@ -48,7 +48,7 @@ const Page = (props) => {
         <meta name="robots" content="noai" />
         <meta name="robots" content="noimageai" />
       </Head>
-      <NextSeo
+      <CreativeWorkJsonLd
         canonical={canonical}
         description={excerpt}
         excerpt={excerpt}
