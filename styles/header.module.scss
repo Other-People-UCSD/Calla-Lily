@@ -1,4 +1,4 @@
-@import '@/styles/variables.scss';
+@use '@/styles/variables.scss' as *;
 
 @keyframes slideInFromTop {
     0% { transform: translateY(-100%); }

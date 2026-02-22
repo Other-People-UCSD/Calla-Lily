@@ -1,6 +1,6 @@
 import '@/styles/globals.scss'
 import '@/styles/customPosts.scss';
-import { DefaultSeo } from 'next-seo';
+import { CreativeWorkJsonLd } from 'next-seo';
 import { AppWrapper } from '@/components/appContext';
 import Script from 'next/script';
 
@@ -22,7 +22,7 @@ export default function App({ Component, pageProps }) {
             gtag('config', 'G-CR21DPVQJ3', { 'debug_mode':true });
           }`}
       </Script>
-      <DefaultSeo
+      <CreativeWorkJsonLd
         openGraph={{
           siteName: 'Other People',
           locale: 'en_US',
