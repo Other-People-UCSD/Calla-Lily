@@ -52,7 +52,7 @@ export default function Layout({ children, post, landingPage, title, announcemen
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <OPMSEO />
-      <HeaderMain landingPage={landingPage} title={title} announcementData={announcementData} />
+      <HeaderMain landingPage={landingPage} title={title}/>
       <Content>{children}</Content>
       <Footer />
     </>

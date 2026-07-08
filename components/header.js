@@ -113,11 +113,13 @@ export default function HeaderMain({ landingPage, title, announcementData }) {
                   <span>{announcementData?.description}</span>
               )
               }
-              <button
+            
+              {/*<button
                 id="close-notice"
                 className={headerStyles["close-announcement"]}
                 onClick={hideAnnouncement}
                 aria-label="Hide the Announcement"><CloseIcon /></button>
+              */}
             </div>
           ) : null
         }
