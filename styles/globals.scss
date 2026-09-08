@@ -173,3 +173,11 @@ html[data-theme="dark"] {
         font-size: 3rem;
     }
 }
+
+pre {
+    font-family: $bodyFont;
+    font-size: 1rem; 
+    line-height: 1.8rem; 
+    color: #151515;
+    padding-left: 0em;
+}
