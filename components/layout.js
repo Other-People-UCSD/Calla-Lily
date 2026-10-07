@@ -3,6 +3,8 @@ import HeaderMain from './header';
 import Footer from './footer';
 import contentStyles from '@/styles/content.module.scss';
 import { CreativeWorkJsonLd } from 'next-seo';
+import { Analytics } from "@vercel/analytics/next"
+
 
 export default function Layout({ children, post, landingPage, title, announcementData }) {
   const siteTitle = title ? (`${title} - Other People`) : (`Other People`);
@@ -52,6 +54,7 @@ export default function Layout({ children, post, landingPage, title, announcemen
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <OPMSEO />
+      <Analytics />
       <HeaderMain landingPage={landingPage} title={title}/>
       <Content>{children}</Content>
       <Footer />

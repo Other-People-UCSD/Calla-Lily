@@ -17,6 +17,7 @@
     "@mui/icons-material": "^7.3.8",
     "@mui/material": "^7.3.8",
     "@tailwindcss/postcss": "^4.2.0",
+    "@vercel/analytics": "^2.0.1",
     "eslint": "10.0.1",
     "eslint-config-next": "16.1.6",
     "gray-matter": "^4.0.3",
