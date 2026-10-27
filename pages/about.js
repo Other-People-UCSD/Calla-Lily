@@ -44,21 +44,23 @@ export default function About(props) {
         </div>
         <h2><strong>ABOUT US</strong></h2>
         <div>
-          <p>Other People Literary Magazine at UC San Diego is the first student-run literary magazine and club.</p>
-
-          <p>
-            We publish biannually in the Fall and Spring and accept works of fiction, poetry, creative nonfiction,
-            art,
-            and photography. We wish to present the dynamic range of artistic capability inherent in UCSD students,
-            to
-            create an inclusive platform to share creative works, and to encourage literary and artistic exploration
-            among all students. We seek to embrace our core principle of showcasing “O(the)r People,” or celebrating
-            at
-            once our diversity, our individual uniqueness, our shared experiences, and our collective journey
-            through
-            this world. Our hope is that Other People Magazine will become a permanent organization at the
-            University of
-            California, San Diego, and will remain an enduring outlet for student creativity.
+          <p>Other People Magazine is a visual and literary arts zine based in UC San Diego since early 2018! 
+            As 
+            the university's first literary arts magazine, we pride ourselves in fostering 
+            a 
+            community of diverse voices, turning the unspoken into the spoken, the hidden into the unhidden. 
+            We 
+            focus on experimental and genre-breaking pieces, striving to cultivate a platform and space 
+            for 
+            students to publish their work without censorship of any form. For accepted submissions, 
+            our 
+            dedicated team of editors and artists assist in supporting and accompanying the creators' 
+            pieces. 
+            Other People Magazine publishes annually with over 30+ pages of fully illustrated 
+            and 
+            polished stories that redefine the boundaries of the conventional. We hope to contribute
+            to 
+            the greater creative community in San Diego.
           </p>
         </div>
 
