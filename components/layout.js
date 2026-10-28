@@ -4,10 +4,16 @@ import Footer from './footer';
 import contentStyles from '@/styles/content.module.scss';
 import { CreativeWorkJsonLd } from 'next-seo';
 import { Analytics } from "@vercel/analytics/next"
+import { useEffect } from 'react';
+import { clarity } from '@microsoft/clarity';
 
 
 export default function Layout({ children, post, landingPage, title, announcementData }) {
   const siteTitle = title ? (`${title} - Other People`) : (`Other People`);
+
+  useEffect(() => {
+    clarity.init("z4k7kwr6uv");
+  }, []);
 
   // console.log('layour children:', children)
   function Content() {
